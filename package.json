@@ -1,12 +1,27 @@
 {
   "name": "@microsoft/universal-artifact-sdk",
   "version": "0.5.0",
-  "description": "Authoring SDK that emits the evaluable-artifact/v2 submission format (artifact-sdk/v1). See SPEC.md.",
+  "description": "Vendor-neutral TypeScript SDK for authoring and serializing evaluable research artifacts that pair a producer's claims with the evidence needed to verify them. See SPEC.md.",
+  "keywords": [
+    "artifact",
+    "evaluable-artifact",
+    "research",
+    "reproducibility",
+    "open-science",
+    "json-schema",
+    "claims",
+    "evidence",
+    "sdk"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
+  "homepage": "https://github.com/microsoft/universal-artifact-sdk#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/universal-artifact-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft/universal-artifact-sdk/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -25,8 +40,10 @@
     "dist",
     "schema",
     "examples",
+    "SPEC.md",
     "CHANGELOG.md",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
