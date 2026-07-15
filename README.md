@@ -1,6 +1,6 @@
 # Universal Artifact SDK
 
-> **Implements:** `artifact-sdk/v1` · **Emits:** `evaluable-artifact/v2` · **Spec:** [`SPEC.md`](SPEC.md)
+> **Implements:** `artifact-sdk/v1` · **Emits:** `evaluable-artifact/v2` · **Spec:** [`SPEC.md`](SPEC.md) · **Why:** [`MOTIVATION.md`](MOTIVATION.md)
 
 A small, vendor-neutral authoring API for research artifacts. A producer that already *has* the
 structured facts about its run — which experiments it ran, what each produced, which claim each
