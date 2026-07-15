@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://microsoft.github.io/universal-artifact-sdk/schema/evaluable-artifact-v2.schema.json",
+  "title": "evaluable-artifact/v2",
+  "description": "Canonical structural contract for the evaluable-artifact/v2 submission format emitted by the Universal Artifact SDK (artifact-sdk/v1). Source of truth: SPEC.md. Field names provisional (spec §11 Q1). This validates the in-memory artifact model; the on-disk form splits it across manifest.yml / claims.yml / results.yml / datasets.yml / traces.yml / assessments.yml.",
+  "type": "object",
+  "required": ["format_version", "sdk_version", "id", "title"],
+  "additionalProperties": true,
+  "properties": {
+    "format_version": { "const": "evaluable-artifact/v2" },
+    "sdk_version": { "type": "string" },
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "producer": { "type": "object" },
+    "environment": { "$ref": "#/$defs/environment" },
+    "datasets": { "type": "array", "items": { "$ref": "#/$defs/dataset" } },
+    "experiments": { "type": "array", "items": { "$ref": "#/$defs/experiment" } },
+    "traces": { "type": "array", "items": { "$ref": "#/$defs/trace" } },
+    "results": { "type": "array", "items": { "$ref": "#/$defs/result" } },
+    "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+    "assessments": { "type": "array", "items": { "$ref": "#/$defs/assessment" } },
+    "paper": { "$ref": "#/$defs/paper" },
+    "research_agent": { "$ref": "#/$defs/researchAgent" },
+    "reflection": { "type": "string" },
+    "journal": { "type": "array", "items": { "$ref": "#/$defs/journalEntry" } }
+  },
+  "$defs": {
+    "validationMode": {
+      "enum": ["re-execute", "re-analyze", "inspect", "attest"]
+    },
+    "disposition": {
+      "type": "object",
+      "description": "Research-process lifecycle of an attempted experiment (spec §2.2.2). Retained rather than deleted so what was tried is not lost.",
+      "required": ["status", "rationale"],
+      "properties": {
+        "status": { "enum": ["active", "superseded", "abandoned", "failed"] },
+        "rationale": { "type": "string" },
+        "superseded_by": { "type": "string" },
+        "failure": {
+          "type": "object",
+          "required": ["stage", "summary"],
+          "properties": {
+            "stage": { "type": "string" },
+            "summary": { "type": "string" }
+          }
+        }
+      }
+    },
+    "journalEntry": {
+      "type": "object",
+      "description": "One append-only edit-history entry (spec §2.8): what changed and why.",
+      "required": ["seq", "timestamp", "actor", "op", "target", "rationale"],
+      "properties": {
+        "seq": { "type": "integer" },
+        "timestamp": { "type": "string" },
+        "actor": { "type": "string" },
+        "op": { "enum": ["add", "replace", "remove", "abandon", "attach", "set"] },
+        "target": {
+          "type": "object",
+          "required": ["kind", "id"],
+          "properties": {
+            "kind": { "type": "string" },
+            "id": { "type": "string" }
+          }
+        },
+        "rationale": { "type": "string" },
+        "before": {},
+        "after": {}
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": ["name", "image"],
+      "properties": {
+        "name": { "type": "string" },
+        "image": {
+          "type": "object",
+          "required": ["reference"],
+          "properties": {
+            "reference": { "type": "string" },
+            "digest": { "type": "string" }
+          }
+        },
+        "os": { "type": "string" },
+        "hardware": { "type": "object" }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "required": ["id", "location"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "location": {
+          "type": "object",
+          "required": ["kind"],
+          "oneOf": [
+            {
+              "properties": {
+                "kind": { "const": "in_artifact" },
+                "path": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" }
+              },
+              "required": ["path"]
+            },
+            {
+              "properties": {
+                "kind": { "const": "in_container" },
+                "path": { "type": "string" },
+                "in_environment": { "type": "string" }
+              },
+              "required": ["path", "in_environment"]
+            },
+            {
+              "properties": {
+                "kind": { "const": "external" },
+                "uri": { "type": "string" },
+                "sha256": { "type": "string", "minLength": 1 },
+                "bytes": { "type": "integer" },
+                "access": {
+                  "enum": ["public", "requires_credentials", "license_gated"]
+                },
+                "license": { "type": "string" }
+              },
+              "required": ["uri", "sha256"]
+            }
+          ]
+        },
+        "prepare": { "type": "string" },
+        "sample": { "type": "object", "properties": { "path": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" } } },
+        "study": { "type": "object" }
+      }
+    },
+    "experiment": {
+      "type": "object",
+      "required": ["slug", "directory", "run"],
+      "properties": {
+        "slug": { "type": "string", "minLength": 1 },
+        "directory": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" },
+        "run": {
+          "type": "object",
+          "required": ["command"],
+          "properties": {
+            "command": { "type": "string" },
+            "entrypoint": { "type": "string" },
+            "working_dir": { "type": "string" },
+            "args": { "type": "array", "items": { "type": "string" } },
+            "env": { "type": "object" },
+            "seed": { "type": "integer" }
+          }
+        },
+        "uses_data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["dataset", "at"],
+            "properties": {
+              "dataset": { "type": "string" },
+              "at": { "type": "string" }
+            }
+          }
+        },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "expected_runtime": { "type": "string" },
+        "runs_in": { "type": "string" },
+        "disposition": { "$ref": "#/$defs/disposition" }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "required": ["id", "kind", "path"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string" },
+        "path": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" },
+        "covers": { "type": "array", "items": { "type": "string" } },
+        "terminal_state": {
+          "enum": [
+            "completed_with_outputs",
+            "planning_only",
+            "debugging_no_run",
+            "aborted",
+            "unknown"
+          ]
+        },
+        "counters": { "type": "object" }
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": ["id", "validates", "evidence", "kind"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "produced_by": { "type": "string" },
+        "validates": { "type": "array", "items": { "type": "string" } },
+        "evidence": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" },
+        "kind": { "type": "string" },
+        "validation_mode": { "$ref": "#/$defs/validationMode" },
+        "locators": { "type": "object" },
+        "support": { "type": "object" },
+        "supersedes": { "type": "string" }
+      }
+    },
+    "validator": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["builtin", "procedure", "attest", "llm_judge"] },
+        "gated_by": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "kind": { "const": "builtin" } } },
+          "then": { "required": ["name"], "properties": { "name": { "type": "string" } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "procedure" } } },
+          "then": {
+            "required": ["instructions"],
+            "properties": { "instructions": { "type": "string" } }
+          }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "attest" } } },
+          "then": { "required": ["checks"], "properties": { "checks": { "type": "string" } } }
+        },
+        {
+          "if": { "properties": { "kind": { "const": "llm_judge" } } },
+          "then": {
+            "required": ["criteria"],
+            "properties": { "criteria": { "type": "string" } }
+          }
+        }
+      ]
+    },
+    "claim": {
+      "type": "object",
+      "required": ["id", "statement", "validators"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "statement": { "type": "string" },
+        "stance": { "enum": ["hypothesis", "finding"], "description": "Author-declared standing (spec §2.4.1). Absent ⇒ 'finding'. A 'hypothesis' is a proposed statement to be tested; assessed on honest testing/reporting, not on whether it holds." },
+        "tested_by": { "type": "array", "items": { "type": "string" }, "description": "Slugs of the experiment(s) that test this claim; links a hypothesis to the disposition that resolves it (spec §2.4.1)." },
+        "paper_ref": { "type": "object" },
+        "validators": { "type": "array", "items": { "$ref": "#/$defs/validator" } }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "required": ["id", "dimension", "scope"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "dimension": { "type": "string" },
+        "scope": { "enum": ["artifact", "paper"] },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "validator": { "$ref": "#/$defs/validator" }
+      }
+    },
+    "paper": {
+      "type": "object",
+      "anyOf": [
+        { "required": ["pdf"] },
+        { "required": ["source"] }
+      ],
+      "properties": {
+        "pdf": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" },
+        "source": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" },
+        "claims_export": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" },
+        "references_export": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\))).+" }
+      }
+    },
+    "researchAgent": {
+      "type": "object",
+      "required": ["path", "model", "grounding_sources"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:$|(?:/|\\\\)))(?!.*(?:/|\\\\)$).+" },
+        "model": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "grounding_sources": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1, "pattern": "^(?=\\S)(?!.*\\s$)(?!\\.[Ss][Dd][Kk](?:$|(?:/|\\\\)))(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|(?:/|\\\\))\\.\\.(?:(?:/|\\\\)|$))(?!.*(?:^|(?:/|\\\\))\\.(?:(?:/|\\\\)|$))(?!(?:[Mm][Aa][Nn][Ii][Ff][Ee][Ss][Tt]|[Cc][Ll][Aa][Ii][Mm][Ss]|[Rr][Ee][Ss][Uu][Ll][Tt][Ss]|[Dd][Aa][Tt][Aa][Ss][Ee][Tt][Ss]|[Tt][Rr][Aa][Cc][Ee][Ss]|[Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt][Ss]|[Jj][Oo][Uu][Rr][Nn][Aa][Ll])\\.yml|[Rr][Ee][Ff][Ll][Ee][Cc][Tt][Ii][Oo][Nn]\\.md|[Ss][Hh][Aa]256[Ss][Uu][Mm][Ss](?:/|\\\\)).+" } },
+        "scope": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
