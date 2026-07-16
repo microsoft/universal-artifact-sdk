@@ -1,6 +1,6 @@
 # Universal Artifact SDK — Specification (DRAFT for review)
 
-> **Authors:** Microsoft Corporation.
+> **Authors:** Chad Atalla, Lef Ioannidis, Nick Pangakis, Tyler Sorensen, Hannah Washington, Jenn Wortman Vaughan, Ben Zorn.
 > **Status:** DRAFT — prose-first, for a round of human review before we generate the JSON Schema.
 > **Spec ID:** `artifact-sdk/v1` (this document, the API + object model)
 > **Emits format:** `evaluable-artifact/v2` (the on-disk *submission* the SDK writes; see §6)
