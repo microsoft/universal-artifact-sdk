@@ -9,6 +9,27 @@ pre-1.0, so minor bumps carry additive, backward-compatible features. The emitte
 addition is optional and absence-tolerant, so a submission that uses none of the new
 elements is behaviorally identical to `0.1.0` output.
 
+## [0.6.0]
+
+Release-infrastructure, documentation, and toolchain hardening for the public
+open-source release. **No runtime or public-API changes** and **no change to the
+emitted `evaluable-artifact/v2` format** — output is byte-for-byte identical to
+`0.5.0`. This release exists to publish the first npm build from the public repo
+through the release-gated pipeline.
+
+### Added
+- **Release-gated npm publish pipeline** (`.github/workflows/publish.yml`): builds,
+  type-checks, tests, verifies the git tag matches `package.json`, and publishes
+  `@microsoft/universal-artifact-sdk` with npm provenance on GitHub Release.
+- **CodeQL scanning**, **Dependabot** (npm + GitHub Actions), and **`CODEOWNERS`**.
+- **`MOTIVATION.md`** explaining why the SDK exists, linked from the README; authors
+  named in the `SPEC.md` byline.
+
+### Changed (toolchain / metadata — no runtime or API impact)
+- Package metadata polished for npm publish.
+- Dev/CI dependencies bumped: `typescript` 6.0.3 → 7.0.2, `@types/node`,
+  `actions/checkout`, `actions/setup-node`, `github/codeql-action`.
+
 ## [0.5.0]
 
 ### Added
