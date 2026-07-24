@@ -97,8 +97,12 @@ award (e.g. ACM **Available / Functional / Reproduced** [[2]](#references)), not
 
 ## Authors
 
-Chad Atalla, Lef Ioannidis, Nick Pangakis, Tyler Sorensen, Hannah Washington, Jenn Wortman Vaughan,
+Chad Atalla, Lef Ioannidis, Nick Pangakis, Tyler Sorensen, Hannah Washington,
 Ben Zorn.
+
+## Acknowledgements
+
+We thank Jenn Wortman Vaughan for her valuable input and feedback.
 
 ## References
 
