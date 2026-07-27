@@ -211,6 +211,32 @@ describe("exhibit structural validation (spec §7)", () => {
     expect(findError(a, /exhibit\[X1\]\.path.*collide with SDK-generated files/)).toBe(true);
   });
 
+  it("accepts a statement-only proof exhibit (no rendered path)", () => {
+    const a = baseArtifact();
+    addExhibit(a, {
+      id: "X1",
+      type: "proof",
+      caption: "Soundness of the FPR bound.",
+      validates: ["C4"],
+      statement: "For all k, FPR(k) >= (1 - e^{-kn/m})^k.",
+    });
+    expect(findError(a, /exhibit\[X1\]/)).toBe(false);
+  });
+
+  it("requires path or statement — a figure with neither is rejected", () => {
+    const a = baseArtifact();
+    // @ts-expect-error path intentionally omitted
+    addExhibit(a, { id: "X1", type: "figure", caption: "c", validates: ["C4"] });
+    expect(findError(a, /exhibit requires `path`/)).toBe(true);
+  });
+
+  it("rejects a pathless proof that also lacks a statement", () => {
+    const a = baseArtifact();
+    // @ts-expect-error path intentionally omitted
+    addExhibit(a, { id: "X1", type: "proof", caption: "c", validates: ["C4"] });
+    expect(findError(a, /exhibit requires `path`/)).toBe(true);
+  });
+
   it("rejects an illegal validation_mode", () => {
     const a = baseArtifact();
     // @ts-expect-error illegal mode

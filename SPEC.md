@@ -312,7 +312,7 @@ exhibit:
   type: "figure"                    # figure | table | proof | derivation | listing
   caption: "FPR vs k; U-shaped with a minimum near k*=7."
   validates: ["C4"]                 # → claim id(s) this exhibit substantiates
-  path: "experiments/fpr_sweep/figure1.png"   # the rendered artifact (relative, safe path)
+  path: "experiments/fpr_sweep/figure1.png"   # rendered artifact (optional: a proof/derivation may substitute `statement`)
   produced_by: "fpr-sweep"          # → experiment slug that generated it (optional)
   from_result: "R3"                 # → result it was rendered from (optional)
   validation_mode: "inspect"        # inspect | re-execute | re-analyze | attest (default from type)

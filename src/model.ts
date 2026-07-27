@@ -273,11 +273,15 @@ export interface Exhibit {
   caption: string;
   /** Claim id(s) this exhibit substantiates; many-to-many, mirrors {@link Result.validates}. */
   validates: string[];
-  /** Primary/rendered form of the exhibit (safe relative path). */
-  path: string;
+  /**
+   * Primary/rendered form of the exhibit (safe relative path). Optional: a `proof`/`derivation`
+   * may instead carry a formal `statement` with no rendered file (spec §2.3.1). At least one of
+   * `path` or `statement` is required.
+   */
+  path?: string;
   /** Experiment slug that produced the exhibit (optional provenance). */
   produced_by?: string;
-  /** How a reviewer confirms the exhibit. Absent ⇒ inferred from `type` (spec §3.1). */
+  /** How a reviewer confirms the exhibit. Absent ⇒ inferred from `type` (spec §2.3.1). */
   validation_mode?: ValidationMode;
   /** Vector/source companion for a rendered figure (e.g. the PDF behind a PNG). */
   source?: string;

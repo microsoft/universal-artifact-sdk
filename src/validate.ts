@@ -389,8 +389,16 @@ export function validateStructure(a: Artifact): ValidationReport {
     }
     if (!e.caption || !e.caption.trim())
       errors.push({ path: p, message: "exhibit requires a non-empty `caption`" });
-    if (!e.path) errors.push({ path: p, message: "exhibit requires `path`" });
-    else pushBlobPathError(errors, `${p}.path`, e.path);
+    // `path` is required, except a proof/derivation may substitute a formal `statement`
+    // (a purely textual claim with no rendered file). Spec §2.3.1.
+    const statementOnly =
+      (e.type === "proof" || e.type === "derivation") && !!(e.statement && e.statement.trim());
+    if (!e.path && !statementOnly)
+      errors.push({
+        path: p,
+        message: "exhibit requires `path` (a proof/derivation may instead carry a `statement`)",
+      });
+    if (e.path) pushBlobPathError(errors, `${p}.path`, e.path);
     if (e.source !== undefined) pushBlobPathError(errors, `${p}.source`, e.source);
     if (e.validation_mode && !VALIDATION_MODES.includes(e.validation_mode)) {
       errors.push({

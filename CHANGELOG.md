@@ -21,7 +21,8 @@ byte-for-byte identical output to `0.6.0`.
 ### Added
 - **`Exhibit` element and `exhibits` collection** (`SPEC.md` §2.3.1). An exhibit
   carries `id`, `type` (`figure` | `table` | `proof` | `derivation` | `listing`),
-  `caption`, and `validates` (the claim ids it supports), plus optional `path`,
+  `caption`, and `validates` (the claim ids it supports), plus optional `path`
+  (a `proof`/`derivation` may substitute a formal `statement` for a rendered file),
   `produced_by`, `from_result`, `statement`, `depends_on`, `validation_mode`,
   `source`, `alt_text`, `language`, and `order`.
 - **Builder API**: `addExhibit`, `getExhibit`, `listExhibits`, `removeExhibit`
@@ -29,10 +30,11 @@ byte-for-byte identical output to `0.6.0`.
 - **`defaultExhibitValidationMode(type)`**: exhibits default to `inspect` (a human
   reads the rendering), except `proof` → `re-execute` (run the checker) — distinct
   from Result defaults, which is the gap typed exhibits close.
-- **Validation**: id/type/caption required, safe relative `path`/`source`,
-  `validation_mode` enum, and referential integrity for `produced_by` (→ experiment),
-  `from_result` (→ result), `validates` (→ claim), and `depends_on` (→ exhibit, with
-  self-dependency and cycle detection).
+- **Validation**: id/type/caption required; `path` required unless a `proof`/`derivation`
+  substitutes a `statement`; safe relative `path`/`source`, `validation_mode` enum, and
+  referential integrity for `produced_by` (→ experiment), `from_result` (→ result),
+  `validates` (→ claim), and `depends_on` (→ exhibit, with self-dependency and cycle
+  detection).
 - **Evidence inventory**: `has_exhibits` / `exhibit_count`.
 - **Schema**: `exhibits` top-level property and `exhibit` definition in
   `schema/evaluable-artifact-v2.schema.json`.
