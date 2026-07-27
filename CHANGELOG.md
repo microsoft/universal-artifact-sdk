@@ -39,7 +39,7 @@ byte-for-byte identical output to `0.6.0`.
 - **Schema**: `exhibits` top-level property and `exhibit` definition in
   `schema/evaluable-artifact-v2.schema.json`.
 
-
+## [0.6.0]
 
 Release-infrastructure, documentation, and toolchain hardening for the public
 open-source release. **No runtime or public-API changes** and **no change to the
