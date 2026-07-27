@@ -294,6 +294,46 @@ result:
 evidence — a reported number is just a `locator` a numeric validator compares against. `support` is
 its qualitative counterpart, cite-addressable for an `inspect`-mode validator (§3.4).
 
+### 2.3.1 Exhibit — *the non-numeric artifact a claim points at* `[NEW]`
+
+A **Result** answers "which experiment produced this evidence, and which claim does it validate."
+But many claims are substantiated not by a re-analyzable measurement but by a **rendered artifact a
+human reads or a checker runs**: a figure, a summary table, a formal proof, a hand derivation, or a
+code listing. An **Exhibit** is that first-class object — the typed connection between a claim and
+the non-numeric thing that supports it.
+
+An exhibit is **optional and absence-tolerant**: `exhibits.yml` is emitted only when at least one
+exhibit exists, and a submission that declares none is byte-for-byte identical to one built without
+the exhibit API.
+
+```yaml
+exhibit:
+  id: "X1"
+  type: "figure"                    # figure | table | proof | derivation | listing
+  caption: "FPR vs k; U-shaped with a minimum near k*=7."
+  validates: ["C4"]                 # → claim id(s) this exhibit substantiates
+  path: "experiments/fpr_sweep/figure1.png"   # the rendered artifact (relative, safe path)
+  produced_by: "fpr-sweep"          # → experiment slug that generated it (optional)
+  from_result: "R3"                 # → result it was rendered from (optional)
+  validation_mode: "inspect"        # inspect | re-execute | re-analyze | attest (default from type)
+  alt_text: "Line plot of false-positive rate against k."
+  order: 1
+```
+
+**`type`.** One of `figure | table | proof | derivation | listing`. Unrecognized types are a
+**warning**, not an error — the collection stays open/extensible.
+
+**`validation_mode` default.** Unlike a Result (where `figure`→`re-analyze`, because the chart
+renders a re-analyzable measurement), an exhibit's default turns on how a human *consumes* it:
+every type defaults to **`inspect`** (a reviewer reads the rendering) **except `proof`**, which
+defaults to **`re-execute`** (run the proof checker). `defaultExhibitValidationMode(type)` returns
+this; producers may override per exhibit.
+
+**Edges & integrity.** `validates` (→ claim), `produced_by` (→ experiment), and `from_result`
+(→ result) must reference existing elements. A `proof`/`derivation` may carry a `statement`
+(the thing proven) instead of, or alongside, a `path`; a `listing` may carry a `language`. Exhibits
+may declare `depends_on` (→ other exhibit ids) to compose — self-dependency and cycles are rejected.
+
 ### 2.4 Claim — *statement + how to validate it*
 
 The claim is the heart of the model. It states something about the paper's results **and carries one

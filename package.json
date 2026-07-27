@@ -1,6 +1,6 @@
 {
   "name": "@microsoft/universal-artifact-sdk",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Vendor-neutral TypeScript SDK for authoring and serializing evaluable research artifacts that pair a producer's claims with the evidence needed to verify them. See SPEC.md.",
   "keywords": [
     "artifact",

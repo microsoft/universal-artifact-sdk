@@ -15,6 +15,7 @@ import {
   CLAIM_STANCES,
   Claim,
   DISPOSITION_STATUSES,
+  EXHIBIT_TYPES,
   pinnedDigest,
   Validator,
   VALIDATION_MODES,
@@ -48,6 +49,7 @@ const GENERATED_RESERVED_PATHS = new Set([
   "claims.yml",
   "results.yml",
   "datasets.yml",
+  "exhibits.yml",
   "traces.yml",
   "assessments.yml",
   "journal.yml",
@@ -101,6 +103,10 @@ function collectAuthoredBlobRefs(a: Artifact): Array<{ path: string; value: stri
   }
   for (const t of a.traces) if (typeof t.path === "string") refs.push({ path: `trace[${t.id}].path`, value: t.path });
   for (const r of a.results) if (typeof r.evidence === "string") refs.push({ path: `result[${r.id}].evidence`, value: r.evidence });
+  for (const e of a.exhibits) {
+    if (typeof e.path === "string") refs.push({ path: `exhibit[${e.id}].path`, value: e.path });
+    if (typeof e.source === "string") refs.push({ path: `exhibit[${e.id}].source`, value: e.source });
+  }
   if (a.paper) {
     if (typeof a.paper.pdf === "string") refs.push({ path: "paper.pdf", value: a.paper.pdf });
     if (typeof a.paper.source === "string") refs.push({ path: "paper.source", value: a.paper.source });
@@ -115,6 +121,39 @@ function validatorIds(claim: Claim): Set<string> {
   const ids = new Set<string>();
   for (const v of claim.validators) if (v.id) ids.add(v.id);
   return ids;
+}
+
+/**
+ * Detect cycles in the exhibit `depends_on` DAG (spec §2.3.1). Returns one representative path per
+ * cycle found (e.g. `["X1", "X2", "X1"]`), so a proof→lemma graph can be asserted acyclic.
+ */
+function exhibitDependencyCycles(a: Artifact): string[][] {
+  const adj = new Map<string, string[]>();
+  for (const e of a.exhibits) adj.set(e.id, (e.depends_on ?? []).filter((d) => d !== e.id));
+  const state = new Map<string, "visiting" | "done">();
+  const cycles: string[][] = [];
+  const seen = new Set<string>();
+  const dfs = (node: string, stack: string[]): void => {
+    state.set(node, "visiting");
+    stack.push(node);
+    for (const next of adj.get(node) ?? []) {
+      if (!adj.has(next)) continue; // dangling ref already reported as an error
+      if (state.get(next) === "visiting") {
+        const cycle = [...stack.slice(stack.indexOf(next)), next];
+        const key = [...cycle].sort().join("|");
+        if (!seen.has(key)) {
+          seen.add(key);
+          cycles.push(cycle);
+        }
+      } else if (state.get(next) !== "done") {
+        dfs(next, stack);
+      }
+    }
+    stack.pop();
+    state.set(node, "done");
+  };
+  for (const e of a.exhibits) if (!state.has(e.id)) dfs(e.id, []);
+  return cycles;
 }
 
 function checkValidatorWellFormed(
@@ -197,6 +236,7 @@ export function validateStructure(a: Artifact): ValidationReport {
   const datasetIds = new Set(a.datasets.map((d) => d.id));
   const claimIds = new Set(a.claims.map((c) => c.id));
   const resultIds = new Set(a.results.map((r) => r.id));
+  const exhibitIds = new Set(a.exhibits.map((e) => e.id));
 
   // datasets
   for (const d of a.datasets) {
@@ -333,6 +373,65 @@ export function validateStructure(a: Artifact): ValidationReport {
           message: `references unknown claim '${cid}'`,
         });
     }
+  }
+
+  // exhibits (spec §2.3.1) — typed, captioned evidence linked to claims
+  for (const e of a.exhibits) {
+    const p = `exhibit[${e.id}]`;
+    if (!e.id) errors.push({ path: p, message: "exhibit requires `id`" });
+    if (!e.type) errors.push({ path: p, message: "exhibit requires `type`" });
+    else if (!EXHIBIT_TYPES.includes(e.type)) {
+      // Open/extensible enum: an unrecognized type is legal but flagged for review.
+      warnings.push({
+        path: `${p}.type`,
+        message: `unrecognized exhibit type '${e.type}' (known: ${EXHIBIT_TYPES.join(" | ")})`,
+      });
+    }
+    if (!e.caption || !e.caption.trim())
+      errors.push({ path: p, message: "exhibit requires a non-empty `caption`" });
+    if (!e.path) errors.push({ path: p, message: "exhibit requires `path`" });
+    else pushBlobPathError(errors, `${p}.path`, e.path);
+    if (e.source !== undefined) pushBlobPathError(errors, `${p}.source`, e.source);
+    if (e.validation_mode && !VALIDATION_MODES.includes(e.validation_mode)) {
+      errors.push({
+        path: `${p}.validation_mode`,
+        message: `illegal validation_mode '${e.validation_mode}'`,
+      });
+    }
+    if (e.produced_by && !experimentSlugs.has(e.produced_by)) {
+      errors.push({
+        path: `${p}.produced_by`,
+        message: `references unknown experiment '${e.produced_by}'`,
+      });
+    }
+    if (e.from_result && !resultIds.has(e.from_result)) {
+      errors.push({
+        path: `${p}.from_result`,
+        message: `references unknown result '${e.from_result}'`,
+      });
+    }
+    for (const cid of e.validates ?? []) {
+      if (!claimIds.has(cid))
+        errors.push({
+          path: `${p}.validates`,
+          message: `references unknown claim '${cid}'`,
+        });
+    }
+    for (const dep of e.depends_on ?? []) {
+      if (dep === e.id)
+        errors.push({ path: `${p}.depends_on`, message: "exhibit cannot depend on itself" });
+      else if (!exhibitIds.has(dep))
+        errors.push({
+          path: `${p}.depends_on`,
+          message: `references unknown exhibit '${dep}'`,
+        });
+    }
+  }
+  for (const cycle of exhibitDependencyCycles(a)) {
+    errors.push({
+      path: `exhibit[${cycle[0]}].depends_on`,
+      message: `exhibit dependency cycle: ${cycle.join(" -> ")}`,
+    });
   }
 
   // claims + validators

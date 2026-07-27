@@ -41,6 +41,7 @@ export function openSubmission(dir: string): Artifact {
     traces: readList(paths.traces ?? "traces.yml", "traces"),
     results: readList(paths.results ?? "results.yml", "results"),
     claims: readList(paths.claims ?? "claims.yml", "claims"),
+    exhibits: readList(paths.exhibits ?? "exhibits.yml", "exhibits"),
     assessments: readList(
       paths.assessments ?? "assessments.yml",
       "assessments",
