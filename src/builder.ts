@@ -18,6 +18,7 @@ import {
   Dataset,
   Disposition,
   Environment,
+  Exhibit,
   Experiment,
   FORMAT_VERSION,
   JournalConfig,
@@ -55,6 +56,7 @@ export function createArtifact(input: CreateArtifactInput): Artifact {
     traces: [],
     results: [],
     claims: [],
+    exhibits: [],
     assessments: [],
     paper: undefined,
     research_agent: undefined,
@@ -428,6 +430,35 @@ export function removeResult(
   ctx?: ChangeContext,
 ): boolean {
   return removeElement(a, a.results, id, (r) => r.id, "result", ctx);
+}
+
+// --- exhibits ---------------------------------------------------------------
+
+/**
+ * Add (or replace) a typed exhibit — a captioned figure/table/proof/derivation/listing that
+ * substantiates one or more claims (spec §2.3.1). Additive and optional: producers that never call
+ * this emit no `exhibits.yml` and byte-identical output. `validation_mode` may be omitted; consumers
+ * infer it from `type` via {@link defaultExhibitValidationMode}.
+ */
+export function addExhibit(
+  a: Artifact,
+  exhibit: Exhibit,
+  ctx?: ChangeContext,
+): Exhibit {
+  return addElement(a, a.exhibits, exhibit, (e) => e.id, "exhibit", ctx);
+}
+export function getExhibit(a: Artifact, id: string): Exhibit | undefined {
+  return a.exhibits.find((e) => e.id === id);
+}
+export function listExhibits(a: Artifact): Exhibit[] {
+  return [...a.exhibits];
+}
+export function removeExhibit(
+  a: Artifact,
+  id: string,
+  ctx?: ChangeContext,
+): boolean {
+  return removeElement(a, a.exhibits, id, (e) => e.id, "exhibit", ctx);
 }
 
 // --- claims -----------------------------------------------------------------

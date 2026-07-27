@@ -233,6 +233,73 @@ export interface Result {
 }
 
 /**
+ * Genre of a typed exhibit (spec §2.3.1). Open/extensible: an unrecognized type is carried
+ * verbatim, not rejected.
+ */
+export type ExhibitType =
+  | "figure"
+  | "table"
+  | "proof"
+  | "derivation"
+  | "listing"
+  | (string & {});
+
+export const EXHIBIT_TYPES: readonly ExhibitType[] = [
+  "figure",
+  "table",
+  "proof",
+  "derivation",
+  "listing",
+];
+
+/**
+ * A typed, captioned evidence artifact that substantiates one or more claims (spec §2.3.1).
+ *
+ * An Exhibit is the *human-consumable rendering* that stands behind a claim — a figure, table,
+ * proof, derivation, or code listing — as distinct from a {@link Result} (a computed
+ * outcome/measurement). They are siblings, cross-linkable via `from_result`, not subclasses:
+ * an exhibit carries presentation concerns (a self-contained `caption`, an optional `alt_text`)
+ * that a result does not. All exhibit types share the spine — `caption`, `validates`,
+ * `produced_by`, `validation_mode` — and add additive, type-specific fields.
+ *
+ * The whole collection is optional and evidence-conditioned: a submission that declares no
+ * exhibits is not malformed, and consumers keep their heuristic exhibit→claim inference as a
+ * fallback (spec §2.3.1).
+ */
+export interface Exhibit {
+  id: string;
+  type: ExhibitType;
+  /** Self-contained caption. A reader should understand the exhibit from this alone. REQUIRED. */
+  caption: string;
+  /** Claim id(s) this exhibit substantiates; many-to-many, mirrors {@link Result.validates}. */
+  validates: string[];
+  /**
+   * Primary/rendered form of the exhibit (safe relative path). Optional: a `proof`/`derivation`
+   * may instead carry a formal `statement` with no rendered file (spec §2.3.1). At least one of
+   * `path` or `statement` is required.
+   */
+  path?: string;
+  /** Experiment slug that produced the exhibit (optional provenance). */
+  produced_by?: string;
+  /** How a reviewer confirms the exhibit. Absent ⇒ inferred from `type` (spec §2.3.1). */
+  validation_mode?: ValidationMode;
+  /** Vector/source companion for a rendered figure (e.g. the PDF behind a PNG). */
+  source?: string;
+  /** Accessibility description for a figure/table. */
+  alt_text?: string;
+  /** Display order within a claim. */
+  order?: number;
+  /** Cross-link to the {@link Result} this exhibit renders. */
+  from_result?: string;
+  /** Formal statement, for a `proof`/`derivation`. */
+  statement?: string;
+  /** Exhibit id(s) this one depends on (e.g. a proof → its lemmas). Must be acyclic. */
+  depends_on?: string[];
+  /** Source language, for a `listing`. */
+  language?: string;
+}
+
+/**
  * Author-declared epistemic standing of a claim (spec §2.4.1).
  *
  * - `finding` — the author asserts this is demonstrated by the artifact's
@@ -323,6 +390,7 @@ export interface JournalTarget {
     | "experiment"
     | "result"
     | "claim"
+    | "exhibit"
     | "dataset"
     | "trace"
     | "assessment"
@@ -388,6 +456,8 @@ export interface Artifact {
   traces: Trace[];
   results: Result[];
   claims: Claim[];
+  /** Typed, captioned evidence artifacts linked to claims (spec §2.3.1). Serialized to `exhibits.yml`. */
+  exhibits: Exhibit[];
   assessments: Assessment[];
   paper?: Paper;
   /** Optional producer Q&A witness (spec §2.9); serialized to `manifest.research_agent`. */
@@ -411,6 +481,21 @@ export function defaultValidationMode(kind: ResultKind): ValidationMode {
       return "re-execute";
     case "external_reference":
       return "attest";
+    default:
+      return "inspect";
+  }
+}
+
+/**
+ * Default `validation_mode` inferred from an Exhibit's `type` (spec §2.3.1). An exhibit is a
+ * human-consumable rendering, so it defaults to `inspect` (a reviewer reads it and judges support);
+ * a machine-checkable `proof` defaults to `re-execute` (run the checker). This differs from
+ * {@link defaultValidationMode} for Results, where a `figure` renders a re-analyzable measurement.
+ */
+export function defaultExhibitValidationMode(type: ExhibitType): ValidationMode {
+  switch (type) {
+    case "proof":
+      return "re-execute";
     default:
       return "inspect";
   }

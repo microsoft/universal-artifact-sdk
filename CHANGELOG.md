@@ -9,7 +9,37 @@ pre-1.0, so minor bumps carry additive, backward-compatible features. The emitte
 addition is optional and absence-tolerant, so a submission that uses none of the new
 elements is behaviorally identical to `0.1.0` output.
 
-## [0.6.0]
+## [0.7.0]
+
+Adds **typed exhibits** — a first-class, optional way to connect a claim to the
+non-numeric artifact that substantiates it (a figure, table, proof, derivation, or
+code listing). **Additive and backward-compatible**: the emitted format id
+(`evaluable-artifact/v2`) is unchanged, `exhibits.yml` is written only when at least
+one exhibit exists, and a submission that never calls `addExhibit` produces
+byte-for-byte identical output to `0.6.0`.
+
+### Added
+- **`Exhibit` element and `exhibits` collection** (`SPEC.md` §2.3.1). An exhibit
+  carries `id`, `type` (`figure` | `table` | `proof` | `derivation` | `listing`),
+  `caption`, and `validates` (the claim ids it supports), plus optional `path`
+  (a `proof`/`derivation` may substitute a formal `statement` for a rendered file),
+  `produced_by`, `from_result`, `statement`, `depends_on`, `validation_mode`,
+  `source`, `alt_text`, `language`, and `order`.
+- **Builder API**: `addExhibit`, `getExhibit`, `listExhibits`, `removeExhibit`
+  (mirroring the Result API; add-or-replace with journal entries).
+- **`defaultExhibitValidationMode(type)`**: exhibits default to `inspect` (a human
+  reads the rendering), except `proof` → `re-execute` (run the checker) — distinct
+  from Result defaults, which is the gap typed exhibits close.
+- **Validation**: id/type/caption required; `path` required unless a `proof`/`derivation`
+  substitutes a `statement`; safe relative `path`/`source`, `validation_mode` enum, and
+  referential integrity for `produced_by` (→ experiment), `from_result` (→ result),
+  `validates` (→ claim), and `depends_on` (→ exhibit, with self-dependency and cycle
+  detection).
+- **Evidence inventory**: `has_exhibits` / `exhibit_count`.
+- **Schema**: `exhibits` top-level property and `exhibit` definition in
+  `schema/evaluable-artifact-v2.schema.json`.
+
+
 
 Release-infrastructure, documentation, and toolchain hardening for the public
 open-source release. **No runtime or public-API changes** and **no change to the

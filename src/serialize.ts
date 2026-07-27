@@ -111,6 +111,7 @@ const GENERATED_RESERVED_BLOBS = new Set([
   "claims.yml",
   "results.yml",
   "datasets.yml",
+  "exhibits.yml",
   "traces.yml",
   "assessments.yml",
   "journal.yml",
@@ -127,6 +128,10 @@ function referencedBlobs(a: Artifact): string[] {
     if (d.sample?.path) paths.add(d.sample.path);
   }
   for (const r of a.results) if (r.evidence) paths.add(r.evidence);
+  for (const e of a.exhibits) {
+    if (e.path) paths.add(e.path);
+    if (e.source) paths.add(e.source);
+  }
   for (const t of a.traces) if (t.path) paths.add(t.path);
   if (a.paper) {
     if (a.paper.pdf) paths.add(a.paper.pdf);
@@ -203,6 +208,7 @@ export function writeSubmission(
     datasets: "datasets.yml",
   };
   if (a.traces.length > 0) paths.traces = "traces.yml";
+  if (a.exhibits.length > 0) paths.exhibits = "exhibits.yml";
   if (a.assessments.length > 0) paths.assessments = "assessments.yml";
   if (a.journal.length > 0) paths.journal = "journal.yml";
 
@@ -240,6 +246,14 @@ export function writeSubmission(
     yamlDoc({ _generated: GENERATED_MARKER, datasets: a.datasets }),
     written,
   );
+  if (a.exhibits.length > 0) {
+    writeText(
+      outDir,
+      "exhibits.yml",
+      yamlDoc({ _generated: GENERATED_MARKER, exhibits: a.exhibits }),
+      written,
+    );
+  }
   if (a.traces.length > 0) {
     writeText(
       outDir,
