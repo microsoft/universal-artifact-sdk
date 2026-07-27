@@ -85,6 +85,7 @@ Artifact
 ├── experiments[]     Experiment   — a runnable unit + exact run instructions
 ├── traces[]          Trace        — [NEW] 0..n records of what actually ran (agent/session logs)
 ├── results[]         Result       — an output of an experiment; names the claim(s) it validates
+├── exhibits[]        Exhibit      — [NEW] 0..n typed non-numeric artifacts (figure/table/proof/…) a claim points at (§2.3.1)
 ├── claims[]          Claim        — a statement about the paper's results + how to validate it
 ├── datasets[]        Dataset      — an input data source (in-container or external) + how to use it
 ├── assessments[]     Assessment   — [NEW] artifact-level (whole-submission) evaluation dimensions
@@ -930,6 +931,7 @@ why defeats the point.
 ├── manifest.yml          # experiments, environment ref, paths, format_version, sdk_version, evidence inventory (§5.1)
 ├── claims.yml            # claims + their validator(s)
 ├── results.yml           # results: produced_by + validates + evidence + locators/support + kind + validation_mode
+├── exhibits.yml          # [NEW] typed exhibits (figure/table/proof/derivation/listing) linked to claims; omit if none
 ├── datasets.yml          # input data sources (in_artifact | in_container | external) + how to use + study? (ethics)
 ├── traces.yml            # [NEW] declared traces (id, kind, path, covers, terminal_state); omit if none
 ├── assessments.yml       # [NEW] artifact-level dimensions (mostly evaluator-written); omit if none
@@ -948,23 +950,25 @@ why defeats the point.
 - **The generated-vs-authored split is *known by construction*.** Unlike prose reverse-engineering — which had
   to *reverse-engineer* which files were generated output vs human-authored seeds
   (`evaluable-artifact/v1` §1.1) — the SDK knows this directly: files it serializes from the model
-  (manifest, claims, results, datasets, traces index, assessments, checksums) are **generated**;
+  (manifest, claims, results, exhibits index, datasets, traces index, assessments, checksums) are **generated**;
   files the producer places (`reflection.md`, the paper, evidence + trace blobs) are **authored**. On
   re-emit (§4.1) the SDK rewrites the former and never clobbers the latter. The registry of authored
   files + their content hashes is recorded (as in `evaluable-artifact/v1`'s `state.json`) so
   idempotency survives across sessions.
 - Every machine-generated file carries a generated marker naming the SDK
   (repo convention; e.g. `_generated:` / `> **Auto-generated**`).
-- **New index files are omitted when empty.** `traces.yml` / `assessments.yml` / `journal.yml` /
-  `paper_references.yml` appear only if the producer declared the corresponding content — their
-  absence is the on-disk form of "this evidence was not provided" (see §5.1).
+- **New index files are omitted when empty.** `exhibits.yml` / `traces.yml` / `assessments.yml` /
+  `journal.yml` / `paper_references.yml` appear only if the producer declared the corresponding
+  content — their absence is the on-disk form of "this evidence was not provided" (see §5.1).
 - **Producer-declared paths must be safe relative paths.** Every path a producer declares —
   `result.evidence`, `dataset.location.path` / `sample.path`, `trace.path`, `experiment.directory`,
-  `paper.pdf` / `source` / `claims_export` / `references_export`, `research_agent.path` /
+  `exhibit.path` / `source`, `paper.pdf` / `source` / `claims_export` / `references_export`,
+  `research_agent.path` /
   `grounding_sources` — is a path **relative to the submission root**. It must not be absolute, must
   not contain `.`/`..` segments (nor drive-letter/backslash forms), must not live under `.sdk/`, and
   must not collide with an SDK-generated file (`manifest.yml`, `claims.yml`, `results.yml`,
-  `datasets.yml`, `traces.yml`, `assessments.yml`, `journal.yml`, `reflection.md`, `SHA256SUMS`).
+  `exhibits.yml`, `datasets.yml`, `traces.yml`, `assessments.yml`, `journal.yml`, `reflection.md`,
+  `SHA256SUMS`).
   The SDK enforces this on both `writeSubmission` and structural validation, so an unsafe path can
   never write or copy **outside** the submission directory — a real risk when path fields are
   LLM/agent-derived. **Consumers must mirror the check on read:** a submission is untrusted, so a
@@ -984,6 +988,8 @@ evidence_inventory:                # [NEW] SDK-computed from what was declared
   has_runnable_experiments: true
   has_traces: true                 # ≥1 Trace declared
   trace_count: 3
+  has_exhibits: true               # [NEW §2.3.1] ≥1 typed exhibit declared
+  exhibit_count: 2
   has_released_data: true          # ≥1 in_artifact/external Dataset
   has_paper_source: true
   has_research_agent: false        # [NEW §2.9] → agent_faithfulness is unassessable when absent
@@ -1015,7 +1021,8 @@ This spec defines **`artifact-sdk/v1`** emitting **`evaluable-artifact/v2`**. `v
 prose-only inference (`flags.*` guessed from prose), and — in this revision — adds the
 **evidence-conditioned** additions from the unified model: **Traces**, artifact-level
 **Assessments**, the **`attest`** validator kind + **validation-mode** axis, expanded evidence
-**`kind`** + qualitative **`support`**, dataset **`study`** (ethics) metadata, a paper
+**`kind`** + qualitative **`support`**, typed **Exhibits** (§2.3.1), dataset **`study`** (ethics)
+metadata, a paper
 **`references_export`**, the **evidence inventory** (§5.1), and — in this revision — **experiment
 dispositions** (§2.2.2) + the **provenance journal** (§2.8) that capture the research *process*
 (what was tried and why), with a **rationale-elicitation policy** on the authoring API (§4.2). **All

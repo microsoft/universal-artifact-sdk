@@ -110,6 +110,7 @@ It prints the files written and the generated `manifest.yml`.
 | `addExperiment(a, {…})` | a runnable unit + exact run instructions (§2.2) |
 | `addTrace(a, {…})` | the record of what actually ran (§2.2.1) |
 | `addResult(a, {…})` | an output: `produced_by` + `validates` + evidence + `locators`/`support` (§2.3) |
+| `addExhibit(a, {…})` | a typed exhibit connecting a claim to a figure/table/proof/derivation/listing; `path` (or a `statement` for a proof) + `validates` (§2.3.1) |
 | `addClaim(a, {…})` | a statement + one or more `validators`; optional `stance` (`hypothesis`\|`finding`) + `tested_by` (§2.4, §2.4.1, §3) |
 | `addAssessment(a, {…})` | a whole-submission dimension (usually evaluator-written) (§2.1.1) |
 | `attachPaper(a, {…})` | the paper PDF + optional source / claims / references export (§2.6) |
@@ -139,6 +140,12 @@ It prints the files written and the generated `manifest.yml`.
   in the manifest). It is advisory and **audited** by a downstream evaluator — an evidence source,
   never an authority. Optional: omit it and the corresponding `agent_faithfulness` dimension is
   simply unassessable.
+- **A claim can point at a typed exhibit (§2.3.1)**: `addExhibit` connects a claim to the
+  non-numeric artifact that substantiates it — a `figure`, `table`, `proof`, `derivation`, or
+  `listing`. Unlike a Result (a re-analyzable measurement), an exhibit defaults to the `inspect`
+  validation mode (a reviewer reads the rendering); a `proof` defaults to `re-execute` and may
+  carry a formal `statement` in place of a rendered `path`. Optional and additive — a submission
+  with no exhibits emits no `exhibits.yml`.
 - **`writeSubmission` is idempotent**: re-emitting an unchanged artifact rewrites the same bytes;
   it never clobbers producer-authored blobs (paper, evidence, traces, reflection).
 - **`stageFrom`** (optional): a root the SDK copies referenced blob files from into the submission.
