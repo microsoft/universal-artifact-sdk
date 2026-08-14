@@ -70,6 +70,25 @@ Two principles keep the model honest:
   assumptions. A producer's own metadata belongs in open, extensible blocks — not in first-class
   fields.
 
+### Related agent-native work
+
+[Ara (Agent-Native Research Artifacts)](https://github.com/ARA-Labs/Agent-Native-Research-Artifact)
+is closely related, convergent work. Ara organizes research artifacts into scientific logic,
+executable code and operational specifications, an exploration graph that preserves failures and
+pivots, and evidence grounding claims in raw outputs [[9]](#references). Those layers correspond
+conceptually to this SDK's paper-grounded claims and validators, experiments and environments,
+retained experiment dispositions and provenance journal, and claim-to-result or claim-to-exhibit
+bindings.
+
+The systems have different scopes. Ara is a broader protocol and toolkit for managing, compiling,
+reviewing, and extending agent-native research. This SDK is a small, vendor-neutral producer-side
+typed API and canonical interchange contract. It deliberately does not review, score, or badge
+artifacts: deterministic checks may produce machine verdicts, model-based inspection remains
+advisory, and humans retain authority. Its evidence-relative validation model also covers research
+beyond computational experiments. The conceptual overlap does not imply schema equivalence,
+protocol implementation, or compatibility; those would require a separate mapping and conformance
+analysis.
+
 ## What an artifact declares (the shape)
 
 Whether emitted by the API or written as manifests, the essentials are:
@@ -117,3 +136,6 @@ agent-native-artifact literature:
 6. Siegel *et al.*, *CORE-Bench*, 2024. <https://arxiv.org/abs/2409.11363>
 7. Hu *et al.*, *REPRO-Bench*, 2025. <https://arxiv.org/abs/2507.18901>
 8. SIGPLAN — Review Policies (<https://www.sigplan.org/Resources/Policies/Review/>) and Empirical Evaluation Checklist (<https://www.sigplan.org/Resources/EmpiricalEvaluation/>).
+9. Liu *et al.*, *The Last Human-Written Paper: Agent-Native Research Artifacts*, 2026.
+   <https://arxiv.org/abs/2604.24658>; toolkit:
+   <https://github.com/ARA-Labs/Agent-Native-Research-Artifact>.

@@ -173,6 +173,15 @@ The canonical [JSON Schema](schema/evaluable-artifact-v2.schema.json) is authore
 emitted model is tested against it. The SDK only *declares* validators; *executing* them is the job
 of a downstream evaluator.
 
+## Related work
+
+[Ara (Agent-Native Research Artifacts)](https://github.com/ARA-Labs/Agent-Native-Research-Artifact)
+is closely related work on preserving scientific logic, executable specifications, exploration
+history, and claim-grounding evidence in agent-readable research artifacts. Ara defines a broader
+research protocol and toolkit; this SDK provides a small, vendor-neutral producer API and canonical
+interchange contract and does not claim Ara compatibility. See
+[Motivation](MOTIVATION.md#related-agent-native-work) for a more detailed comparison.
+
 ## Develop
 
 ```bash

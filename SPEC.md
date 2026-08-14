@@ -51,6 +51,14 @@ and the SDK **writes a conforming submission** — no prose round-trip, no scrap
 > *records declarations* and *serializes* them. Validation of *meaning* stays with a downstream
 > evaluator (§7); image capture is the producer's (§2.5).
 
+> **Non-normative related work:** [Ara (Agent-Native Research
+> Artifacts)](https://arxiv.org/abs/2604.24658) defines a broader agent-native research protocol
+> around structured scientific logic, executable specifications, preserved exploration history,
+> and claim-grounding evidence. Those ideas overlap conceptually with this SDK's claims,
+> experiments, dispositions and journal, and evidence bindings. This SDK is a producer-side typed
+> API and interchange contract; it does not implement the Ara protocol, and Ara compatibility is
+> not part of the normative `artifact-sdk/v1` or `evaluable-artifact/v2` contract.
+
 ---
 
 ## 1. Goals & principles
