@@ -51,6 +51,15 @@ and the SDK **writes a conforming submission** — no prose round-trip, no scrap
 > *records declarations* and *serializes* them. Validation of *meaning* stays with a downstream
 > evaluator (§7); image capture is the producer's (§2.5).
 
+> **Related work (non-normative).** [Ara (Agent-Native Research
+> Artifacts)](https://arxiv.org/abs/2604.24658) defines a broader protocol built around structured
+> scientific logic, executable specifications, a preserved exploration graph, and grounded
+> evidence. Those concepts correspond to parts of this model—claims and validators, experiments
+> and environments, dispositions and the journal, and result/exhibit evidence bindings—but the
+> schemas and lifecycle are not equivalent. This specification does not implement Ara, and neither
+> `artifact-sdk/v1` nor `evaluable-artifact/v2` currently makes an Ara compatibility claim. See
+> [`MOTIVATION.md`](MOTIVATION.md#relationship-to-ara) for the comparison.
+
 ---
 
 ## 1. Goals & principles
