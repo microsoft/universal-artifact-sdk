@@ -70,6 +70,36 @@ Two principles keep the model honest:
   assumptions. A producer's own metadata belongs in open, extensible blocks — not in first-class
   fields.
 
+## Relationship to Ara
+
+[Ara (Agent-Native Research Artifacts)](https://arxiv.org/abs/2604.24658) is closely related,
+convergent work on replacing lossy paper-and-repository handoffs with research packages designed
+for agents to operate. Ara organizes a package into scientific logic, executable code, an
+exploration graph, and grounded evidence. The Ara paper reports that this richer representation
+improved agent question-answering accuracy from 72.4% to 93.7% and reproduction success from 57.4%
+to 64.4% on its PaperBench and RE-Bench evaluations [[9]](#references). These are Ara's results,
+not evaluations of this SDK, but they provide complementary evidence for making research structure
+explicit at production time.
+
+The concepts overlap without being schema-equivalent:
+
+| Ara | This SDK |
+|-----|----------|
+| Scientific logic and falsifiable claims | Paper-grounded `Claim` declarations, `tested_by`, and validators |
+| Executable specifications | `Experiment`, `Environment`, and `Dataset` declarations |
+| Exploration graph with failures and pivots | Retained experiment dispositions, traces, and the provenance journal |
+| Evidence grounding claims in raw outputs | `Result` and `Exhibit` bindings with locators or qualitative support |
+
+Their scopes differ. Ara defines a broader research lifecycle and toolkit: it captures work as it
+unfolds, compiles legacy sources, represents a question/decision/experiment/pivot graph, and
+defines review and extension workflows. This SDK is deliberately narrower: a small,
+vendor-neutral producer API and interchange contract. It does not define a seal or review
+pipeline, and its current process history is not a full Ara exploration graph. Instead, it gives
+downstream evaluators a deterministic-first verification seam, preserves human authority over
+model-based inspection, and represents non-executable evidence as well as computational
+experiments. Supporting Ara import, export, or conformance would require a separate mapping and
+compatibility analysis.
+
 ## What an artifact declares (the shape)
 
 Whether emitted by the API or written as manifests, the essentials are:
@@ -117,3 +147,6 @@ agent-native-artifact literature:
 6. Siegel *et al.*, *CORE-Bench*, 2024. <https://arxiv.org/abs/2409.11363>
 7. Hu *et al.*, *REPRO-Bench*, 2025. <https://arxiv.org/abs/2507.18901>
 8. SIGPLAN — Review Policies (<https://www.sigplan.org/Resources/Policies/Review/>) and Empirical Evaluation Checklist (<https://www.sigplan.org/Resources/EmpiricalEvaluation/>).
+9. Liu *et al.*, *The Last Human-Written Paper: Agent-Native Research Artifacts*, 2026.
+   <https://arxiv.org/abs/2604.24658>. Project and toolkit:
+   <https://github.com/ARA-Labs/Agent-Native-Research-Artifact>.
