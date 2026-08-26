@@ -1049,13 +1049,15 @@ output) and grows a `v2` reader. Nothing here breaks the current pipeline.
 
 | Layer | Runs where | Checks | On failure |
 |-------|-----------|--------|------------|
-| **Structural** | in the SDK (`writeSubmission`), both bindings, from the JSON Schema | required fields, types, referential integrity (result→experiment/claim ids resolve, experiment→dataset ids resolve, trace `covers`→experiment ids resolve, validator `gated_by`→a validator id on the same claim, claim `tested_by`→an experiment slug, experiment `disposition.superseded_by`→an experiment slug, research-agent `grounding_sources`→shipped paths that resolve), external datasets carry a `sha256`, a research-agent (when present) declares a pinned `model` and at least one `grounding_source`, a validator is well-formed for its `kind`, `validation_mode`/`disposition.status`/`claim.stance` are legal enum values, all producer-declared paths are safe relative paths (§5 — no absolute/`..`/`.sdk`/generated-file collision), a recorded mutation carries a rationale (§4.2 — warning), evidence inventory (§5.1) is computed | reject / report — the producer fixes before emitting |
+| **Structural** | in the SDK (`writeSubmission`), both bindings; see the freeze-period profile in §8.1 | required fields, types, referential integrity (result→experiment/claim ids resolve, experiment→dataset ids resolve, trace `covers`→experiment ids resolve, validator `gated_by`→a validator id on the same claim, claim `tested_by`→an experiment slug, experiment `disposition.superseded_by`→an experiment slug), external datasets carry a `sha256`, a research-agent (when present) declares a pinned `model` and at least one path-safe `grounding_source` (presence is reported during serialization), a validator is well-formed for its `kind`, `validation_mode`/`disposition.status`/`claim.stance` are legal enum values, all producer-declared paths are safe relative paths (§5 — no absolute/`..`/`.sdk`/generated-file collision), a recorded mutation carries a rationale (§4.2 — warning), evidence inventory (§5.1) is computed | reject / report — the producer fixes before emitting |
 | **Semantic** | in the **evaluator** | do results actually support claims; do validators pass (per validation mode; attest gates inspect); artifact-level assessments; paper-coverage (D8); citation integrity; consistency; external-data fetch + checksum + mount (reproduction milestone); structure/badges; **evidence-conditioned activation** (*no* evidence declaration → `unassessable`, a coverage note; a *declared-but-unresolved* pointer → `unverifiable` + integrity flag — never a silent pass, §5.1) | verdicts (mode-relative, rolling up to `REPRODUCED`/`PARTIAL`/`NOT_REPRODUCED`) + findings |
 
 Rationale: **cross-language semantic validation would drift** between TS and Python. Keeping the
-SDK's checks structural (and schema-derived, hence identical in both languages) while the single
-Python evaluator owns semantics avoids duplicating — and diverging — the hard logic. The SDK's job is to
-make a submission *well-formed*; the evaluator decides if it's *good*.
+SDK's checks structural and enforcing them with shared conformance cases while the single Python
+evaluator owns semantics avoids duplicating — and diverging — the hard logic. The post-freeze target
+is schema plus relational runtime validation in both bindings (§8.1); during the freeze, schema
+conformance remains a shared test gate. The SDK's job is to make a submission *well-formed*; the
+evaluator decides if it's *good*.
 
 ---
 
@@ -1072,6 +1074,36 @@ make a submission *well-formed*; the evaluator decides if it's *good*.
      which serve as the reference implementation for the builtin catalog.
    Both: build → structurally validate (schema) → serialize (§5). No semantic logic; no shipped
    validator code executed.
+
+### 8.1 Binding conformance
+
+The two bindings implement one contract but expose it idiomatically:
+
+- TypeScript uses its existing object types and camelCase functions.
+- Python supports Python 3.10+, ships as PyPI `universal-artifact-sdk`, imports as
+  `universal_artifact_sdk`, and uses dataclasses plus snake_case functions.
+- Distribution versions remain in lockstep. The version written into `sdk_version` remains the
+  language-neutral contract id `artifact-sdk/v1`, not a package release number.
+- Python models are authored rather than generated. The JSON Schema and shared conformance cases
+  prevent model and behavior drift; generated binding code is not a requirement of the pipeline.
+- Conformance is **semantic**, not byte-for-byte: both bindings accept the same valid structures,
+  reject the same invalid structures, emit the same logical files and values, and can reopen each
+  other's submissions. YAML presentation and the hashes derived from those binding-specific bytes
+  may differ.
+- Each binding must be byte-idempotent with itself: the same model, package version, and authored
+  inputs produce identical bytes on repeated writes.
+
+The target structural-validation architecture has two parts in both bindings: validation against
+the canonical JSON Schema, then language-neutral relational and filesystem invariants that JSON
+Schema cannot express (references, cycles, safe paths, generated/authored collisions, and warning
+policy). During the current TypeScript experiment freeze, the initial Python binding mirrors the
+TypeScript runtime's authored validator and both bindings apply schema validation to conformance
+fixtures in tests. The frozen TypeScript API and implementation MUST NOT change as part of the
+Python-binding work. Post-freeze reconciliation is tracked in
+[issue #32](https://github.com/microsoft/universal-artifact-sdk/issues/32).
+
+The detailed Python architecture, package layout, parity normalization, test matrix, and release
+requirements are defined in [`PYTHON_BINDING.md`](PYTHON_BINDING.md).
 
 ---
 
@@ -1109,7 +1141,7 @@ decision** — they don't block implementation and are settled at a later, well-
 | 3 | `procedure` machine hints (§3.3) | **NL + optional machine hint** (`exit_code`/regex) for `success_criteria`. | Gives an agent an auto-run path without forcing structure onto every procedure. |
 | 4 | Datasets (§2.7) | **Keep `in_artifact│in_container│external`.** DOIs/registry refs are first-class URIs; **single `prepare` step** for now (defer the preprocessing mini-DAG); `access` handling stays. | The model covers observed cases; a mini-DAG is unneeded complexity until a submission demands it. |
 | 5 | Reflection/limitations | **Optional to emit.** When present, feeds the `limitation_transparency` assessment dimension (Q10). | Not all producers ship reflection; absence is a coverage note, not a failure. |
-| 6 | Product/package name (OD1) | **Deferred (branding).** Keep the working name `universal-artifact-sdk` (PyPI `universal-artifact-sdk`, import `uas`) so consumers can build now. | Final name ties to org/open-source review (OD5); renameable before first publish without touching the model. |
+| 6 | Product/package name (OD1) | **Deferred (branding).** Keep the working name `universal-artifact-sdk` (PyPI `universal-artifact-sdk`, import `universal_artifact_sdk`) so consumers can build now. | Final name ties to org/open-source review (OD5); renameable before first publish without touching the model. The original `uas` import candidate conflicts with an existing PyPI package. |
 | 7 | Format name | **Evolve `evaluable-artifact/v2`** (don't mint a new name). | Nothing has shipped; all additions are optional/absence-tolerant, so it's the same `v2`. |
 | 8 | Canonical source (§4.1) | **Support both** build-program and on-disk submission; the producer's harness decides which it uses. `openSubmission` ships regardless. | No spec-level forced choice; keeps the human-in-the-loop reopen path available. |
 | 9 | Verdict vocabulary & roll-up (§3, §3.4) | **Mode-keyed vocabulary** (`re-executed`/`re-analyzed`/`evidence-supported`/`attested`/`unverifiable`) **rolling up** to `REPRODUCED`/`PARTIAL`/`NOT_REPRODUCED`. **`evidence-supported` is capped below** `re-executed`/`re-analyzed`; the human may promote. | Keeps mode-native meaning honest and ACM-compatible; a claim settled by inspection isn't *reproduced* in the ACM sense. |
@@ -1122,6 +1154,10 @@ decision** — they don't block implementation and are settled at a later, well-
 | B2 | Does `re-analyze` reach `REPRODUCED`? (§3.1, roll-up) | **Yes, method-badged.** `re-executed` and `re-analyzed` both roll up to `REPRODUCED`; the dashboard badges *re-executed* vs *from released data*. **Revises D6.** | Recomputing reported numbers reproduces the *results* (ACM sense); badging preserves that re-execution is the stronger demonstration. |
 | B3 | Missing vs. declared-but-absent evidence (§5.1) | **Distinguished.** *No* declaration → `unassessable` (coverage note). A *declared-but-unresolved* pointer → `unverifiable` + integrity flag — not a silent pass, not a hard `FAILED`. | A dangling pointer is a broken promise, strictly worse than shipping nothing; it must stay visible without tanking the whole rubric. |
 | B4 | `claims.yml` authored or generated? (§4.1, §5) | **Generated**, single `validators` schema (producer-owned; regenerated on write). **Resolves A4.** | The producer is the format source of truth; `claims.yml` is regenerated on every write. |
+| B5 | Python compatibility (§8.1) | **Python 3.10+**, PyPI `universal-artifact-sdk`, import `universal_artifact_sdk`; package versions stay in lockstep with npm. | A first-class binding needs an explicit support and release policy; lockstep versions communicate one SDK contract. The longer import avoids collision with the existing PyPI `uas` package. |
+| B6 | Binding generation (§8.1) | **Author idiomatic Python dataclasses** and enforce parity with shared contract tests; do not introduce binding code generation. | The existing TypeScript model is authored, and the schema does not encode all builder ergonomics or relational invariants. Generated Python alone would create false confidence rather than eliminate drift. |
+| B7 | Cross-binding output parity (§8.1) | **Semantic equivalence, not byte identity.** Require the same logical files, values, validation outcomes, and cross-open behavior; require byte idempotency within each binding. | YAML libraries may quote and wrap differently. Forcing presentation identity adds coupling without strengthening the format contract. |
+| B8 | TypeScript experiment freeze (§8.1) | **Do not change the TypeScript API or implementation during the Python-binding effort.** Mirror frozen observable behavior where parity requires it and defer reconciliation to issue #32. | An ongoing experiment depends on the current TypeScript behavior. Correcting inconsistencies in only one binding would also create an undocumented contract fork. |
 
 **Still genuinely open** (need external input, tracked outside this spec): OD2–OD5 (tracked separately)
 (repo strategy, CAIS profile openness, license, GitHub org). None blocks the object model.
