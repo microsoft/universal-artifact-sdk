@@ -2,11 +2,32 @@
 
 > **Implements:** `artifact-sdk/v1` · **Emits:** `evaluable-artifact/v2` · **Spec:** [`SPEC.md`](SPEC.md) · **Why:** [`MOTIVATION.md`](MOTIVATION.md)
 
-A small, vendor-neutral authoring API for research artifacts. A producer that already *has* the
-structured facts about its run — which experiments it ran, what each produced, which claim each
-result supports, the container it ran in, the paper — **declares them directly**, and the SDK
-**writes a conforming submission**: no prose round-trip, no scraping. A downstream evaluator then
-reads that submission.
+Research artifacts contain the evidence behind a paper: code, data, experiments, results, proofs,
+analyses, and the links between them. Today that structure is usually flattened into prose and
+files arranged for a human reader. Every reviewer, script, or agent must then rediscover which
+result supports which claim and how strongly that evidence can be checked.
+
+The **Universal Artifact SDK** is a small, vendor-neutral authoring API that prevents that
+information loss. A research producer declares the structured facts it already knows — the paper's
+claims, their evidence, what ran, and in which environment — and the SDK writes a versioned,
+machine-legible submission. Humans, CI jobs, scripts, and agents can all consume the same artifact
+without a prose round-trip or submission-specific scraping.
+
+The vision is **deterministic-first, human-authoritative artifact evaluation**: automate structural
+and reproducibility checks where evidence permits, preserve human judgment where interpretation is
+required, and make missing support visible instead of guessed. The model applies beyond runnable
+experiments to qualitative studies, analyses, proofs, and systems or design work. This SDK is the
+**producer side only**; it does not review, score, badge, or issue verdicts.
+
+**Learn more:** read the project [`MOTIVATION.md`](MOTIVATION.md) and
+[`SPEC.md`](SPEC.md); see the [ACM Artifact Review and Badging
+policy](https://www.acm.org/publications/policies/artifact-review-and-badging-current) and
+[NISO reproducibility terminology](https://www.niso.org/standards-committees/reproducibility-badging)
+for the evaluation context. Related research includes
+[CORE-Bench](https://arxiv.org/abs/2409.11363),
+[REPRO-Bench](https://arxiv.org/abs/2507.18901), and
+[Ara: Agent-Native Research Artifacts](https://arxiv.org/abs/2604.24658)
+([project](https://github.com/ARA-Labs/Agent-Native-Research-Artifact)).
 
 ## Install
 
