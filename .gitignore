@@ -1,5 +1,16 @@
 node_modules/
 dist/
+dist-python/
 coverage/
 *.tgz
 .DS_Store
+
+# Python tooling
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Cross-binding conformance scratch output
+parity/.scratch/

@@ -1,0 +1,136 @@
+{
+  "kind": "artifact",
+  "name": "nested-extensions",
+  "description": "Legal extension keys on nested schema objects survive a write → open cycle in both bindings, and can never shadow a contract field.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-extensions",
+    "title": "Nested extension parity",
+    "producer": {"name": "parity-harness", "x_vendor": {"tier": "gold", "quota": 12}},
+    "environment": {
+      "name": "primary",
+      "image": {
+        "reference": "registry.test/artifact@sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "x_registry": "internal"
+      },
+      "x_provisioner": "terraform"
+    },
+    "datasets": [
+      {
+        "id": "corpus",
+        "location": {"kind": "in_artifact", "path": "data/corpus/", "x_mirror": "s3://example"},
+        "sample": {"path": "data/corpus/sample.csv", "x_rows": 2},
+        "study": {
+          "ethics_approval": "IRB-1",
+          "extra": {"data_use_agreement": "DUA-99", "venue": {"panel": "ethics"}},
+          "x_board": "internal"
+        },
+        "x_owner": "data-team"
+      }
+    ],
+    "experiments": [
+      {
+        "slug": "baseline",
+        "directory": "experiments/baseline",
+        "run": {"command": "python run.py", "x_scheduler": "slurm"},
+        "x_cost_usd": 4,
+        "runs_in": "primary"
+      }
+    ],
+    "traces": [
+      {"id": "T", "kind": "execution_log", "path": "traces/run.jsonl", "x_redacted": true}
+    ],
+    "results": [
+      {
+        "id": "R",
+        "validates": ["C"],
+        "evidence": "results/out.csv",
+        "kind": "metrics",
+        "produced_by": "baseline",
+        "x_units": "percent"
+      }
+    ],
+    "exhibits": [
+      {
+        "id": "X",
+        "type": "figure",
+        "caption": "A figure with a vendor extension.",
+        "validates": ["C"],
+        "path": "exhibits/figure.png",
+        "x_palette": "viridis"
+      }
+    ],
+    "claims": [
+      {
+        "id": "C",
+        "statement": "Extensions round-trip.",
+        "x_confidence": 0.75,
+        "paper_ref": {"section": "2", "x_anchor": "sec:ext"},
+        "validators": [
+          {"id": "v", "kind": "attest", "checks": "integrity", "inputs": ["R"], "x_authority": "ci"}
+        ]
+      }
+    ],
+    "assessments": [
+      {"id": "A", "dimension": "citation_integrity", "scope": "paper", "x_reviewer": "chair"}
+    ],
+    "paper": {"pdf": "paper.pdf", "x_venue": "PARITY'26"},
+    "research_agent": {
+      "path": "research-agent.md",
+      "model": "copilot/gpt-5.5@2026-06-01",
+      "grounding_sources": ["data/corpus/"],
+      "x_temperature": 0
+    },
+    "journal": []
+  },
+  "write": {"stage_from": "fixtures"},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "schema_valid": true,
+    "report": {
+      "ok": true,
+      "incomplete": false,
+      "warning_paths": [],
+      "missing_blobs": [],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "assessments.yml",
+        "claims.yml",
+        "data/corpus/sample.csv",
+        "datasets.yml",
+        "exhibits.yml",
+        "exhibits/figure.png",
+        "manifest.yml",
+        "paper.pdf",
+        "research-agent.md",
+        "results.yml",
+        "results/out.csv",
+        "traces.yml",
+        "traces/run.jsonl"
+      ]
+    },
+    "state": {
+      "generated_files": [
+        "assessments.yml",
+        "claims.yml",
+        "datasets.yml",
+        "exhibits.yml",
+        "manifest.yml",
+        "results.yml",
+        "traces.yml"
+      ],
+      "authored_files": [
+        "data/corpus/sample.csv",
+        "exhibits/figure.png",
+        "paper.pdf",
+        "research-agent.md",
+        "results/out.csv",
+        "traces/run.jsonl"
+      ]
+    }
+  }
+}

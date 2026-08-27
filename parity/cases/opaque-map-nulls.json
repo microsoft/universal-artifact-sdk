@@ -1,0 +1,317 @@
+{
+  "kind": "operation",
+  "name": "opaque-map-null-values",
+  "description": "A null *value* inside an opaque producer-authored map is data, not an absent optional field: `producer`, `run.env`, a trace's `counters`, a result's `locators` and a builtin validator's `input`/`params` carry their nulls verbatim through write → reopen → write in both bindings. The reviewed null-as-omitted equivalence covers optional *model fields* only (PYTHON_BINDING.md §4.2, §8.4), so `read_document` marks explicit nulls as `<null>` to keep them observable through normalization.",
+  "operations": [
+    {
+      "operation": "create_artifact",
+      "arguments": {
+        "id": "parity-opaque-nulls",
+        "title": "Opaque map nulls",
+        "producer": {
+          "name": "p",
+          "orcid": null,
+          "tooling": {
+            "linter": null
+          }
+        }
+      }
+    },
+    {
+      "operation": "configure_journal",
+      "arguments": {
+        "actor": "agent:parity",
+        "now": [
+          "2026-01-01T00:00:00.000Z"
+        ]
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e1",
+        "directory": "experiments/e1",
+        "run": {
+          "command": "python run.py",
+          "env": {
+            "SEED": "1",
+            "TOKEN": null
+          }
+        }
+      },
+      "context": {
+        "rationale": "the sweep"
+      }
+    },
+    {
+      "operation": "add_trace",
+      "arguments": {
+        "id": "T1",
+        "kind": "execution_log",
+        "path": "traces/run.jsonl",
+        "covers": [
+          "e1"
+        ],
+        "counters": {
+          "steps": 3,
+          "cost_usd": null
+        }
+      },
+      "context": {
+        "rationale": "what ran"
+      }
+    },
+    {
+      "operation": "add_result",
+      "arguments": {
+        "id": "R1",
+        "validates": [
+          "C1"
+        ],
+        "evidence": "results/out.csv",
+        "kind": "metrics",
+        "produced_by": "e1",
+        "locators": {
+          "accuracy": {
+            "column": "acc",
+            "row": null
+          }
+        }
+      },
+      "context": {
+        "rationale": "the measurement"
+      }
+    },
+    {
+      "operation": "add_claim",
+      "arguments": {
+        "id": "C1",
+        "statement": "Nulls inside opaque maps survive a round trip.",
+        "validators": [
+          {
+            "id": "v1",
+            "kind": "builtin",
+            "name": "numeric_close",
+            "input": {
+              "result": "R1",
+              "locator": null
+            },
+            "params": {
+              "tolerance": 0.01,
+              "unit": null
+            }
+          }
+        ]
+      },
+      "context": {
+        "rationale": "the headline"
+      }
+    },
+    {
+      "operation": "write_submission",
+      "arguments": {
+        "out": "out",
+        "stage_from": "fixtures"
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "out/manifest.yml",
+        "select": [
+          "producer"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "out/manifest.yml",
+        "select": [
+          "experiments",
+          0,
+          "run",
+          "env"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "out/traces.yml",
+        "select": [
+          "traces",
+          0,
+          "counters"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "out/results.yml",
+        "select": [
+          "results",
+          0,
+          "locators"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "out/claims.yml",
+        "select": [
+          "claims",
+          0,
+          "validators",
+          0
+        ]
+      }
+    },
+    {
+      "operation": "open_submission",
+      "arguments": {
+        "out": "out",
+        "into_session": true
+      }
+    },
+    {
+      "operation": "write_submission",
+      "arguments": {
+        "out": "reopened",
+        "stage_from": "fixtures"
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "reopened/manifest.yml",
+        "select": [
+          "producer"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "reopened/manifest.yml",
+        "select": [
+          "experiments",
+          0,
+          "run",
+          "env"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "reopened/traces.yml",
+        "select": [
+          "traces",
+          0,
+          "counters"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "reopened/results.yml",
+        "select": [
+          "results",
+          0,
+          "locators"
+        ]
+      }
+    },
+    {
+      "operation": "read_document",
+      "arguments": {
+        "path": "reopened/claims.yml",
+        "select": [
+          "claims",
+          0,
+          "validators",
+          0
+        ]
+      }
+    }
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "step_returns": {
+      "7": {
+        "name": "p",
+        "orcid": "<null>",
+        "tooling": {
+          "linter": "<null>"
+        }
+      },
+      "8": {
+        "SEED": "1",
+        "TOKEN": "<null>"
+      },
+      "9": {
+        "steps": 3,
+        "cost_usd": "<null>"
+      },
+      "10": {
+        "accuracy": {
+          "column": "acc",
+          "row": "<null>"
+        }
+      },
+      "11": {
+        "id": "v1",
+        "kind": "builtin",
+        "name": "numeric_close",
+        "input": {
+          "result": "R1",
+          "locator": "<null>"
+        },
+        "params": {
+          "tolerance": 0.01,
+          "unit": "<null>"
+        }
+      },
+      "14": {
+        "name": "p",
+        "orcid": "<null>",
+        "tooling": {
+          "linter": "<null>"
+        }
+      },
+      "15": {
+        "SEED": "1",
+        "TOKEN": "<null>"
+      },
+      "16": {
+        "steps": 3,
+        "cost_usd": "<null>"
+      },
+      "17": {
+        "accuracy": {
+          "column": "acc",
+          "row": "<null>"
+        }
+      },
+      "18": {
+        "id": "v1",
+        "kind": "builtin",
+        "name": "numeric_close",
+        "input": {
+          "result": "R1",
+          "locator": "<null>"
+        },
+        "params": {
+          "tolerance": 0.01,
+          "unit": "<null>"
+        }
+      }
+    }
+  }
+}

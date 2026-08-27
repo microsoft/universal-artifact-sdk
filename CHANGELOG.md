@@ -1,13 +1,49 @@
 # Changelog
 
-All notable changes to `@microsoft/universal-artifact-sdk` (the TypeScript binding of
-`artifact-sdk/v1`, emitting the `evaluable-artifact/v2` format).
+All notable changes to the npm and Python bindings of `artifact-sdk/v1`, emitting the
+`evaluable-artifact/v2` format.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/); versions are
 pre-1.0, so minor bumps carry additive, backward-compatible features. The emitted
 **format id (`evaluable-artifact/v2`) is unchanged** across these releases — every
 addition is optional and absence-tolerant, so a submission that uses none of the new
 elements is behaviorally identical to `0.1.0` output.
+
+## [0.8.0]
+
+### Added
+- First-class native Python 3.10+ distribution, `universal-artifact-sdk`, imported as
+  `universal_artifact_sdk`. It provides authored dataclasses and the complete
+  snake_case authoring, validation, inventory, serialization, reopening, lifecycle,
+  and journaling API, exported through an explicit, maintained `__all__`.
+- Root Hatchling packaging with the canonical schema packaged as data, deterministic
+  YAML 1.2 emission via `ruamel.yaml`, `py.typed`, and separate `dist-python/` build
+  output that never touches the npm `dist/` directory.
+- A language-neutral conformance corpus in `parity/cases`, described by
+  `parity/case.schema.json`, covering the complete worked example, every model
+  collection and validator kind, partial artifacts and warning behavior, all experiment
+  dispositions and rationale policies, authored/generated classification, safe-path
+  rejection and reserved-path collisions, optional-index omission, schema and
+  referential failures, nested extension keys and top-level drop behavior, ambiguous
+  YAML scalars, fixed-clock journal snapshots, staging replacement and missing-blob
+  warnings, frozen reflection and stale-index reclassification, builder defaults,
+  upserts and removals, `gated_by` on every validator kind including `attest`, a
+  non-active disposition whose rationale is omitted, `dataset.study.extra` alongside an
+  unknown sibling key on the same block, and null values inside opaque
+  producer-authored maps. Two runners execute the same cases, assert the reviewed
+  expectations, and then reopen each other's output: Python opens the TypeScript
+  submission and TypeScript opens the Python submission, comparing the full normalized
+  models, reports, ledgers and documents.
+- CI, Dependabot, CodeQL, and release automation for both bindings. The Python matrix
+  covers the minimum supported 3.10 and the newest stable 3.14, and enforces strict
+  typing, lint, tests, package build, `twine check --strict`, and a clean-environment
+  wheel install. PyPI publishing uses GitHub Actions trusted publishing; it requires an
+  administrator to configure the PyPI project/trusted publisher before the first
+  release.
+
+### Changed
+- The lockstep distribution version is now `0.8.0`. The emitted format version remains
+  `evaluable-artifact/v2`; frozen files under `src/` were not changed.
 
 ## [0.7.0]
 

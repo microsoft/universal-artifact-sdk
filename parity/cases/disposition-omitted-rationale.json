@@ -1,0 +1,146 @@
+{
+  "kind": "artifact",
+  "name": "disposition-omitted-rationale",
+  "description": "A non-active disposition may omit `rationale` entirely (spec §2.2.2): absence is warned about, never repaired. An omitted rationale must stay omitted in the emitted manifest and in the reopened model — no binding may inject an empty string — while an explicitly empty rationale stays an empty string. Both spellings render the same `_(no rationale recorded)_` marker. The canonical schema requires `rationale`, so this also records a reviewed schema/runtime divergence (issue #32): the runtimes warn where the schema rejects.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-disposition",
+    "title": "Disposition rationale parity",
+    "datasets": [],
+    "experiments": [
+      {
+        "slug": "e_absent",
+        "directory": "experiments/e_absent",
+        "run": {"command": "python run.py"},
+        "disposition": {"status": "abandoned"}
+      },
+      {
+        "slug": "e_blank",
+        "directory": "experiments/e_blank",
+        "run": {"command": "python run.py"},
+        "disposition": {
+          "status": "failed",
+          "rationale": "",
+          "failure": {"stage": "run", "summary": "out of memory"}
+        }
+      },
+      {
+        "slug": "e_active",
+        "directory": "experiments/e_active",
+        "run": {"command": "python run.py"}
+      }
+    ],
+    "traces": [],
+    "results": [],
+    "claims": [],
+    "exhibits": [],
+    "assessments": [],
+    "journal": []
+  },
+  "write": {},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [
+      "experiment[e_absent].disposition",
+      "experiment[e_blank].disposition"
+    ],
+    "schema_valid": false,
+    "schema_error_paths": ["/experiments/0/disposition"],
+    "report": {
+      "ok": true,
+      "incomplete": true,
+      "warning_paths": [
+        "experiment[e_absent].disposition",
+        "experiment[e_blank].disposition"
+      ],
+      "missing_blobs": [],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "experiments/e_absent/DISPOSITION.md",
+        "experiments/e_blank/DISPOSITION.md",
+        "manifest.yml",
+        "results.yml"
+      ]
+    },
+    "state": {
+      "generated_files": [
+        "claims.yml",
+        "datasets.yml",
+        "experiments/e_absent/DISPOSITION.md",
+        "experiments/e_blank/DISPOSITION.md",
+        "manifest.yml",
+        "results.yml"
+      ],
+      "authored_files": []
+    },
+    "output": {
+      "disposition_markers": {
+        "experiments/e_absent/DISPOSITION.md": "> **Auto-generated** by artifact-sdk/v1 (universal-artifact-sdk) — do not edit; regenerate\n\n# Experiment `e_absent` — abandoned\n\n**Status:** abandoned\n\n## Rationale\n\n_(no rationale recorded)_\n",
+        "experiments/e_blank/DISPOSITION.md": "> **Auto-generated** by artifact-sdk/v1 (universal-artifact-sdk) — do not edit; regenerate\n\n# Experiment `e_blank` — failed\n\n**Status:** failed\n**Failure:** run — out of memory\n\n## Rationale\n\n_(no rationale recorded)_\n"
+      }
+    },
+    "model": {
+      "format_version": "evaluable-artifact/v2",
+      "sdk_version": "artifact-sdk/v1",
+      "id": "parity-disposition",
+      "title": "Disposition rationale parity",
+      "experiments": [
+        {
+          "slug": "e_absent",
+          "directory": "experiments/e_absent",
+          "run": {"command": "python run.py"},
+          "disposition": {"status": "abandoned"}
+        },
+        {
+          "slug": "e_blank",
+          "directory": "experiments/e_blank",
+          "run": {"command": "python run.py"},
+          "disposition": {
+            "status": "failed",
+            "rationale": "",
+            "failure": {"stage": "run", "summary": "out of memory"}
+          }
+        },
+        {
+          "slug": "e_active",
+          "directory": "experiments/e_active",
+          "run": {"command": "python run.py"}
+        }
+      ]
+    },
+    "reopened": {
+      "format_version": "evaluable-artifact/v2",
+      "sdk_version": "artifact-sdk/v1",
+      "id": "parity-disposition",
+      "title": "Disposition rationale parity",
+      "experiments": [
+        {
+          "slug": "e_absent",
+          "directory": "experiments/e_absent",
+          "run": {"command": "python run.py"},
+          "disposition": {"status": "abandoned"}
+        },
+        {
+          "slug": "e_blank",
+          "directory": "experiments/e_blank",
+          "run": {"command": "python run.py"},
+          "disposition": {
+            "status": "failed",
+            "rationale": "",
+            "failure": {"stage": "run", "summary": "out of memory"}
+          }
+        },
+        {
+          "slug": "e_active",
+          "directory": "experiments/e_active",
+          "run": {"command": "python run.py"}
+        }
+      ]
+    }
+  }
+}

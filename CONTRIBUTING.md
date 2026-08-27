@@ -25,15 +25,35 @@ comments.
 ## Development
 
 ```bash
-npm ci          # install dependencies
+npm ci                         # install Node dependencies
 npm run typecheck
-npm run build   # tsc -> dist/
-npm test        # vitest (114 tests)
+npm run build                  # tsc -> dist/
+npm test                       # vitest (132 tests)
+
+python -m pip install -e ".[dev]"
+python -m pytest python/tests  # pytest (499 passed, 22 skipped)
+python -m mypy                 # strict; configured in pyproject.toml
+python -m ruff check python parity
+
+npm run test:parity            # shared corpus + bidirectional cross-open
 ```
 
-Please ensure `npm run typecheck`, `npm run build`, and `npm test` all pass before
-opening a pull request. New behavior should be covered by tests. See
+Please ensure the TypeScript and Python checks above pass before opening a pull request.
+Build Python distributions with `python -m build --outdir dist-python`; never put
+Python build products in `dist/`, which belongs to npm.
+
+New behavior should be covered by tests in both bindings. Cross-binding behavior also
+needs a reviewed case in [`parity/cases`](parity/cases): each case is language-neutral
+data, its `expected` block is human-reviewed contract data, and no runner may derive an
+expectation from a binding's current output. See
+[`parity/expected/README.md`](parity/expected/README.md) for the review protocol,
+[`PYTHON_BINDING.md`](PYTHON_BINDING.md) for the binding design, and
 [`SPEC.md`](SPEC.md) for the format contract that the SDK implements.
+
+The TypeScript API and implementation under `src/` are frozen while an experiment depends
+on their behavior: do not change them. Contract inconsistencies found while working on
+the Python binding are tracked in
+[issue #32](https://github.com/microsoft/universal-artifact-sdk/issues/32).
 
 ## Trademarks
 

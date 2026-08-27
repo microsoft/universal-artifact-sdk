@@ -1,0 +1,78 @@
+{
+  "kind": "artifact",
+  "name": "unsafe-paths",
+  "description": "Every write-time path guard: escaping, absolute, drive-lettered, whitespace-padded, dot-segmented, root-normalizing, SDK-reserved and .sdk-internal paths, across every producer-declared path field.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-unsafe-paths",
+    "title": "Unsafe path parity failures",
+    "datasets": [
+      {
+        "id": "escaping",
+        "location": {"kind": "in_artifact", "path": "../outside/corpus"},
+        "sample": {"path": "/absolute/sample.csv"}
+      },
+      {"id": "reserved", "location": {"kind": "in_artifact", "path": "claims.yml"}}
+    ],
+    "experiments": [
+      {"slug": "escape", "directory": "../escape", "run": {"command": "true"}},
+      {"slug": "internal", "directory": ".SDK/child", "run": {"command": "true"}},
+      {"slug": "shadowed", "directory": "claims.yml/child", "run": {"command": "true"}}
+    ],
+    "traces": [
+      {"id": "T-drive", "kind": "execution_log", "path": "C:secret.log"},
+      {"id": "T-dots", "kind": "execution_log", "path": "traces/../run.jsonl"}
+    ],
+    "results": [
+      {"id": "R-padded", "validates": [], "evidence": " results/out.csv ", "kind": "metrics"},
+      {"id": "R-root", "validates": [], "evidence": ".", "kind": "metrics"}
+    ],
+    "exhibits": [
+      {
+        "id": "X",
+        "type": "figure",
+        "caption": "An exhibit whose rendered and source paths are both unsafe.",
+        "validates": [],
+        "path": "SHA256SUMS",
+        "source": "\\absolute\\figure.pdf"
+      }
+    ],
+    "claims": [],
+    "assessments": [],
+    "paper": {"pdf": "..\\paper.pdf", "source": "paper/", "claims_export": ".sdk/claims.yml", "references_export": "Manifest.yml"},
+    "research_agent": {
+      "path": "manifest.yml",
+      "model": "copilot/gpt-5.5@2026-06-01",
+      "grounding_sources": ["claims.yml/context.md", "../outside.md", "   "]
+    },
+    "journal": []
+  },
+  "expected": {
+    "ok": false,
+    "schema_valid": false,
+    "schema_error_paths": ["/research_agent/path", "/experiments/0/directory"],
+    "error_paths": [
+      "paper.pdf",
+      "paper.claims_export",
+      "paper.references_export",
+      "dataset[escaping].location.path",
+      "dataset[escaping].sample.path",
+      "dataset[reserved].location.path",
+      "experiment[escape].directory",
+      "experiment[internal].directory",
+      "experiment[shadowed].directory",
+      "trace[T-drive].path",
+      "trace[T-dots].path",
+      "result[R-padded].evidence",
+      "result[R-root].evidence",
+      "exhibit[X].path",
+      "exhibit[X].source",
+      "research_agent.path",
+      "research_agent.grounding_sources[0]",
+      "research_agent.grounding_sources[1]",
+      "research_agent.grounding_sources[2]"
+    ],
+    "warning_paths": []
+  }
+}

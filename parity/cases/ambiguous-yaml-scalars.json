@@ -1,0 +1,77 @@
+{
+  "kind": "artifact",
+  "name": "ambiguous-yaml-scalars",
+  "description": "String values that a YAML 1.1 or 1.2 parser could resolve as another type — no/on/off/yes, 12:30, true, 1, 1.0, null, ~, 0x1f, .inf, a date, and padded text — must reopen as the same strings, alongside genuine numbers and booleans.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-yaml-scalars",
+    "title": "no",
+    "producer": {
+      "boolean_like": ["no", "No", "NO", "yes", "on", "off", "y", "N", "true", "False"],
+      "number_like": ["1", "1.0", "-3", "0x1f", "0o17", "1_000", ".inf", "-1.5e3"],
+      "time_like": ["12:30", "12:30:45", "2001-12-14", "2026-01-01T00:00:00.000Z"],
+      "null_like": ["null", "Null", "~", ""],
+      "padded": " leading and trailing ",
+      "real_integer": 12,
+      "real_float": 0.5,
+      "real_integral_float": 2.0,
+      "real_boolean": true,
+      "real_false": false,
+      "omitted_optional": null,
+      "nested": {"colonised": "a: b", "hashed": "value # not a comment", "dashed": "- item"}
+    },
+    "datasets": [],
+    "experiments": [
+      {"slug": "on", "directory": "experiments/on", "run": {"command": "echo no", "seed": 0, "env": {"FLAG": "off"}}}
+    ],
+    "traces": [],
+    "results": [
+      {"id": "12:30", "validates": ["null"], "evidence": "results/out.csv", "kind": "metrics", "produced_by": "on"}
+    ],
+    "claims": [
+      {
+        "id": "null",
+        "statement": "no",
+        "validators": [{"kind": "builtin", "name": "contains", "input": {"result": "12:30", "value": "yes"}}]
+      }
+    ],
+    "exhibits": [],
+    "assessments": [],
+    "journal": [],
+    "reflection": "no\non\n12:30\n"
+  },
+  "write": {"stage_from": "fixtures"},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "schema_valid": true,
+    "report": {
+      "ok": true,
+      "incomplete": false,
+      "warning_paths": [],
+      "missing_blobs": [],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "manifest.yml",
+        "reflection.md",
+        "results.yml",
+        "results/out.csv"
+      ]
+    },
+    "state": {
+      "generated_files": [
+        "claims.yml",
+        "datasets.yml",
+        "manifest.yml",
+        "reflection.md",
+        "results.yml"
+      ],
+      "authored_files": ["results/out.csv"]
+    }
+  }
+}

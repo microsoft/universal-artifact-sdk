@@ -1,0 +1,83 @@
+{
+  "kind": "operation",
+  "name": "staging-authored-and-missing-blobs",
+  "description": "Staging replaces an existing destination, a hand-placed file and every staged producer blob are classified as authored while the SDK's indexes stay generated, referenced files that are absent become `blob[...]` warnings, and `quiet` clears only the incomplete flag.",
+  "operations": [
+    {"operation": "create_artifact", "arguments": {"id": "staging", "title": "Staging parity"}},
+    {"operation": "configure_journal", "arguments": {"actor": "agent:experiment", "now": ["2026-04-01T00:00:00.000Z", "2026-04-01T00:01:00.000Z", "2026-04-01T00:02:00.000Z"]}},
+
+    {"operation": "add_claim", "arguments": {"id": "c1", "statement": "s", "validator": {"kind": "attest", "checks": "integrity"}}, "context": {"rationale": "headline"}},
+    {"operation": "add_result", "arguments": {"id": "r-present", "validates": ["c1"], "evidence": "results/out.csv", "kind": "metrics"}, "context": {"rationale": "measured"}},
+    {"operation": "add_result", "arguments": {"id": "r-absent", "validates": ["c1"], "evidence": "results/never.csv", "kind": "metrics"}, "context": {"rationale": "not produced yet"}},
+
+    {"operation": "prepare_file", "arguments": {"path": "out/results/out.csv", "content": "stale\n"}},
+    {"operation": "prepare_file", "arguments": {"path": "out/note.txt", "content": "hand placed\n"}},
+
+    {"operation": "write_submission", "arguments": {"out": "out", "stage_from": "fixtures"}},
+    {"operation": "read_file", "arguments": {"path": "out/results/out.csv"}},
+    {"operation": "write_submission", "arguments": {"out": "out", "stage_from": "fixtures", "quiet": true}}
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "step_returns": {
+      "7": {
+        "ok": true,
+        "incomplete": true,
+        "warning_paths": ["blob[results/never.csv]"],
+        "missing_blobs": ["results/never.csv"],
+        "files_written": [
+          ".sdk/state.json",
+          "SHA256SUMS",
+          "claims.yml",
+          "datasets.yml",
+          "journal.yml",
+          "manifest.yml",
+          "results.yml",
+          "results/out.csv"
+        ]
+      },
+      "8": "metric,value\nacc,0.91\n",
+      "9": {
+        "ok": true,
+        "incomplete": false,
+        "warning_paths": ["blob[results/never.csv]"],
+        "missing_blobs": ["results/never.csv"],
+        "files_written": [
+          ".sdk/state.json",
+          "SHA256SUMS",
+          "claims.yml",
+          "datasets.yml",
+          "journal.yml",
+          "manifest.yml",
+          "results.yml",
+          "results/out.csv"
+        ]
+      }
+    },
+    "output": {
+      "files": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "journal.yml",
+        "manifest.yml",
+        "note.txt",
+        "results.yml",
+        "results/out.csv"
+      ],
+      "state": {
+        "generated_files": [
+          "claims.yml",
+          "datasets.yml",
+          "journal.yml",
+          "manifest.yml",
+          "results.yml"
+        ],
+        "authored_files": ["note.txt", "results/out.csv"]
+      }
+    }
+  }
+}

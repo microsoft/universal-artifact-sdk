@@ -1,6 +1,6 @@
 {
   "name": "@microsoft/universal-artifact-sdk",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Vendor-neutral TypeScript SDK for authoring and serializing evaluable research artifacts that pair a producer's claims with the evidence needed to verify them. See SPEC.md.",
   "keywords": [
     "artifact",
@@ -51,7 +51,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:parity": "npm run build && node parity/run-ts.mjs emit && python parity/run_py.py emit && node parity/run-ts.mjs cross-open && python parity/run_py.py cross-open"
   },
   "engines": {
     "node": ">=20"

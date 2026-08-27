@@ -1,0 +1,306 @@
+{
+  "kind": "artifact",
+  "name": "complete-worked-example",
+  "description": "Every model collection, every validator kind, every dataset location kind, paper, research agent, reflection and a pre-existing journal, emitted with all blobs staged.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-complete",
+    "title": "Complete parity artifact",
+    "producer": {"name": "parity-harness", "version": 2, "tags": ["a", "b"]},
+    "environment": {
+      "name": "primary",
+      "image": {
+        "reference": "registry.test/artifact:1.2",
+        "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "os": "linux",
+      "hardware": {"cpu": "8 vCPU", "gpu": "none", "min_ram_gb": 16}
+    },
+    "datasets": [
+      {
+        "id": "corpus",
+        "description": "In-artifact corpus shipped with the submission.",
+        "location": {"kind": "in_artifact", "path": "data/corpus/"},
+        "prepare": "python prepare.py",
+        "sample": {"path": "data/corpus/sample.csv", "sha256": "abc"}
+      },
+      {
+        "id": "mounted",
+        "location": {"kind": "in_container", "path": "/opt/data", "in_environment": "primary"}
+      },
+      {
+        "id": "remote",
+        "location": {
+          "kind": "external",
+          "uri": "https://example.test/corpus-v3.tar.gz",
+          "sha256": "def",
+          "bytes": 294721271,
+          "access": "public",
+          "license": "CC-BY-4.0"
+        }
+      },
+      {
+        "id": "interviews",
+        "location": {"kind": "in_artifact", "path": "data/interviews/"},
+        "study": {
+          "ethics_approval": "IRB-2025-0142",
+          "consent_basis": "informed, opt-in",
+          "deidentification": "names redacted",
+          "redaction_note": "quotes lightly edited",
+          "sampling": "convenience; n=18"
+        }
+      }
+    ],
+    "experiments": [
+      {
+        "slug": "baseline",
+        "directory": "experiments/baseline",
+        "run": {"command": "python run.py --seed 0", "entrypoint": "run.py", "seed": 0},
+        "uses_data": [{"dataset": "corpus", "at": "data/corpus.parquet"}],
+        "runs_in": "primary",
+        "expected_runtime": "20m"
+      },
+      {
+        "slug": "sweep",
+        "directory": "experiments/sweep",
+        "run": {
+          "command": "python sweep.py",
+          "working_dir": "experiments/sweep",
+          "args": ["--k", "8"],
+          "env": {"PYTHONHASHSEED": "0"}
+        },
+        "depends_on": ["baseline"],
+        "uses_data": [{"dataset": "remote", "at": "data/remote"}],
+        "runs_in": "primary"
+      }
+    ],
+    "traces": [
+      {
+        "id": "T-run",
+        "kind": "execution_log",
+        "path": "traces/run.jsonl",
+        "covers": ["baseline", "sweep"],
+        "terminal_state": "completed_with_outputs",
+        "counters": {"steps": 42, "retries": 0}
+      },
+      {"id": "T-human", "kind": "human_interaction", "path": "traces/human.md"}
+    ],
+    "results": [
+      {
+        "id": "R-metrics",
+        "produced_by": "baseline",
+        "validates": ["C-quant"],
+        "evidence": "results/out.csv",
+        "kind": "metrics",
+        "validation_mode": "re-analyze",
+        "locators": {
+          "acc_final": {"column": "value", "row": "final"},
+          "acc_initial": {"column": "value", "row": "0"}
+        }
+      },
+      {
+        "id": "R-transcript",
+        "validates": ["C-qual"],
+        "evidence": "data/interviews/",
+        "kind": "transcript",
+        "validation_mode": "inspect",
+        "supersedes": "R-metrics",
+        "support": {
+          "excerpts": [{"file": "data/interviews/P07.txt", "lines": "40-55"}],
+          "codebook": "trust; distrust; repair",
+          "inter_rater_reliability": {"metric": "cohen_kappa", "value": 0.81}
+        }
+      }
+    ],
+    "exhibits": [
+      {
+        "id": "X-figure",
+        "type": "figure",
+        "caption": "Accuracy against sweep size; the curve is U-shaped.",
+        "validates": ["C-quant"],
+        "path": "exhibits/figure.png",
+        "source": "exhibits/figure.pdf",
+        "produced_by": "sweep",
+        "validation_mode": "inspect",
+        "alt_text": "Line plot of accuracy against k.",
+        "order": 1,
+        "from_result": "R-metrics"
+      },
+      {
+        "id": "X-lemma",
+        "type": "proof",
+        "caption": "Lemma 1: the estimator is unbiased.",
+        "validates": ["C-quant"],
+        "statement": "E[theta_hat] = theta"
+      },
+      {
+        "id": "X-theorem",
+        "type": "derivation",
+        "caption": "Theorem 2 follows from Lemma 1.",
+        "validates": ["C-quant"],
+        "statement": "Var[theta_hat] <= sigma^2 / n",
+        "depends_on": ["X-lemma"],
+        "order": 2
+      }
+    ],
+    "claims": [
+      {
+        "id": "C-quant",
+        "statement": "Accuracy improves with more feedback rounds.",
+        "stance": "finding",
+        "tested_by": ["baseline", "sweep"],
+        "paper_ref": {"section": "5.2", "figure": "3", "page": 7},
+        "validators": [
+          {
+            "id": "v-attest",
+            "kind": "attest",
+            "checks": "provenance",
+            "inputs": ["R-metrics"]
+          },
+          {
+            "id": "v-builtin",
+            "kind": "builtin",
+            "name": "monotonic",
+            "input": {"result": "R-metrics", "series": ["acc_initial", "acc_final"]},
+            "params": {"direction": "increasing"},
+            "gated_by": "v-attest"
+          },
+          {
+            "id": "v-procedure",
+            "kind": "procedure",
+            "instructions": "Re-run the sweep and compare the reported curve.",
+            "tools": [{"name": "python", "version": "3.12"}],
+            "inputs": ["R-metrics"],
+            "success_criteria": "The curve reproduces within 2%.",
+            "timeout": "30m",
+            "gated_by": "v-attest"
+          }
+        ]
+      },
+      {
+        "id": "C-qual",
+        "statement": "Participants distrusted the tool's suggestions.",
+        "stance": "hypothesis",
+        "tested_by": ["baseline"],
+        "paper_ref": {"section": "6.1"},
+        "validators": [
+          {"id": "q-attest", "kind": "attest", "checks": "ethics", "inputs": ["R-transcript"]},
+          {
+            "id": "q-judge",
+            "kind": "llm_judge",
+            "criteria": "The cited excerpts express distrust of the tool.",
+            "inputs": ["R-transcript"],
+            "gated_by": "q-attest"
+          }
+        ]
+      }
+    ],
+    "assessments": [
+      {
+        "id": "A-execution",
+        "dimension": "execution_authenticity",
+        "scope": "artifact",
+        "evidence": ["traces/run.jsonl"],
+        "validator": {"kind": "attest", "checks": "integrity", "inputs": ["R-metrics"]}
+      },
+      {
+        "id": "A-citations",
+        "dimension": "citation_integrity",
+        "scope": "paper",
+        "evidence": ["paper_references.yml"]
+      }
+    ],
+    "paper": {
+      "pdf": "paper.pdf",
+      "source": "paper/",
+      "claims_export": "paper_claims.yml",
+      "references_export": "paper_references.yml"
+    },
+    "research_agent": {
+      "path": "research-agent.md",
+      "model": "copilot/gpt-5.5@2026-06-01",
+      "grounding_sources": ["agent/context.md", "data/corpus/"],
+      "scope": ["research", "results", "negative-results"]
+    },
+    "reflection": "# Reflection\n\nThe sweep is under-powered for k > 12.\n",
+    "journal": [
+      {
+        "seq": 1,
+        "timestamp": "2026-01-01T00:00:00.000Z",
+        "actor": "agent:experiment",
+        "op": "add",
+        "target": {"kind": "claim", "id": "C-quant"},
+        "rationale": "headline finding",
+        "after": {"id": "C-quant"}
+      }
+    ]
+  },
+  "write": {"stage_from": "fixtures"},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "schema_valid": true,
+    "report": {
+      "ok": true,
+      "incomplete": false,
+      "warning_paths": [],
+      "missing_blobs": [],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "agent/context.md",
+        "assessments.yml",
+        "claims.yml",
+        "data/corpus/sample.csv",
+        "data/interviews/P07.txt",
+        "datasets.yml",
+        "exhibits.yml",
+        "exhibits/figure.pdf",
+        "exhibits/figure.png",
+        "journal.yml",
+        "manifest.yml",
+        "paper.pdf",
+        "paper/main.tex",
+        "paper_claims.yml",
+        "paper_references.yml",
+        "reflection.md",
+        "research-agent.md",
+        "results.yml",
+        "results/out.csv",
+        "traces.yml",
+        "traces/human.md",
+        "traces/run.jsonl"
+      ]
+    },
+    "state": {
+      "generated_files": [
+        "assessments.yml",
+        "claims.yml",
+        "datasets.yml",
+        "exhibits.yml",
+        "journal.yml",
+        "manifest.yml",
+        "reflection.md",
+        "results.yml",
+        "traces.yml"
+      ],
+      "authored_files": [
+        "agent/context.md",
+        "data/corpus/sample.csv",
+        "data/interviews/P07.txt",
+        "exhibits/figure.pdf",
+        "exhibits/figure.png",
+        "paper.pdf",
+        "paper/main.tex",
+        "paper_claims.yml",
+        "paper_references.yml",
+        "research-agent.md",
+        "results/out.csv",
+        "traces/human.md",
+        "traces/run.jsonl"
+      ]
+    }
+  }
+}

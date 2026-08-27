@@ -1,0 +1,46 @@
+{
+  "kind": "operation",
+  "name": "rationale-policies",
+  "description": "The three rationale-elicitation policies (spec §4.2): `warn` records an empty rationale, `prompt` asks the injected callback, and `required` raises before the model is touched so a rejected change leaves the artifact untouched.",
+  "operations": [
+    {"operation": "create_artifact", "arguments": {"id": "policies", "title": "Rationale policies"}},
+    {"operation": "configure_journal", "arguments": {"actor": "agent:experiment", "now": ["2026-03-01T00:00:00.000Z", "2026-03-01T00:01:00.000Z", "2026-03-01T00:02:00.000Z"]}},
+
+    {"operation": "add_claim", "arguments": {"id": "c1", "statement": "warned"}},
+    {"operation": "list_journal"},
+
+    {"operation": "configure_journal", "arguments": {"policy": "prompt", "prompt_rationale": "because the agent said so"}},
+    {"operation": "add_experiment", "arguments": {"slug": "e1", "directory": "experiments/e1", "run": {"command": "r"}}},
+
+    {"operation": "configure_journal", "arguments": {"policy": "required"}},
+    {"operation": "add_experiment", "arguments": {"slug": "e2", "directory": "experiments/e2", "run": {"command": "r"}}, "expects_error": true},
+    {"operation": "list_experiments"},
+    {"operation": "add_experiment", "arguments": {"slug": "e2", "directory": "experiments/e2", "run": {"command": "r"}}, "context": {"rationale": "explained"}},
+    {"operation": "validate_structure"}
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": ["claim[c1]", "journal[#1]"],
+    "raising_steps": [7],
+    "step_returns": {
+      "3": [
+        {
+          "seq": 1,
+          "timestamp": "2026-03-01T00:00:00.000Z",
+          "actor": "agent:experiment",
+          "op": "add",
+          "target": {"kind": "claim", "id": "c1"},
+          "rationale": "",
+          "after": {"id": "c1", "statement": "warned"}
+        }
+      ],
+      "5": {"slug": "e1", "directory": "experiments/e1", "run": {"command": "r"}},
+      "8": [{"slug": "e1", "directory": "experiments/e1", "run": {"command": "r"}}],
+      "10": {
+        "ok": true,
+        "warning_paths": ["claim[c1]", "journal[#1]"]
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "kind": "artifact",
+  "name": "partial-artifact-warnings",
+  "description": "Incomplete but legal content: an unpinned image, a mounted dataset with no environment, a finding with no validator, a failed experiment with neither rationale nor failure detail, a journal entry with no rationale, and evidence that is not present in the submission.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-partial",
+    "title": "Partial parity artifact",
+    "environment": {"name": "primary", "image": {"reference": "registry.test/artifact:1.2"}},
+    "datasets": [
+      {"id": "mounted", "location": {"kind": "in_container", "path": "/opt/data", "in_environment": "primary"}}
+    ],
+    "experiments": [
+      {
+        "slug": "broken",
+        "directory": "experiments/broken",
+        "run": {"command": "python run.py"},
+        "disposition": {"status": "failed", "rationale": "   "}
+      }
+    ],
+    "traces": [],
+    "results": [
+      {"id": "R-missing", "validates": ["C-open"], "evidence": "results/never.csv", "kind": "metrics"}
+    ],
+    "claims": [
+      {"id": "C-open", "statement": "An unverified finding.", "validators": []},
+      {"id": "C-hypothesis", "statement": "A hypothesis needs no validator yet.", "stance": "hypothesis", "validators": []}
+    ],
+    "exhibits": [
+      {"id": "X-odd", "type": "hologram", "caption": "An unrecognized exhibit type is legal.", "validates": ["C-open"], "path": "exhibits/figure.png"}
+    ],
+    "assessments": [],
+    "journal": [
+      {
+        "seq": 1,
+        "timestamp": "2026-01-01T00:00:00.000Z",
+        "actor": "agent:experiment",
+        "op": "add",
+        "target": {"kind": "claim", "id": "C-open"},
+        "rationale": ""
+      }
+    ]
+  },
+  "write": {"stage_from": "fixtures"},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [
+      "environment[primary].image",
+      "experiment[broken].disposition",
+      "experiment[broken].disposition",
+      "exhibit[X-odd].type",
+      "claim[C-open]",
+      "journal[#1]"
+    ],
+    "schema_valid": true,
+    "report": {
+      "ok": true,
+      "incomplete": true,
+      "warning_paths": [
+        "environment[primary].image",
+        "experiment[broken].disposition",
+        "experiment[broken].disposition",
+        "exhibit[X-odd].type",
+        "claim[C-open]",
+        "journal[#1]",
+        "blob[results/never.csv]"
+      ],
+      "missing_blobs": ["results/never.csv"],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "exhibits.yml",
+        "exhibits/figure.png",
+        "experiments/broken/DISPOSITION.md",
+        "journal.yml",
+        "manifest.yml",
+        "results.yml"
+      ]
+    },
+    "state": {
+      "generated_files": [
+        "claims.yml",
+        "datasets.yml",
+        "exhibits.yml",
+        "experiments/broken/DISPOSITION.md",
+        "journal.yml",
+        "manifest.yml",
+        "results.yml"
+      ],
+      "authored_files": ["exhibits/figure.png"]
+    }
+  }
+}

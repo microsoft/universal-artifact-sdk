@@ -1,0 +1,123 @@
+{
+  "kind": "operation",
+  "name": "hand-written-manifest-reopen",
+  "description": "Reopening is tolerant and lossy in one documented way: a hand-written manifest with no `paths` index resolves the default filenames, nested producer extensions survive, and unknown top-level manifest keys are dropped (frozen behavior, PYTHON_BINDING.md §4.2, issue #32). An index explicitly mapped to an empty path is not read, and an explicitly empty version string is kept rather than defaulted.",
+  "operations": [
+    {
+      "operation": "create_artifact",
+      "arguments": {
+        "id": "reopen",
+        "title": "Reopen parity"
+      }
+    },
+    {
+      "operation": "prepare_file",
+      "arguments": {
+        "path": "out/manifest.yml",
+        "content": "format_version: evaluable-artifact/v2\nsdk_version: artifact-sdk/v1\nid: hand\ntitle: Hand-written\nproducer:\n  name: hand-roller\n  x_vendor:\n    tier: gold\nroot_extension: dropped\nexperiments:\n  - slug: e1\n    directory: experiments/e1\n    run:\n      command: run\n    x_cost_usd: 4\n"
+      }
+    },
+    {
+      "operation": "open_submission",
+      "arguments": {
+        "out": "out"
+      }
+    },
+    {
+      "operation": "prepare_file",
+      "arguments": {
+        "path": "out/claims.yml",
+        "content": "claims:\n  - id: c1\n    statement: 'no'\n    x_confidence: 0.5\n"
+      }
+    },
+    {
+      "operation": "open_submission",
+      "arguments": {
+        "out": "out"
+      }
+    },
+    {
+      "operation": "prepare_file",
+      "arguments": {
+        "path": "out/manifest.yml",
+        "content": "format_version: ''\nsdk_version: ''\nid: empty\ntitle: Empty index mapping\npaths:\n  claims: ''\n"
+      }
+    },
+    {
+      "operation": "open_submission",
+      "arguments": {
+        "out": "out"
+      }
+    }
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "step_returns": {
+      "2": {
+        "format_version": "evaluable-artifact/v2",
+        "sdk_version": "artifact-sdk/v1",
+        "id": "hand",
+        "title": "Hand-written",
+        "producer": {
+          "name": "hand-roller",
+          "x_vendor": {
+            "tier": "gold"
+          }
+        },
+        "experiments": [
+          {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "run"
+            },
+            "x_cost_usd": 4
+          }
+        ]
+      },
+      "4": {
+        "format_version": "evaluable-artifact/v2",
+        "sdk_version": "artifact-sdk/v1",
+        "id": "hand",
+        "title": "Hand-written",
+        "producer": {
+          "name": "hand-roller",
+          "x_vendor": {
+            "tier": "gold"
+          }
+        },
+        "experiments": [
+          {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "run"
+            },
+            "x_cost_usd": 4
+          }
+        ],
+        "claims": [
+          {
+            "id": "c1",
+            "statement": "no",
+            "x_confidence": 0.5
+          }
+        ]
+      },
+      "6": {
+        "format_version": "",
+        "sdk_version": "",
+        "id": "empty",
+        "title": "Empty index mapping"
+      }
+    },
+    "model": {
+      "format_version": "evaluable-artifact/v2",
+      "sdk_version": "artifact-sdk/v1",
+      "id": "reopen",
+      "title": "Reopen parity"
+    }
+  }
+}

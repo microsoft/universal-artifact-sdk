@@ -1,0 +1,54 @@
+{
+  "kind": "artifact",
+  "name": "minimal-empty-artifact",
+  "description": "An empty but legal artifact: the three required indexes are emitted, every optional index is omitted, and nothing is warned about.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-minimal",
+    "title": "Minimal parity artifact",
+    "datasets": [],
+    "experiments": [],
+    "traces": [],
+    "results": [],
+    "claims": [],
+    "exhibits": [],
+    "assessments": [],
+    "journal": []
+  },
+  "write": {},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "schema_valid": true,
+    "report": {
+      "ok": true,
+      "incomplete": false,
+      "warning_paths": [],
+      "missing_blobs": [],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "manifest.yml",
+        "results.yml"
+      ]
+    },
+    "output": {
+      "files": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "manifest.yml",
+        "results.yml"
+      ]
+    },
+    "state": {
+      "generated_files": ["claims.yml", "datasets.yml", "manifest.yml", "results.yml"],
+      "authored_files": []
+    }
+  }
+}

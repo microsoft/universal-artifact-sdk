@@ -1,0 +1,50 @@
+{
+  "kind": "artifact",
+  "name": "reserved-collisions",
+  "description": "Generated output must never overwrite authored content: an authored blob that collides with a generated disposition marker, and a disposition directory that shadows an authored blob. A declared environment also makes `runs_in` resolvable, so an unknown environment is an error here.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-collisions",
+    "title": "Reserved path collision failures",
+    "environment": {
+      "name": "primary",
+      "image": {"reference": "registry.test/artifact@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}
+    },
+    "datasets": [],
+    "experiments": [
+      {
+        "slug": "dropped",
+        "directory": "experiments/dropped",
+        "run": {"command": "true"},
+        "runs_in": "secondary",
+        "disposition": {"status": "abandoned", "rationale": "confounded by the seed"}
+      },
+      {
+        "slug": "shadow",
+        "directory": "paper.pdf",
+        "run": {"command": "true"},
+        "disposition": {"status": "failed", "rationale": "never produced usable evidence", "failure": {"stage": "run", "summary": "OOM"}}
+      }
+    ],
+    "traces": [],
+    "results": [
+      {"id": "R", "validates": [], "evidence": "experiments/dropped/DISPOSITION.md", "kind": "log"}
+    ],
+    "claims": [],
+    "exhibits": [],
+    "assessments": [],
+    "paper": {"pdf": "paper.pdf"},
+    "journal": []
+  },
+  "expected": {
+    "ok": false,
+    "schema_valid": true,
+    "error_paths": [
+      "experiment[dropped].runs_in",
+      "experiment[shadow].directory",
+      "result[R].evidence"
+    ],
+    "warning_paths": []
+  }
+}

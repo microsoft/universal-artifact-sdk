@@ -1,0 +1,54 @@
+{
+  "kind": "artifact",
+  "name": "schema-runtime-divergence",
+  "description": "A reviewed, expected divergence between the canonical JSON Schema and the frozen runtime rules (PYTHON_BINDING.md §6.1, issue #32): the schema rejects a grounding source that names a generated index file exactly, while both runtimes accept it and reserve only its descendants. Both bindings must reach the same verdict on both sides of the divergence, and neither may silently discard it.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-divergence",
+    "title": "Schema and runtime divergence",
+    "datasets": [],
+    "experiments": [],
+    "traces": [],
+    "results": [],
+    "claims": [],
+    "exhibits": [],
+    "assessments": [],
+    "research_agent": {
+      "path": "research-agent.md",
+      "model": "copilot/gpt-5.5@2026-06-01",
+      "grounding_sources": ["claims.yml", "Claims.yml"]
+    },
+    "journal": []
+  },
+  "write": {"stage_from": "fixtures"},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "schema_valid": false,
+    "schema_error_paths": [
+      "/research_agent/grounding_sources/0",
+      "/research_agent/grounding_sources/1"
+    ],
+    "report": {
+      "ok": true,
+      "incomplete": false,
+      "warning_paths": [],
+      "missing_blobs": [],
+      "files_written": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "claims.yml",
+        "datasets.yml",
+        "manifest.yml",
+        "research-agent.md",
+        "results.yml"
+      ]
+    },
+    "state": {
+      "generated_files": ["claims.yml", "datasets.yml", "manifest.yml", "results.yml"],
+      "authored_files": ["research-agent.md"]
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "kind": "operation",
+  "name": "reflection-and-stale-index",
+  "description": "Frozen compatibility behavior (PYTHON_BINDING.md §7.1): model-carried reflection is written and classified as generated, and an optional index left by an earlier write is not deleted when its collection later becomes empty — the stale file stays in SHA256SUMS and is reclassified as authored.",
+  "operations": [
+    {"operation": "create_artifact", "arguments": {"id": "stale", "title": "Stale index parity"}},
+    {"operation": "configure_journal", "arguments": {"actor": "agent:experiment", "now": ["2026-05-01T00:00:00.000Z", "2026-05-01T00:01:00.000Z", "2026-05-01T00:02:00.000Z", "2026-05-01T00:03:00.000Z"]}},
+
+    {"operation": "add_claim", "arguments": {"id": "c1", "statement": "s", "validator": {"kind": "attest", "checks": "integrity"}}, "context": {"rationale": "headline"}},
+    {"operation": "set_reflection", "arguments": {"markdown": "# Reflection\n\nThe sweep is under-powered.\n"}, "context": {"rationale": "record the limitation"}},
+    {
+      "operation": "add_exhibit",
+      "arguments": {"id": "x1", "type": "proof", "caption": "A statement-only proof.", "validates": ["c1"], "statement": "QED"},
+      "context": {"rationale": "substantiate c1"}
+    },
+    {"operation": "add_assessment", "arguments": {"id": "a1", "dimension": "citation_integrity", "scope": "paper"}, "context": {"rationale": "assess citations"}},
+
+    {"operation": "write_submission", "arguments": {"out": "out"}},
+    {"operation": "read_file", "arguments": {"path": "out/reflection.md"}},
+
+    {"operation": "remove_exhibit", "arguments": {"id": "x1"}, "context": {"rationale": "the proof was wrong"}},
+    {"operation": "write_submission", "arguments": {"out": "out"}}
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "step_returns": {
+      "6": {
+        "ok": true,
+        "incomplete": false,
+        "files_written": [
+          ".sdk/state.json",
+          "SHA256SUMS",
+          "assessments.yml",
+          "claims.yml",
+          "datasets.yml",
+          "exhibits.yml",
+          "journal.yml",
+          "manifest.yml",
+          "reflection.md",
+          "results.yml"
+        ]
+      },
+      "7": "# Reflection\n\nThe sweep is under-powered.\n",
+      "9": {
+        "ok": true,
+        "incomplete": false,
+        "files_written": [
+          ".sdk/state.json",
+          "SHA256SUMS",
+          "assessments.yml",
+          "claims.yml",
+          "datasets.yml",
+          "journal.yml",
+          "manifest.yml",
+          "reflection.md",
+          "results.yml"
+        ]
+      }
+    },
+    "output": {
+      "files": [
+        ".sdk/state.json",
+        "SHA256SUMS",
+        "assessments.yml",
+        "claims.yml",
+        "datasets.yml",
+        "exhibits.yml",
+        "journal.yml",
+        "manifest.yml",
+        "reflection.md",
+        "results.yml"
+      ],
+      "state": {
+        "generated_files": [
+          "assessments.yml",
+          "claims.yml",
+          "datasets.yml",
+          "journal.yml",
+          "manifest.yml",
+          "reflection.md",
+          "results.yml"
+        ],
+        "authored_files": ["exhibits.yml"]
+      },
+      "sums": [
+        "<sha256>  assessments.yml",
+        "<sha256>  claims.yml",
+        "<sha256>  datasets.yml",
+        "<sha256>  exhibits.yml",
+        "<sha256>  journal.yml",
+        "<sha256>  manifest.yml",
+        "<sha256>  reflection.md",
+        "<sha256>  results.yml"
+      ]
+    }
+  }
+}

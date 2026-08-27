@@ -1,0 +1,204 @@
+{
+  "kind": "artifact",
+  "name": "referential-failure",
+  "description": "Referential integrity across every collection: dangling dataset, experiment, claim, result, exhibit and validator references, plus missing required fields, illegal enum values and malformed validators, including one with no `kind` at all and one whose `id` is the empty string. No environment is declared, so `runs_in` is unchecked (frozen behavior) and the mounted dataset is warned about; `runs_in` against a declared environment is covered by reserved-collisions.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-referential",
+    "title": "Referential parity failures",
+    "datasets": [
+      {
+        "id": "no-kind",
+        "location": {}
+      },
+      {
+        "id": "external-unchecksummed",
+        "location": {
+          "kind": "external",
+          "uri": "https://example.test/x.tar"
+        }
+      },
+      {
+        "id": "mounted",
+        "location": {
+          "kind": "in_container",
+          "path": "/opt/data"
+        }
+      }
+    ],
+    "experiments": [
+      {
+        "slug": "dangling",
+        "directory": "experiments/dangling",
+        "run": {
+          "command": ""
+        },
+        "uses_data": [
+          {
+            "dataset": "ghost-dataset",
+            "at": "data/x"
+          }
+        ],
+        "depends_on": [
+          "ghost-experiment"
+        ],
+        "runs_in": "ghost-environment",
+        "disposition": {
+          "status": "superseded",
+          "rationale": "replaced",
+          "superseded_by": "ghost-successor"
+        }
+      }
+    ],
+    "traces": [
+      {
+        "id": "T",
+        "kind": "execution_log",
+        "path": "traces/run.jsonl",
+        "covers": [
+          "ghost-experiment"
+        ]
+      }
+    ],
+    "results": [
+      {
+        "id": "R",
+        "produced_by": "ghost-experiment",
+        "validates": [
+          "ghost-claim"
+        ],
+        "evidence": "results/out.csv",
+        "kind": "metrics",
+        "validation_mode": "reticulate"
+      }
+    ],
+    "exhibits": [
+      {
+        "id": "X",
+        "type": "figure",
+        "caption": "Dangling exhibit references.",
+        "validates": [
+          "ghost-claim"
+        ],
+        "path": "exhibits/figure.png",
+        "produced_by": "ghost-experiment",
+        "from_result": "ghost-result",
+        "validation_mode": "vibes",
+        "depends_on": [
+          "ghost-exhibit",
+          "X"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "C",
+        "statement": "A claim with malformed validators.",
+        "stance": "guess",
+        "tested_by": [
+          "ghost-experiment"
+        ],
+        "validators": [
+          {
+            "id": "v-empty",
+            "kind": "builtin"
+          },
+          {
+            "id": "v-unknown",
+            "kind": "sorcery"
+          },
+          {
+            "id": "v-judge",
+            "kind": "llm_judge",
+            "criteria": "c",
+            "inputs": [
+              "ghost-result"
+            ],
+            "gated_by": "v-ghost"
+          },
+          {
+            "id": "v-gate",
+            "kind": "llm_judge",
+            "criteria": "c",
+            "gated_by": "v-judge"
+          },
+          {
+            "kind": "builtin",
+            "name": "contains",
+            "input": {
+              "result": "ghost-result"
+            }
+          },
+          {
+            "name": "contains",
+            "input": {
+              "result": "ghost-result"
+            }
+          },
+          {
+            "id": "",
+            "kind": "attest"
+          }
+        ]
+      }
+    ],
+    "assessments": [
+      {
+        "id": "A",
+        "scope": "galaxy"
+      }
+    ],
+    "research_agent": {
+      "path": "research-agent.md",
+      "model": "  ",
+      "grounding_sources": []
+    },
+    "journal": []
+  },
+  "expected": {
+    "ok": false,
+    "schema_valid": false,
+    "schema_error_paths": [
+      "/assessments/0",
+      "/claims/0/stance",
+      "/results/0/validation_mode"
+    ],
+    "error_paths": [
+      "dataset[no-kind]",
+      "dataset[external-unchecksummed].location",
+      "dataset[mounted].location",
+      "experiment[dangling]",
+      "experiment[dangling].uses_data",
+      "experiment[dangling].depends_on",
+      "experiment[dangling].disposition.superseded_by",
+      "trace[T].covers",
+      "result[R].validation_mode",
+      "result[R].produced_by",
+      "result[R].validates",
+      "exhibit[X].validation_mode",
+      "exhibit[X].produced_by",
+      "exhibit[X].from_result",
+      "exhibit[X].validates",
+      "exhibit[X].depends_on",
+      "exhibit[X].depends_on",
+      "claim[C].stance",
+      "claim[C].tested_by",
+      "claim[C].validators[v-empty]",
+      "claim[C].validators[v-unknown]",
+      "claim[C].validators[v-judge].gated_by",
+      "claim[C].validators[v-judge].inputs",
+      "claim[C].validators[v-gate].gated_by",
+      "claim[C].validators[4].input.result",
+      "claim[C].validators[5]",
+      "claim[C].validators[]",
+      "assessment[A]",
+      "assessment[A].scope",
+      "research_agent.model",
+      "research_agent.grounding_sources"
+    ],
+    "warning_paths": [
+      "dataset[mounted].location"
+    ]
+  }
+}
