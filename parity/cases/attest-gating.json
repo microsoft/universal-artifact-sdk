@@ -1,0 +1,105 @@
+{
+  "kind": "artifact",
+  "name": "attest-gating-on-every-validator-kind",
+  "description": "`gated_by` is read off every validator kind, including `attest` (spec §3.5; the canonical schema declares `gated_by` on the shared validator object, not per kind). An attest validator whose `gated_by` is dangling, and one whose target is a non-attest validator on the same claim, are both errors at the validator's own `gated_by` path; an attest validator gated by another attest validator on the same claim is legal and silent. This is a validation-only case: the artifact does not emit, so the reviewed contract is the issue path and severity.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v2",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "parity-attest-gating",
+    "title": "Attest gating parity",
+    "datasets": [],
+    "experiments": [],
+    "traces": [],
+    "results": [],
+    "claims": [
+      {
+        "id": "C1",
+        "statement": "Attest validators carry a gated_by edge like every other kind.",
+        "validators": [
+          {
+            "id": "v_attest_dangling",
+            "kind": "attest",
+            "checks": "provenance",
+            "gated_by": "ghost"
+          },
+          {
+            "id": "v_builtin",
+            "kind": "builtin",
+            "name": "output_present"
+          },
+          {
+            "id": "v_attest_mistargeted",
+            "kind": "attest",
+            "checks": "integrity",
+            "gated_by": "v_builtin"
+          },
+          {
+            "id": "v_attest_gate",
+            "kind": "attest",
+            "checks": "ethics"
+          },
+          {
+            "id": "v_attest_gated",
+            "kind": "attest",
+            "checks": "citations_exist",
+            "gated_by": "v_attest_gate"
+          }
+        ]
+      }
+    ],
+    "exhibits": [],
+    "assessments": [],
+    "journal": []
+  },
+  "expected": {
+    "ok": false,
+    "schema_valid": true,
+    "error_paths": [
+      "claim[C1].validators[v_attest_dangling].gated_by",
+      "claim[C1].validators[v_attest_mistargeted].gated_by"
+    ],
+    "warning_paths": [],
+    "model": {
+      "format_version": "evaluable-artifact/v2",
+      "sdk_version": "artifact-sdk/v1",
+      "id": "parity-attest-gating",
+      "title": "Attest gating parity",
+      "claims": [
+        {
+          "id": "C1",
+          "statement": "Attest validators carry a gated_by edge like every other kind.",
+          "validators": [
+            {
+              "id": "v_attest_dangling",
+              "kind": "attest",
+              "checks": "provenance",
+              "gated_by": "ghost"
+            },
+            {
+              "id": "v_builtin",
+              "kind": "builtin",
+              "name": "output_present"
+            },
+            {
+              "id": "v_attest_mistargeted",
+              "kind": "attest",
+              "checks": "integrity",
+              "gated_by": "v_builtin"
+            },
+            {
+              "id": "v_attest_gate",
+              "kind": "attest",
+              "checks": "ethics"
+            },
+            {
+              "id": "v_attest_gated",
+              "kind": "attest",
+              "checks": "citations_exist",
+              "gated_by": "v_attest_gate"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

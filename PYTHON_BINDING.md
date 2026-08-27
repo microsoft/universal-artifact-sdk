@@ -121,12 +121,31 @@ Serialized field names remain the schema's `snake_case` names in both bindings.
 
 Public model objects are mutable `@dataclass` classes with type annotations. Nested
 schema objects such as `Image`, `RunSpec`, `PaperReference`, and validator variants are
-also dataclasses. Nested schema models carry an `extra: dict[str, Any]` field used to
-round-trip legal extension keys that the binding does not understand. Serialization
-merges `extra` first and known fields second so extensions cannot override contract
-fields. The initial root `Artifact` model drops unknown top-level manifest keys when
-reopened, matching the frozen TypeScript implementation; preserving those keys is
-deferred to issue #32.
+also dataclasses. Nested schema models carry an *extension bucket* — a
+`dict[str, Any]` field used to round-trip legal extension keys that the binding does not
+understand. Serialization merges the bucket first and known fields second so extensions
+cannot override contract fields. The bucket is named `extra` on every model except
+`StudyMetadata`: spec §2.7 defines `study.extra` as a real nested field (an open sub-map
+of venue-specific study metadata), so that model serializes `extra` as a normal field and
+overflows unknown sibling keys into `extensions` instead. `model.extension_field` names
+each model's bucket, and `to_dict`/`artifact_from_dict` are generic over it, so the public
+schema field name `extra` is unchanged in both roles. The initial root `Artifact` model
+drops unknown top-level manifest keys when reopened, matching the frozen TypeScript
+implementation; preserving those keys is deferred to issue #32.
+
+Python treats an explicitly null *optional model field* as omitted. This is the one
+documented freeze-period validation divergence: the frozen TypeScript validator rejects
+null for some optional fields because it distinguishes null from undefined. Python does
+not add hidden field-presence state solely to reproduce that inconsistency; issue #32
+tracks post-freeze reconciliation.
+
+That rule stops at the edge of an opaque map. A null **value inside a producer-authored
+mapping** — `producer`, `run.env`, a trace's `counters`, a result's `locators`, a
+validator's `input`/`params`, or any nested extension object — is producer data, not an
+absent field, so `to_dict` and `write_submission` preserve it verbatim exactly as the
+frozen TypeScript binding does. The same split governs default values: an optional field
+the producer omitted, such as a non-active `disposition.rationale`, stays absent rather
+than being materialized as an empty string on write.
 
 Open vocabularies use `str` with documented known constants rather than closed Python
 `Enum` classes. Open vocabularies include result kind, exhibit type, trace kind, and
@@ -295,14 +314,20 @@ be "fixed" in Python alone.
 
 Semantic parity means that, for every shared case:
 
-1. Both bindings accept or reject the same artifact.
+1. Both bindings accept or reject the same artifact, except for the documented
+   explicit-null compatibility rule: Python treats null optional model fields as omitted.
 2. Validation produces the same issue severity and logical path. Message prose may
-   differ.
+   differ. A field a variant's model does not declare is still validated — `gated_by` on
+   an `attest` validator, for example, which Python carries in the model's extension
+   bucket (§4.2) and TypeScript reads structurally.
 3. Both bindings emit the same set of generated and authored paths.
 4. Parsing YAML and JSON outputs yields equivalent values after normalizing
    binding-byte-dependent hashes, treating numerically equal integral values such as
    `1` and `1.0` as equivalent, and treating an explicit `null` as equivalent to an
-   omitted optional field.
+   omitted optional model field. That last equivalence covers optional model fields
+   only: a null *value inside an opaque producer-authored map* is data both bindings must
+   emit verbatim, so the harness `read_document` operation marks explicit nulls as
+   `<null>` and compares them across bindings.
 5. `SHA256SUMS` and `.sdk/state.json` cover the same paths and classifications; each
    binding's hashes must be correct for its own bytes.
 6. Reopening either binding's output produces an equivalent in-memory model in both
@@ -338,11 +363,15 @@ The initial corpus must cover:
 - optional-index omission;
 - schema and referential failures;
 - TypeScript-output opened by Python and Python-output opened by TypeScript;
-- unknown extension fields;
+- unknown extension fields, including `study.extra` — a spec-defined nested field that
+  coexists with an unknown sibling key on the same `study` block;
 - ambiguous YAML scalars;
 - fixed-clock journal snapshots;
 - staging replacement and missing-blob warnings;
-- frozen reflection and stale-index behavior.
+- frozen reflection and stale-index behavior;
+- `gated_by` on every validator kind, including `attest`;
+- a non-active disposition whose `rationale` is omitted entirely;
+- null values inside opaque producer-authored maps.
 
 The checked-in expected results are human-reviewed contract data. A maintainer may
 regenerate candidates only through an explicit `--update` mode; regeneration never

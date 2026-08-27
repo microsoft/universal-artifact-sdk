@@ -1,0 +1,100 @@
+{
+  "kind": "operation",
+  "name": "builder-defaults-upserts-removals",
+  "description": "The authoring surface itself: creation defaults, digest auto-fill, add/get/list/remove for every element type, upsert-by-id replacement, the singular-validator sugar and its precedence rules, and the pure default-mode helpers.",
+  "operations": [
+    {"operation": "create_artifact", "arguments": {"id": "builder", "title": "Builder parity", "producer": {"name": "parity-harness"}}},
+    {"operation": "configure_journal", "arguments": {"actor": "agent:builder", "now": ["2026-02-01T00:00:00.000Z"]}},
+
+    {"operation": "default_validation_mode", "arguments": {"kind": "metrics"}},
+    {"operation": "default_validation_mode", "arguments": {"kind": "proof"}},
+    {"operation": "default_validation_mode", "arguments": {"kind": "external_reference"}},
+    {"operation": "default_validation_mode", "arguments": {"kind": "survey"}},
+    {"operation": "default_exhibit_validation_mode", "arguments": {"type": "figure"}},
+    {"operation": "default_exhibit_validation_mode", "arguments": {"type": "proof"}},
+    {"operation": "pinned_digest", "arguments": {"reference": "registry.test/artifact:1.2"}},
+
+    {
+      "operation": "add_environment",
+      "arguments": {"name": "primary", "image": {"reference": "registry.test/artifact:1.2@sha256:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"}},
+      "context": {"rationale": "pin the run image"}
+    },
+    {"operation": "add_dataset", "arguments": {"id": "d1", "location": {"kind": "in_artifact", "path": "data/d1"}}, "context": {"rationale": "ship the corpus"}},
+    {"operation": "add_experiment", "arguments": {"slug": "e1", "directory": "experiments/e1", "run": {"command": "run"}}, "context": {"rationale": "first attempt"}},
+    {"operation": "add_trace", "arguments": {"id": "t1", "kind": "execution_log", "path": "traces/t1.log"}, "context": {"rationale": "record the run"}},
+    {"operation": "add_claim", "arguments": {"id": "c1", "statement": "s"}, "context": {"rationale": "headline"}},
+    {"operation": "add_result", "arguments": {"id": "r1", "validates": ["c1"], "evidence": "results/out.csv", "kind": "metrics"}, "context": {"rationale": "measured"}},
+    {"operation": "add_exhibit", "arguments": {"id": "x1", "type": "figure", "caption": "A figure.", "validates": ["c1"], "path": "exhibits/figure.png"}, "context": {"rationale": "render it"}},
+    {"operation": "add_assessment", "arguments": {"id": "a1", "dimension": "citation_integrity", "scope": "paper"}, "context": {"rationale": "assess citations"}},
+
+    {"operation": "get_dataset", "arguments": {"id": "d1"}},
+    {"operation": "get_experiment", "arguments": {"slug": "e1"}},
+    {"operation": "get_trace", "arguments": {"id": "t1"}},
+    {"operation": "get_result", "arguments": {"id": "r1"}},
+    {"operation": "get_exhibit", "arguments": {"id": "x1"}},
+    {"operation": "get_claim", "arguments": {"id": "c1"}},
+    {"operation": "get_assessment", "arguments": {"id": "a1"}},
+    {"operation": "get_claim", "arguments": {"id": "absent"}},
+
+    {"operation": "add_dataset", "arguments": {"id": "d1", "location": {"kind": "in_artifact", "path": "data/renamed"}}, "context": {"rationale": "renamed the corpus"}},
+    {"operation": "add_trace", "arguments": {"id": "t1", "kind": "notebook", "path": "traces/t1.ipynb"}, "context": {"rationale": "notebook instead"}},
+    {"operation": "add_result", "arguments": {"id": "r1", "validates": ["c1"], "evidence": "results/out.csv", "kind": "figure"}, "context": {"rationale": "rendered instead"}},
+    {"operation": "add_assessment", "arguments": {"id": "a1", "dimension": "execution_authenticity", "scope": "artifact"}, "context": {"rationale": "re-scoped"}},
+    {"operation": "list_datasets"},
+    {"operation": "list_traces"},
+
+    {"operation": "add_claim", "arguments": {"id": "c2", "statement": "sugar", "validator": {"kind": "attest", "checks": "integrity"}}, "context": {"rationale": "singular sugar"}},
+    {"operation": "add_claim", "arguments": {"id": "c3", "statement": "precedence", "validators": [], "validator": {"kind": "attest", "checks": "integrity"}}, "context": {"rationale": "list wins"}},
+
+    {"operation": "remove_dataset", "arguments": {"id": "d1"}, "context": {"rationale": "dropped"}},
+    {"operation": "remove_dataset", "arguments": {"id": "d1"}, "context": {"rationale": "already gone"}},
+    {"operation": "remove_trace", "arguments": {"id": "t1"}, "context": {"rationale": "dropped"}},
+    {"operation": "remove_exhibit", "arguments": {"id": "x1"}, "context": {"rationale": "dropped"}},
+    {"operation": "remove_assessment", "arguments": {"id": "a1"}, "context": {"rationale": "dropped"}},
+    {"operation": "remove_result", "arguments": {"id": "r1"}, "context": {"rationale": "dropped"}},
+    {"operation": "remove_claim", "arguments": {"id": "c3"}, "context": {"rationale": "dropped"}},
+    {"operation": "list_claims"},
+    {"operation": "compute_evidence_inventory"}
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": ["claim[c1]"],
+    "step_returns": {
+      "2": "re-analyze",
+      "3": "re-execute",
+      "4": "attest",
+      "5": "inspect",
+      "6": "inspect",
+      "7": "re-execute",
+      "8": null,
+      "9": {
+        "name": "primary",
+        "image": {
+          "reference": "registry.test/artifact:1.2@sha256:DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",
+          "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }
+      },
+      "24": null,
+      "31": {"id": "c2", "statement": "sugar", "validators": [{"kind": "attest", "checks": "integrity"}]},
+      "32": {"id": "c3", "statement": "precedence"},
+      "34": false,
+      "33": true,
+      "40": [{"id": "c1", "statement": "s"}, {"id": "c2", "statement": "sugar", "validators": [{"kind": "attest", "checks": "integrity"}]}],
+      "41": {
+        "has_runnable_experiments": true,
+        "has_traces": false,
+        "trace_count": 0,
+        "has_exhibits": false,
+        "exhibit_count": 0,
+        "has_released_data": false,
+        "has_paper_source": false,
+        "has_citations_export": false,
+        "has_journal": true,
+        "has_research_agent": false,
+        "experiments_attempted": 1,
+        "experiments_reported": 1
+      }
+    }
+  }
+}

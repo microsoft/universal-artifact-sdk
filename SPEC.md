@@ -1101,6 +1101,9 @@ TypeScript runtime's authored validator and both bindings apply schema validatio
 fixtures in tests. The frozen TypeScript API and implementation MUST NOT change as part of the
 Python-binding work. Post-freeze reconciliation is tracked in
 [issue #32](https://github.com/microsoft/universal-artifact-sdk/issues/32).
+During this period, Python treats an explicitly null optional field as omitted rather
+than adding hidden presence state to reproduce TypeScript's inconsistent
+null-versus-undefined checks; this narrow divergence is also tracked in #32.
 
 The detailed Python architecture, package layout, parity normalization, test matrix, and release
 requirements are defined in [`PYTHON_BINDING.md`](PYTHON_BINDING.md).

@@ -33,6 +33,8 @@ for the evaluation context. Related research includes
 
 ```bash
 npm install @microsoft/universal-artifact-sdk
+# or
+python -m pip install universal-artifact-sdk
 ```
 
 `dist/` is built automatically on publish (via the `prepare` script), so the installed package is
@@ -46,6 +48,28 @@ import {
   addTrace, addResult, addClaim, attachPaper, writeSubmission,
 } from "@microsoft/universal-artifact-sdk";
 ```
+
+### Import (Python 3.10+)
+
+```python
+from universal_artifact_sdk import (
+    Claim, Result, add_claim, add_result, create_artifact, write_submission,
+)
+
+artifact = create_artifact(id="expt-42", title="Feedback-driven contraction")
+add_claim(artifact, Claim(id="C1", statement="Feedback improves contraction"))
+add_result(artifact, Result(id="R1", validates=["C1"], evidence="results.csv", kind="metrics"))
+write_submission(artifact, "./out", stage_from=".")
+```
+
+The native Python binding uses dataclasses and snake_case names, ships type information
+(`py.typed`), and exports a single explicit public surface. It is versioned in lockstep
+with the npm package and implements the same `artifact-sdk/v1` contract; it does not
+invoke Node.js. Both bindings are held to one shared conformance corpus, and each can
+reopen the other's submissions. Byte-level output may differ — compliant YAML emitters
+quote and wrap differently — so cross-binding equivalence is semantic, not byte-for-byte.
+See [`python/examples/quickstart.py`](python/examples/quickstart.py) and
+[`PYTHON_BINDING.md`](PYTHON_BINDING.md).
 
 ## Quickstart
 
@@ -205,11 +229,31 @@ scope boundaries. This project does not currently claim Ara protocol compatibili
 
 ## Develop
 
+TypeScript binding:
+
 ```bash
-npm run typecheck     # tsc --noEmit
-npm test              # vitest (114 tests)
-npm run test:coverage # vitest + v8 coverage
-npm run build         # emit dist/
+npm run typecheck        # tsc --noEmit
+npm test                 # vitest (132 tests)
+npm run test:coverage    # vitest + v8 coverage
+npm run build            # emit dist/
+```
+
+Python binding (3.10+):
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pytest python/tests            # pytest (481 passed, 18 skipped)
+python -m mypy                           # strict, configured in pyproject.toml
+python -m ruff check python parity
+python -m build --outdir dist-python     # never dist/, which belongs to npm
+python -m twine check --strict dist-python/*
+```
+
+Cross-binding conformance — runs the shared corpus in `parity/cases` through both
+bindings, then reopens each binding's output with the other:
+
+```bash
+npm run test:parity
 ```
 
 ## Contributing

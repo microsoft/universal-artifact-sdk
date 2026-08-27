@@ -1,0 +1,92 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "universal-artifact-sdk"
+version = "0.8.0"
+description = "Vendor-neutral Python SDK for authoring evaluable research artifacts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Microsoft Corporation" }]
+keywords = ["artifact", "evaluable-artifact", "research", "reproducibility"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Typing :: Typed",
+]
+dependencies = ["ruamel.yaml>=0.18,<0.19"]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2",
+  "jsonschema>=4.23",
+  "mypy>=1.13",
+  "pytest>=8.3",
+  "ruff>=0.8",
+  "twine>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/microsoft/universal-artifact-sdk"
+Repository = "https://github.com/microsoft/universal-artifact-sdk.git"
+Issues = "https://github.com/microsoft/universal-artifact-sdk/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["python/src/universal_artifact_sdk"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/python/src/universal_artifact_sdk",
+  "/python/examples",
+  "/schema/evaluable-artifact-v2.schema.json",
+  "/README.md",
+  "/SPEC.md",
+  "/CHANGELOG.md",
+  "/LICENSE",
+]
+exclude = ["/node_modules", "/dist", "/dist-python", "/coverage"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"schema/evaluable-artifact-v2.schema.json" = "universal_artifact_sdk/schema/evaluable-artifact-v2.schema.json"
+"python/examples/quickstart.py" = "universal_artifact_sdk/examples/quickstart.py"
+
+[tool.hatch.build.targets.sdist.force-include]
+"schema/evaluable-artifact-v2.schema.json" = "schema/evaluable-artifact-v2.schema.json"
+
+[tool.pytest.ini_options]
+testpaths = ["python/tests"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["python/src/universal_artifact_sdk"]
+strict = true
+
+# ruamel.yaml ships no type information for its pure-Python emitter internals, so the
+# representer subclass in serialize.py is the one place that needs untyped base classes.
+[[tool.mypy.overrides]]
+module = ["ruamel.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["universal_artifact_sdk"]
+known-local-folder = ["conftest", "harness", "run_py"]
+
+[tool.ruff.lint.per-file-ignores]
+# The re-export module is the maintained public surface; `__all__` documents it.
+"python/src/universal_artifact_sdk/__init__.py" = ["F401"]

@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Universal Artifact SDK parity case",
+  "description": "A language-neutral conformance case. Every runner loads the same files and reduces its run to a normalized observation; the `expected` block is human-reviewed contract data, never regenerated from a binding's current output.",
+  "oneOf": [
+    {
+      "type": "object",
+      "description": "Artifact case: a final schema-shaped artifact, optional write options, and expected validation/report/output/model results.",
+      "required": ["kind", "name", "description", "artifact", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"const": "artifact"},
+        "name": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "description": {"type": "string", "minLength": 1},
+        "artifact": {"type": "object"},
+        "write": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stage_from": {"type": "string", "description": "Blob source root, relative to parity/."},
+            "quiet": {"type": "boolean"}
+          }
+        },
+        "expected": {"$ref": "#/definitions/expected"}
+      }
+    },
+    {
+      "type": "object",
+      "description": "Operation case: an ordered, language-neutral operation script that final-state data cannot express.",
+      "required": ["kind", "name", "description", "operations", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"const": "operation"},
+        "name": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "description": {"type": "string", "minLength": 1},
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["operation"],
+            "additionalProperties": false,
+            "properties": {
+              "operation": {
+                "type": "string",
+                "description": "A snake_case SDK operation, or one of the harness operations `prepare_file`, `read_file` and `read_document`. `read_document` parses an emitted YAML document, optionally narrowed by a `select` key/index path, and marks explicit nulls as `<null>` so a null value inside an opaque producer-authored map stays observable through normalization. `open_submission` accepts `into_session: true`, which continues the script from the reopened artifact so a later write exercises the reopen → write round trip."
+              },
+              "arguments": {"type": "object"},
+              "context": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {"actor": {"type": "string"}, "rationale": {"type": "string"}}
+              },
+              "expects_error": {
+                "type": "boolean",
+                "description": "The step must raise. Exception message text is not a cross-language contract."
+              }
+            }
+          }
+        },
+        "expected": {"$ref": "#/definitions/expected"}
+      }
+    }
+  ],
+  "definitions": {
+    "expected": {
+      "type": "object",
+      "required": ["ok", "error_paths", "warning_paths"],
+      "additionalProperties": false,
+      "properties": {
+        "ok": {"type": "boolean"},
+        "error_paths": {"type": "array", "items": {"type": "string"}},
+        "warning_paths": {"type": "array", "items": {"type": "string"}},
+        "schema_valid": {
+          "type": "boolean",
+          "description": "Verdict of the canonical draft-07 schema on the raw artifact data. A value of false alongside `ok: true` records a reviewed schema/runtime divergence (issue #32)."
+        },
+        "schema_error_paths": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Instance paths that must appear among the schema errors. Sub-schema granularity differs between schema libraries, so this is a required subset, not the full set."
+        },
+        "model": {"type": "object", "description": "The full normalized in-memory model."},
+        "reopened": {"type": "object", "description": "The full normalized model reopened from the binding's own output."},
+        "report": {"type": "object", "description": "The normalized write report."},
+        "output": {"type": "object", "description": "Normalized on-disk observation keys: files, state, sums, documents, disposition_markers, reflection."},
+        "state": {"type": "object", "description": "Shorthand for output.state."},
+        "steps": {"type": "array", "description": "The full normalized step record of an operation case."},
+        "step_returns": {
+          "type": "object",
+          "description": "Normalized return values keyed by step index.",
+          "patternProperties": {"^[0-9]+$": {}},
+          "additionalProperties": false
+        },
+        "raising_steps": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 0},
+          "description": "Step indices that must have raised."
+        }
+      }
+    }
+  }
+}

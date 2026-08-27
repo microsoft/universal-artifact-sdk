@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish SDK bindings
 
 on:
   release:
@@ -22,8 +22,26 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: npm
 
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Verify tag matches both package versions
+        if: github.event_name == 'release'
+        run: |
+          PKG_VERSION="v$(node -p "require('./package.json').version")"
+          PY_VERSION="$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")"
+          TAG="${GITHUB_REF_NAME}"
+          if [ "$PKG_VERSION" != "$TAG" ] || [ "${PKG_VERSION#v}" != "$PY_VERSION" ]; then
+            echo "::error::Release tag ($TAG) must match package.json ($PKG_VERSION) and pyproject.toml ($PY_VERSION)"
+            exit 1
+          fi
+
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          python -m pip install ".[dev]"
 
       - name: Type-check
         run: npm run typecheck
@@ -34,17 +52,37 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Verify tag matches package version
-        if: github.event_name == 'release'
+      - name: Verify Python binding
         run: |
-          PKG_VERSION="v$(node -p "require('./package.json').version")"
-          TAG="${GITHUB_REF_NAME}"
-          if [ "$PKG_VERSION" != "$TAG" ]; then
-            echo "::error::Release tag ($TAG) does not match package.json version ($PKG_VERSION)"
-            exit 1
-          fi
+          python -m mypy
+          python -m ruff check python parity
+          python -m pytest python/tests
+
+      # Runs both binding runners over the shared corpus and cross-opens each
+      # binding's output with the other.
+      - name: Cross-binding conformance
+        run: npm run test:parity
+
+      # `python -m build` builds the sdist, then builds the wheel *from* that sdist in
+      # an isolated environment, so an incomplete sdist fails here rather than on PyPI.
+      - name: Build and inspect Python distributions
+        run: |
+          python -m build --outdir dist-python
+          python -m twine check --strict dist-python/*
+
+      - name: Install and import the built wheel in a clean environment
+        run: |
+          python -m venv /tmp/wheel-check
+          /tmp/wheel-check/bin/python -m pip install --no-cache-dir dist-python/*.whl
+          /tmp/wheel-check/bin/python -c "import universal_artifact_sdk as sdk; \
+            assert sdk.canonical_schema_path().is_file()"
 
       - name: Publish to npm
         run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist-python/

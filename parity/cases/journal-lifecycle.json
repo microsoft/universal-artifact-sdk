@@ -1,0 +1,589 @@
+{
+  "kind": "operation",
+  "name": "journal-lifecycle-fixed-clock",
+  "description": "The provenance journal under a fixed clock: seq/timestamp/actor/op/target/rationale stamping, before/after snapshots on replace, per-change actor override, and the full experiment lifecycle (abandon, fail, supersede, purge) where a rationale is always required regardless of policy.",
+  "operations": [
+    {
+      "operation": "create_artifact",
+      "arguments": {
+        "id": "journal",
+        "title": "Journal parity"
+      }
+    },
+    {
+      "operation": "configure_journal",
+      "arguments": {
+        "actor": "agent:experiment",
+        "now": [
+          "2026-01-01T00:00:00.000Z",
+          "2026-01-01T00:01:00.000Z",
+          "2026-01-01T00:02:00.000Z",
+          "2026-01-01T00:03:00.000Z",
+          "2026-01-01T00:04:00.000Z",
+          "2026-01-01T00:05:00.000Z",
+          "2026-01-01T00:06:00.000Z",
+          "2026-01-01T00:07:00.000Z",
+          "2026-01-01T00:08:00.000Z",
+          "2026-01-01T00:09:00.000Z"
+        ]
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e1",
+        "directory": "experiments/e1",
+        "run": {
+          "command": "v1"
+        }
+      },
+      "context": {
+        "rationale": "first attempt at the sweep"
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e1",
+        "directory": "experiments/e1",
+        "run": {
+          "command": "v2"
+        }
+      },
+      "context": {
+        "rationale": "tuned the command"
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e2",
+        "directory": "experiments/e2",
+        "run": {
+          "command": "v2"
+        }
+      },
+      "context": {
+        "actor": "human:reviewer",
+        "rationale": "variant"
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e3",
+        "directory": "experiments/e3",
+        "run": {
+          "command": "v3"
+        }
+      },
+      "context": {
+        "rationale": "third arm"
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e4",
+        "directory": "experiments/e4",
+        "run": {
+          "command": "v4"
+        }
+      },
+      "context": {
+        "rationale": "fourth arm"
+      }
+    },
+    {
+      "operation": "add_experiment",
+      "arguments": {
+        "slug": "e5",
+        "directory": "experiments/e5",
+        "run": {
+          "command": "v5"
+        }
+      },
+      "context": {
+        "rationale": "fifth arm"
+      }
+    },
+    {
+      "operation": "remove_experiment",
+      "arguments": {
+        "slug": "e1"
+      },
+      "expects_error": true
+    },
+    {
+      "operation": "remove_experiment",
+      "arguments": {
+        "slug": "e1"
+      },
+      "context": {
+        "rationale": "confounded by the seed"
+      }
+    },
+    {
+      "operation": "remove_experiment",
+      "arguments": {
+        "slug": "absent"
+      },
+      "context": {
+        "rationale": "nothing to drop"
+      }
+    },
+    {
+      "operation": "fail_experiment",
+      "arguments": {
+        "slug": "e2",
+        "failure": {
+          "stage": "run",
+          "summary": "OOM"
+        }
+      },
+      "expects_error": true
+    },
+    {
+      "operation": "fail_experiment",
+      "arguments": {
+        "slug": "e2",
+        "failure": {
+          "stage": "run",
+          "summary": "OOM"
+        }
+      },
+      "context": {
+        "rationale": "ran out of memory"
+      }
+    },
+    {
+      "operation": "supersede_experiment",
+      "arguments": {
+        "slug": "e3",
+        "superseded_by": "e4"
+      },
+      "expects_error": true
+    },
+    {
+      "operation": "supersede_experiment",
+      "arguments": {
+        "slug": "e3",
+        "superseded_by": "e4"
+      },
+      "context": {
+        "rationale": "e4 fixes the leakage"
+      }
+    },
+    {
+      "operation": "purge_experiment",
+      "arguments": {
+        "slug": "e5"
+      },
+      "expects_error": true
+    },
+    {
+      "operation": "purge_experiment",
+      "arguments": {
+        "slug": "e5"
+      },
+      "context": {
+        "rationale": "duplicate, never ran"
+      }
+    },
+    {
+      "operation": "purge_experiment",
+      "arguments": {
+        "slug": "absent"
+      },
+      "context": {
+        "rationale": "nothing to purge"
+      }
+    },
+    {
+      "operation": "list_abandoned_experiments"
+    },
+    {
+      "operation": "list_journal"
+    },
+    {
+      "operation": "write_submission",
+      "arguments": {
+        "out": "out"
+      }
+    },
+    {
+      "operation": "open_submission",
+      "arguments": {
+        "out": "out"
+      }
+    }
+  ],
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [],
+    "raising_steps": [
+      8,
+      11,
+      13,
+      15
+    ],
+    "step_returns": {
+      "10": false,
+      "17": false,
+      "18": [
+        {
+          "slug": "e1",
+          "directory": "experiments/e1",
+          "run": {
+            "command": "v2"
+          },
+          "disposition": {
+            "status": "abandoned",
+            "rationale": "confounded by the seed"
+          }
+        },
+        {
+          "slug": "e2",
+          "directory": "experiments/e2",
+          "run": {
+            "command": "v2"
+          },
+          "disposition": {
+            "status": "failed",
+            "rationale": "ran out of memory",
+            "failure": {
+              "stage": "run",
+              "summary": "OOM"
+            }
+          }
+        },
+        {
+          "slug": "e3",
+          "directory": "experiments/e3",
+          "run": {
+            "command": "v3"
+          },
+          "disposition": {
+            "status": "superseded",
+            "rationale": "e4 fixes the leakage",
+            "superseded_by": "e4"
+          }
+        }
+      ],
+      "20": {
+        "ok": true,
+        "incomplete": false,
+        "files_written": [
+          ".sdk/state.json",
+          "SHA256SUMS",
+          "claims.yml",
+          "datasets.yml",
+          "experiments/e1/DISPOSITION.md",
+          "experiments/e2/DISPOSITION.md",
+          "experiments/e3/DISPOSITION.md",
+          "journal.yml",
+          "manifest.yml",
+          "results.yml"
+        ]
+      }
+    },
+    "model": {
+      "id": "journal",
+      "title": "Journal parity",
+      "format_version": "evaluable-artifact/v2",
+      "sdk_version": "artifact-sdk/v1",
+      "experiments": [
+        {
+          "slug": "e1",
+          "directory": "experiments/e1",
+          "run": {
+            "command": "v2"
+          },
+          "disposition": {
+            "status": "abandoned",
+            "rationale": "confounded by the seed"
+          }
+        },
+        {
+          "slug": "e2",
+          "directory": "experiments/e2",
+          "run": {
+            "command": "v2"
+          },
+          "disposition": {
+            "status": "failed",
+            "rationale": "ran out of memory",
+            "failure": {
+              "stage": "run",
+              "summary": "OOM"
+            }
+          }
+        },
+        {
+          "slug": "e3",
+          "directory": "experiments/e3",
+          "run": {
+            "command": "v3"
+          },
+          "disposition": {
+            "status": "superseded",
+            "rationale": "e4 fixes the leakage",
+            "superseded_by": "e4"
+          }
+        },
+        {
+          "slug": "e4",
+          "directory": "experiments/e4",
+          "run": {
+            "command": "v4"
+          }
+        }
+      ],
+      "journal": [
+        {
+          "seq": 1,
+          "timestamp": "2026-01-01T00:00:00.000Z",
+          "actor": "agent:experiment",
+          "op": "add",
+          "target": {
+            "kind": "experiment",
+            "id": "e1"
+          },
+          "rationale": "first attempt at the sweep",
+          "after": {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "v1"
+            }
+          }
+        },
+        {
+          "seq": 2,
+          "timestamp": "2026-01-01T00:01:00.000Z",
+          "actor": "agent:experiment",
+          "op": "replace",
+          "target": {
+            "kind": "experiment",
+            "id": "e1"
+          },
+          "rationale": "tuned the command",
+          "before": {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "v1"
+            }
+          },
+          "after": {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "v2"
+            },
+            "disposition": {
+              "status": "abandoned",
+              "rationale": "confounded by the seed"
+            }
+          }
+        },
+        {
+          "seq": 3,
+          "timestamp": "2026-01-01T00:02:00.000Z",
+          "actor": "human:reviewer",
+          "op": "add",
+          "target": {
+            "kind": "experiment",
+            "id": "e2"
+          },
+          "rationale": "variant",
+          "after": {
+            "slug": "e2",
+            "directory": "experiments/e2",
+            "run": {
+              "command": "v2"
+            },
+            "disposition": {
+              "status": "failed",
+              "rationale": "ran out of memory",
+              "failure": {
+                "stage": "run",
+                "summary": "OOM"
+              }
+            }
+          }
+        },
+        {
+          "seq": 4,
+          "timestamp": "2026-01-01T00:03:00.000Z",
+          "actor": "agent:experiment",
+          "op": "add",
+          "target": {
+            "kind": "experiment",
+            "id": "e3"
+          },
+          "rationale": "third arm",
+          "after": {
+            "slug": "e3",
+            "directory": "experiments/e3",
+            "run": {
+              "command": "v3"
+            },
+            "disposition": {
+              "status": "superseded",
+              "rationale": "e4 fixes the leakage",
+              "superseded_by": "e4"
+            }
+          }
+        },
+        {
+          "seq": 5,
+          "timestamp": "2026-01-01T00:04:00.000Z",
+          "actor": "agent:experiment",
+          "op": "add",
+          "target": {
+            "kind": "experiment",
+            "id": "e4"
+          },
+          "rationale": "fourth arm",
+          "after": {
+            "slug": "e4",
+            "directory": "experiments/e4",
+            "run": {
+              "command": "v4"
+            }
+          }
+        },
+        {
+          "seq": 6,
+          "timestamp": "2026-01-01T00:05:00.000Z",
+          "actor": "agent:experiment",
+          "op": "add",
+          "target": {
+            "kind": "experiment",
+            "id": "e5"
+          },
+          "rationale": "fifth arm",
+          "after": {
+            "slug": "e5",
+            "directory": "experiments/e5",
+            "run": {
+              "command": "v5"
+            }
+          }
+        },
+        {
+          "seq": 7,
+          "timestamp": "2026-01-01T00:06:00.000Z",
+          "actor": "agent:experiment",
+          "op": "abandon",
+          "target": {
+            "kind": "experiment",
+            "id": "e1"
+          },
+          "rationale": "confounded by the seed",
+          "before": {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "v2"
+            }
+          },
+          "after": {
+            "slug": "e1",
+            "directory": "experiments/e1",
+            "run": {
+              "command": "v2"
+            },
+            "disposition": {
+              "status": "abandoned",
+              "rationale": "confounded by the seed"
+            }
+          }
+        },
+        {
+          "seq": 8,
+          "timestamp": "2026-01-01T00:07:00.000Z",
+          "actor": "agent:experiment",
+          "op": "abandon",
+          "target": {
+            "kind": "experiment",
+            "id": "e2"
+          },
+          "rationale": "ran out of memory",
+          "before": {
+            "slug": "e2",
+            "directory": "experiments/e2",
+            "run": {
+              "command": "v2"
+            }
+          },
+          "after": {
+            "slug": "e2",
+            "directory": "experiments/e2",
+            "run": {
+              "command": "v2"
+            },
+            "disposition": {
+              "status": "failed",
+              "rationale": "ran out of memory",
+              "failure": {
+                "stage": "run",
+                "summary": "OOM"
+              }
+            }
+          }
+        },
+        {
+          "seq": 9,
+          "timestamp": "2026-01-01T00:08:00.000Z",
+          "actor": "agent:experiment",
+          "op": "replace",
+          "target": {
+            "kind": "experiment",
+            "id": "e3"
+          },
+          "rationale": "e4 fixes the leakage",
+          "before": {
+            "slug": "e3",
+            "directory": "experiments/e3",
+            "run": {
+              "command": "v3"
+            }
+          },
+          "after": {
+            "slug": "e3",
+            "directory": "experiments/e3",
+            "run": {
+              "command": "v3"
+            },
+            "disposition": {
+              "status": "superseded",
+              "rationale": "e4 fixes the leakage",
+              "superseded_by": "e4"
+            }
+          }
+        },
+        {
+          "seq": 10,
+          "timestamp": "2026-01-01T00:09:00.000Z",
+          "actor": "agent:experiment",
+          "op": "remove",
+          "target": {
+            "kind": "experiment",
+            "id": "e5"
+          },
+          "rationale": "duplicate, never ran",
+          "before": {
+            "slug": "e5",
+            "directory": "experiments/e5",
+            "run": {
+              "command": "v5"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
