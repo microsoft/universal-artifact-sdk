@@ -23,7 +23,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
   "Typing :: Typed",
 ]
-dependencies = ["ruamel.yaml>=0.18,<0.19"]
+dependencies = ["ruamel.yaml>=0.18,<0.20"]
 
 [project.optional-dependencies]
 dev = [
