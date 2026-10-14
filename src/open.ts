@@ -8,7 +8,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse } from "yaml";
 
-import { Artifact, FORMAT_VERSION, SDK_VERSION } from "./model.js";
+import { Artifact, FORMAT_VERSION, LEGACY_FORMAT_VERSION, SDK_VERSION } from "./model.js";
+import { captureContributionSource, safeContributionPath } from "./internal/contributions.js";
 
 function readYaml(path: string): Record<string, unknown> {
   return (parse(readFileSync(path, "utf-8")) as Record<string, unknown>) ?? {};
@@ -20,6 +21,9 @@ export function openSubmission(dir: string): Artifact {
     throw new Error(`openSubmission: no manifest.yml in ${dir}`);
   }
   const manifest = readYaml(manifestPath);
+  if (manifest.format_version && manifest.format_version !== FORMAT_VERSION && manifest.format_version !== LEGACY_FORMAT_VERSION) {
+    throw new Error(`openSubmission: unsupported format '${manifest.format_version}'`);
+  }
   const paths = (manifest.paths as Record<string, string>) ?? {};
 
   const readList = <T>(rel: string | undefined, key: string): T[] => {
@@ -53,5 +57,14 @@ export function openSubmission(dir: string): Artifact {
       : undefined,
     journal: readList(paths.journal ?? "journal.yml", "journal"),
   };
+  // Only the declared path is authoritative: a detached authored/stale index is not resurrected.
+  if (paths.contributions !== undefined) {
+    const path = safeContributionPath(dir, paths.contributions);
+    if (!existsSync(path)) throw new Error("openSubmission: declared contributions index is missing");
+    const document = readYaml(path);
+    if (!Array.isArray(document.contributions)) throw new Error("openSubmission: contributions must be an array");
+    a.contributions = document.contributions as Artifact["contributions"];
+    captureContributionSource(a, path);
+  }
   return a;
 }

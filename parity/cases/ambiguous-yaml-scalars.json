@@ -3,7 +3,7 @@
   "name": "ambiguous-yaml-scalars",
   "description": "String values that a YAML 1.1 or 1.2 parser could resolve as another type — no/on/off/yes, 12:30, true, 1, 1.0, null, ~, 0x1f, .inf, a date, and padded text — must reopen as the same strings, alongside genuine numbers and booleans.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-yaml-scalars",
     "title": "no",

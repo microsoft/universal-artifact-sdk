@@ -3,7 +3,7 @@
   "name": "partial-artifact-warnings",
   "description": "Incomplete but legal content: an unpinned image, a mounted dataset with no environment, a finding with no validator, a failed experiment with neither rationale nor failure detail, a journal entry with no rationale, and evidence that is not present in the submission.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-partial",
     "title": "Partial parity artifact",

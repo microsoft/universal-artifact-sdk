@@ -28,10 +28,10 @@ comments.
 npm ci                         # install Node dependencies
 npm run typecheck
 npm run build                  # tsc -> dist/
-npm test                       # vitest (132 tests)
+npm test                       # deterministic TypeScript tests
 
 python -m pip install -e ".[dev]"
-python -m pytest python/tests  # pytest (499 passed, 22 skipped)
+python -m pytest python/tests  # deterministic Python tests
 python -m mypy                 # strict; configured in pyproject.toml
 python -m ruff check python parity
 
@@ -50,9 +50,11 @@ expectation from a binding's current output. See
 [`PYTHON_BINDING.md`](PYTHON_BINDING.md) for the binding design, and
 [`SPEC.md`](SPEC.md) for the format contract that the SDK implements.
 
-The TypeScript API and implementation under `src/` are frozen while an experiment depends
-on their behavior: do not change them. Contract inconsistencies found while working on
-the Python binding are tracked in
+The TypeScript freeze is lifted for coordinated contributions/v3 development in this
+fork. New declaration fields must be implemented and tested in **both** bindings and the
+canonical `schema/evaluable-artifact-v3.schema.json`. Keep the v2 schema unchanged.
+Retain legacy compatibility behavior unrelated to contributions; broader contract
+inconsistencies are tracked in
 [issue #32](https://github.com/microsoft/universal-artifact-sdk/issues/32).
 
 ## Trademarks

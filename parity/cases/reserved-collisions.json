@@ -3,7 +3,7 @@
   "name": "reserved-collisions",
   "description": "Generated output must never overwrite authored content: an authored blob that collides with a generated disposition marker, and a disposition directory that shadows an authored blob. A declared environment also makes `runs_in` resolvable, so an unknown environment is an error here.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-collisions",
     "title": "Reserved path collision failures",

@@ -51,7 +51,7 @@ describe("createArtifact", () => {
       title: "t",
       producer: { name: "example-harness" },
     });
-    expect(a.format_version).toBe("evaluable-artifact/v2");
+    expect(a.format_version).toBe("evaluable-artifact/v3");
     expect(a.sdk_version).toBe("artifact-sdk/v1");
     expect(a.producer).toEqual({ name: "example-harness" });
     expect(a.datasets).toEqual([]);

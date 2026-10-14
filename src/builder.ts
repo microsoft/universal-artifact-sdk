@@ -15,6 +15,7 @@ import {
   Artifact,
   Assessment,
   Claim,
+  Contribution,
   Dataset,
   Disposition,
   Environment,
@@ -56,6 +57,7 @@ export function createArtifact(input: CreateArtifactInput): Artifact {
     traces: [],
     results: [],
     claims: [],
+    contributions: [],
     exhibits: [],
     assessments: [],
     paper: undefined,
@@ -225,6 +227,26 @@ export function addEnvironment(
 }
 
 // --- datasets ---------------------------------------------------------------
+
+/** Create or replace a contribution by its full producer-owned ID. */
+export function addContribution(a: Artifact, item: Contribution, ctx?: ChangeContext): Contribution {
+  const list = a.contributions ?? [];
+  const result = addElement(a, list, item, (c) => c.id, "contribution", ctx);
+  a.contributions = list;
+  return result;
+}
+
+export function removeContribution(a: Artifact, id: string, ctx?: ChangeContext): boolean {
+  return removeElement(a, a.contributions ?? [], id, (c) => c.id, "contribution", ctx);
+}
+
+export function getContribution(a: Artifact, id: string): Contribution | undefined {
+  return a.contributions?.find((c) => c.id === id);
+}
+
+export function listContributions(a: Artifact): Contribution[] {
+  return [...(a.contributions ?? [])];
+}
 
 export function addDataset(
   a: Artifact,

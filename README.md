@@ -1,6 +1,6 @@
 # Universal Artifact SDK
 
-> **Implements:** `artifact-sdk/v1` · **Emits:** `evaluable-artifact/v2` · **Spec:** [`SPEC.md`](SPEC.md) · **Why:** [`MOTIVATION.md`](MOTIVATION.md)
+> **Implements:** `artifact-sdk/v1` · **Emits:** `evaluable-artifact/v3` (reads v2 for migration) · **Spec:** [`SPEC.md`](SPEC.md) · **Why:** [`MOTIVATION.md`](MOTIVATION.md)
 
 Research artifacts contain the evidence behind a paper: code, data, experiments, results, proofs,
 analyses, and the links between them. Today that structure is usually flattened into prose and
@@ -163,7 +163,9 @@ It prints the files written and the generated `manifest.yml`.
 | `configureJournal(a, { policy, actor, onMissingRationale? })` | set the rationale-elicitation policy for the edit history (§2.8, §4.2) |
 | `abandonExperiment` / `failExperiment` / `supersedeExperiment` / `purgeExperiment` | record an experiment's disposition — what was tried and why it was dropped (§2.2.2) |
 | `listAbandonedExperiments(a)` / `listJournal(a)` | inspect the retained non-active experiments + the edit history |
-| `writeSubmission(a, dir, opts?)` | structural validation + serialize to `evaluable-artifact/v2` (§5, §7) |
+| `addContribution(a, { id, statement, … }, ctx?)` | optional candidate advance declaration, not a novelty verdict (§2.4.2) |
+| `getContribution` / `listContributions` / `removeContribution` | inspect or withdraw declarations without removing claims |
+| `writeSubmission(a, dir, opts?)` | structural validation + serialize to `evaluable-artifact/v3` (§5, §7) |
 
 - **`add*` is upsert-by-id**: calling it with an existing id/slug **replaces** that element, so an
   artifact is edited across iterations, not rebuilt. `remove*` / `get*` / `list*` complete the
@@ -196,6 +198,70 @@ It prints the files written and the generated `manifest.yml`.
 - **`stageFrom`** (optional): a root the SDK copies referenced blob files from into the submission.
   Omit it if you place blobs into the output directory yourself.
 
+## Declare candidate contributions
+
+Contributions are optional and independent of claim count. The SDK records declarations,
+never decides significance, originality, or qualification. Full field definitions and
+citation semantics are in [SPEC §2.4.2](SPEC.md#242-contribution--candidate-advance-not-an-assessment).
+
+```ts
+import { addContribution } from "@microsoft/universal-artifact-sdk";
+
+addContribution(artifact, {
+  id: "N1",
+  statement: "A method addressing an important narrow problem",
+  supporting_claims: ["C1"],
+  significance: { problem: "Rare failures", impact: "anticipated", evidence: ["claim:C1"] },
+  provenance: { kind: "author-declaration" },
+}, { rationale: "Record the proposed advance" });
+```
+
+```python
+from universal_artifact_sdk import (
+    ChangeContext, Contribution, ContributionProvenance, ContributionSignificance,
+    add_contribution,
+)
+
+add_contribution(
+    artifact,
+    Contribution(
+        id="N1", statement="A method addressing an important narrow problem",
+        supporting_claims=["C1"],
+        significance=ContributionSignificance(
+            problem="Rare failures", impact="anticipated", evidence=["claim:C1"],
+        ),
+        provenance=ContributionProvenance(kind="author-declaration"),
+    ),
+    ctx=ChangeContext(rationale="Record the proposed advance"),
+)
+```
+
+Only nonempty `id` and `statement` are required. Missing/empty support is a legal draft
+warning; duplicate or dangling support is an error. Existing bibliography identities
+come from `paper.references_export`, not an SDK novelty database. Pure validation may
+receive `{ referenceIds: [...] }` / `reference_ids=[...]`; writes resolve readable
+YAML/JSON/BibTeX exports automatically, warning when identities are unavailable.
+
+Writers emit the optional `contributions.yml` index through `paths.contributions`,
+include it in inventory, checksums, and generated state, and preserve unknown nested
+extension fields on reopen. A hash/snapshot ownership check refuses accidental overwrites.
+Empty-index removal deletes only unchanged SDK-generated content; authored edits remain
+on disk but detached from the manifest. [SPEC §5.2](SPEC.md#52-contribution-index-ownership)
+defines the exact adoption/removal policy.
+
+### v2 migration
+
+`openSubmission` / `open_submission` accepts v2 and v3. Calling the writer explicitly
+migrates v2 to v3; **all writes emit v3**, including artifacts without contributions,
+without mutating the caller's version field. Legacy callers may omit the new collection.
+The old v2 schema is unchanged; v3 uses its own canonical schema. Unknown future
+nonempty versions are rejected.
+
+**Do not rewrite v3 with an old SDK.** Historical v2 runtimes did not consistently
+enforce version gates, so a version stamp cannot retroactively make deployed binaries
+reject v3. Upgrade the writer or enforce the format gate in the host. This development
+release does not imply an upstream release.
+
 ## What the SDK checks (and what it doesn't)
 
 The SDK does **structural** validation only (SPEC §7): required fields, legal enums, and
@@ -214,7 +280,7 @@ bindings) avoids cross-language drift.
 Implemented: the full object model, the builder API, `writeSubmission` (serialization + evidence
 inventory + `SHA256SUMS` + `.sdk/state.json`), structural validation, and `openSubmission`.
 
-The canonical [JSON Schema](schema/evaluable-artifact-v2.schema.json) is authored here and the
+The canonical [v3 JSON Schema](schema/evaluable-artifact-v3.schema.json) is authored here and the
 emitted model is tested against it. The SDK only *declares* validators; *executing* them is the job
 of a downstream evaluator.
 
@@ -233,7 +299,7 @@ TypeScript binding:
 
 ```bash
 npm run typecheck        # tsc --noEmit
-npm test                 # vitest (132 tests)
+npm test                 # deterministic TypeScript tests
 npm run test:coverage    # vitest + v8 coverage
 npm run build            # emit dist/
 ```
@@ -242,7 +308,7 @@ Python binding (3.10+):
 
 ```bash
 python -m pip install -e ".[dev]"
-python -m pytest python/tests            # pytest (481 passed, 18 skipped)
+python -m pytest python/tests            # deterministic Python tests
 python -m mypy                           # strict, configured in pyproject.toml
 python -m ruff check python parity
 python -m build --outdir dist-python     # never dist/, which belongs to npm
@@ -255,6 +321,11 @@ bindings, then reopens each binding's output with the other:
 ```bash
 npm run test:parity
 ```
+
+The schemas and `parity/cases/*.json` are authored sources, not generated files.
+After editing the v3 schema or reviewed cases, `npm run test:parity` regenerates both
+bindings' observations under ignored `parity/.scratch/` and validates bidirectional
+cross-open. It never regenerates expected answers from implementation output.
 
 ## Contributing
 

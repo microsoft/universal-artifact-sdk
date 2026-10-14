@@ -1,0 +1,37 @@
+{
+  "kind": "operation",
+  "name": "contributions-editor",
+  "description": "Draft authoring, upsert, journal target, safe generated removal and externally edited index preservation without resurrection.",
+  "operations": [
+    {"operation": "create_artifact", "arguments": {"id": "editing", "title": "Editing"}},
+    {"operation": "configure_journal", "arguments": {"actor": "human:author", "now": ["2026-10-14T00:00:00Z", "2026-10-14T00:00:01Z", "2026-10-14T00:00:02Z", "2026-10-14T00:00:03Z", "2026-10-14T00:00:04Z"]}},
+    {"operation": "add_contribution", "arguments": {"id": "N1", "statement": "Draft"}, "context": {"rationale": "declare"}},
+    {"operation": "add_contribution", "arguments": {"id": "N1", "statement": "Edited", "x_unknown": {"value": null, "retained": true}}, "context": {"rationale": "clarify"}},
+    {"operation": "get_contribution", "arguments": {"id": "N1"}},
+    {"operation": "list_contributions"},
+    {"operation": "write_submission"},
+    {"operation": "open_submission"},
+    {"operation": "remove_contribution", "arguments": {"id": "N1"}, "context": {"rationale": "withdraw"}},
+    {"operation": "write_submission"},
+    {"operation": "open_submission"},
+    {"operation": "list_contributions"},
+    {"operation": "add_contribution", "arguments": {"id": "N2", "statement": "New"}, "context": {"rationale": "new"}},
+    {"operation": "write_submission"},
+    {"operation": "prepare_file", "arguments": {"path": "out/contributions.yml", "content": "contributions:\n  - id: authored\n    statement: External edit\n"}},
+    {"operation": "write_submission", "expects_error": true},
+    {"operation": "remove_contribution", "arguments": {"id": "N2"}, "context": {"rationale": "detach"}},
+    {"operation": "write_submission"},
+    {"operation": "open_submission", "arguments": {"into_session": true}},
+    {"operation": "list_contributions"},
+    {"operation": "read_document", "arguments": {"path": "out/contributions.yml", "select": ["contributions"]}}
+  ],
+  "expected": {
+    "ok": true, "error_paths": [], "warning_paths": [], "raising_steps": [15],
+    "step_returns": {
+      "4": {"id": "N1", "statement": "Edited", "x_unknown": {"retained": true}},
+      "5": [{"id": "N1", "statement": "Edited", "x_unknown": {"retained": true}}],
+      "8": true, "11": [], "16": true, "19": [],
+      "20": [{"id": "authored", "statement": "External edit"}]
+    }
+  }
+}

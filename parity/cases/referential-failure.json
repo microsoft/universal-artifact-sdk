@@ -3,7 +3,7 @@
   "name": "referential-failure",
   "description": "Referential integrity across every collection: dangling dataset, experiment, claim, result, exhibit and validator references, plus missing required fields, illegal enum values and malformed validators, including one with no `kind` at all and one whose `id` is the empty string. No environment is declared, so `runs_in` is unchecked (frozen behavior) and the mounted dataset is warned about; `runs_in` against a declared environment is covered by reserved-collisions.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-referential",
     "title": "Referential parity failures",

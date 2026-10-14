@@ -3,7 +3,7 @@
 > **Authors:** Chad Atalla, Lef Ioannidis, Nick Pangakis, Tyler Sorensen, Hannah Washington, Jenn Wortman Vaughan, Ben Zorn.
 > **Status:** DRAFT — prose-first, for a round of human review before we generate the JSON Schema.
 > **Spec ID:** `artifact-sdk/v1` (this document, the API + object model)
-> **Emits format:** `evaluable-artifact/v2` (the on-disk *submission* the SDK writes; see §6)
+> **Emits format:** `evaluable-artifact/v3` (reads v2 for migration; see §6)
 > **Audience:** producers integrating the SDK, SDK binding authors (Python + TypeScript), and
 > authors of tools that consume the emitted format.
 > **Source of truth for:** the language-neutral authoring API, the artifact object model, the
@@ -11,7 +11,7 @@
 > **Neutrality:** this spec is **vendor-neutral by construction**. No producer-specific concept is
 > baked into the model; where a producer needs its own metadata it uses open/extensible blocks.
 >
-> **Revision note (this draft).** This revision folds in a **unified evaluation model** that
+> **Revision note (historical v2 draft).** The v2 revision folded in a **unified evaluation model** that
 > generalizes the model to research whose evidence **cannot be recomputed by running code**
 > (human-subjects, design, conceptual, and interpretive work). The additions are **evolutions along
 > the existing grain** — the validator `kind` was already a max-verdict-strength trust ordering — not
@@ -25,6 +25,11 @@
 > (`[CHANGED]`; previously `pdf` was mandatory). Prompted by a real submission that shipped
 > multi-file `.tex` and no compiled PDF. `source` is preferred for machine extraction; `pdf` for
 > as-published locators.
+>
+> **v3 addendum (October 14, 2026).** Optional contribution declarations (§2.4.2) require a
+> new write-boundary version to prevent contribution-unaware writers from silently discarding
+> their index. Both binding implementations may change for this authorized development-fork
+> work; the earlier TypeScript freeze is lifted. Unrelated issue #32 reconciliation is deferred.
 
 ---
 
@@ -41,7 +46,7 @@ the container it ran in, the paper) **calls a small set of functions to declare 
 and the SDK **writes a conforming submission** — no prose round-trip, no scraping.
 
 - The **"submission" is the artifact format** (§6). There is no separate submission format to
-  convert; the SDK emits `evaluable-artifact/v2` directly.
+  convert; the SDK emits `evaluable-artifact/v3` directly.
 - The SDK is the **authoring** half. The **review** half is a downstream evaluator that reads the
   emitted format.
 - The SDK is **spec-first** and ships **two bindings** — **TypeScript (primary)** and **Python (for
@@ -96,6 +101,7 @@ Artifact
 ├── results[]         Result       — an output of an experiment; names the claim(s) it validates
 ├── exhibits[]        Exhibit      — [NEW] 0..n typed non-numeric artifacts (figure/table/proof/…) a claim points at (§2.3.1)
 ├── claims[]          Claim        — a statement about the paper's results + how to validate it
+├── contributions[]   Contribution — optional candidate advances, linked many-to-many to claims (§2.4.2)
 ├── datasets[]        Dataset      — an input data source (in-container or external) + how to use it
 ├── assessments[]     Assessment   — [NEW] artifact-level (whole-submission) evaluation dimensions
 ├── environment       Environment  — reference to the container image the work ran in
@@ -117,7 +123,7 @@ names are provisional and open to the review round (§11).
 
 ```yaml
 artifact:
-  format_version: "evaluable-artifact/v2"   # SDK-stamped; evaluator hard-gates on this
+  format_version: "evaluable-artifact/v3"   # SDK-stamped on write; evaluator hard-gates on this
   sdk_version: "artifact-sdk/v1"            # which SDK/spec produced it (provenance)
   id: "<opaque producer id>"                # producer-owned; never truncated
   title: "..."
@@ -422,6 +428,78 @@ must resolve to declared experiments (§7).
 a hypothesis is itself a recorded edit: re-`addClaim` the same id with `stance: "finding"` (+ a
 passing validator) once an experiment supports it — the journal captures *why* — or leave it a
 `hypothesis` and mark its experiment `failed`/`abandoned` (§4.2 rationale applies) when it does not.
+
+### 2.4.2 Contribution — *candidate advance, not an assessment*
+
+An optional `Artifact.contributions` collection declares candidate significant, original
+advances. It does **not** qualify them. Each record requires non-whitespace `id` and
+`statement`; IDs are producer-owned, unique across contributions, and never truncated.
+There is no contribution/claim count constraint. Missing contributions means no declaration
+was provided, not that the work has no contribution.
+
+```yaml
+contributions:
+  - id: N1
+    statement: A method for an important narrow problem
+    supporting_claims: [C1, C2]
+    type: method
+    paper_ref: {page: 3, section: "2", quote: "we introduce", char_start: 40, char_end: 52}
+    significance:
+      problem: Rare but costly failures
+      beneficiaries: A small specialist community
+      scope: One deployment setting
+      importance: Avoiding severe failures
+      limitations: Not evaluated elsewhere
+      impact: anticipated
+      evidence: ["claim:C1", "result:R1", "paper:section=2"]
+    originality:
+      comparisons:
+        - reference: smith2020
+          distinction: Uses a different intervention
+          locator: {page: 4}
+          evidence: ["reference:smith2020"]
+      coverage:
+        sources: ["bibliography", "manual search"]
+        uninspected: ["non-English archives"]
+        cutoff: "2026-10-14"
+        limitations: Not an exhaustive novelty search
+    provenance:
+      kind: author-declaration
+      source: paper.pdf
+      method: manual
+      locator: {section: Contributions}
+```
+
+- Everything except `id` and `statement` is optional, including `supporting_claims`.
+  Absent/empty support is a **legal draft warning**. Present support is a unique list
+  of existing claim IDs: the only authored graph edge, many-to-many. Unassigned claims
+  remain independent; removing a contribution does not remove claims or evidence.
+- `type` is an optional string with no imposed taxonomy.
+- `paper_ref` and all `locator` objects are open records. Named fields are `page`
+  (number or string), `section`/`quote` (strings), and `char_start`/`char_end`
+  (nonnegative integers). Other source-specific locators are allowed.
+- `significance` optionally carries string `problem`, `beneficiaries`, `scope`,
+  `importance`, and `limitations`, `impact: anticipated | observed`, and `evidence`.
+  Importance is not equated with breadth.
+- `originality.comparisons` optionally lists records requiring nonempty `reference`
+  and `distinction`, with optional open `locator` and `evidence`. `coverage` optionally
+  carries string lists `sources` and `uninspected`, and string `cutoff`/`limitations`.
+  These record the bounds of examination, not an authoritative novelty check.
+- `provenance` requires `kind: author-declaration | paper-extraction | reviewer-inference`
+  when supplied; optional `source`/`method` are strings and `locator` is open.
+- Evidence is a list of citation strings: `claim:ID`, `result:ID`, `reference:ID`,
+  or `paper:locator` (for example `paper:page=3;section=2`). Paper citations bind to
+  the artifact's declared paper; comparison/provenance locators bind to their source.
+  IDs are exact, case-sensitive strings, not file paths.
+- Bibliography identity reuses `paper.references_export`: structured YAML/JSON
+  `references: [{id: ...}]` (also existing `key`/`citation-key` identities, or a root
+  array), or BibTeX entry keys. Unknown IDs are errors **when the export is resolvable**;
+  unavailable/unrecognized exports yield explicit warnings, not invented identities.
+  Pure validation accepts an optional `referenceIds` (TS) / `reference_ids` (Python)
+  context; writing resolves the staged/output export automatically.
+- All declaration objects are open, and unknown nested extension fields (including
+  nulls) survive open/write. There is no SDK `established` or qualification field.
+  Schema/relational diagnostics never assess significance, originality, or claim support.
 
 ### 2.5 Environment — *the container image, by reference*
 
@@ -833,6 +911,7 @@ addExperiment(artifact, { slug, directory, run:{command,…,seed}, uses_data?, d
 addTrace(artifact, { id, kind, path, covers?, terminal_state? }) -> Trace                    # [NEW] §2.2.1
 addResult(artifact, { id, produced_by?, validates, evidence, kind, validation_mode?, locators?, support?, supersedes? }) -> Result
 addClaim(artifact, { id, statement, stance?, tested_by?, paper_ref, validators }) -> Claim    # validators = list (validator: singular sugar); stance/tested_by = [NEW] §2.4.1
+addContribution(artifact, { id, statement, supporting_claims?, … }, ctx?) -> Contribution    # §2.4.2
 addAssessment(artifact, { id, dimension, scope, evidence, validator }) -> Assessment          # [NEW] §2.1.1
 attachPaper(artifact, { pdf, source?, claims_export?, references_export? }) -> Paper           # references_export = [NEW] §2.6
 attachResearchAgent(artifact, { path, model, grounding_sources, scope? }) -> ResearchAgent     # [NEW] §2.9 — optional; model pinned in-file
@@ -841,6 +920,7 @@ attachResearchAgent(artifact, { path, model, grounding_sources, scope? }) -> Res
 getExperiment(artifact, slug) / listExperiments(artifact) -> …     # and get*/list* for each element (incl. traces, assessments)
 removeExperiment(artifact, slug, ctx?) / removeResult(artifact, id, ctx?) / removeClaim / removeDataset
 removeTrace(artifact, id, ctx?) / removeAssessment(artifact, id, ctx?)                         # [NEW]
+getContribution(artifact, id) / listContributions(artifact) / removeContribution(artifact, id, ctx?)
 
 # --- process provenance (journal + experiment lifecycle — §2.2.2, §2.8) [NEW] ---
 configureJournal(artifact, { policy, actor, onMissingRationale? })   # rationale-elicitation policy (§4.2)
@@ -933,12 +1013,13 @@ why defeats the point.
 
 ## 5. Serialization — the "submission" on disk
 
-`writeSubmission` produces the `evaluable-artifact/v2` layout:
+`writeSubmission` produces the `evaluable-artifact/v3` layout:
 
 ```
 <submission>/
 ├── manifest.yml          # experiments, environment ref, paths, format_version, sdk_version, evidence inventory (§5.1)
 ├── claims.yml            # claims + their validator(s)
+├── contributions.yml     # optional candidate declarations (§2.4.2), omitted when empty (§5.2)
 ├── results.yml           # results: produced_by + validates + evidence + locators/support + kind + validation_mode
 ├── exhibits.yml          # [NEW] typed exhibits (figure/table/proof/derivation/listing) linked to claims; omit if none
 ├── datasets.yml          # input data sources (in_artifact | in_container | external) + how to use + study? (ethics)
@@ -966,7 +1047,7 @@ why defeats the point.
   idempotency survives across sessions.
 - Every machine-generated file carries a generated marker naming the SDK
   (repo convention; e.g. `_generated:` / `> **Auto-generated**`).
-- **New index files are omitted when empty.** `exhibits.yml` / `traces.yml` / `assessments.yml` /
+- **New index files are omitted when empty.** `contributions.yml` / `exhibits.yml` / `traces.yml` / `assessments.yml` /
   `journal.yml` / `paper_references.yml` appear only if the producer declared the corresponding
   content — their absence is the on-disk form of "this evidence was not provided" (see §5.1).
 - **Producer-declared paths must be safe relative paths.** Every path a producer declares —
@@ -975,7 +1056,7 @@ why defeats the point.
   `research_agent.path` /
   `grounding_sources` — is a path **relative to the submission root**. It must not be absolute, must
   not contain `.`/`..` segments (nor drive-letter/backslash forms), must not live under `.sdk/`, and
-  must not collide with an SDK-generated file (`manifest.yml`, `claims.yml`, `results.yml`,
+  must not collide with an SDK-generated file (`manifest.yml`, `claims.yml`, `contributions.yml`, `results.yml`,
   `exhibits.yml`, `datasets.yml`, `traces.yml`, `assessments.yml`, `journal.yml`, `reflection.md`,
   `SHA256SUMS`).
   The SDK enforces this on both `writeSubmission` and structural validation, so an unsafe path can
@@ -999,6 +1080,8 @@ evidence_inventory:                # [NEW] SDK-computed from what was declared
   trace_count: 3
   has_exhibits: true               # [NEW §2.3.1] ≥1 typed exhibit declared
   exhibit_count: 2
+  has_contributions: true          # ≥1 candidate declaration, not a merit assessment
+  contribution_count: 3           # independent of claim count
   has_released_data: true          # ≥1 in_artifact/external Dataset
   has_paper_source: true
   has_research_agent: false        # [NEW §2.9] → agent_faithfulness is unassessable when absent
@@ -1018,6 +1101,24 @@ the mechanism by which the format assumes **nothing** about which inputs are pre
 
 ---
 
+### 5.2 Contribution index ownership
+
+`manifest.paths.contributions` points at a YAML document containing `contributions: [...]`.
+Writers use `contributions.yml` with an SDK `_generated` marker; readers honor only the
+declared path (no fallback discovery). Empty declarations are legal, and an empty collection
+omits the manifest path and index on write. A detached file is never rediscovered.
+
+Before changing output, the writer checks the destination against its SHA-256 in
+`.sdk/state.json.generated_hashes["contributions.yml"]`, or the exact snapshot captured by an
+explicit `openSubmission`. A nonempty write refuses to overwrite unowned/external edits;
+reopen and intentionally edit the current model to adopt them. An empty write deletes a
+previously generated index **only if its hash still matches**. Authored/externally edited files
+remain on disk, detached from the manifest, hashed and classified as authored. A custom authored
+input path is preserved when canonical output is written. A missing declared index is an error.
+Contribution index paths reject traversal, absolute/drive paths, collisions with other generated
+indexes, `.sdk`, and symlink components. This narrowly scoped ownership behavior does not
+change the legacy reflection/staging/stale-index rules tracked in #32.
+
 ## 6. Versioning
 
 Two independent axes, both explicit in every submission:
@@ -1025,7 +1126,24 @@ Two independent axes, both explicit in every submission:
 - **`artifact-sdk/vN`** — the API + this spec (bindings implement it).
 - **`evaluable-artifact/vM`** — the emitted on-disk format (the evaluator hard-gates on it).
 
-This spec defines **`artifact-sdk/v1`** emitting **`evaluable-artifact/v2`**. `v2` is a superset of
+This spec defines **`artifact-sdk/v1`** emitting **`evaluable-artifact/v3`**.
+New artifacts use v3, and **every write emits v3**, even with no contributions.
+`openSubmission` retains v2 input support and preserves its in-memory `format_version`;
+calling `writeSubmission` is the explicit migration boundary. The caller's version field
+is not silently mutated. Missing optional collections remain legal for legacy literal/
+dataclass callers. The v2 schema is retained unchanged; the canonical v3 source is
+[`schema/evaluable-artifact-v3.schema.json`](schema/evaluable-artifact-v3.schema.json).
+Consumers and writers must reject unsupported nonempty format versions before rewriting
+an artifact; this SDK rejects future versions. Legacy tolerance for missing/empty version
+strings on **open** is retained, but structural validation blocks their emission.
+
+**Compatibility limitation:** already deployed v2 SDK releases did not enforce the version
+gate on open/write. A new version stamp cannot retroactively change those binaries. Do not
+use contribution-unaware releases to rewrite v3 artifacts; upgrade or enforce the format gate
+in the host. The unchanged v2 schema rejects a v3 model, but the historical runtime did not
+always invoke it. This is why the version change is necessary but not sufficient on its own.
+
+For historical context, `v2` was a superset of
 `v1`: it adds first-class **Results**, **Claim validators**, and **Environment-by-reference**, drops
 prose-only inference (`flags.*` guessed from prose), and — in this revision — adds the
 **evidence-conditioned** additions from the unified model: **Traces**, artifact-level
@@ -1037,8 +1155,8 @@ dispositions** (§2.2.2) + the **provenance journal** (§2.8) that capture the r
 (what was tried and why), with a **rationale-elicitation policy** on the authoring API (§4.2). **All
 additions are optional and absence-tolerant**, so a `v2` submission that uses none of them is
 behaviorally the earlier `v1`. **Evaluator
-support for `v2` is a required, separate milestone** — the evaluator continues to accept `v1` (legacy
-output) and grows a `v2` reader. Nothing here breaks the current pipeline.
+support for each format is a required, separate milestone**. Evaluators retain their own
+legacy input policy; this SDK reads v2/v3, not v1.
 
 > **Naming caution** (see repo memory): `evaluable-artifact/vM` is *our contract version*; do not
 > conflate it with any producer's own format-revision numbering.
@@ -1049,14 +1167,14 @@ output) and grows a `v2` reader. Nothing here breaks the current pipeline.
 
 | Layer | Runs where | Checks | On failure |
 |-------|-----------|--------|------------|
-| **Structural** | in the SDK (`writeSubmission`), both bindings; see the freeze-period profile in §8.1 | required fields, types, referential integrity (result→experiment/claim ids resolve, experiment→dataset ids resolve, trace `covers`→experiment ids resolve, validator `gated_by`→a validator id on the same claim, claim `tested_by`→an experiment slug, experiment `disposition.superseded_by`→an experiment slug), external datasets carry a `sha256`, a research-agent (when present) declares a pinned `model` and at least one path-safe `grounding_source` (presence is reported during serialization), a validator is well-formed for its `kind`, `validation_mode`/`disposition.status`/`claim.stance` are legal enum values, all producer-declared paths are safe relative paths (§5 — no absolute/`..`/`.sdk`/generated-file collision), a recorded mutation carries a rationale (§4.2 — warning), evidence inventory (§5.1) is computed | reject / report — the producer fixes before emitting |
+| **Structural** | in the SDK (`writeSubmission`), both bindings; see §8.1 | required fields, types, referential integrity (result→experiment/claim ids resolve, experiment→dataset ids resolve, trace `covers`→experiment ids resolve, validator `gated_by`→a validator id on the same claim, claim `tested_by`→an experiment slug, experiment `disposition.superseded_by`→an experiment slug), contribution shape and support/evidence/bibliography links (§2.4.2), external datasets carry a `sha256`, a research-agent (when present) declares a pinned `model` and at least one path-safe `grounding_source` (presence is reported during serialization), a validator is well-formed for its `kind`, `validation_mode`/`disposition.status`/`claim.stance` are legal enum values, all producer-declared paths are safe relative paths (§5 — no absolute/`..`/`.sdk`/generated-file collision), a recorded mutation carries a rationale (§4.2 — warning), evidence inventory (§5.1) is computed | reject / report — the producer fixes before emitting |
 | **Semantic** | in the **evaluator** | do results actually support claims; do validators pass (per validation mode; attest gates inspect); artifact-level assessments; paper-coverage (D8); citation integrity; consistency; external-data fetch + checksum + mount (reproduction milestone); structure/badges; **evidence-conditioned activation** (*no* evidence declaration → `unassessable`, a coverage note; a *declared-but-unresolved* pointer → `unverifiable` + integrity flag — never a silent pass, §5.1) | verdicts (mode-relative, rolling up to `REPRODUCED`/`PARTIAL`/`NOT_REPRODUCED`) + findings |
 
 Rationale: **cross-language semantic validation would drift** between TS and Python. Keeping the
 SDK's checks structural and enforcing them with shared conformance cases while the single Python
-evaluator owns semantics avoids duplicating — and diverging — the hard logic. The post-freeze target
-is schema plus relational runtime validation in both bindings (§8.1); during the freeze, schema
-conformance remains a shared test gate. The SDK's job is to make a submission *well-formed*; the
+evaluator owns semantics avoids duplicating — and diverging — the hard logic. Contribution
+validation directly uses the v3 schema plus relational rules in both runtimes (§8.1);
+legacy reconciliation remains deferred. The SDK's job is to make a submission *well-formed*; the
 evaluator decides if it's *good*.
 
 ---
@@ -1064,7 +1182,7 @@ evaluator decides if it's *good*.
 ## 8. Language bindings & the spec→schema pipeline
 
 1. **Prose spec (this doc)** → reviewed by humans (this round).
-2. **JSON Schema** generated from the agreed model — the **canonical machine contract** for both the
+2. **JSON Schema** authored from the agreed model — the **canonical machine contract** for both the
    emitted format *and* the API's inputs. Validator-catalog semantics (§3.2) are pinned here in prose
    + schema so both languages agree.
 3. **Bindings** (thin builders over the schema):
@@ -1096,14 +1214,15 @@ The two bindings implement one contract but expose it idiomatically:
 The target structural-validation architecture has two parts in both bindings: validation against
 the canonical JSON Schema, then language-neutral relational and filesystem invariants that JSON
 Schema cannot express (references, cycles, safe paths, generated/authored collisions, and warning
-policy). During the current TypeScript experiment freeze, the initial Python binding mirrors the
-TypeScript runtime's authored validator and both bindings apply schema validation to conformance
-fixtures in tests. The frozen TypeScript API and implementation MUST NOT change as part of the
-Python-binding work. Post-freeze reconciliation is tracked in
+policy). The initial Python binding mirrored the legacy TypeScript authored validator.
+The freeze is lifted for this coordinated v3 implementation: **contribution shape validation
+directly uses the canonical v3 schema at runtime in both bindings**, followed by shared
+relational rules. Remaining legacy-model reconciliation is tracked in
 [issue #32](https://github.com/microsoft/universal-artifact-sdk/issues/32).
-During this period, Python treats an explicitly null optional field as omitted rather
+For legacy fields, Python treats an explicitly null optional field as omitted rather
 than adding hidden presence state to reproduce TypeScript's inconsistent
 null-versus-undefined checks; this narrow divergence is also tracked in #32.
+Contribution fields instead preserve explicit malformed nulls for identical schema rejection.
 
 The detailed Python architecture, package layout, parity normalization, test matrix, and release
 requirements are defined in [`PYTHON_BINDING.md`](PYTHON_BINDING.md).
@@ -1125,7 +1244,7 @@ separation invariant.
 
 ## 10. Review side (deferred bindings)
 
-The **review** half is the existing evaluator; it reads `evaluable-artifact/v2`. **Review-side bindings
+The **review** half is a downstream evaluator; v3 support is a coordinated consumer milestone. **Review-side bindings
 are deferred** — for now the evaluator is invoked as today (Python / CLI). When we do add producer-facing
 review access, it reuses this spec's schema for the findings/verdicts shapes.
 
@@ -1160,7 +1279,7 @@ decision** — they don't block implementation and are settled at a later, well-
 | B5 | Python compatibility (§8.1) | **Python 3.10+**, PyPI `universal-artifact-sdk`, import `universal_artifact_sdk`; package versions stay in lockstep with npm. | A first-class binding needs an explicit support and release policy; lockstep versions communicate one SDK contract. The longer import avoids collision with the existing PyPI `uas` package. |
 | B6 | Binding generation (§8.1) | **Author idiomatic Python dataclasses** and enforce parity with shared contract tests; do not introduce binding code generation. | The existing TypeScript model is authored, and the schema does not encode all builder ergonomics or relational invariants. Generated Python alone would create false confidence rather than eliminate drift. |
 | B7 | Cross-binding output parity (§8.1) | **Semantic equivalence, not byte identity.** Require the same logical files, values, validation outcomes, and cross-open behavior; require byte idempotency within each binding. | YAML libraries may quote and wrap differently. Forcing presentation identity adds coupling without strengthening the format contract. |
-| B8 | TypeScript experiment freeze (§8.1) | **Do not change the TypeScript API or implementation during the Python-binding effort.** Mirror frozen observable behavior where parity requires it and defer reconciliation to issue #32. | An ongoing experiment depends on the current TypeScript behavior. Correcting inconsistencies in only one binding would also create an undocumented contract fork. |
+| B8 | TypeScript experiment freeze (§8.1) | **Historical; lifted October 14, 2026 for coordinated contributions/v3 development.** Retain unrelated #32 behavior. | Contributions require both bindings and a new write boundary; one-sided implementation would lose declarations. |
 
 **Still genuinely open** (need external input, tracked outside this spec): OD2–OD5 (tracked separately)
 (repo strategy, CAIS profile openness, license, GitHub org). None blocks the object model.
@@ -1222,7 +1341,7 @@ attachPaper(a, { pdf: "paper.pdf", source: "paper/", references_export: "paper_r
 writeSubmission(a, "./out")     # → ./out/{manifest.yml (+evidence_inventory),claims.yml,results.yml,datasets.yml,traces.yml,paper.pdf,…,SHA256SUMS}
 ```
 
-The evaluator then reads `./out` (as `evaluable-artifact/v2`): it runs the `monotonic` validator over
+The evaluator then reads `./out` (as `evaluable-artifact/v3`): it runs the `monotonic` validator over
 `R1` (mode `re-analyze`, deterministic → `re-analyzed`); for `C7` it runs `v_attest` first and, only
 if provenance attests, the `v_inspect` rubric (mode `inspect`, advisory → `evidence-supported`, human
 final); it re-derives `T1`'s terminal state and flags any disagreement (Trace-Report Faithfulness);

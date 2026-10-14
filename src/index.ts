@@ -1,7 +1,7 @@
 /**
  * Universal Artifact SDK — TypeScript binding (artifact-sdk/v1).
  *
- * Authoring API that emits the `evaluable-artifact/v2` submission format an evaluator consumes.
+ * Authoring API that emits the `evaluable-artifact/v3` submission format an evaluator consumes.
  * See SPEC.md.
  *
  * Quickstart:

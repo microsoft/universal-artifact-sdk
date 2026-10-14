@@ -114,7 +114,7 @@
       }
     },
     "model": {
-      "format_version": "evaluable-artifact/v2",
+      "format_version": "evaluable-artifact/v3",
       "sdk_version": "artifact-sdk/v1",
       "id": "reopen",
       "title": "Reopen parity"

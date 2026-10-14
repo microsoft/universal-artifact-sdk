@@ -3,7 +3,7 @@
   "name": "minimal-empty-artifact",
   "description": "An empty but legal artifact: the three required indexes are emitted, every optional index is omitted, and nothing is warned about.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-minimal",
     "title": "Minimal parity artifact",

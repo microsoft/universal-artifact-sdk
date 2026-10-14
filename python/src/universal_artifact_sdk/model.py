@@ -1,7 +1,7 @@
 """Object model for the Universal Artifact SDK (``artifact-sdk/v1``).
 
 These dataclasses are the in-memory shape a producer builds; :func:`write_submission`
-serializes them into the on-disk ``evaluable-artifact/v2`` format. Field names track the
+serializes them into the on-disk ``evaluable-artifact/v3`` format. Field names track the
 canonical schema, so the serialized names stay ``snake_case`` in every binding.
 
 Nested schema models carry an *extension bucket*: a mapping used to round-trip legal
@@ -18,10 +18,11 @@ import re
 from collections.abc import Callable, Mapping
 from dataclasses import MISSING, dataclass, field, fields, is_dataclass
 from pathlib import Path
-from typing import Any, ClassVar, Literal, TypeVar
+from typing import Any, ClassVar, Literal, TypeVar, cast
 
 SDK_VERSION = "artifact-sdk/v1"
-FORMAT_VERSION = "evaluable-artifact/v2"
+FORMAT_VERSION = "evaluable-artifact/v3"
+LEGACY_FORMAT_VERSION = "evaluable-artifact/v2"
 
 #: Closed vocabulary: how a claim is validated from evidence (spec §3.1).
 VALIDATION_MODES: tuple[str, ...] = ("re-execute", "re-analyze", "inspect", "attest")
@@ -502,6 +503,79 @@ class JournalConfig:
 
 
 @dataclass
+class ContributionLocator:
+    """Open paper locator, bound to the declared paper or provenance source."""
+
+    page: int | float | str | None = None
+    section: str | None = None
+    quote: str | None = None
+    char_start: int | None = None
+    char_end: int | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class ContributionSignificance:
+    problem: str | None = None
+    beneficiaries: str | None = None
+    scope: str | None = None
+    importance: str | None = None
+    limitations: str | None = None
+    impact: Literal["anticipated", "observed"] | None = None
+    evidence: list[str] | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class ContributionComparison:
+    reference: str
+    distinction: str
+    locator: ContributionLocator | None = None
+    evidence: list[str] | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class ContributionCoverage:
+    sources: list[str] | None = None
+    uninspected: list[str] | None = None
+    cutoff: str | None = None
+    limitations: str | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class ContributionOriginality:
+    comparisons: list[ContributionComparison] | None = None
+    coverage: ContributionCoverage | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class ContributionProvenance:
+    kind: Literal["author-declaration", "paper-extraction", "reviewer-inference"]
+    source: str | None = None
+    method: str | None = None
+    locator: ContributionLocator | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
+class Contribution:
+    """Candidate advance; the SDK makes no significance or novelty judgment."""
+
+    id: str
+    statement: str
+    supporting_claims: list[str] | None = None
+    type: str | None = None
+    paper_ref: ContributionLocator | None = None
+    significance: ContributionSignificance | None = None
+    originality: ContributionOriginality | None = None
+    provenance: ContributionProvenance | None = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass
 class Artifact:
     """The root in-memory model a producer builds and serializes (spec §2)."""
 
@@ -524,6 +598,7 @@ class Artifact:
     journal: list[JournalEntry] = field(default_factory=list)
     #: Transient journaling config (spec §4.2); never serialized.
     journal_config: JournalConfig | None = field(default=None, repr=False, compare=False)
+    contributions: list[Contribution] = field(default_factory=list)
 
 
 _PINNED_DIGEST = re.compile(r"@(sha256:[a-f0-9]{64})$", re.IGNORECASE)
@@ -557,10 +632,10 @@ def default_exhibit_validation_mode(type: str) -> str:
 
 def canonical_schema_path() -> Path:
     """Locate the canonical schema in an installed package or an editable checkout."""
-    packaged = Path(__file__).resolve().parent / "schema" / "evaluable-artifact-v2.schema.json"
+    packaged = Path(__file__).resolve().parent / "schema" / "evaluable-artifact-v3.schema.json"
     if packaged.is_file():
         return packaged
-    return Path(__file__).resolve().parents[3] / "schema" / "evaluable-artifact-v2.schema.json"
+    return Path(__file__).resolve().parents[3] / "schema" / "evaluable-artifact-v3.schema.json"
 
 
 def to_dict(value: Any) -> Any:
@@ -740,6 +815,58 @@ def _journal_entry_from_dict(data: Any) -> JournalEntry:
     )
 
 
+def _contribution_from_dict(data: Any) -> Contribution:
+    def build(cls: type[Any], value: Any, nested: Any = None) -> Any:
+        if not isinstance(value, dict):
+            return value
+        result = _build(cls, value, nested)
+        # Distinguish omitted optional dataclass defaults from explicit malformed YAML nulls.
+        for key, item in value.items():
+            if item is None:
+                result.extra[key] = None
+        if "extra" in value:
+            result.extra["extra"] = value["extra"]
+        return result
+
+    def comparison(value: Any) -> Any:
+        return build(
+            ContributionComparison,
+            value,
+            {
+                "locator": lambda v: build(ContributionLocator, v),
+            },
+        )
+
+    return cast(
+        Contribution,
+        build(
+            Contribution,
+            data,
+            {
+                "paper_ref": lambda v: build(ContributionLocator, v),
+                "significance": lambda v: build(ContributionSignificance, v),
+                "originality": lambda v: build(
+                    ContributionOriginality,
+                    v,
+                    {
+                        "comparisons": lambda items: (
+                            [comparison(i) for i in items] if isinstance(items, list) else items
+                        ),
+                        "coverage": lambda c: build(ContributionCoverage, c),
+                    },
+                ),
+                "provenance": lambda v: build(
+                    ContributionProvenance,
+                    v,
+                    {
+                        "locator": lambda c: build(ContributionLocator, c),
+                    },
+                ),
+            },
+        ),
+    )
+
+
 def artifact_from_dict(data: dict[str, Any]) -> Artifact:
     """Build an :class:`Artifact` from schema-shaped data, keeping nested extensions.
 
@@ -763,6 +890,11 @@ def artifact_from_dict(data: dict[str, Any]) -> Artifact:
             "traces": lambda items: [_build(Trace, item) for item in items],
             "results": lambda items: [_result_from_dict(item) for item in items],
             "claims": lambda items: [_claim_from_dict(item) for item in items],
+            "contributions": lambda items: (
+                [_contribution_from_dict(item) for item in items]
+                if isinstance(items, list)
+                else items
+            ),
             "exhibits": lambda items: [_build(Exhibit, item) for item in items],
             "assessments": lambda items: [
                 _build(Assessment, item, {"validator": validator_from_dict}) for item in items

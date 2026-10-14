@@ -1,0 +1,30 @@
+{
+  "kind": "artifact",
+  "name": "contributions-shape",
+  "description": "Canonical v3 runtime alignment: whitespace statement, duplicate support, invalid impact and explicit malformed optional null are rejected identically.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v3",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "shape",
+    "title": "Malformed declarations",
+    "experiments": [], "datasets": [], "traces": [], "results": [], "claims": [],
+    "exhibits": [], "assessments": [], "journal": [],
+    "contributions": [{
+      "id": "N1",
+      "statement": "  ",
+      "supporting_claims": ["C1", "C1"],
+      "significance": {"impact": "established"},
+      "provenance": null
+    }, {"id": null}, null]
+  },
+  "expected": {
+    "ok": false,
+    "error_paths": [
+      "contribution[N1].statement", "contribution[N1].supporting_claims",
+      "contribution[N1].significance.impact", "contribution[N1].provenance",
+      "contribution[1].statement", "contribution[1].id", "contribution[2]"
+    ],
+    "warning_paths": [],
+    "schema_valid": false
+  }
+}

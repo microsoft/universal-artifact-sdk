@@ -3,7 +3,7 @@
   "name": "schema-runtime-divergence",
   "description": "A reviewed, expected divergence between the canonical JSON Schema and the frozen runtime rules (PYTHON_BINDING.md §6.1, issue #32): the schema rejects a grounding source that names a generated index file exactly, while both runtimes accept it and reserve only its descendants. Both bindings must reach the same verdict on both sides of the divergence, and neither may silently discard it.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-divergence",
     "title": "Schema and runtime divergence",

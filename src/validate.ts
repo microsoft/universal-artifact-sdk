@@ -16,10 +16,13 @@ import {
   Claim,
   DISPOSITION_STATUSES,
   EXHIBIT_TYPES,
+  FORMAT_VERSION,
+  LEGACY_FORMAT_VERSION,
   pinnedDigest,
   Validator,
   VALIDATION_MODES,
 } from "./model.js";
+import { contributionShapeIssues } from "./internal/contributions.js";
 
 export interface Issue {
   path: string;
@@ -47,6 +50,7 @@ export class StructuralError extends Error {
 const GENERATED_RESERVED_PATHS = new Set([
   "manifest.yml",
   "claims.yml",
+  "contributions.yml",
   "results.yml",
   "datasets.yml",
   "exhibits.yml",
@@ -193,9 +197,12 @@ function checkValidatorWellFormed(
 }
 
 /** Validate an artifact's structure (spec §7). Pure — does not touch disk. */
-export function validateStructure(a: Artifact): ValidationReport {
+export function validateStructure(a: Artifact, options: { referenceIds?: readonly string[] } = {}): ValidationReport {
   const errors: Issue[] = [];
   const warnings: Issue[] = [];
+  if (![FORMAT_VERSION, LEGACY_FORMAT_VERSION].includes(a.format_version)) {
+    errors.push({ path: "artifact.format_version", message: `unsupported format '${a.format_version}'` });
+  }
 
   if (!a.id) errors.push({ path: "artifact.id", message: "`id` is required" });
   if (!a.title)
@@ -508,6 +515,46 @@ export function validateStructure(a: Artifact): ValidationReport {
               message: `references unknown result '${rid}'`,
             });
         }
+      }
+    }
+  }
+
+  // Contribution declarations are schema-checked, never assessed for merit or novelty.
+  const contributions = a.contributions === undefined ? [] : a.contributions;
+  const shapeIssues = contributionShapeIssues(contributions);
+  errors.push(...shapeIssues);
+  if (shapeIssues.length === 0) {
+    const seen = new Set<string>();
+    const references = options.referenceIds === undefined ? undefined : new Set(options.referenceIds);
+    const reference = (id: string, path: string): void => {
+      if (references === undefined) warnings.push({ path, message: `bibliography reference '${id}' cannot be resolved without a readable references_export` });
+      else if (!references.has(id)) errors.push({ path, message: `references unknown bibliography ID '${id}'` });
+    };
+    const evidence = (citations: string[] | undefined, path: string): void => {
+      for (const [i, citation] of (citations ?? []).entries()) {
+        const split = citation.indexOf(":");
+        const kind = citation.slice(0, split);
+        const id = citation.slice(split + 1);
+        const p = `${path}[${i}]`;
+        if (kind === "claim" && !claimIds.has(id)) errors.push({ path: p, message: `references unknown claim '${id}'` });
+        if (kind === "result" && !resultIds.has(id)) errors.push({ path: p, message: `references unknown result '${id}'` });
+        if (kind === "reference") reference(id, p);
+        if (kind === "paper" && !a.paper) warnings.push({ path: p, message: "paper citation has no declared paper source" });
+      }
+    };
+    for (const c of contributions) {
+      const p = `contribution[${c.id}]`;
+      if (seen.has(c.id)) errors.push({ path: `${p}.id`, message: `duplicate contribution ID '${c.id}'` });
+      seen.add(c.id);
+      if (!c.supporting_claims?.length) warnings.push({ path: `${p}.supporting_claims`, message: "draft contribution has no supporting claims" });
+      for (const id of c.supporting_claims ?? []) {
+        if (!claimIds.has(id)) errors.push({ path: `${p}.supporting_claims`, message: `references unknown claim '${id}'` });
+      }
+      evidence(c.significance?.evidence, `${p}.significance.evidence`);
+      for (const [i, comparison] of (c.originality?.comparisons ?? []).entries()) {
+        const cp = `${p}.originality.comparisons[${i}]`;
+        reference(comparison.reference, `${cp}.reference`);
+        evidence(comparison.evidence, `${cp}.evidence`);
       }
     }
   }

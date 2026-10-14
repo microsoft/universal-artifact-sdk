@@ -1,0 +1,25 @@
+{
+  "kind": "operation",
+  "name": "legacy-v2-migration",
+  "description": "Explicit open(v2) -> write(v3) migration, unchanged legacy API and future-version rejection.",
+  "operations": [
+    {"operation": "create_artifact", "arguments": {"id": "unused", "title": "Unused"}},
+    {"operation": "prepare_file", "arguments": {"path": "out/manifest.yml", "content": "format_version: evaluable-artifact/v2\nsdk_version: artifact-sdk/v1\nid: legacy\ntitle: Legacy\n"}},
+    {"operation": "open_submission", "arguments": {"into_session": true}},
+    {"operation": "write_submission"},
+    {"operation": "read_document", "arguments": {"path": "out/manifest.yml", "select": ["format_version"]}},
+    {"operation": "open_submission", "arguments": {"into_session": true}},
+    {"operation": "list_contributions"},
+    {"operation": "prepare_file", "arguments": {"path": "future/manifest.yml", "content": "format_version: evaluable-artifact/v4\nid: future\ntitle: Future\n"}},
+    {"operation": "open_submission", "arguments": {"out": "future"}, "expects_error": true}
+  ],
+  "expected": {
+    "ok": true, "error_paths": [], "warning_paths": [], "raising_steps": [8],
+    "step_returns": {
+      "2": {"format_version": "evaluable-artifact/v2", "sdk_version": "artifact-sdk/v1", "id": "legacy", "title": "Legacy"},
+      "4": "evaluable-artifact/v3",
+      "5": {"format_version": "evaluable-artifact/v3", "sdk_version": "artifact-sdk/v1", "id": "legacy", "title": "Legacy"},
+      "6": []
+    }
+  }
+}

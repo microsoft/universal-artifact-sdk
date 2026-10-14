@@ -87,7 +87,7 @@ class TestCreateArtifact:
 
     def test_stamps_versions_and_starts_empty(self) -> None:
         artifact = create_artifact(id="x", title="t", producer={"name": "example-harness"})
-        assert artifact.format_version == "evaluable-artifact/v2"
+        assert artifact.format_version == "evaluable-artifact/v3"
         assert artifact.sdk_version == "artifact-sdk/v1"
         assert artifact.producer == {"name": "example-harness"}
         assert artifact.datasets == []
