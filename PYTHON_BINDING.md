@@ -8,13 +8,13 @@
 > conformance, testing strategy, and PyPI release process
 >
 > **Normative model:** [`SPEC.md`](SPEC.md) and
-> [`schema/evaluable-artifact-v2.schema.json`](schema/evaluable-artifact-v2.schema.json)
+> [`schema/evaluable-artifact-v3.schema.json`](schema/evaluable-artifact-v3.schema.json)
 
 ## 1. Purpose
 
 The Python package is a first-class producer binding for `artifact-sdk/v1`. It builds,
-validates, writes, and reopens the same `evaluable-artifact/v2` submissions as the
-TypeScript package.
+validates, writes, and reopens the same `evaluable-artifact/v3` submissions as the
+TypeScript package, and reads v2 for explicit write-time migration.
 
 The binding is not a wrapper around Node.js and does not invoke the TypeScript package.
 It is a native Python implementation with an idiomatic API, tested against the same
@@ -31,7 +31,7 @@ language-neutral contract.
 | Models | Authored Python dataclasses; no generated binding code |
 | Public naming | Idiomatic `snake_case` functions and fields |
 | Cross-binding parity | Semantic equivalence, not byte identity |
-| Validation authority | Frozen TypeScript behavior initially; schema plus relational validation is the post-freeze target |
+| Validation authority | Canonical v3 schema plus relational rules for contributions; legacy TypeScript-compatible rules elsewhere |
 | YAML | YAML 1.2 through `ruamel.yaml` |
 | Release | PyPI trusted publishing with provenance |
 
@@ -40,21 +40,21 @@ implement one SDK contract. A release is complete only when both packages pass t
 independent package checks. The `sdk_version` written into submissions remains the
 contract identifier `artifact-sdk/v1`, not the distribution version.
 
-The current TypeScript API and implementation are frozen while an experiment depends
-on their behavior. This effort MUST NOT modify files under `src/`, change TypeScript
-exports, or intentionally change TypeScript output. Contract inconsistencies discovered
-during the Python work are tracked in
+The earlier TypeScript freeze is lifted for coordinated v3 contribution implementation
+in this development fork (October 14, 2026). Both binding implementations change together.
+Legacy inconsistencies unrelated to contributions remain tracked in
 [issue #32](https://github.com/microsoft/universal-artifact-sdk/issues/32) for
 post-experiment correction.
 
 ## 3. Repository and package layout
 
-The repository remains a single project with one canonical schema:
+The repository remains a single project with one canonical schema per format:
 
 ```text
 .
 ├── schema/
-│   └── evaluable-artifact-v2.schema.json
+│   ├── evaluable-artifact-v2.schema.json  # retained unchanged
+│   └── evaluable-artifact-v3.schema.json  # current canonical model
 ├── src/                         # TypeScript binding
 ├── test/                        # TypeScript tests and shared source fixtures
 ├── python/
@@ -106,6 +106,8 @@ Python uses `snake_case`:
 | `addResult` | `add_result` |
 | `addExhibit` | `add_exhibit` |
 | `addClaim` | `add_claim` |
+| `addContribution` | `add_contribution` |
+| `getContribution` / `listContributions` / `removeContribution` | `get_contribution` / `list_contributions` / `remove_contribution` |
 | `addAssessment` | `add_assessment` |
 | `attachPaper` | `attach_paper` |
 | `attachResearchAgent` | `attach_research_agent` |
@@ -294,14 +296,14 @@ Python parses and emits YAML 1.2. `ruamel.yaml` runs in safe, pure-Python YAML 1
 with an explicit deterministic quoting policy so values such as `no`, `on`, `off`, and
 `12:30` remain strings across bindings.
 
-### 7.1 Frozen TypeScript compatibility behavior
+### 7.1 Legacy TypeScript compatibility behavior
 
 Until issue #32 is resolved, Python deliberately matches these observable TypeScript
 behaviors and locks them with compatibility tests:
 
 - staged files replace an existing destination when `stage_from` is used;
 - model-carried `reflection.md` is written and classified as generated;
-- optional generated indexes left by an earlier write are not deleted when their
+- legacy optional generated indexes left by an earlier write are not deleted when their
   collection later becomes empty; the stale files remain in `SHA256SUMS` and are
   reclassified as authored in `.sdk/state.json`;
 - unknown nested extension keys survive open/write cycles; unknown top-level manifest
@@ -310,12 +312,35 @@ behaviors and locks them with compatibility tests:
 These are compatibility constraints, not endorsements of the behavior. They must not
 be "fixed" in Python alone.
 
+### 7.2 Contributions and v3
+
+The neutral declaration contract is [SPEC §2.4.2](SPEC.md#242-contribution--candidate-advance-not-an-assessment),
+and the ownership/removal policy is [SPEC §5.2](SPEC.md#52-contribution-index-ownership).
+`Contribution`, `ContributionLocator`, `ContributionSignificance`,
+`ContributionComparison`, `ContributionCoverage`, `ContributionOriginality`, and
+`ContributionProvenance` are public typed dataclasses. Their `extra` buckets preserve
+unknown keys at every level, including an input key literally named `extra`. Explicit
+malformed null contribution fields survive reconstruction for schema rejection; direct
+dataclass defaults of `None` still mean omission.
+
+`Artifact.contributions` is appended with a default empty list, preserving old
+keyword and positional dataclass calls. `validate_structure(..., reference_ids=[...])`
+supplies optional bibliography context; `write_submission` resolves readable existing
+`paper.references_export` YAML/JSON/BibTeX IDs itself. Missing/unrecognized identity
+sources are warnings, not novelty judgments.
+
+All writes emit v3, including models opened from v2; writing is the explicit migration
+action and does not mutate the model's `format_version`. Readers preserve v2 and reject
+unknown future versions. Historical v2 SDK binaries were not version-gated consistently:
+hosts must upgrade or enforce the gate to avoid losing v3 indexes.
+
 ## 8. Cross-binding conformance
 
 Semantic parity means that, for every shared case:
 
 1. Both bindings accept or reject the same artifact, except for the documented
-   explicit-null compatibility rule: Python treats null optional model fields as omitted.
+   legacy explicit-null compatibility rule: Python treats null optional legacy fields as omitted.
+   Contribution shapes are schema-checked identically, including explicit nulls.
 2. Validation produces the same issue severity and logical path. Message prose may
    differ. A field a variant's model does not declare is still validated — `gated_by` on
    an `attest` validator, for example, which Python carries in the model's extension
@@ -413,18 +438,18 @@ Runtime dependencies are intentionally small:
 - `ruamel.yaml` for safe YAML 1.2 parsing and deterministic emission.
 
 The standard library supplies dataclasses, hashing, JSON, paths, copying, timestamps,
-and filesystem operations. `jsonschema` is a development dependency for canonical
-schema conformance tests during the TypeScript freeze; it becomes a runtime dependency
-when issue #32 enables schema validation in both bindings. Development dependencies are
-isolated in a `dev` optional extra.
+and filesystem operations. `jsonschema` is a runtime dependency for canonical contribution
+shape validation, matching AJV on the TypeScript side. This does not reconcile unrelated
+legacy schema/runtime divergences in #32. Development dependencies (including typing
+stubs) are isolated in a `dev` optional extra.
 
 ## 11. Packaging and release
 
 The wheel and source distribution include:
 
 - `universal_artifact_sdk` and `py.typed`;
-- the canonical JSON Schema as
-  `universal_artifact_sdk/schema/evaluable-artifact-v2.schema.json`;
+- the canonical v3 JSON Schema and retained v2 schema under
+  `universal_artifact_sdk/schema/`; `canonical_schema_path()` selects v3;
 - the Python quickstart example;
 - README, specification, changelog, and license metadata as appropriate.
 
@@ -459,4 +484,4 @@ The Python binding is complete when:
 - release automation validates lockstep versions and is ready for PyPI trusted
   publishing;
 - README, contributing instructions, examples, and changelog describe both bindings;
-- no TypeScript API or implementation file changes as part of the frozen experiment.
+- contribution changes are implemented in both bindings with schema/runtime alignment.

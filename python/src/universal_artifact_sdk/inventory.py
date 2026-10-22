@@ -32,6 +32,8 @@ class EvidenceInventory:
     evidence_kinds: list[str]
     validation_modes: list[str]
     extra: dict[str, Any] = field(default_factory=dict)
+    has_contributions: bool = False
+    contribution_count: int = 0
 
 
 def _is_active(experiment: Experiment) -> bool:
@@ -59,6 +61,8 @@ def compute_evidence_inventory(artifact: Artifact) -> EvidenceInventory:
         trace_count=len(artifact.traces),
         has_exhibits=len(artifact.exhibits) > 0,
         exhibit_count=len(artifact.exhibits),
+        has_contributions=bool(artifact.contributions),
+        contribution_count=len(artifact.contributions),
         has_released_data=any(
             _location_kind(dataset.location) in ("in_artifact", "external")
             for dataset in artifact.datasets

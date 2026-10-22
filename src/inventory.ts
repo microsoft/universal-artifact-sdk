@@ -14,6 +14,8 @@ export interface EvidenceInventory {
   trace_count: number;
   has_exhibits: boolean;
   exhibit_count: number;
+  has_contributions: boolean;
+  contribution_count: number;
   has_released_data: boolean;
   has_paper_source: boolean;
   has_citations_export: boolean;
@@ -47,6 +49,8 @@ export function computeEvidenceInventory(a: Artifact): EvidenceInventory {
     trace_count: a.traces.length,
     has_exhibits: a.exhibits.length > 0,
     exhibit_count: a.exhibits.length,
+    has_contributions: (a.contributions?.length ?? 0) > 0,
+    contribution_count: a.contributions?.length ?? 0,
     has_released_data: hasReleasedData,
     has_paper_source: Boolean(a.paper?.source || a.paper?.claims_export),
     has_citations_export: Boolean(a.paper?.references_export),

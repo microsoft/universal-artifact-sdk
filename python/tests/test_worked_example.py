@@ -192,7 +192,7 @@ class TestWorkedExample:
     def test_stamps_versions_and_computes_the_inventory(self, out_dir: Path) -> None:
         write_submission(build_worked_example(), out_dir, stage_from=TS_FIXTURE_SOURCE)
         manifest = read_yaml(out_dir / "manifest.yml")
-        assert manifest["format_version"] == "evaluable-artifact/v2"
+        assert manifest["format_version"] == "evaluable-artifact/v3"
         assert manifest["sdk_version"] == "artifact-sdk/v1"
         assert "artifact-sdk/v1" in manifest["_generated"]
         inventory = manifest["evidence_inventory"]
@@ -302,7 +302,7 @@ class TestStructuralGatesOnWrite:
 class TestCanonicalSchema:
     def test_the_schema_ships_with_the_package(self) -> None:
         assert canonical_schema_path().is_file()
-        assert canonical_schema_path().name == "evaluable-artifact-v2.schema.json"
+        assert canonical_schema_path().name == "evaluable-artifact-v3.schema.json"
 
     def test_the_worked_example_validates(self, canonical_schema: dict[str, Any]) -> None:
         assert schema_errors(canonical_schema, to_dict(build_worked_example())) == []

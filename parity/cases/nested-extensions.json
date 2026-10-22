@@ -3,7 +3,7 @@
   "name": "nested-extensions",
   "description": "Legal extension keys on nested schema objects survive a write → open cycle in both bindings, and can never shadow a contract field.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-extensions",
     "title": "Nested extension parity",

@@ -2,14 +2,15 @@
  * Object model for the Universal Artifact SDK (artifact-sdk/v1).
  *
  * These types are the in-memory shape a producer builds; `writeSubmission` serializes
- * them into the on-disk `evaluable-artifact/v2` format. Field names track
+ * them into the on-disk `evaluable-artifact/v3` format. Field names track
  * SPEC.md §2–§3 (provisional until schema generation, §11 Q1).
  *
  * The model is vendor-neutral: nothing producer-specific lives here (spec §9).
  */
 
 export const SDK_VERSION = "artifact-sdk/v1";
-export const FORMAT_VERSION = "evaluable-artifact/v2";
+export const FORMAT_VERSION = "evaluable-artifact/v3";
+export const LEGACY_FORMAT_VERSION = "evaluable-artifact/v2";
 
 /** How a claim is validated from evidence (spec §3.1). */
 export type ValidationMode = "re-execute" | "re-analyze" | "inspect" | "attest";
@@ -334,6 +335,70 @@ export interface Claim {
   validators: Validator[];
 }
 
+/** Source-bound paper locator; producer-specific locator keys remain open. */
+export interface ContributionLocator {
+  page?: number | string;
+  section?: string;
+  quote?: string;
+  char_start?: number;
+  char_end?: number;
+  [key: string]: unknown;
+}
+
+export interface ContributionSignificance {
+  problem?: string;
+  beneficiaries?: string;
+  scope?: string;
+  importance?: string;
+  limitations?: string;
+  impact?: "anticipated" | "observed";
+  evidence?: string[];
+  [key: string]: unknown;
+}
+
+export interface ContributionComparison {
+  reference: string;
+  distinction: string;
+  locator?: ContributionLocator;
+  evidence?: string[];
+  [key: string]: unknown;
+}
+
+export interface ContributionCoverage {
+  sources?: string[];
+  uninspected?: string[];
+  cutoff?: string;
+  limitations?: string;
+  [key: string]: unknown;
+}
+
+export interface ContributionOriginality {
+  comparisons?: ContributionComparison[];
+  coverage?: ContributionCoverage;
+  [key: string]: unknown;
+}
+
+export interface ContributionProvenance {
+  kind: "author-declaration" | "paper-extraction" | "reviewer-inference";
+  source?: string;
+  method?: string;
+  locator?: ContributionLocator;
+  [key: string]: unknown;
+}
+
+/** Candidate advance, never an SDK assessment of significance or originality. */
+export interface Contribution {
+  id: string;
+  statement: string;
+  supporting_claims?: string[];
+  type?: string;
+  paper_ref?: ContributionLocator;
+  significance?: ContributionSignificance;
+  originality?: ContributionOriginality;
+  provenance?: ContributionProvenance;
+  [key: string]: unknown;
+}
+
 /** Whole-submission evaluation dimension (spec §2.1.1). Mostly evaluator-written. */
 export interface Assessment {
   id: string;
@@ -390,6 +455,7 @@ export interface JournalTarget {
     | "experiment"
     | "result"
     | "claim"
+    | "contribution"
     | "exhibit"
     | "dataset"
     | "trace"
@@ -456,6 +522,8 @@ export interface Artifact {
   traces: Trace[];
   results: Result[];
   claims: Claim[];
+  /** Optional for compatibility with existing artifact literals. */
+  contributions?: Contribution[];
   /** Typed, captioned evidence artifacts linked to claims (spec §2.3.1). Serialized to `exhibits.yml`. */
   exhibits: Exhibit[];
   assessments: Assessment[];

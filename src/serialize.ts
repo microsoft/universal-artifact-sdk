@@ -1,6 +1,6 @@
 /**
  * Serialization (spec §5): `writeSubmission` turns the in-memory model into the on-disk
- * `evaluable-artifact/v2` layout.
+ * `evaluable-artifact/v3` layout (v2 models migrate at this explicit write boundary).
  *
  * The SDK serializes the **generated** index files (manifest, claims, results, datasets,
  * traces, journal, per-experiment DISPOSITION markers) plus reflection.md — all
@@ -24,12 +24,14 @@ import {
   readdirSync,
   readFileSync,
   statSync,
+  unlinkSync,
   writeFileSync,
 } from "node:fs";
 import { dirname, join, posix, relative, sep } from "node:path";
 import { stringify } from "yaml";
 
-import { Artifact } from "./model.js";
+import { Artifact, FORMAT_VERSION } from "./model.js";
+import { captureContributionSource, contributionHash, contributionWritePlan, resolveReferenceIds } from "./internal/contributions.js";
 import { computeEvidenceInventory } from "./inventory.js";
 import { Issue, StructuralError, validateStructure } from "./validate.js";
 
@@ -109,6 +111,7 @@ function walkFiles(root: string, dir = root, acc: string[] = []): string[] {
 const GENERATED_RESERVED_BLOBS = new Set([
   "manifest.yml",
   "claims.yml",
+  "contributions.yml",
   "results.yml",
   "datasets.yml",
   "exhibits.yml",
@@ -182,8 +185,11 @@ export function writeSubmission(
   outDir: string,
   opts: WriteOptions = {},
 ): SubmissionReport {
-  const report = validateStructure(a);
+  let report = validateStructure(a);
   if (!report.ok) throw new StructuralError(report.errors);
+  report = validateStructure(a, { referenceIds: resolveReferenceIds(a, opts.stageFrom ? [opts.stageFrom, outDir] : [outDir]) });
+  if (!report.ok) throw new StructuralError(report.errors);
+  const contributionPlan = contributionWritePlan(a, outDir);
 
   mkdirSync(outDir, { recursive: true });
   // Two ledgers, split by *nature* of the file (not by whether it was touched
@@ -192,6 +198,7 @@ export function writeSubmission(
   // verbatim (not reconstructable from the model, → authored_files, never clobbered).
   const written: string[] = [];
   const staged: string[] = [];
+  if (contributionPlan.remove) unlinkSync(contributionPlan.path);
 
   // 0. stage producer blobs if a source root was given
   const stageMissing = opts.stageFrom ? stageBlobs(a, outDir, opts.stageFrom, staged) : [];
@@ -211,10 +218,11 @@ export function writeSubmission(
   if (a.exhibits.length > 0) paths.exhibits = "exhibits.yml";
   if (a.assessments.length > 0) paths.assessments = "assessments.yml";
   if (a.journal.length > 0) paths.journal = "journal.yml";
+  if (a.contributions?.length) paths.contributions = "contributions.yml";
 
   const manifest = {
     _generated: GENERATED_MARKER,
-    format_version: a.format_version,
+    format_version: FORMAT_VERSION,
     sdk_version: a.sdk_version,
     id: a.id,
     title: a.title,
@@ -234,6 +242,10 @@ export function writeSubmission(
     yamlDoc({ _generated: GENERATED_MARKER, claims: a.claims }),
     written,
   );
+  if (a.contributions?.length) {
+    writeText(outDir, "contributions.yml", yamlDoc({ _generated: GENERATED_MARKER, contributions: a.contributions }), written);
+    captureContributionSource(a, contributionPlan.path);
+  }
   writeText(
     outDir,
     "results.yml",
@@ -328,6 +340,7 @@ export function writeSubmission(
     _generated: GENERATED_MARKER,
     sdk_version: a.sdk_version,
     generated_files: [...generatedIndex].sort(),
+    generated_hashes: a.contributions?.length ? { "contributions.yml": contributionHash(contributionPlan.path) } : {},
     authored_files: authored,
   };
   writeText(

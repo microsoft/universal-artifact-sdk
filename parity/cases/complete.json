@@ -3,7 +3,7 @@
   "name": "complete-worked-example",
   "description": "Every model collection, every validator kind, every dataset location kind, paper, research agent, reflection and a pre-existing journal, emitted with all blobs staged.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-complete",
     "title": "Complete parity artifact",

@@ -3,7 +3,7 @@
   "name": "attest-gating-on-every-validator-kind",
   "description": "`gated_by` is read off every validator kind, including `attest` (spec §3.5; the canonical schema declares `gated_by` on the shared validator object, not per kind). An attest validator whose `gated_by` is dangling, and one whose target is a non-attest validator on the same claim, are both errors at the validator's own `gated_by` path; an attest validator gated by another attest validator on the same claim is legal and silent. This is a validation-only case: the artifact does not emit, so the reviewed contract is the issue path and severity.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-attest-gating",
     "title": "Attest gating parity",
@@ -60,7 +60,7 @@
     ],
     "warning_paths": [],
     "model": {
-      "format_version": "evaluable-artifact/v2",
+      "format_version": "evaluable-artifact/v3",
       "sdk_version": "artifact-sdk/v1",
       "id": "parity-attest-gating",
       "title": "Attest gating parity",

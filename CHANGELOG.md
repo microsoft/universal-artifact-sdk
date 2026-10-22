@@ -1,13 +1,42 @@
 # Changelog
 
-All notable changes to the npm and Python bindings of `artifact-sdk/v1`, emitting the
-`evaluable-artifact/v2` format.
+All notable changes to the npm and Python bindings of `artifact-sdk/v1`.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/); versions are
-pre-1.0, so minor bumps carry additive, backward-compatible features. The emitted
-**format id (`evaluable-artifact/v2`) is unchanged** across these releases — every
-addition is optional and absence-tolerant, so a submission that uses none of the new
-elements is behaviorally identical to `0.1.0` output.
+pre-1.0. Releases through 0.8 emitted `evaluable-artifact/v2`; 0.9 changes the write
+boundary to v3 while retaining v2 reads. Package versions stay in lockstep.
+
+## [0.9.0-rc.1] — development fork, 2026-10-14
+
+### Added
+- Both bindings declare/edit/get/list/remove optional contributions, with journal target
+  `contribution`, full significance/originality/provenance metadata, open paper locators,
+  many-to-many supporting claims, and preservation of unknown nested extension fields.
+- Canonical `schema/evaluable-artifact-v3.schema.json`, used directly for contribution
+  shape validation in both runtimes. Draft support is a warning; duplicate IDs, malformed
+  fields and dangling known claim/result/bibliography identities are errors. No semantic
+  significance/originality/qualification verdicts are produced.
+- `contributions.yml` via `paths.contributions`, inventory `has_contributions` /
+  `contribution_count`, checksums and hash-guarded generated state. Conservative
+  open snapshots permit intentional editing; external edits cannot be silently
+  overwritten/deleted or resurrected after index removal.
+- Shared declaration/edit/removal/migration fixtures and expanded binding tests for
+  path safety, no-clobber, citations, schema alignment and extension preservation.
+
+### Changed
+- `FORMAT_VERSION` is `evaluable-artifact/v3`. All writes emit v3; v2 can be opened
+  and explicitly migrated by writing, without mutating the caller's version field.
+  Unsupported future versions are rejected. The v2 schema is unchanged.
+- TypeScript freeze lifted for this coordinated development. Unrelated #32 behavior
+  remains deferred.
+- npm version `0.9.0-rc.1`; the matching Python project version uses the same spelling
+  (normalized to `0.9.0rc1` in Python distribution metadata). `jsonschema` is now a Python
+  runtime dependency for contribution schema validation.
+
+### Compatibility warning
+- Already deployed v2 SDK runtimes did not gate every read/write by version; the new
+  stamp cannot retroactively fix them. Upgrade contribution-unaware writers or enforce
+  a host-side version gate before processing v3. This fork has not published upstream.
 
 ## [0.8.0]
 

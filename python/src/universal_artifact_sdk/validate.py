@@ -21,16 +21,20 @@ from .model import (
     CLAIM_STANCES,
     DISPOSITION_STATUSES,
     EXHIBIT_TYPES,
+    FORMAT_VERSION,
+    LEGACY_FORMAT_VERSION,
     VALIDATION_MODES,
     Artifact,
     Claim,
     extension_field,
     pinned_digest,
+    to_dict,
 )
 
 GENERATED_RESERVED_PATHS: tuple[str, ...] = (
     "manifest.yml",
     "claims.yml",
+    "contributions.yml",
     "results.yml",
     "datasets.yml",
     "exhibits.yml",
@@ -719,10 +723,73 @@ def _ids(values: Iterable[Any], key: str) -> set[str]:
     return {getattr(value, key) for value in values}
 
 
-def validate_structure(artifact: Artifact) -> ValidationReport:
+def _check_contributions(
+    artifact: Artifact, reference_ids: Iterable[str] | None,
+    errors: list[Issue], warnings: list[Issue],
+) -> None:
+    from ._contributions import shape_issues
+
+    contributions = to_dict(artifact.contributions)
+    shape_errors = shape_issues(contributions)
+    errors.extend(Issue(path, message) for path, message in shape_errors)
+    if shape_errors:
+        return
+    claims = {c.id for c in artifact.claims}
+    results = {r.id for r in artifact.results}
+    references = set(reference_ids) if reference_ids is not None else None
+    seen: set[str] = set()
+
+    def reference(id: str, path: str) -> None:
+        if references is None:
+            warnings.append(Issue(
+                path, f"bibliography reference '{id}' cannot be resolved "
+                "without a readable references_export"
+            ))
+        elif id not in references:
+            errors.append(Issue(path, f"references unknown bibliography ID '{id}'"))
+
+    def evidence(citations: list[str], path: str) -> None:
+        for i, citation in enumerate(citations):
+            kind, id = citation.split(":", 1)
+            p = f"{path}[{i}]"
+            if kind == "claim" and id not in claims:
+                errors.append(Issue(p, f"references unknown claim '{id}'"))
+            if kind == "result" and id not in results:
+                errors.append(Issue(p, f"references unknown result '{id}'"))
+            if kind == "reference":
+                reference(id, p)
+            if kind == "paper" and not artifact.paper:
+                warnings.append(Issue(p, "paper citation has no declared paper source"))
+
+    for c in contributions:
+        p = f"contribution[{c['id']}]"
+        if c["id"] in seen:
+            errors.append(Issue(f"{p}.id", f"duplicate contribution ID '{c['id']}'"))
+        seen.add(c["id"])
+        if not c.get("supporting_claims"):
+            warnings.append(Issue(
+                f"{p}.supporting_claims", "draft contribution has no supporting claims",
+            ))
+        for id in c.get("supporting_claims", []):
+            if id not in claims:
+                errors.append(Issue(f"{p}.supporting_claims", f"references unknown claim '{id}'"))
+        evidence(c.get("significance", {}).get("evidence", []), f"{p}.significance.evidence")
+        for i, comparison in enumerate(c.get("originality", {}).get("comparisons", [])):
+            cp = f"{p}.originality.comparisons[{i}]"
+            reference(comparison["reference"], f"{cp}.reference")
+            evidence(comparison.get("evidence", []), f"{cp}.evidence")
+
+
+def validate_structure(
+    artifact: Artifact, *, reference_ids: Iterable[str] | None = None
+) -> ValidationReport:
     """Validate an artifact's structure (spec §7). Pure — does not touch disk."""
     errors: list[Issue] = []
     warnings: list[Issue] = []
+    if artifact.format_version not in (FORMAT_VERSION, LEGACY_FORMAT_VERSION):
+        errors.append(Issue(
+            "artifact.format_version", f"unsupported format '{artifact.format_version}'",
+        ))
 
     _check_root(artifact, errors, warnings)
 
@@ -740,6 +807,7 @@ def validate_structure(artifact: Artifact) -> ValidationReport:
         artifact, experiment_slugs, claim_ids, result_ids, exhibit_ids, errors, warnings
     )
     _check_claims(artifact, experiment_slugs, result_ids, errors, warnings)
+    _check_contributions(artifact, reference_ids, errors, warnings)
     _check_assessments(artifact, errors)
     _check_research_agent(artifact, errors)
     _check_generated_path_collisions(artifact, errors)

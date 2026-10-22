@@ -1,0 +1,23 @@
+{
+  "kind": "artifact",
+  "name": "contributions-links",
+  "description": "Duplicate declaration IDs, dangling support and evidence IDs are structural errors; absent support is only a draft warning, never an originality verdict.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v3",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "bad-links",
+    "title": "Bad links",
+    "experiments": [], "datasets": [], "traces": [], "results": [], "claims": [],
+    "exhibits": [], "assessments": [], "journal": [],
+    "contributions": [
+      {"id": "N1", "statement": "Draft"},
+      {"id": "N1", "statement": "Duplicate", "supporting_claims": ["missing"], "significance": {"evidence": ["claim:no", "result:no"]}}
+    ]
+  },
+  "expected": {
+    "ok": false,
+    "error_paths": ["contribution[N1].id", "contribution[N1].supporting_claims", "contribution[N1].significance.evidence[0]", "contribution[N1].significance.evidence[1]"],
+    "warning_paths": ["contribution[N1].supporting_claims"],
+    "schema_valid": true
+  }
+}

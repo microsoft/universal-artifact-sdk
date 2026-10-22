@@ -3,7 +3,7 @@
   "name": "unsafe-paths",
   "description": "Every write-time path guard: escaping, absolute, drive-lettered, whitespace-padded, dot-segmented, root-normalizing, SDK-reserved and .sdk-internal paths, across every producer-declared path field.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-unsafe-paths",
     "title": "Unsafe path parity failures",

@@ -22,7 +22,7 @@ import {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const FIXTURE_SRC = join(here, "fixtures", "source");
-const SCHEMA = join(here, "..", "schema", "evaluable-artifact-v2.schema.json");
+const SCHEMA = join(here, "..", "schema", "evaluable-artifact-v3.schema.json");
 
 const tmpDirs: string[] = [];
 function scratch(): string {
@@ -135,7 +135,7 @@ function buildWorkedExample(): Artifact {
 }
 
 describe("writeSubmission — worked example (Appendix A)", () => {
-  it("emits the evaluable-artifact/v2 on-disk layout", () => {
+  it("emits the evaluable-artifact/v3 on-disk layout", () => {
     const out = scratch();
     const report = writeSubmission(buildWorkedExample(), out, { stageFrom: FIXTURE_SRC });
 
@@ -168,7 +168,7 @@ describe("writeSubmission — worked example (Appendix A)", () => {
     writeSubmission(buildWorkedExample(), out, { stageFrom: FIXTURE_SRC });
     const manifest = parse(readFileSync(join(out, "manifest.yml"), "utf-8"));
 
-    expect(manifest.format_version).toBe("evaluable-artifact/v2");
+    expect(manifest.format_version).toBe("evaluable-artifact/v3");
     expect(manifest.sdk_version).toBe("artifact-sdk/v1");
     expect(manifest._generated).toContain("artifact-sdk/v1");
 

@@ -16,7 +16,7 @@ from typing import Any
 from ruamel.yaml import YAML
 from ruamel.yaml.constructor import SafeConstructor
 
-from .model import FORMAT_VERSION, SDK_VERSION, Artifact, artifact_from_dict
+from .model import FORMAT_VERSION, LEGACY_FORMAT_VERSION, SDK_VERSION, Artifact, artifact_from_dict
 
 _INDEXES = (
     ("datasets", "datasets.yml"),
@@ -94,6 +94,10 @@ def open_submission(directory: str | Path) -> Artifact:
     if not manifest_path.is_file():
         raise FileNotFoundError(f"open_submission: no manifest.yml in {root}")
     manifest = read_yaml(manifest_path)
+    if manifest.get("format_version") and manifest.get("format_version") not in (
+        FORMAT_VERSION, LEGACY_FORMAT_VERSION,
+    ):
+        raise ValueError(f"open_submission: unsupported format '{manifest.get('format_version')}'")
     declared_paths = manifest.get("paths")
     paths: dict[str, Any] = declared_paths if isinstance(declared_paths, dict) else {}
 
@@ -133,4 +137,18 @@ def open_submission(directory: str | Path) -> Artifact:
         with reflection.open("r", encoding="utf-8", newline="") as handle:
             data["reflection"] = handle.read()
 
-    return artifact_from_dict(data)
+    from ._contributions import capture_source, safe_index_path
+
+    contribution_path = None
+    if "contributions" in paths:
+        contribution_path = safe_index_path(root, paths["contributions"])
+        if not contribution_path.is_file():
+            raise ValueError("open_submission: declared contributions index is missing")
+        document = read_yaml(contribution_path)
+        if not isinstance(document.get("contributions"), list):
+            raise ValueError("open_submission: contributions must be an array")
+        data["contributions"] = document["contributions"]
+    artifact = artifact_from_dict(data)
+    if contribution_path is not None:
+        capture_source(artifact, contribution_path)
+    return artifact

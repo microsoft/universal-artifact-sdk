@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "universal-artifact-sdk"
-version = "0.8.0"
+version = "0.9.0-rc.1"
 description = "Vendor-neutral Python SDK for authoring evaluable research artifacts."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,16 +23,16 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
   "Typing :: Typed",
 ]
-dependencies = ["ruamel.yaml>=0.18,<0.20"]
+dependencies = ["ruamel.yaml>=0.18,<0.20", "jsonschema>=4.23"]
 
 [project.optional-dependencies]
 dev = [
   "build>=1.2",
-  "jsonschema>=4.23",
   "mypy>=1.13",
   "pytest>=8.3",
   "ruff>=0.8",
   "twine>=6.0",
+  "types-jsonschema>=4.23",
 ]
 
 [project.urls]
@@ -48,6 +48,7 @@ include = [
   "/python/src/universal_artifact_sdk",
   "/python/examples",
   "/schema/evaluable-artifact-v2.schema.json",
+  "/schema/evaluable-artifact-v3.schema.json",
   "/README.md",
   "/SPEC.md",
   "/CHANGELOG.md",
@@ -57,10 +58,12 @@ exclude = ["/node_modules", "/dist", "/dist-python", "/coverage"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "schema/evaluable-artifact-v2.schema.json" = "universal_artifact_sdk/schema/evaluable-artifact-v2.schema.json"
+"schema/evaluable-artifact-v3.schema.json" = "universal_artifact_sdk/schema/evaluable-artifact-v3.schema.json"
 "python/examples/quickstart.py" = "universal_artifact_sdk/examples/quickstart.py"
 
 [tool.hatch.build.targets.sdist.force-include]
 "schema/evaluable-artifact-v2.schema.json" = "schema/evaluable-artifact-v2.schema.json"
+"schema/evaluable-artifact-v3.schema.json" = "schema/evaluable-artifact-v3.schema.json"
 
 [tool.pytest.ini_options]
 testpaths = ["python/tests"]

@@ -27,8 +27,9 @@ from typing import Any
 from ruamel.yaml import YAML
 from ruamel.yaml.representer import SafeRepresenter
 
+from ._contributions import capture_source, file_hash, resolve_reference_ids, write_plan
 from .inventory import compute_evidence_inventory
-from .model import Artifact, to_dict
+from .model import FORMAT_VERSION, Artifact, to_dict
 from .validate import GENERATED_RESERVED_PATHS, Issue, StructuralError, validate_structure
 
 GENERATED_MARKER = "artifact-sdk/v1 (universal-artifact-sdk) — do not edit; regenerate"
@@ -268,7 +269,7 @@ def _index_document(key: str, values: Iterable[Any]) -> str:
 def _build_manifest(artifact: Artifact, paths: dict[str, str]) -> dict[str, Any]:
     manifest: dict[str, Any] = {
         "_generated": GENERATED_MARKER,
-        "format_version": artifact.format_version,
+        "format_version": FORMAT_VERSION,
         "sdk_version": artifact.sdk_version,
         "id": artifact.id,
         "title": artifact.title,
@@ -312,6 +313,13 @@ def write_submission(
         raise StructuralError(report.errors)
 
     root = Path(out_dir)
+    references = resolve_reference_ids(
+        artifact, [Path(resolved.stage_from), root] if resolved.stage_from is not None else [root]
+    )
+    report = validate_structure(artifact, reference_ids=references)
+    if not report.ok:
+        raise StructuralError(report.errors)
+    contribution_path, remove_index = write_plan(artifact, root)
     root.mkdir(parents=True, exist_ok=True)
 
     # Two ledgers, split by the *nature* of the file rather than by what this run touched:
@@ -319,6 +327,8 @@ def write_submission(
     # holds producer blobs copied in verbatim (→ authored_files, never clobbered).
     written: list[str] = []
     staged: list[str] = []
+    if remove_index:
+        contribution_path.unlink()
 
     # 0. stage producer blobs if a source root was given
     stage_missing = (
@@ -345,11 +355,19 @@ def write_submission(
         paths["assessments"] = "assessments.yml"
     if artifact.journal:
         paths["journal"] = "journal.yml"
+    if artifact.contributions:
+        paths["contributions"] = "contributions.yml"
 
     _write_text(root, "manifest.yml", yaml_document(_build_manifest(artifact, paths)), written)
     _write_text(root, "claims.yml", _index_document("claims", artifact.claims), written)
     _write_text(root, "results.yml", _index_document("results", artifact.results), written)
     _write_text(root, "datasets.yml", _index_document("datasets", artifact.datasets), written)
+    if artifact.contributions:
+        _write_text(
+            root, "contributions.yml",
+            _index_document("contributions", artifact.contributions), written,
+        )
+        capture_source(artifact, contribution_path)
     for filename, key, values in (
         ("exhibits.yml", "exhibits", artifact.exhibits),
         ("traces.yml", "traces", artifact.traces),
@@ -386,6 +404,8 @@ def write_submission(
         "_generated": GENERATED_MARKER,
         "sdk_version": artifact.sdk_version,
         "generated_files": sorted(generated),
+        "generated_hashes": {"contributions.yml": file_hash(contribution_path)}
+        if artifact.contributions else {},
         "authored_files": authored,
     }
     _write_text(

@@ -1,0 +1,81 @@
+{
+  "kind": "artifact",
+  "name": "contributions-complete",
+  "description": "Full v3 declaration contract, many-to-many support, more contributions than claims, open locators and nested extension/null preservation, cross-binding write/open/rewrite.",
+  "artifact": {
+    "format_version": "evaluable-artifact/v3",
+    "sdk_version": "artifact-sdk/v1",
+    "id": "contribution-parity",
+    "title": "Candidate advances",
+    "experiments": [],
+    "datasets": [],
+    "traces": [],
+    "exhibits": [],
+    "assessments": [],
+    "journal": [],
+    "paper": {"pdf": "paper.pdf", "references_export": "paper_references.yml"},
+    "claims": [
+      {"id": "C1", "statement": "An honestly tested hypothesis", "stance": "hypothesis", "validators": []},
+      {"id": "unassigned", "statement": "A separate observation", "stance": "hypothesis", "validators": []}
+    ],
+    "results": [{"id": "R1", "validates": ["C1"], "kind": "metrics", "evidence": "results/out.csv"}],
+    "contributions": [
+      {
+        "id": "contribution-12345678-1234-5678-1234-123456789abc",
+        "statement": "An advance for a narrow but important problem",
+        "supporting_claims": ["C1"],
+        "type": "method",
+        "paper_ref": {"page": 3, "section": "2", "quote": "an advance", "char_start": 10, "char_end": 20, "x_region": {"box": [1, 2]}},
+        "significance": {
+          "problem": "Rare failure",
+          "beneficiaries": "A small research community",
+          "scope": "Narrow",
+          "importance": "High cost of failure",
+          "limitations": "Only one setting",
+          "impact": "anticipated",
+          "evidence": ["claim:C1", "result:R1", "reference:smith2020", "paper:section=2"],
+          "x_confidence": {"value": null}
+        },
+        "originality": {
+          "comparisons": [{
+            "reference": "smith2020",
+            "distinction": "Changes the intervention, not merely the benchmark",
+            "locator": {"page": "ii", "quote": "related intervention", "x_offset": 42},
+            "evidence": ["reference:smith2020", "paper:page=3"],
+            "x_note": {"retained": true}
+          }],
+          "coverage": {
+            "sources": ["bibliography", "manual search"],
+            "uninspected": ["non-English archive"],
+            "cutoff": "2026-10-14",
+            "limitations": "Not a comprehensive novelty search",
+            "x_search": {"query": "intervention"}
+          },
+          "x_scope": "bounded"
+        },
+        "provenance": {
+          "kind": "author-declaration",
+          "source": "paper.pdf",
+          "method": "manual",
+          "locator": {"section": "Contributions", "quote": "we contribute", "x_span": [2, 7]},
+          "x_actor": "author"
+        },
+        "x_extension": {"nested": ["yes", null, {"keep": null}]},
+        "extra": {"literal_unknown_key": true}
+      },
+      {"id": "N2", "statement": "A second candidate", "supporting_claims": ["C1"]},
+      {"id": "N3", "statement": "A third candidate", "supporting_claims": ["C1"]}
+    ]
+  },
+  "write": {"stage_from": "fixtures"},
+  "expected": {
+    "ok": true,
+    "error_paths": [],
+    "warning_paths": [
+      "contribution[contribution-12345678-1234-5678-1234-123456789abc].significance.evidence[2]",
+      "contribution[contribution-12345678-1234-5678-1234-123456789abc].originality.comparisons[0].reference",
+      "contribution[contribution-12345678-1234-5678-1234-123456789abc].originality.comparisons[0].evidence[0]"
+    ],
+    "schema_valid": true
+  }
+}

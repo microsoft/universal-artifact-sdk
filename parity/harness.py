@@ -35,6 +35,7 @@ from universal_artifact_sdk import (
     abandon_experiment,
     add_assessment,
     add_claim,
+    add_contribution,
     add_dataset,
     add_environment,
     add_exhibit,
@@ -53,6 +54,7 @@ from universal_artifact_sdk import (
     fail_experiment,
     get_assessment,
     get_claim,
+    get_contribution,
     get_dataset,
     get_exhibit,
     get_experiment,
@@ -61,6 +63,7 @@ from universal_artifact_sdk import (
     list_abandoned_experiments,
     list_assessments,
     list_claims,
+    list_contributions,
     list_datasets,
     list_exhibits,
     list_experiments,
@@ -73,6 +76,7 @@ from universal_artifact_sdk import (
     read_yaml,
     remove_assessment,
     remove_claim,
+    remove_contribution,
     remove_dataset,
     remove_exhibit,
     remove_experiment,
@@ -96,6 +100,7 @@ NULL_PLACEHOLDER = "<null>"
 _INDEX_DOCUMENTS = (
     "manifest.yml",
     "claims.yml",
+    "contributions.yml",
     "results.yml",
     "datasets.yml",
     "exhibits.yml",
@@ -226,7 +231,10 @@ def observe_report(report: Any) -> dict[str, Any]:
 
 def observe_schema(artifact_data: dict[str, Any]) -> dict[str, Any]:
     """Validate raw case data against the canonical draft-07 schema (§6.1)."""
-    schema = json.loads(canonical_schema_path().read_text(encoding="utf-8"))
+    path = canonical_schema_path()
+    if artifact_data.get("format_version") == "evaluable-artifact/v2":
+        path = path.with_name("evaluable-artifact-v2.schema.json")
+    schema = json.loads(path.read_text(encoding="utf-8"))
     errors = list(Draft7Validator(schema).iter_errors(artifact_data))
     paths = sorted(
         {"/" + "/".join(str(part) for part in error.absolute_path) for error in errors}
@@ -422,6 +430,16 @@ def _operations() -> dict[str, Callable[[_Session, dict[str, Any], dict[str, Any
         ),
         "add_claim": lambda s, a, st: normalize(
             to_dict(add_claim(s.current, _claim_input(a), ctx=_context(st)))
+        ),
+        "add_contribution": lambda s, a, st: normalize(
+            to_dict(add_contribution(s.current, _element("contributions", a), ctx=_context(st)))
+        ),
+        "get_contribution": lambda s, a, st: normalize(
+            to_dict(get_contribution(s.current, a["id"]))
+        ),
+        "list_contributions": lambda s, a, st: normalize(to_dict(list_contributions(s.current))),
+        "remove_contribution": lambda s, a, st: remove_contribution(
+            s.current, a["id"], ctx=_context(st)
         ),
         "add_assessment": lambda s, a, st: normalize(
             to_dict(add_assessment(s.current, _element("assessments", a), ctx=_context(st)))

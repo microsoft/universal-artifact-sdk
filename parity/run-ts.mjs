@@ -32,6 +32,7 @@ import {
   abandonExperiment,
   addAssessment,
   addClaim,
+  addContribution,
   addDataset,
   addEnvironment,
   addExhibit,
@@ -48,6 +49,7 @@ import {
   failExperiment,
   getAssessment,
   getClaim,
+  getContribution,
   getDataset,
   getExhibit,
   getExperiment,
@@ -56,6 +58,7 @@ import {
   listAbandonedExperiments,
   listAssessments,
   listClaims,
+  listContributions,
   listDatasets,
   listExhibits,
   listExperiments,
@@ -67,6 +70,7 @@ import {
   purgeExperiment,
   removeAssessment,
   removeClaim,
+  removeContribution,
   removeDataset,
   removeExhibit,
   removeExperiment,
@@ -90,6 +94,7 @@ const NULL_PLACEHOLDER = "<null>";
 const INDEX_DOCUMENTS = [
   "manifest.yml",
   "claims.yml",
+  "contributions.yml",
   "results.yml",
   "datasets.yml",
   "exhibits.yml",
@@ -255,7 +260,7 @@ function observeReport(report) {
 /** Validate raw case data against the canonical draft-07 schema (§6.1). */
 function observeSchema(artifactData) {
   const schema = JSON.parse(
-    readFileSync(join(PARITY_ROOT, "..", "schema", "evaluable-artifact-v2.schema.json"), "utf-8"),
+    readFileSync(join(PARITY_ROOT, "..", "schema", `evaluable-artifact-${artifactData.format_version === "evaluable-artifact/v2" ? "v2" : "v3"}.schema.json`), "utf-8"),
   );
   const ajv = new Ajv({ strict: false, allErrors: true });
   const validate = ajv.compile(schema);
@@ -344,6 +349,10 @@ function makeOperations(session) {
     add_result: (args, step) => normalize(addResult(current(), args, context(step))),
     add_exhibit: (args, step) => normalize(addExhibit(current(), args, context(step))),
     add_claim: (args, step) => normalize(addClaim(current(), args, context(step))),
+    add_contribution: (args, step) => normalize(addContribution(current(), args, context(step))),
+    get_contribution: (args) => normalize(getContribution(current(), args.id)),
+    list_contributions: () => normalize(listContributions(current())),
+    remove_contribution: (args, step) => removeContribution(current(), args.id, context(step)),
     add_assessment: (args, step) => normalize(addAssessment(current(), args, context(step))),
     attach_paper: (args, step) => normalize(attachPaper(current(), args, context(step))),
     attach_research_agent: (args, step) =>

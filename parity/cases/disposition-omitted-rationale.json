@@ -3,7 +3,7 @@
   "name": "disposition-omitted-rationale",
   "description": "A non-active disposition may omit `rationale` entirely (spec §2.2.2): absence is warned about, never repaired. An omitted rationale must stay omitted in the emitted manifest and in the reopened model — no binding may inject an empty string — while an explicitly empty rationale stays an empty string. Both spellings render the same `_(no rationale recorded)_` marker. The canonical schema requires `rationale`, so this also records a reviewed schema/runtime divergence (issue #32): the runtimes warn where the schema rejects.",
   "artifact": {
-    "format_version": "evaluable-artifact/v2",
+    "format_version": "evaluable-artifact/v3",
     "sdk_version": "artifact-sdk/v1",
     "id": "parity-disposition",
     "title": "Disposition rationale parity",
@@ -85,7 +85,7 @@
       }
     },
     "model": {
-      "format_version": "evaluable-artifact/v2",
+      "format_version": "evaluable-artifact/v3",
       "sdk_version": "artifact-sdk/v1",
       "id": "parity-disposition",
       "title": "Disposition rationale parity",
@@ -114,7 +114,7 @@
       ]
     },
     "reopened": {
-      "format_version": "evaluable-artifact/v2",
+      "format_version": "evaluable-artifact/v3",
       "sdk_version": "artifact-sdk/v1",
       "id": "parity-disposition",
       "title": "Disposition rationale parity",

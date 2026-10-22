@@ -291,7 +291,7 @@
     "model": {
       "id": "journal",
       "title": "Journal parity",
-      "format_version": "evaluable-artifact/v2",
+      "format_version": "evaluable-artifact/v3",
       "sdk_version": "artifact-sdk/v1",
       "experiments": [
         {

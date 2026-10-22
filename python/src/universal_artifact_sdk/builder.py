@@ -25,6 +25,7 @@ from .model import (
     Assessment,
     ChangeContext,
     Claim,
+    Contribution,
     Dataset,
     Disposition,
     Environment,
@@ -46,6 +47,31 @@ T = TypeVar("T")
 
 _ALWAYS_REQUIRE_RATIONALE = True
 """Dropping a tried experiment always requires a rationale, whatever the policy."""
+
+
+def add_contribution(
+    artifact: Artifact, contribution: Contribution, *, ctx: ChangeContext | None = None
+) -> Contribution:
+    """Create or replace a contribution by its full producer-owned ID."""
+    return _add_element(
+        artifact, artifact.contributions, contribution, lambda c: c.id, "contribution", ctx
+    )
+
+
+def remove_contribution(
+    artifact: Artifact, id: str, *, ctx: ChangeContext | None = None
+) -> bool:
+    return _remove_element(
+        artifact, artifact.contributions, id, lambda c: c.id, "contribution", ctx
+    )
+
+
+def get_contribution(artifact: Artifact, id: str) -> Contribution | None:
+    return next((c for c in artifact.contributions if c.id == id), None)
+
+
+def list_contributions(artifact: Artifact) -> list[Contribution]:
+    return list(artifact.contributions)
 
 
 def create_artifact(
