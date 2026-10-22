@@ -33,6 +33,10 @@ boundary to v3 while retaining v2 reads. Package versions stay in lockstep.
   (normalized to `0.9.0rc1` in Python distribution metadata). `jsonschema` is now a Python
   runtime dependency for contribution schema validation.
 
+### Security
+- Both bindings check and read `paper.references_export` through a single open file
+  descriptor, so the file cannot be swapped between the check and the read.
+
 ### Compatibility warning
 - Already deployed v2 SDK runtimes did not gate every read/write by version; the new
   stamp cannot retroactively fix them. Upgrade contribution-unaware writers or enforce

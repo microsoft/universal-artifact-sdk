@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
+import stat
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -176,11 +178,19 @@ def resolve_reference_ids(artifact: Artifact, roots: list[Path]) -> list[str] | 
         return None
     for root in roots:
         path = root / relative
-        if path.is_file():
+        try:
+            handle = path.open("rb")
+        except (FileNotFoundError, IsADirectoryError, NotADirectoryError):
+            continue
+        except OSError:
+            return None
+        with handle:
             try:
-                return reference_ids_from_text(
-                    path.read_text(encoding="utf-8"), relative.lower().endswith(".bib")
-                )
+                # Check and read the same descriptor so the file cannot change in between.
+                if not stat.S_ISREG(os.fstat(handle.fileno()).st_mode):
+                    continue
+                text = handle.read().decode("utf-8")
             except (OSError, UnicodeError):
                 return None
+        return reference_ids_from_text(text, relative.lower().endswith(".bib"))
     return None
