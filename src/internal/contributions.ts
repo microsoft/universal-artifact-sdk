@@ -3,7 +3,7 @@
  * Existing indexes keep their legacy behavior; this boundary must never lose authored edits.
  */
 import { createHash } from "node:crypto";
-import { existsSync, lstatSync, readFileSync, statSync } from "node:fs";
+import { closeSync, existsSync, fstatSync, lstatSync, openSync, readFileSync } from "node:fs";
 import { isAbsolute, join, resolve } from "node:path";
 import { Ajv } from "ajv";
 import { parse } from "yaml";
@@ -149,11 +149,18 @@ export function resolveReferenceIds(a: Artifact, roots: string[]): string[] | un
   // validateStructure checks this blob path before this helper is called.
   for (const root of roots) {
     const path = join(root, rel);
+    let fd: number;
     try {
-      if (existsSync(path) && statSync(path).isFile()) {
-        return referenceIdsFromText(readFileSync(path, "utf-8"), /\.bib$/i.test(rel));
-      }
-    } catch { return undefined; }
+      fd = openSync(path, "r");
+    } catch (err) {
+      if ((err as NodeJS.ErrnoException).code === "ENOENT") continue;
+      return undefined;
+    }
+    try {
+      // Check and read the same descriptor so the file cannot change in between.
+      if (!fstatSync(fd).isFile()) continue;
+      return referenceIdsFromText(readFileSync(fd, "utf-8"), /\.bib$/i.test(rel));
+    } catch { return undefined; } finally { closeSync(fd); }
   }
   return undefined;
 }
