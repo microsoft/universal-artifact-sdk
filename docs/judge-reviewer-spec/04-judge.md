@@ -433,11 +433,11 @@ Contribution diagnostics (§4.5.7) are not findings and never move the rubric.
 mode verdict is `re-executed`; otherwise `from released data`. Per-finding badges (§4.2) are
 set as defined there and are independent of the rubric.
 
-**Relation to the SDK's worked example.** The SDK's Appendix A says a deterministic builtin over
-shipped evidence yields `re-analyzed`, and that an inspect validator can reach
-`evidence-supported`. This specification is deliberately stricter (I7, I8): the tool did not
-re-analyze anything itself, so the result is `evidence-supported`, and model-based inspection is
-advisory. A tool conforming to this specification follows §4.1 and §4.5.2.
+**Relation to the SDK's worked example.** The SDK's Appendix A applies the same rule: a
+deterministic builtin over shipped evidence is `evidence-supported`, and becomes `re-analyzed` only
+when the tool recomputes the numbers itself. The SDK caps inspection at `evidence-supported`; this
+specification is stricter (I8) and keeps model-based inspection advisory, with no mode verdict. A
+tool conforming to this specification follows §4.1 and §4.5.2.
 
 ## 4.8 Badge profile (ACM-compatible, S1)
 

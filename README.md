@@ -282,7 +282,8 @@ inventory + `SHA256SUMS` + `.sdk/state.json`), structural validation, and `openS
 
 The canonical [v3 JSON Schema](schema/evaluable-artifact-v3.schema.json) is authored here and the
 emitted model is tested against it. The SDK only *declares* validators; *executing* them is the job
-of a downstream evaluator.
+of a downstream evaluator, whose behavior is specified in the
+[artifact judge and reviewer specification](docs/judge-reviewer-spec/README.md).
 
 ## Related work
 

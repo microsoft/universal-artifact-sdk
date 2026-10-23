@@ -1244,9 +1244,12 @@ separation invariant.
 
 ## 10. Review side (deferred bindings)
 
-The **review** half is a downstream evaluator; v3 support is a coordinated consumer milestone. **Review-side bindings
-are deferred** — for now the evaluator is invoked as today (Python / CLI). When we do add producer-facing
-review access, it reuses this spec's schema for the findings/verdicts shapes.
+The **review** half is a downstream evaluator. Its behavior — the paper adapter, the deterministic
+judge, the advisory reviewer, run output, and conformance scenarios — is specified separately in the
+[artifact judge and reviewer specification](docs/judge-reviewer-spec/README.md)
+(`artifact-judge-reviewer/v1`), which consumes `evaluable-artifact/v3` as defined here. **Review-side
+bindings are deferred**: this SDK does not call an evaluator. When producer-facing review access is
+added, it reuses that specification's findings and verdict shapes.
 
 ---
 
@@ -1342,9 +1345,10 @@ writeSubmission(a, "./out")     # → ./out/{manifest.yml (+evidence_inventory),
 ```
 
 The evaluator then reads `./out` (as `evaluable-artifact/v3`): it runs the `monotonic` validator over
-`R1` (mode `re-analyze`, deterministic → `re-analyzed`); for `C7` it runs `v_attest` first and, only
-if provenance attests, the `v_inspect` rubric (mode `inspect`, advisory → `evidence-supported`, human
-final); it re-derives `T1`'s terminal state and flags any disagreement (Trace-Report Faithfulness);
+`R1` (mode `re-analyze`). Checked against the shipped `R1` evidence, a pass is `evidence-supported`;
+it becomes `re-analyzed` only when the evaluator itself recomputes `R1` from the released data. For
+`C7` it runs `v_attest` first and, only if provenance attests, the `v_inspect` rubric (mode
+`inspect`; advisory, never above `evidence-supported`, human final); it re-derives `T1`'s terminal state and flags any disagreement (Trace-Report Faithfulness);
 and any dimension whose evidence is absent (e.g. citation integrity if `paper_references.yml` were
 missing) is reported as `unassessable` — a coverage note, not a failure. All verdicts reconcile `C1`
 and `C7` against the paper's claims (D8) and roll up to the dashboard.
