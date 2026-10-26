@@ -250,9 +250,10 @@ heading is the section `front`.
 
 **Section labels.** The *label* of a section is derived from its heading's title: strip a
 leading section number, surrounding punctuation, and LaTeX commands, *collapse* whitespace, and
-lowercase. If the result (or, for a markup heading, its first component before ` and `, `&`, or
-`,`) is in the table, the label is the table's canonical label; otherwise the label is the
-lowercased title itself (so `5 DISCUSSION` is labelled `discussion`).
+lowercase. If the result (or its first component before ` and `, `&`, or `,`) is in the table,
+the label is the table's canonical label; otherwise the label is the lowercased title itself (so
+`5 DISCUSSION` is labelled `discussion`, and `1 INTRODUCTION & RELATED WORK` is labelled
+`introduction`).
 
 | Title (case-insensitive; reference list) | Label |
 |------------------------------------------|-------|
