@@ -20,7 +20,7 @@ experiments to qualitative studies, analyses, proofs, and systems or design work
 **producer side only**; it does not review, score, badge, or issue verdicts.
 
 **Learn more:** read the project [`MOTIVATION.md`](MOTIVATION.md) and
-[`SPEC.md`](SPEC.md); see the [ACM Artifact Review and Badging
+[`SPEC.md`](SPEC.md), or skim the [overview slides](docs/presentations/overview/slides.pdf); see the [ACM Artifact Review and Badging
 policy](https://www.acm.org/publications/policies/artifact-review-and-badging-current) and
 [NISO reproducibility terminology](https://www.niso.org/standards-committees/reproducibility-badging)
 for the evaluation context. Related research includes
