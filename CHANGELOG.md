@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/); versions are
 pre-1.0. Releases through 0.8 emitted `evaluable-artifact/v2`; 0.9 changes the write
 boundary to v3 while retaining v2 reads. Package versions stay in lockstep.
 
+## [Unreleased]
+
+### Changed
+- The npm package requires Node.js 22 or later (`engines.node` `>=22`); Node.js 20 reached
+  end of life in April 2026. CI tests Node.js 22 and 24.
+- Development: vitest and `@vitest/coverage-v8` 5.0.3; Dependabot updates the vitest
+  packages together.
+
 ## [0.9.0-rc.1] — development fork, 2026-10-14
 
 ### Added
