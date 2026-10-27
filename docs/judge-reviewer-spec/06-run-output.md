@@ -238,7 +238,7 @@ judge-only run, `configuration` is `{"venue": null, "area": null, "methodology":
   "findings": [ { "…": "§4.2" } ],
   "warnings": ["…"],
   "contribution_diagnostics": [
-    { "path": "contributions[0].supporting_claims", "message": "claim support not declared", "severity": "warning" }
+    { "path": "contributions[0].supporting_claims", "message": "claim support not declared or inferred", "severity": "warning" }
   ],
   "reference_check": { "…": "§6.6.2, or null" }
 }
@@ -318,8 +318,10 @@ Consumers:
 - For contribution reviews (`contributions.json`, `run.json.contribution_review`,
   `run.json.paper_contribution_review`): MUST present the three axes separately and MUST NOT
   combine them into a score, rank, or vote; MUST treat `human_qualification: null` as "not yet
-  qualified by a human", never as a negative; MUST label reviewer-inferred claim links
-  (`link_basis: inferred`) as the reviewer's, not the authors'; MUST NOT treat `display` text as
+  qualified by a human", never as a negative; MUST read `link_basis` with all four values
+  (`declared`, `inferred`, `mixed`, `none`) and MUST label inferred claim links (`inferred` or
+  `mixed`) as inferred by the tool named in `provenance.claim_link_sources` (§5.13.2), never as
+  the authors'; MUST NOT treat `display` text as
   evidence; and MUST NOT read a missing or empty candidate list as absence of contributions.
   `contributions.json` is bound by the seal like every other output (it is in `outputs`, and its
   content is repeated in the hashed `run.json`); a consumer SHOULD check that the two agree.

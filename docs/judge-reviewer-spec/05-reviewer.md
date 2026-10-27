@@ -627,14 +627,33 @@ These limits are reference values (non-normative).
 
 - **Source-extracted candidates** are **replaced** by the validated items: `id` =
   `contribution/<sha256 of the whitespace-collapsed quote>`, `statement` = that collapsed quote,
-  `paper_ref` = `{quote, char_start, char_end}` (the exact span), `supporting_claims` = the union
-  of the covered candidates' `supporting_claims`, and `provenance` = `{kind:
-  reviewer-inference, method, derived_from: [candidate ids], locator}`. Two items quoting the
-  same span fail validation.
+  `paper_ref` = `{quote, char_start, char_end}` (the exact span), claim links as below, and
+  `provenance` = `{kind: reviewer-inference, method, derived_from: [candidate ids], locator}`.
+  Two items quoting the same span fail validation.
 - **Declared candidates** are **never replaced, merged, split, or reordered**. The digest must
   return exactly one item per declaration and may only add `display` text and **inferred** claim
-  links (`inferred_supporting_claims`, excluding claims already declared, with
-  `provenance.claim_links` recording `reviewer-inference`).
+  links (below).
+- **Claim links (both branches).** For every candidate row the digest emits (a declaration, or
+  an item that replaces one or more extracted candidates), with *covered candidates* being the
+  declaration itself or the candidates the item replaces:
+  1. `supporting_claims` = the stable union of the covered candidates' `supporting_claims`.
+  2. `inferred_supporting_claims` = the stable union of the covered candidates' existing
+     `inferred_supporting_claims` (for example, links the paper adapter added, §3.7), followed
+     by the item's `claim_ids`; minus the IDs in step 1; without duplicates. Omit the key when
+     the list is empty.
+  3. `provenance.claim_link_sources` = the covered candidates' `claim_link_sources` records in
+     order, followed by one record `{kind: reviewer-inference, method: contribution-digest/v1,
+     model, claims}` whose `claims` lists only the claims the digest added in step 2 (IDs
+     already present before step 2 are not repeated). The record is omitted when the digest
+     added no claim.
+
+  A failed or not-run digest copies every candidate unchanged, so existing links never depend
+  on the digest's success.
+- **Earlier record shape.** Runs made under an earlier revision of this specification wrote a
+  single object `provenance.claim_links` (always the reviewer digest) instead of
+  `claim_link_sources`. Readers treat such an object as a one-record `claim_link_sources` with
+  `kind` `reviewer-inference` whose `claims` are all of the candidate's
+  `inferred_supporting_claims`. New output writes only `claim_link_sources`.
 - Every candidate gets `display: {title, summary, source}`. `source` is
   `contribution-digest/v1`, or `deterministic-split` when the digest did not complete: then the
   title is the text before a leading `Title:` colon in the statement (if any) and the summary is
@@ -669,11 +688,13 @@ criterion:
 Per axis, `status` is `contested` if any selected finding is a `concern`; else `supported` if
 any is a `strength`; else `unresolved` if any finding was selected; else `unassessed`. Then:
 
-- **`claim_support`** records `link_basis`: `declared` (the candidate has `supporting_claims`),
-  else `inferred` (it has reviewer-inferred `inferred_supporting_claims`, §5.13.2), else `none`;
-  and `linked_claims`. With `link_basis: none` the status is forced to `unresolved`, because
-  support cannot be traced. Inferred links are always labeled as the reviewer's, not the
-  authors'.
+- **`claim_support`** records `declared_claims` (the candidate's `supporting_claims`),
+  `inferred_claims` (its `inferred_supporting_claims`, §5.13.2), `linked_claims` (their stable
+  union, declared first), and `link_basis`: `declared` when only declared claims exist,
+  `inferred` when only inferred claims exist, `mixed` when both exist, and `none` when neither
+  does. With `link_basis: none` the status is forced to `unresolved`, because support cannot be
+  traced. Specialists see every linked claim, each marked declared or inferred. Inferred links
+  are always attributed to the tool that inferred them (§5.13.5) and never to the authors.
 - **`originality`** is judged only against the **authors' stated position** (§5.13.1) and
   records `basis: "author-statements-only"` and `author_statement_ids`. Because no prior work
   was inspected, a `supported` result is downgraded to `unresolved`. Originality may be
@@ -699,13 +720,18 @@ generated) and sealed with the other outputs (§6.2, §6.7):
   "scope": "artifact-informed",
   "status": "assessed",
   "declarations": [ { "id": "N1", "statement": "…", "supporting_claims": ["C1"],
+                      "inferred_supporting_claims": ["C2"],
+                      "provenance": { "kind": "author-declaration",
+                        "claim_link_sources": [ { "kind": "reviewer-inference", "method": "contribution-digest/v1",
+                                                  "model": "<opaque>", "claims": ["C2"] } ] },
                       "display": { "title": "…", "summary": "…", "source": "contribution-digest/v1" } } ],
   "claims": [ "… the artifact's claims …" ],
   "results": [ "… the artifact's results …" ],
   "assessments": [
     { "contribution_id": "N1", "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
-      "claim_support": { "status": "supported", "link_basis": "declared", "linked_claims": ["C1"],
+      "claim_support": { "status": "supported", "link_basis": "mixed",
+                         "declared_claims": ["C1"], "inferred_claims": ["C2"], "linked_claims": ["C1", "C2"],
                          "reasoning": "…", "points": ["…"], "finding_ids": ["…"], "evidence": ["…"], "disagreement": false },
       "significance":  { "status": "unassessed", "reasoning": "…", "points": [], "finding_ids": [], "evidence": [], "disagreement": false },
       "originality":   { "status": "unresolved", "basis": "author-statements-only", "author_statement_ids": ["<sha256>"],
@@ -718,7 +744,7 @@ generated) and sealed with the other outputs (§6.2, §6.7):
                 "prior_work": "author statements in the submitted paper only; cited works were not read",
                 "qualification": "human-owned; no automated qualification" },
   "graph": { "contribution_count": 1, "claim_count": 3, "support_edge_count": 1,
-             "unassigned_claims": ["C2", "C3"], "inferred_edge_count": 0, "unlinked_claims": ["C2", "C3"] },
+             "unassigned_claims": ["C2", "C3"], "inferred_edge_count": 1, "unlinked_claims": ["C3"] },
   "digest": { "status": "completed", "method": "contribution-digest/v1", "model": "<opaque>",
               "extracted_candidates": [ "…" ], "errors": [] }
 }
@@ -734,8 +760,9 @@ generated) and sealed with the other outputs (§6.2, §6.7):
 - `diagnostics` are the contribution diagnostics of §4.5.7 recomputed over the reviewed
   candidates, **whatever their source**, together with any diagnostics recorded when a declared
   `contributions.yml` was loaded; deduplicated, and sorted by (`path`, `message`). Extracted
-  candidates are diagnosed like declarations: one whose `supporting_claims` is empty yields the
-  `…supporting_claims` warning "claim support not declared" (§4.5.7). That warning is
+  candidates are diagnosed like declarations: one whose `supporting_claims` and
+  `inferred_supporting_claims` are both empty yields the `…supporting_claims` warning "claim
+  support not declared or inferred" (§4.5.7). That warning is
   expected for most extracted candidates and is not a defect of the paper; extracted candidates
   never yield `error` diagnostics, because §3.6.4 only emits well-formed records.
 - `unassigned_claims` are claims that no candidate declares; `unlinked_claims` are claims
@@ -753,11 +780,35 @@ kept **out of** the paper review's buckets (§5.7).
 
 Section 3 of `review-draft.md` (§5.12) is headed "Contributions" and lists the candidates,
 numbered from 1 in declaration order, each as **title** (if any) followed by its summary, then
-one line `Claim support: <status> · Significance: <status> · Originality: <status>` (the
-claim-support label reads "Claim support (inferred links)" when `link_basis` is `inferred`).
+one line `Claim support: <status> · Significance: <status> · Originality: <status>`. The
+claim-support label reads "Claim support (inferred links)" when `link_basis` is `inferred`, and
+"Claim support (declared and inferred links)" when it is `mixed`.
 Then the sentence "Advisory assessments; the human reviewer decides whether each contribution
 qualifies." Then, per candidate, a subsection with each axis's status, its linked claims (marked
 declared or inferred), its points (or "No grounded finding addressed this."), the basis note
 for originality, and its sources; for a digest-summarized candidate, also the paper's own
 wording. The authors' originality statements follow in a collapsed block, and (in
 `review-draft.md` only) the diagnostics.
+
+**Attribution of inferred links.** Each inferred claim is attributed to the sources whose
+`claim_link_sources` record lists it (§5.13.2): "inferred by the paper adapter's extractor"
+for `extractor-inference`, "inferred by the reviewer" for `reviewer-inference`, and both
+phrases when both sources list it. An inferred claim that no record lists (a hand-written
+`inferred_supporting_claims`) is shown as "inferred (source not recorded)".
+
+**Diagnostics block.** In `review-draft.md` only, the diagnostics follow the authors'
+originality statements under the heading "Contribution declaration checks (structural)". A
+diagnostic whose path is `contributions[N].<field>` is grouped with the others of the same
+severity, field, and message, and names the contributions by their 1-based numbers `N + 1`.
+A group is one line `- <Severity>, contributions <numbers>: <message>.`, with the numbers
+joined by ", " and a final " and " (one contribution reads `contribution <n>`). Any other
+diagnostic is one line `- <Severity>, `<path>`: <message>.` Groups and single lines keep the
+order of `diagnostics` (by first occurrence). When `diagnostics` is empty, the block is omitted. Example:
+
+```text
+#### Contribution declaration checks (structural)
+- Warning, contributions 2 and 5: claim support not declared or inferred.
+- Error, `paths.contributions`: file not found.
+```
+
+The machine form of the diagnostics stays unchanged in `contributions.json` and `judge.json`.

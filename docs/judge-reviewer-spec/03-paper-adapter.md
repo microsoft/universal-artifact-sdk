@@ -58,8 +58,10 @@ adapter uses SDK fields wherever one exists (`validation_mode: attest` is the Re
 mode, SDK §2.3, §3.1) and writes exactly these **tool extension fields**, which SDK validators
 ignore and consumers of this specification read as defined here: `Result.reported_value` (§3.4
 step 4) and, inside the paper locator `locators.paper` (an SDK locator, whose content the SDK
-leaves open), `quote`, `page`, `section`, `context`, and `token_class` (§3.4). No other
-extension field is written. A consumer MUST NOT rely on a field named `mode` on a Result; if an
+leaves open), `quote`, `page`, `section`, `context`, and `token_class` (§3.4). When enrichment
+ran (§3.7), the adapter also writes `inferred_supporting_claims` and
+`provenance.claim_link_sources` on contributions, and MAY add fields to the claims it proposes.
+No other extension field is written. A consumer MUST NOT rely on a field named `mode` on a Result; if an
 older producer wrote one, it is ignored.
 
 ```text
@@ -109,11 +111,20 @@ reproduced. `GENERATION.md` begins with an equivalent marker line. Consumers ign
 **`GENERATION.md`** reports, at minimum: the adapter name/version, the text reader used, the
 counts of results, claims, linked claims, contributions, figures, references and related-work
 statements, numbers dropped as not result-shaped, whether LLM enrichment ran and its outcome
-(§3.7), and the limitations of §3.6.1.
+(§3.7), and the limitations of §3.6.1. Each count is read from the file the run actually wrote,
+so `GENERATION.md` is written after every other output file (§3.7). The report also states:
+
+- for claims, their source: `deterministic seed` (§3.5) or the enrichment extractor with its
+  model label (§3.7);
+- for figures, a status when none was written (§3.6.1);
+- for references, `not split (unrecognized format)` when a references section was found but no
+  entry could be split from it (§3.6.2);
+- for enrichment, the outcome of each stage (§3.7).
 
 **Ledger (optional, implementation-only).** An implementation MAY keep a ledger such as
-`.adapter/state.json` recording `origin`, the paper id, the extractor stamp, and
-`generated_files: {relative path → sha256}` for every file it wrote. Consumers MUST NOT require
+`.adapter/state.json` recording `origin`, the paper id, the extractor stamp, the options that
+shaped the output (§3.8), and `generated_files: {relative path → sha256}` for every file it
+wrote. Consumers MUST NOT require
 it. If present it is used only for §3.8. The adapter does not write `SHA256SUMS` or
 `exhibits.yml`; a consumer that needs integrity data uses its own snapshot hashes (§2.5).
 
@@ -310,8 +321,20 @@ A **headline claim** is a sentence from a headline section (abstract, introducti
 contributions section, or the conclusion) that carries a harvested result token and either (a)
 the token is `percentage`, `pm`, `pvalue`, or `ratio`, or (b) the sentence is in the authors'
 voice ("we", "our", "us") or contains a metric word. Tokens that are citation markers (`[8]`),
-labels (`Stage 3`, `H1`), symbol subscripts, or enumerators (`(2)`) never seed a claim. Each
-distinct sentence (case-insensitive) yields at most one claim, numbered `C1, C2, …` in this
+labels (`Stage 3`, `H1`), symbol subscripts, or enumerators (`(2)`) never seed a claim.
+
+**Table rows never seed a claim.** A *numeric word* is a whitespace-separated word that is, as a
+whole, a number in the sense of the result tokens of §3.4: digits with an optional leading sign,
+an optional radix point and fraction, an optional trailing `%`, and an optional `±` spread
+(reference pattern `^[+\-−]?\d+(\.\d+)?%?(±\d+(\.\d+)?%?)?$`). A word that only contains a
+digit (`F1`, `Lang-4.1`, `(Table`) is not a numeric word. A candidate sentence that contains a
+run of **4 or more consecutive numeric words** (reference value) is rejected as a claim, because
+adjacent numbers are table cells. The sentence still yields its Results (§3.4). So
+"… Baseline 81.20±0.10 79.45±0.32 80.02 77.91 90.13±0.05 …" seeds no claim, while "Our method
+improves accuracy from 71.2% to 84.5% and F1 from 0.61 to 0.78." is kept, because no two of its
+numbers are adjacent.
+
+Each distinct sentence (case-insensitive) yields at most one claim, numbered `C1, C2, …` in this
 **normative order**: candidate sentences are sorted by section weight, descending, with a stable
 sort (ties keep harvest order, i.e. position in the paper):
 
@@ -388,12 +411,48 @@ figures:
 uncaptioned figures, and figures spanning pages are missed or mis-cropped. `GENERATION.md` MUST
 state this limitation. The `claims` links are advisory and never become `validates` edges.
 
+**Extraction status.** `GENERATION.md` reports the number of figures written. When it is 0, it
+also states why, so that "no figures" is never confused with a failure:
+
+| Status | Meaning |
+|--------|---------|
+| `renderer unavailable` | The implementation has no component that can read the page images and drawings of this source (for example, an optional PDF renderer is not installed). |
+| `renderer failed` | The renderer was available but raised an error on this paper. |
+| `no captions found` | Extraction ran and found no caption under rule 1. |
+
 ### 3.6.2 References
 
 If a bibliography was supplied or a references section is detected, emit
 `paper_references.yml` (`references:`) with one entry per reference: `id`, `raw`, and any `doi`,
 `arxiv`, `isbn`, `url` found, and point `paper.references_export` at it. Omit the file if none
 are found.
+
+**Splitting a detected references section.** When the section's entries carry bracketed indexes
+(`[1]`, `[Smi21]`), each index starts an entry. Otherwise the adapter splits the section's lines
+as follows:
+
+1. **Entry starts.** A line starts a new entry when it begins with any of these shapes
+   (reference patterns, non-normative):
+   - a number `N.` or `N)`, where the first is `1` and each next one is greater by one;
+   - a surname-first author: a capitalized surname, a comma, and initials (`Adams, J.,`;
+     `^[A-Z][\w'’\-]+(?: [A-Z][\w'’\-]+)*, (?:[A-Z]\.\s?)+`);
+   - an initial-first author: initials, then a capitalized surname (`A. Author`,
+     `J. K. Smith`; `^(?:[A-Z]\.\s?)+[A-Z][\w'’\-]+`);
+   - a list of full author names followed, on this line or the next, by a year sentence
+     (`Jane Smith and Ali Khan. 2020.`; the year sentence is `. ` then a year `(19|20)\d\d`,
+     an optional lowercase letter, and `.`);
+   - an organization name directly followed by a year sentence (`ExampleOrg. 2024.`).
+2. **Continuations.** Every other line joins the current entry. A line also joins the current
+   entry, whatever its shape, when the previous non-blank line ends with `,`, `-`, `and`, or
+   `&`. Blank lines are not entry boundaries: text readers put blank lines both between entries and
+   inside one entry that wraps across a column or page break. Lines before the first entry
+   start belong to no entry.
+3. **Validation.** An entry is kept only when it contains a four-digit year `(19|20)\d\d` or
+   carries a DOI, an arXiv identifier, or a URL. When no entry is kept, the adapter writes no
+   `paper_references.yml` and `GENERATION.md` reports `references: not split (unrecognized
+   format)`. The adapter never emits the whole section as one entry. A single kept entry is a
+   valid one-entry bibliography.
+4. **IDs.** Kept entries get the IDs `1, 2, …` in order.
 
 ### 3.6.3 Related work
 
@@ -524,7 +583,10 @@ the display normalization never changes an ID. `quote` is the exact slice
 `originality`, or qualification is ever emitted; `supporting_claims` is never inferred from
 meaning, only from verbatim containment of the claim's `statement` in the contribution's
 `statement`, case-insensitively (it is usually empty, which is a legal draft warning, §4.5.7).
-Inferring support or assessing the advance is the reviewer's job (§5.13).
+Inferring support or assessing the advance is the reviewer's job (§5.13). The one exception is
+optional enrichment: when it ran, the adapter adds the extractor's proposed links as
+`inferred_supporting_claims`, kept apart from `supporting_claims` and attributed to the
+extractor (§3.7).
 
 ## 3.7 Optional LLM enrichment
 
@@ -538,9 +600,63 @@ When an LLM provider is configured (§7.1), the adapter MAY run an enrichment pa
    Unbound proposals become claims whose single `attest` validator has `inputs: []` (§3.5).
 4. Every quote MUST be located in the paper text with the *squash* procedure (§2.8); proposals
    whose quote cannot be located are dropped.
+5. The extractor MAY link each proposed claim to the contributions (§3.6.4) whose advance it
+   substantiates. The adapter records these links by full contribution ID
+   (`contribution/<64 hex>`). When the prompt names contributions by short labels, the adapter
+   MUST map each label back to the full ID before it writes anything.
 
 If enrichment fails for any reason, the adapter MUST keep the deterministic output and record
 the failure in `GENERATION.md`. Enrichment MUST NOT raise `evidence_cap`.
+
+**Stages and their outcomes.** Enrichment has two stages, `extract` (steps 1 and 5) and
+`verify` (step 2). Each ends as `completed` or `failed: <reason>`. Enrichment *fails* when the
+extract stage fails or yields no claim; the adapter then keeps the deterministic output. A
+failed verify stage (for example, the verifier model is unavailable) does not discard the
+extracted claims, but none of them counts as verified, and `GENERATION.md` MUST say that the
+claims are unverified. A verify stage that returns no judgment for any proposal counts as
+failed.
+
+**Contribution links after enrichment.** When enrichment succeeds and `contributions.yml` was
+generated in this run, the adapter rewrites `contributions.yml` against the new claims. It never
+rewrites a file a human has edited (§3.8). For each contribution:
+
+1. **Recompute `supporting_claims`** with the rule of §3.6.4 (verbatim, case-insensitive
+   containment of a claim `statement` in the contribution `statement`). Entries that named
+   claims which no longer exist disappear by construction.
+2. **Add `inferred_supporting_claims`**: the IDs of the claims that the extractor linked to this
+   contribution (step 5), in claim order, without IDs already in `supporting_claims`, without
+   duplicates. Omit the key when the list is empty.
+3. **Record the source** in `provenance.claim_link_sources`, an ordered list with one record per
+   inferencer that added at least one link. Each record is
+   `{kind: extractor-inference, method, model, claims}`, where `method` names the enrichment
+   method and its version, `model` is the extractor's opaque model label (as in
+   `origin.extractor.llm`, §3.3), and `claims` lists the claim IDs this source added to
+   `inferred_supporting_claims` in step 2. Omit the key when no source added a link.
+
+`supporting_claims` stays reserved for declared links and for links found deterministically.
+`inferred_supporting_claims` and `claim_link_sources` are open extension fields: SDK records
+are open (SDK §2.4.2), so they need no schema change. Example:
+
+```yaml
+- id: contribution/<sha256>
+  statement: "We introduce a streaming parser for nested logs."
+  supporting_claims: []
+  inferred_supporting_claims: [claim-1, claim-2, claim-5]
+  provenance:
+    kind: paper-extraction
+    method: explicit-author-advance-sentence/v1
+    claim_link_sources:
+      - { kind: extractor-inference, method: "<enrichment method>/v1", model: "<opaque>",
+          claims: [claim-1, claim-2, claim-5] }
+```
+
+**Commit order.** The adapter writes the enriched `claims.yml`, the updated `results.yml`, the
+rewritten `contributions.yml`, and the ledger together, and only once the outcome of every
+stage is known. A run that ends with enrichment failed leaves the deterministic files in place.
+`GENERATION.md` is written last, from the files as written (reloaded, never from an earlier
+in-memory state), and the ledger is then refreshed to record its hash. It reports the claim
+count of `claims.yml` with its source (`deterministic seed`, or the extractor with its model
+label), and the outcome of each stage (`extract: completed`, `verify: failed: <reason>`, …).
 
 ## 3.8 Idempotency
 
@@ -553,3 +669,15 @@ generated file that a human has since edited. In particular, if `contributions.y
 matches the hash the adapter recorded for it (its ledger, §3.2), the run fails with an input
 error instead of overwriting the edit; an edited file is authored input, not generated output
 (SDK §5.2).
+
+**Re-runs with different options.** Every run regenerates its output from the paper. Nothing
+carries over from an earlier run, so links never appear or vanish depending on what ran before.
+The ledger records the options that shaped the output: whether enrichment was requested, and
+the extractor and verifier model labels.
+
+| Previous run | This run | Result |
+|--------------|----------|--------|
+| any | without enrichment | Deterministic output. No `inferred_supporting_claims` and no `claim_link_sources`. |
+| any | with enrichment, which succeeds | Enriched output (§3.7). |
+| any | with enrichment, which fails or yields no claim | Deterministic output; `GENERATION.md` records the failure (§3.7). |
+| any, and `contributions.yml` edited since | any | Input error before anything is written. |

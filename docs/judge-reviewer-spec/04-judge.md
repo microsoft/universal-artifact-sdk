@@ -337,7 +337,9 @@ quoted phrases are reference wording):
 | `type` present but not a string | `…[i].type` | error |
 | `supporting_claims` not a list of unique non-empty strings | `…[i].supporting_claims` | error |
 | A `supporting_claims` entry names no declared claim ("unresolved supporting claim") | `…[i].supporting_claims` | error |
-| `supporting_claims` absent or empty ("claim support not declared") | `…[i].supporting_claims` | **warning** (a legal draft) |
+| `inferred_supporting_claims` present but not a list of unique non-empty strings | `…[i].inferred_supporting_claims` | error |
+| An `inferred_supporting_claims` entry names no declared claim ("unresolved inferred supporting claim") | `…[i].inferred_supporting_claims` | error |
+| Both `supporting_claims` and `inferred_supporting_claims` are absent or valid empty lists ("claim support not declared or inferred") | `…[i].supporting_claims` | **warning** (a legal draft) |
 | A locator (`paper_ref`, comparison `locator`, provenance `locator`) is not a mapping, has a `page` that is neither a number nor a string, a `char_start`/`char_end` that is not a non-negative integer, or `char_end < char_start` | the locator path | error |
 | `significance.impact` not `anticipated` or `observed` | `…[i].significance.impact` | error |
 | An `evidence` citation is not `claim:ID`, `result:ID`, `reference:ID`, or `paper:<locator>` ("unsupported evidence citation"), or names an undeclared claim/result ("unresolved evidence citation") | the `evidence` path | error |
@@ -348,6 +350,12 @@ quoted phrases are reference wording):
 | `provenance.kind` not `author-declaration`, `paper-extraction`, or `reviewer-inference` | `…[i].provenance.kind` | error |
 
 Unknown fields are preserved and never diagnosed (SDK §2.4.2 records are open).
+
+`inferred_supporting_claims` holds claim links that a tool inferred (the paper adapter's
+enrichment, §3.7, or the reviewer, §5.13.2). An absent field, or a valid empty list, gets no
+diagnostic of its own. The claim-support warning fires only when neither field carries a link.
+A malformed field gets its error and is not also reported as empty: a contribution whose
+`supporting_claims` or `inferred_supporting_claims` is malformed never gets the warning.
 
 ## 4.6 Builtin validator catalog
 
