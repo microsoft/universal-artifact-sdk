@@ -1,0 +1,40 @@
+_generated: DO NOT EDIT — produced by `paper-to-artifact`. Everything here is GENERATED
+  and attested (the paper's own statements), never independently reproduced. Re-run
+  the adapter to regenerate.
+claims:
+- id: C1
+  statement: It has almost flawlessly replicated the process of converting symbolic
+    music data, achieving a low error rate of 0.0011 bits per byte in converting ABC
+    notation to MIDI format.
+  kind: empirical
+  measurability: measurable
+  paper_ref:
+    quote: '0.0011'
+    page: 1
+    section: abstract
+    context: It has almost flawlessly replicated the process of converting symbolic
+      music data, achieving a low error rate of 0.0011 bits per byte in converting
+      ABC notation to MIDI format.
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R1
+- id: C2
+  statement: In addition, bGPT demonstrates exceptional capabilities in simulating
+    CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.
+  kind: empirical
+  measurability: measurable
+  paper_ref:
+    quote: 99.99%
+    page: 1
+    section: abstract
+    context: In addition, bGPT demonstrates exceptional capabilities in simulating
+      CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R2

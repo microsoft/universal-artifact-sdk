@@ -1,0 +1,1063 @@
+_generated: DO NOT EDIT — produced by `paper-to-artifact`. Everything here is GENERATED
+  and attested (the paper's own statements), never independently reproduced. Re-run
+  the adapter to regenerate.
+results:
+- id: R1
+  validates:
+  - C1
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.0011
+  locators:
+    paper:
+      quote: '0.0011'
+      token_class: metric
+      page: 1
+      section: abstract
+      context: It has almost flawlessly replicated the process of converting symbolic
+        music data, achieving a low error rate of 0.0011 bits per byte in converting
+        ABC notation to MIDI format.
+- id: R2
+  validates:
+  - C2
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 99.99
+  locators:
+    paper:
+      quote: 99.99%
+      token_class: percentage
+      page: 1
+      section: abstract
+      context: In addition, bGPT demonstrates exceptional capabilities in simulating
+        CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.
+- id: R3
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.0
+  locators:
+    paper:
+      quote: 1X
+      token_class: ratio
+      page: 4
+      section: training objectives
+      context: 'For a byte sequence B = {b1, b2, ..., bT } of length T , the objective
+        is minimizing the negative log-likelihood of the next byte prediction across
+        the sequence, defined as: LGEN(θ) =− T −1X i=1 log p(bi+1|b1, b2, ..., bi;
+        θ), (6) where θ r'
+- id: R4
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.3496
+  locators:
+    paper:
+      quote: '1.3496'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R5
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 84.74
+  locators:
+    paper:
+      quote: '84.74'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R6
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 3.4928
+  locators:
+    paper:
+      quote: '3.4928'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R7
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 76.73
+  locators:
+    paper:
+      quote: '76.73'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R8
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.5414
+  locators:
+    paper:
+      quote: '1.5414'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R9
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 92.43
+  locators:
+    paper:
+      quote: '92.43'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R10
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.0639
+  locators:
+    paper:
+      quote: '1.0639'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R11
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 92.49
+  locators:
+    paper:
+      quote: '92.49'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R12
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 3.6663
+  locators:
+    paper:
+      quote: '3.6663'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R13
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 77.02
+  locators:
+    paper:
+      quote: '77.02'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R14
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.5719
+  locators:
+    paper:
+      quote: '1.5719'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R15
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 93.56
+  locators:
+    paper:
+      quote: '93.56'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R16
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.4179
+  locators:
+    paper:
+      quote: '1.4179'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R17
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 83.16
+  locators:
+    paper:
+      quote: '83.16'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R18
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 3.1234
+  locators:
+    paper:
+      quote: '3.1234'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R19
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 88.69
+  locators:
+    paper:
+      quote: '88.69'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R20
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.5326
+  locators:
+    paper:
+      quote: '1.5326'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R21
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 93.91
+  locators:
+    paper:
+      quote: '93.91'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R22
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.3993
+  locators:
+    paper:
+      quote: '1.3993'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R23
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 83.59
+  locators:
+    paper:
+      quote: '83.59'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R24
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 3.3345
+  locators:
+    paper:
+      quote: '3.3345'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R25
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 83.51
+  locators:
+    paper:
+      quote: '83.51'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R26
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.4818
+  locators:
+    paper:
+      quote: '1.4818'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R27
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 96.03
+  locators:
+    paper:
+      quote: '96.03'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R28
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.4058
+  locators:
+    paper:
+      quote: '1.4058'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R29
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 83.8
+  locators:
+    paper:
+      quote: '83.80'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R30
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 3.1554
+  locators:
+    paper:
+      quote: '3.1554'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R31
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 87.65
+  locators:
+    paper:
+      quote: '87.65'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R32
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.4898
+  locators:
+    paper:
+      quote: '1.4898'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R33
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 95.66
+  locators:
+    paper:
+      quote: '95.66'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R34
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.0935
+  locators:
+    paper:
+      quote: '1.0935'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R35
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 91.75
+  locators:
+    paper:
+      quote: '91.75'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R36
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 3.2279
+  locators:
+    paper:
+      quote: '3.2279'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R37
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 84.32
+  locators:
+    paper:
+      quote: '84.32'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R38
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.5086
+  locators:
+    paper:
+      quote: '1.5086'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R39
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 95.09
+  locators:
+    paper:
+      quote: '95.09'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R40
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.9237
+  locators:
+    paper:
+      quote: '0.9237'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R41
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 94.5
+  locators:
+    paper:
+      quote: '94.50'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R42
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 98.13
+  locators:
+    paper:
+      quote: '98.13'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R43
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 98.11
+  locators:
+    paper:
+      quote: '98.11'
+      token_class: metric
+      page: 6
+      section: baselines
+      context: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+        Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73
+        1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179
+        83.16 3.1
+- id: R44
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.0639
+  locators:
+    paper:
+      quote: '1.0639'
+      token_class: metric
+      page: 6
+      section: results
+      context: For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy
+        of 92.49% on AG News, which, while not quite at the level of GPT2small, scored
+        0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance.
+- id: R45
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 92.49
+  locators:
+    paper:
+      quote: 92.49%
+      token_class: percentage
+      page: 6
+      section: results
+      context: For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy
+        of 92.49% on AG News, which, while not quite at the level of GPT2small, scored
+        0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance.
+- id: R46
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.9237
+  locators:
+    paper:
+      quote: '0.9237'
+      token_class: metric
+      page: 6
+      section: results
+      context: For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy
+        of 92.49% on AG News, which, while not quite at the level of GPT2small, scored
+        0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance.
+- id: R47
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 94.5
+  locators:
+    paper:
+      quote: 94.50%
+      token_class: percentage
+      page: 6
+      section: results
+      context: For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy
+        of 92.49% on AG News, which, while not quite at the level of GPT2small, scored
+        0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance.
+- id: R48
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 96.03
+  locators:
+    paper:
+      quote: 96.03%
+      token_class: percentage
+      page: 6
+      section: results
+      context: Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands
+        v2, coming close to the accuracy of AST at 98.11%.
+- id: R49
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 98.11
+  locators:
+    paper:
+      quote: 98.11%
+      token_class: percentage
+      page: 6
+      section: results
+      context: Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands
+        v2, coming close to the accuracy of AST at 98.11%.
+- id: R50
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 88.69
+  locators:
+    paper:
+      quote: 88.69%
+      token_class: percentage
+      section: results
+      context: However, in the analysis of CIFAR-10, a noticeable difference is seen
+        with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.
+- id: R51
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 98.13
+  locators:
+    paper:
+      quote: 98.13%
+      token_class: percentage
+      section: results
+      context: However, in the analysis of CIFAR-10, a noticeable difference is seen
+        with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.
+- id: R52
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.0935
+  locators:
+    paper:
+      quote: '1.0935'
+      token_class: metric
+      page: 6
+      section: results
+      context: For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and
+        accuracy of 91.75%, outperforms other variants but falls short of the per
+        formance demonstrated by bGPTwiki, which is specifically tuned for text data.
+- id: R53
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 91.75
+  locators:
+    paper:
+      quote: 91.75%
+      token_class: percentage
+      page: 6
+      section: results
+      context: For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and
+        accuracy of 91.75%, outperforms other variants but falls short of the per
+        formance demonstrated by bGPTwiki, which is specifically tuned for text data.
+- id: R54
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.4052
+  locators:
+    paper:
+      quote: '0.4052'
+      token_class: metric
+      page: 7
+      section: results
+      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
+        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
+        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+- id: R55
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 80.74
+  locators:
+    paper:
+      quote: '80.74'
+      token_class: metric
+      page: 7
+      section: results
+      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
+        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
+        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+- id: R56
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.3899
+  locators:
+    paper:
+      quote: '0.3899'
+      token_class: metric
+      page: 7
+      section: results
+      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
+        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
+        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+- id: R57
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 84.66
+  locators:
+    paper:
+      quote: '84.66'
+      token_class: metric
+      page: 7
+      section: results
+      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
+        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
+        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+- id: R58
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.39
+  locators:
+    paper:
+      quote: '0.3900'
+      token_class: metric
+      page: 7
+      section: results
+      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
+        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
+        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+- id: R59
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 85.26
+  locators:
+    paper:
+      quote: '85.26'
+      token_class: metric
+      page: 7
+      section: results
+      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
+        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
+        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+- id: R60
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.6924
+  locators:
+    paper:
+      quote: '0.6924'
+      token_class: metric
+      page: 7
+      section: data conversion
+      context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
+        99.9961 2021), byte models are naturally suited for this task, as they can
+        directly work with binary data.
+- id: R61
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 27.2404
+  locators:
+    paper:
+      quote: '27.2404'
+      token_class: metric
+      page: 7
+      section: data conversion
+      context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
+        99.9961 2021), byte models are naturally suited for this task, as they can
+        directly work with binary data.
+- id: R62
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.0969
+  locators:
+    paper:
+      quote: '0.0969'
+      token_class: metric
+      page: 7
+      section: data conversion
+      context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
+        99.9961 2021), byte models are naturally suited for this task, as they can
+        directly work with binary data.
+- id: R63
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 99.9702
+  locators:
+    paper:
+      quote: '99.9702'
+      token_class: metric
+      page: 7
+      section: data conversion
+      context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
+        99.9961 2021), byte models are naturally suited for this task, as they can
+        directly work with binary data.
+- id: R64
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 99.9961
+  locators:
+    paper:
+      quote: '99.9961'
+      token_class: metric
+      page: 7
+      section: data conversion
+      context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
+        99.9961 2021), byte models are naturally suited for this task, as they can
+        directly work with binary data.
+- id: R65
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.0011
+  locators:
+    paper:
+      quote: '0.0011'
+      token_class: metric
+      page: 8
+      section: data conversion
+      context: The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC
+        to MIDI conversion, which is extremely close to perfect performance (where
+        BPB reaches 0), surpassing the performance of the bGPT3 model by orders of
+        magnitude.
+- id: R66
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 99.97
+  locators:
+    paper:
+      quote: 99.97%
+      token_class: percentage
+      page: 8
+      section: cpu state modelling
+      context: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
+        suggesting an efficiency beyond simple memorization, given that each test
+        case contained an average of 128 random instructions, and the vast potential
+        combinations o
+- id: R67
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 99.99
+  locators:
+    paper:
+      quote: 99.99%
+      token_class: percentage
+      page: 8
+      section: cpu state modelling
+      context: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
+        suggesting an efficiency beyond simple memorization, given that each test
+        case contained an average of 128 random instructions, and the vast potential
+        combinations o
+- id: R68
+  validates: []
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 10.18653
+  locators:
+    paper:
+      quote: '10.18653'
+      token_class: metric
+      page: 10
+      section: references
+      context: '(eds.), Proceedings of the 2018 Conference on Empirical Methods in
+        Natural Language Processing, EMNLP 2018: System Demonstrations, Brussels,
+        10.18653/v1/d18-2012.'

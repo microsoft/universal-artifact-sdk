@@ -1,0 +1,154 @@
+_generated: DO NOT EDIT — produced by `paper-to-artifact`. Everything here is GENERATED
+  and attested (the paper's own statements), never independently reproduced. Re-run
+  the adapter to regenerate.
+contributions:
+- id: contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22
+  statement: Inspired by the success of next token prediction in natural language
+    processing, we introduce bGPT, a model with next byte prediction to simulate the
+    digital world.
+  supporting_claims: []
+  paper_ref:
+    char_start: 361
+    char_end: 529
+    quote: 'Inspired by
+
+      the success of next token prediction in natural lan-
+
+      guage processing, we introduce bGPT, a model
+
+      with next byte prediction to simulate the digi-
+
+      tal world.'
+  provenance:
+    kind: paper-extraction
+    source: paper:document
+    method: explicit-author-advance-sentence/v1
+    locator:
+      char_start: 361
+      char_end: 529
+      quote: 'Inspired by
+
+        the success of next token prediction in natural lan-
+
+        guage processing, we introduce bGPT, a model
+
+        with next byte prediction to simulate the digi-
+
+        tal world.'
+- id: contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002
+  statement: In this paper, we introduce bGPT, a model designed for binary data processing
+    and digital world modelling by next byte prediction.
+  supporting_claims: []
+  paper_ref:
+    char_start: 3380
+    char_end: 3510
+    quote: 'In this paper, we introduce bGPT, a model designed for
+
+      binary data processing and digital world modelling by next
+
+      byte prediction.'
+  provenance:
+    kind: paper-extraction
+    source: paper:document
+    method: explicit-author-advance-sentence/v1
+    locator:
+      char_start: 3380
+      char_end: 3510
+      quote: 'In this paper, we introduce bGPT, a model designed for
+
+        binary data processing and digital world modelling by next
+
+        byte prediction.'
+- id: contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a
+  statement: In this section, we introduce bGPT, a model optimized for modelling digital
+    data at the byte level.
+  supporting_claims: []
+  paper_ref:
+    char_start: 10495
+    char_end: 10594
+    quote: 'In this section, we introduce bGPT, a model optimized for
+
+      modelling digital data at the byte level.'
+  provenance:
+    kind: paper-extraction
+    source: paper:document
+    method: explicit-author-advance-sentence/v1
+    locator:
+      char_start: 10495
+      char_end: 10594
+      quote: 'In this section, we introduce bGPT, a model optimized for
+
+        modelling digital data at the byte level.'
+- id: contribution/461a0bf1ad0b19af91355a33ac898117d1b4692112d9f3c654a34579a923316c
+  statement: Subsequently, we present the training objectives of bGPT, including generative
+    modelling and classification.
+  supporting_claims: []
+  paper_ref:
+    char_start: 10741
+    char_end: 10849
+    quote: 'Subsequently, we present the training objectives of
+
+      bGPT, including generative modelling and classification.'
+  provenance:
+    kind: paper-extraction
+    source: paper:document
+    method: explicit-author-advance-sentence/v1
+    locator:
+      char_start: 10741
+      char_end: 10849
+      quote: 'Subsequently, we present the training objectives of
+
+        bGPT, including generative modelling and classification.'
+- id: contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca
+  statement: For CPU state modelling, we introduce the CPU States dataset (with 2.1
+    million instances), offering a simplified representation of CPU behaviour for
+    ease of data collection and evaluation.
+  supporting_claims: []
+  paper_ref:
+    char_start: 20705
+    char_end: 20895
+    quote: 'For CPU state modelling, we introduce the CPU States
+
+      dataset (with 2.1 million instances), offering a simplified
+
+      representation of CPU behaviour for ease of data collec-
+
+      tion and evaluation.'
+  provenance:
+    kind: paper-extraction
+    source: paper:document
+    method: explicit-author-advance-sentence/v1
+    locator:
+      char_start: 20705
+      char_end: 20895
+      quote: 'For CPU state modelling, we introduce the CPU States
+
+        dataset (with 2.1 million instances), offering a simplified
+
+        representation of CPU behaviour for ease of data collec-
+
+        tion and evaluation.'
+- id: contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba
+  statement: In this paper, we present bGPT as a versatile simulator for the digital
+    world, extending deep learning to binary data processing via next byte prediction.
+  supporting_claims: []
+  paper_ref:
+    char_start: 36764
+    char_end: 36918
+    quote: 'In this paper, we present bGPT as a versatile simulator
+
+      for the digital world, extending deep learning to binary
+
+      data processing via next byte prediction.'
+  provenance:
+    kind: paper-extraction
+    source: paper:document
+    method: explicit-author-advance-sentence/v1
+    locator:
+      char_start: 36764
+      char_end: 36918
+      quote: 'In this paper, we present bGPT as a versatile simulator
+
+        for the digital world, extending deep learning to binary
+
+        data processing via next byte prediction.'

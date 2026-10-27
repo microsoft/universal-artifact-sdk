@@ -1,0 +1,23 @@
+_generated: DO NOT EDIT — produced by `paper-to-artifact`. Everything here is GENERATED
+  and attested (the paper's own statements), never independently reproduced. Re-run
+  the adapter to regenerate.
+claims:
+- id: C1
+  statement: ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline
+    retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00 90.10±0.19
+    89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00 0.00 36.89
+  kind: empirical
+  measurability: measurable
+  paper_ref:
+    quote: 76.39±0.00
+    page: 2
+    section: introduction
+    context: 'ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline
+      retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00 90.10±0.19
+      89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00 0.00 36.89 '
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R1

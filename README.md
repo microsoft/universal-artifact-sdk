@@ -29,6 +29,24 @@ for the evaluation context. Related research includes
 [Ara: Agent-Native Research Artifacts](https://arxiv.org/abs/2604.24658)
 ([project](https://github.com/ARA-Labs/Agent-Native-Research-Artifact)).
 
+## Judge and reviewer (experimental)
+
+> [!WARNING]
+> **Experimental.** The judge and reviewer are a draft specification, not a released product.
+> The reference implementation is not published. The [example reviews](docs/examples/reviews/README.md)
+> are AI-generated and reflect **no human judgement** on the papers they analyze.
+
+The SDK produces artifacts; a downstream **judge** checks them and a **reviewer** drafts a
+review for a human. The [judge and reviewer specification](docs/judge-reviewer-spec/README.md)
+defines that evaluator in language-neutral terms: a paper adapter turns a PDF into an artifact,
+the judge runs deterministic checks on claims and evidence, and the reviewer drafts grounded
+questions that cite the paper. A human reviewer makes every decision; the reviewer never sets a
+score or verdict.
+
+- **Spec:** [`docs/judge-reviewer-spec/`](docs/judge-reviewer-spec/README.md)
+- **Example output:** [two AI-generated reviews of public papers](docs/examples/reviews/README.md)
+- **Overview:** [slides](docs/presentations/overview/slides.pdf)
+
 ## Install
 
 ```bash

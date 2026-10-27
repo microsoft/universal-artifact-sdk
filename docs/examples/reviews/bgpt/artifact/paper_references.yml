@@ -1,0 +1,503 @@
+_generated: DO NOT EDIT — produced by `paper-to-artifact`. Everything here is GENERATED
+  and attested (the paper's own statements), never independently reproduced. Re-run
+  the adapter to regenerate.
+references:
+- id: '1'
+  raw: 'Ao, J., Wang, R., Zhou, L., Wang, C., Ren, S., Wu, Y ., Liu, S., Ko, T., Li,
+    Q., Zhang, Y ., Wei, Z., Qian, Y ., Li, J., and Wei, F. Speecht5: Unified-modal
+    encoder-decoder pre-training for spoken language processing. In Muresan, S., Nakov,
+    P., and Villavicencio, A. (eds.),Proceedings of the 60th Annual Meeting of the
+    Association for Com- putational Linguistics (Volume 1: Long Papers), ACL 2022,
+    Dublin, Ireland, May 22-27, 2022, pp. 5723–5738. Association for Computational
+    Linguistics, 2022. doi: 10. 18653/V1/2022.ACL-LONG.393. URL https://doi. org/10.18653/v1/2022.acl-long.393.
+    Borsos, Z., Marinier, R., Vincent, D., Kharitonov, E., Pietquin, O., Sharifi,
+    M., Roblek, D., Teboul, O., Grang- ier, D., Tagliasacchi, M., and Zeghidour, N.
+    Audiolm: A language modeling approach to audio generation. IEEE ACM Trans. Audio
+    Speech Lang. Process., 31:2523–2533, 2023. doi: 10.1109/TASLP.2023.3288409. URL
+    https: //doi.org/10.1109/TASLP.2023.3288409. Brown, T. B., Mann, B., Ryder, N.,
+    Subbiah, M., Kaplan, J., Dhariwal, P., Neelakantan, A., Shyam, P., Sastry, G.,
+    Askell, A., Agarwal, S., Herbert-V oss, A., Krueger, G., Henighan, T., Child,
+    R., Ramesh, A., Ziegler, D. M., Wu, J., Winter, C., Hesse, C., Chen, M., Sigler,
+    E., Litwin, M., Gray, S., Chess, B., Clark, J., Berner, C., McCandlish, S., Radford,
+    A., Sutskever, I., and Amodei, D. Language models are few-shot learners. In Larochelle,
+    H., Ranzato, M., Hadsell, R., Balcan, M., and Lin, H. (eds.), Advances in Neural
+    Information Processing Systems 33: Annual Conference on Neural Information Processing
+    Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual, 2020. URL https://proceedings.
+    neurips.cc/paper/2020/hash/ 1457c0d6bfcb4967418bfb8ac142f64a-Abstract. html. Bubeck,
+    S., Chandrasekaran, V ., Eldan, R., Gehrke, J., Horvitz, E., Kamar, E., Lee, P.,
+    Lee, Y . T., Li, Y ., Lundberg, S. M., Nori, H., Palangi, H., Ribeiro, M. T.,
+    and Zhang, Y . Sparks of artificial general intelligence: Early experiments with
+    GPT-4. CoRR, abs/2303.12712, 2023. doi: 10.48550/ARXIV .2303.12712. URL https:
+    //doi.org/10.48550/arXiv.2303.12712. Chen, M., Radford, A., Child, R., Wu, J.,
+    Jun, H., Luan, D., and Sutskever, I. Generative pretraining from pix- els. In
+    Proceedings of the 37th International Confer- ence on Machine Learning, ICML 2020,
+    13-18 July 2020, Virtual Event, volume 119 of Proceedings of Ma- chine Learning
+    Research, pp. 1691–1703. PMLR, 2020. URL http://proceedings.mlr.press/v119/ chen20s.html.
+    Copet, J., Kreuk, F., Gat, I., Remez, T., Kant, D., Synnaeve, G., Adi, Y ., and
+    D´efossez, A. Simple and controllable music generation. CoRR, abs/2306.05284,
+    2023. doi: 10.48550/ARXIV .2306.05284. URL https://doi. org/10.48550/arXiv.2306.05284.
+    D´efossez, A., Copet, J., Synnaeve, G., and Adi, Y . High fi- delity neural audio
+    compression. CoRR, abs/2210.13438, 2022. doi: 10.48550/ARXIV .2210.13438. URL
+    https: //doi.org/10.48550/arXiv.2210.13438. Del´etang, G., Ruoss, A., Duquenne,
+    P., Catt, E., Genewein, T., Mattern, C., Grau-Moya, J., Wenliang, L. K., Aitchi-
+    son, M., Orseau, L., Hutter, M., and Veness, J. Lan- guage modeling is compression.
+    CoRR, abs/2309.10668, 2023. doi: 10.48550/ARXIV .2309.10668. URL https: //doi.org/10.48550/arXiv.2309.10668.
+    Deng, J., Dong, W., Socher, R., Li, L., Li, K., and Fei-Fei, L. Imagenet: A large-scale
+    hierarchical image database. In 2009 IEEE Computer Society Conference on Computer
+    Vision and Pattern Recognition (CVPR 2009), 20-25 June 2009, Miami, Florida, USA
+    , pp. 248–255. IEEE Com- puter Society, 2009. doi: 10.1109/CVPR.2009.5206848.
+    Beyond Language Models: Byte Models are Digital World Simulators URL https://doi.org/10.1109/CVPR.2009.
+    5206848. Devlin, J., Chang, M.-W., Lee, K., and Toutanova, K. Bert: Pre-training
+    of deep bidirectional transformers for lan- guage understanding. arXiv preprint
+    arXiv:1810.04805, 2018. Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn,
+    D., Zhai, X., Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly,
+    S., Uszkoreit, J., and Houlsby, N. An image is worth 16x16 words: Transformers
+    for image recognition at scale. In 9th International Con- ference on Learning
+    Representations, ICLR 2021, Vir- tual Event, Austria, May 3-7, 2021 . OpenReview.net,
+    2021. URL https://openreview.net/forum? id=YicbFdNTTy. Ferruz, N., Schmidt, S.,
+    and H ¨ocker, B. Protgpt2 is a deep unsupervised language model for protein de-
+    sign. Nature Communications , 13:4348, 2022. doi: 10.1038/s41467-022-32007-7.
+    URL https://doi. org/10.1038/s41467-022-32007-7 . Gong, Y ., Chung, Y ., and Glass,
+    J. R. AST: audio spec- trogram transformer. In Hermansky, H., Cernock ´y, H.,
+    Burget, L., Lamel, L., Scharenborg, O., and Motl ´ıcek, P. (eds.), Interspeech
+    2021, 22nd Annual Conference of the International Speech Communication Associa-
+    tion, Brno, Czechia, 30 August - 3 September 2021, pp. 571–575. ISCA, 2021. doi:
+    10.21437/INTERSPEECH. 2021-698. URL https://doi.org/10.21437/ Interspeech.2021-698.
+    Gu, A. and Dao, T. Mamba: Linear-time sequence modeling with selective state spaces.
+    CoRR, abs/2312.00752, 2023. doi: 10.48550/ARXIV .2312.00752. URL https:// doi.org/10.48550/arXiv.2312.00752.
+    Guo, W., Mu, D., Xing, X., Du, M., and Song, D. DEEP- VSA: facilitating value-set
+    analysis with deep learning for postmortem program analysis. In Heninger, N. and
+    Traynor, P. (eds.), 28th USENIX Security Symposium, USENIX Security 2019, Santa
+    Clara, CA, USA, August 14-16, 2019, pp. 1787–1804. USENIX Association, 2019. URL
+    https://www.usenix.org/conference/ usenixsecurity19/presentation/guo. He, K.,
+    Zhang, X., Ren, S., and Sun, J. Deep residual learn- ing for image recognition.
+    In Proceedings of the IEEE conference on computer vision and pattern recognition,
+    pp. 770–778, 2016. Hochreiter, S. and Schmidhuber, J. Long short-term memory.
+    Neural Comput., 9(8):1735–1780, 1997. doi: 10.1162/ NECO.1997.9.8.1735. URL https://doi.org/10.
+    1162/neco.1997.9.8.1735. Hoffmann, J., Borgeaud, S., Mensch, A., Buchatskaya,
+    E., Cai, T., Rutherford, E., de Las Casas, D., Hendricks, L. A., Welbl, J., Clark,
+    A., Hennigan, T., Noland, E., Millican, K., van den Driessche, G., Damoc, B.,
+    Guy, A., Osindero, S., Simonyan, K., Elsen, E., Rae, J. W., Vinyals, O., and Sifre,
+    L. Training compute-optimal large language models. CoRR, abs/2203.15556, 2022.
+    doi: 10.48550/ARXIV .2203.15556. URL https://doi. org/10.48550/arXiv.2203.15556.
+    Horton, M., Mehta, S., Farhadi, A., and Rastegari, M. Bytes are all you need:
+    Transformers operating directly on file bytes. CoRR, abs/2306.00238, 2023. doi:
+    10.48550/ ARXIV .2306.00238. URL https://doi.org/10. 48550/arXiv.2306.00238. Hsiao,
+    W., Liu, J., Yeh, Y ., and Yang, Y . Compound word transformer: Learning to compose
+    full-song mu- sic over dynamic directed hypergraphs. In Thirty-Fifth AAAI Conference
+    on Artificial Intelligence, AAAI 2021, Thirty-Third Conference on Innovative Applications
+    of Artificial Intelligence, IAAI 2021, The Eleventh Sympo- sium on Educational
+    Advances in Artificial Intelligence, EAAI 2021, Virtual Event, February 2-9, 2021,
+    pp. 178– 186. AAAI Press, 2021. doi: 10.1609/AAAI.V35I1. 16091. URL https://doi.org/10.1609/aaai.
+    v35i1.16091. Huang, C. A., Vaswani, A., Uszkoreit, J., Simon, I., Hawthorne, C.,
+    Shazeer, N., Dai, A. M., Hoffman, M. D., Dinculescu, M., and Eck, D. Music transformer:
+    Generat- ing music with long-term structure. In 7th International Conference on
+    Learning Representations, ICLR 2019, New Orleans, LA, USA, May 6-9, 2019. OpenReview.net,
+    2019. URL https://openreview.net/forum? id=rJe4ShAcF7. Krizhevsky, A., Hinton,
+    G., et al. Learning multiple layers of features from tiny images. 2009. Kudo,
+    T. Subword regularization: Improving neural net- work translation models with
+    multiple subword can- didates. In Gurevych, I. and Miyao, Y . (eds.), Pro- ceedings
+    of the 56th Annual Meeting of the Associa- tion for Computational Linguistics,
+    ACL 2018, Mel- bourne, Australia, July 15-20, 2018, Volume 1: Long Papers, pp.
+    66–75. Association for Computational Lin- guistics, 2018. doi: 10.18653/V1/P18-1007.
+    URL https://aclanthology.org/P18-1007/. Kudo, T. and Richardson, J. Sentencepiece:
+    A simple and language independent subword tokenizer and deto- kenizer for neural
+    text processing. In Blanco, E. and Lu, W. (eds.), Proceedings of the 2018 Conference
+    on Empirical Methods in Natural Language Process- ing, EMNLP 2018: System Demonstrations,
+    Brussels, Beyond Language Models: Byte Models are Digital World Simulators Belgium,
+    October 31 - November 4, 2018 , pp. 66–71. Association for Computational Linguistics,
+    2018. doi: 10.18653/V1/D18-2012. URL https://doi.org/ 10.18653/v1/d18-2012. LeCun,
+    Y ., Boser, B. E., Denker, J. S., Henderson, D., Howard, R. E., Hubbard, W. E.,
+    and Jackel, L. D. Handwritten digit recognition with a back-propagation network.
+    In Touretzky, D. S. (ed.), Advances in Neural Information Processing Systems 2,
+    [NIPS Conference, Denver, Colorado, USA, November 27-30, 1989] , pp. 396–404.
+    Morgan Kaufmann, 1989. URL http://papers.nips.cc/paper/ 293-handwritten-digit-recognition-with-a-back-propagation-network
+    . Li, J., Li, D., Savarese, S., and Hoi, S. C. H. BLIP-2: bootstrapping language-image
+    pre-training with frozen image encoders and large language models. In Krause,
+    A., Brunskill, E., Cho, K., Engelhardt, B., Sabato, S., and Scarlett, J. (eds.),
+    International Conference on Ma- chine Learning, ICML 2023, 23-29 July 2023, Hon-
+    olulu, Hawaii, USA , volume 202 of Proceedings of Machine Learning Research, pp.
+    19730–19742. PMLR, 2023. URL https://proceedings.mlr.press/ v202/li23q.html. Liu,
+    H., Li, C., Wu, Q., and Lee, Y . J. Visual instruction tuning. CoRR, abs/2304.08485,
+    2023. doi: 10.48550/ ARXIV .2304.08485. URL https://doi.org/10. 48550/arXiv.2304.08485.
+    Liu, Z., Xu, Y ., Xu, Y ., Qian, Q., Li, H., Ji, X., Chan, A. B., and Jin, R.
+    Improved fine-tuning by better leveraging pre-training data. In Koyejo, S., Mohamed,
+    S., Agarwal, A., Belgrave, D., Cho, K., and Oh, A. (eds.), Advances in Neural
+    Information Processing Systems 35: Annual Conference on Neural Information Processing
+    Systems 2022, NeurIPS 2022, New Orleans, LA, USA, November 28 - December 9, 2022,
+    2022. URL http://papers. nips.cc/paper_files/paper/2022/hash/ d1c88f9790765146ec8fb5d02e5653a0-Abstract-Conference.
+    html. Nguyen, E., Poli, M., Faizi, M., Thomas, A. W., Birch- Sykes, C., Wornow,
+    M., Patel, A., Rabideau, C. M., Mas- saroli, S., Bengio, Y ., Ermon, S., Baccus,
+    S. A., and R´e, C. Hyenadna: Long-range genomic sequence modeling at single nucleotide
+    resolution. CoRR, abs/2306.15794, 2023. doi: 10.48550/ARXIV .2306.15794. URL https:
+    //doi.org/10.48550/arXiv.2306.15794. Notin, P., Dias, M., Frazer, J., Marchena-Hurtado,
+    J., Gomez, A. N., Marks, D. S., and Gal, Y . Trancep- tion: Protein fitness prediction
+    with autoregressive trans- formers and inference-time retrieval. In Chaudhuri,
+    K., Jegelka, S., Song, L., Szepesv ´ari, C., Niu, G., and Sabato, S. (eds.), International
+    Conference on Ma- chine Learning, ICML 2022, 17-23 July 2022, Balti- more, Maryland,
+    USA , volume 162 of Proceedings of Machine Learning Research, pp. 16990–17017.
+    PMLR, 2022. URL https://proceedings.mlr.press/ v162/notin22a.html. Oord, A. v.
+    d., Dieleman, S., Zen, H., Simonyan, K., Vinyals, O., Graves, A., Kalchbrenner,
+    N., Senior, A., and Kavukcuoglu, K. Wavenet: A generative model for raw audio.
+    arXiv preprint arXiv:1609.03499, 2016. Panayotov, V ., Chen, G., Povey, D., and
+    Khudanpur, S. Librispeech: An ASR corpus based on public domain audio books. In
+    2015 IEEE International Conference on Acoustics, Speech and Signal Processing,
+    ICASSP 2015, South Brisbane, Queensland, Australia, April 19- 24, 2015, pp. 5206–5210.
+    IEEE, 2015. doi: 10.1109/ ICASSP.2015.7178964. URL https://doi.org/ 10.1109/ICASSP.2015.7178964.
+    Peters, M. E., Neumann, M., Iyyer, M., Gardner, M., Clark, C., Lee, K., and Zettlemoyer,
+    L. Deep con- textualized word representations. In Walker, M. A., Ji, H., and Stent,
+    A. (eds.), Proceedings of the 2018 Conference of the North American Chapter of
+    the As- sociation for Computational Linguistics: Human Lan- guage Technologies,
+    NAACL-HLT 2018, New Orleans, Louisiana, USA, June 1-6, 2018, Volume 1 (Long Pa-
+    pers), pp. 2227–2237. Association for Computational Linguistics, 2018. doi: 10.18653/V1/N18-1202.
+    URL https://doi.org/10.18653/v1/n18-1202. Radford, A., Narasimhan, K., Salimans,
+    T., Sutskever, I., et al. Improving language understanding by generative pre-training.
+    2018. Radford, A., Wu, J., Child, R., Luan, D., Amodei, D., Sutskever, I., et
+    al. Language models are unsupervised multitask learners. OpenAI blog, 1(8):9,
+    2019. Raff, E., Barker, J., Sylvester, J., Brandon, R., Catanzaro, B., and Nicholas,
+    C. K. Malware detection by eating a whole EXE. In The Workshops of the The Thirty-Second
+    AAAI Conference on Artificial Intelligence, New Orleans, Louisiana, USA, February
+    2-7, 2018, volume WS-18 of AAAI Technical Report, pp. 268–276. AAAI Press, 2018.
+    URL https://aaai.org/ocs/index.php/WS/ AAAIW18/paper/view/16422. Ramesh, A., Dhariwal,
+    P., Nichol, A., Chu, C., and Chen, M. Hierarchical text-conditional image generation
+    with CLIP latents. CoRR, abs/2204.06125, 2022. doi: 10.48550/ ARXIV .2204.06125.
+    URL https://doi.org/10. 48550/arXiv.2204.06125. Beyond Language Models: Byte Models
+    are Digital World Simulators Rubenstein, P. K., Asawaroengchai, C., Nguyen, D.
+    D., Bapna, A., Borsos, Z., de Chaumont Quitry, F., Chen, P., Badawy, D. E., Han,
+    W., Kharitonov, E., Muckenhirn, H., Padfield, D., Qin, J., Rozenberg, D., Sainath,
+    T. N., Schalkwyk, J., Sharifi, M., Ramanovich, M. T., Tagliasac- chi, M., Tudor,
+    A., Velimirovic, M., Vincent, D., Yu, J., Wang, Y ., Zayats, V ., Zeghidour, N.,
+    Zhang, Y ., Zhang, Z., Zilka, L., and Frank, C. H. Audiopalm: A large language
+    model that can speak and listen. CoRR, abs/2306.12925, 2023. doi: 10.48550/ARXIV
+    .2306.12925. URL https: //doi.org/10.48550/arXiv.2306.12925. Schaeffer, R., Miranda,
+    B., and Koyejo, S. Are emergent abilities of large language models a mirage? In
+    Thirty- seventh Conference on Neural Information Processing Systems, 2023. URL
+    https://openreview.net/ forum?id=ITw9edRDlD. Sennrich, R., Haddow, B., and Birch,
+    A. Neural machine translation of rare words with subword units. In Pro- ceedings
+    of the 54th Annual Meeting of the Associa- tion for Computational Linguistics,
+    ACL 2016, August 7-12, 2016, Berlin, Germany, Volume 1: Long Papers . The Association
+    for Computer Linguistics, 2016. doi: 10.18653/V1/P16-1162. URL https://doi.org/
+    10.18653/v1/p16-1162. Touvron, H., Lavril, T., Izacard, G., Martinet, X., Lachaux,
+    M., Lacroix, T., Rozi `ere, B., Goyal, N., Hambro, E., Azhar, F., Rodriguez, A.,
+    Joulin, A., Grave, E., and Lample, G. Llama: Open and efficient foundation lan-
+    guage models. CoRR, abs/2302.13971, 2023a. doi: 10.48550/ARXIV .2302.13971. URL
+    https://doi. org/10.48550/arXiv.2302.13971. Touvron, H., Martin, L., Stone, K.,
+    Albert, P., Almahairi, A., Babaei, Y ., Bashlykov, N., Batra, S., Bhargava, P.,
+    Bhosale, S., Bikel, D., Blecher, L., Canton-Ferrer, C., Chen, M., Cucurull, G.,
+    Esiobu, D., Fernandes, J., Fu, J., Fu, W., Fuller, B., Gao, C., Goswami, V .,
+    Goyal, N., Hartshorn, A., Hosseini, S., Hou, R., Inan, H., Kardas, M., Kerkez,
+    V ., Khabsa, M., Kloumann, I., Korenev, A., Koura, P. S., Lachaux, M., Lavril,
+    T., Lee, J., Liskovich, D., Lu, Y ., Mao, Y ., Martinet, X., Mihaylov, T., Mishra,
+    P., Molybog, I., Nie, Y ., Poulton, A., Reizenstein, J., Rungta, R., Saladi, K.,
+    Schelten, A., Silva, R., Smith, E. M., Sub- ramanian, R., Tan, X. E., Tang, B.,
+    Taylor, R., Williams, A., Kuan, J. X., Xu, P., Yan, Z., Zarov, I., Zhang, Y .,
+    Fan, A., Kambadur, M., Narang, S., Rodriguez, A., Stojnic, R., Edunov, S., and
+    Scialom, T. Llama 2: Open founda- tion and fine-tuned chat models. CoRR, abs/2307.09288,
+    2023b. doi: 10.48550/ARXIV .2307.09288. URLhttps: //doi.org/10.48550/arXiv.2307.09288.
+    Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N.,
+    Kaiser, Ł., and Polosukhin, I. At- tention is all you need. Advances in neural
+    information processing systems, 30, 2017. Wang, C., Cho, K., and Gu, J. Neural
+    machine transla- tion with byte-level subwords. In The Thirty-Fourth AAAI Conference
+    on Artificial Intelligence, AAAI 2020, The Thirty-Second Innovative Applications
+    of Artificial Intelligence Conference, IAAI 2020, The Tenth AAAI Symposium on
+    Educational Advances in Artificial In- telligence, EAAI 2020, New York, NY, USA,
+    February 7-12, 2020 , pp. 9154–9160. AAAI Press, 2020. doi: 10.1609/AAAI.V34I05.6451.
+    URL https://doi. org/10.1609/aaai.v34i05.6451. Wang, C., Chen, S., Wu, Y ., Zhang,
+    Z., Zhou, L., Liu, S., Chen, Z., Liu, Y ., Wang, H., Li, J., He, L., Zhao, S.,
+    and Wei, F. Neural codec language models are zero- shot text to speech synthesizers.
+    CoRR, abs/2301.02111, 2023. doi: 10.48550/ARXIV .2301.02111. URL https: //doi.org/10.48550/arXiv.2301.02111.
+    Wang, J., Gangavarapu, T., Yan, J. N., and Rush, A. M. Mambabyte: Token-free selective
+    state space model, 2024. Warden, P. Speech commands: A dataset for limited- vocabulary
+    speech recognition. CoRR, abs/1804.03209, 2018. URL http://arxiv.org/abs/1804.
+    03209. Wei, J., Liu, Q., Guo, Y ., and Jiang, X. Training multilingual pre-trained
+    language model with byte-level subwords. arXiv preprint arXiv:2101.09469, 2021.
+    Wei, J., Tay, Y ., Bommasani, R., Raffel, C., Zoph, B., Borgeaud, S., Yogatama,
+    D., Bosma, M., Zhou, D., Metzler, D., Chi, E. H., Hashimoto, T., Vinyals, O.,
+    Liang, P., Dean, J., and Fedus, W. Emergent abilities of large language models.
+    Trans. Mach. Learn. Res., 2022, 2022. URL https://openreview.net/forum? id=yzkSU5zdwD.
+    Wikimedia. Wikimedia downloads, 2022. URL https: //dumps.wikimedia.org. Wu, S.,
+    Li, X., Yu, F., and Sun, M. Tunesformer: Forming irish tunes with control codes
+    by bar patching. In Porcaro, L., Batlle-Roca, R., and G ´omez, E. (eds.), Proceedings
+    of the 2nd Workshop on Human-Centric Music Informa- tion Retrieval 2023 co-located
+    with the 24th International Society for Music Information Retrieval Conference
+    (IS- MIR 2023), Milan, Italy, November 10, 2023 , volume 3528 of CEUR Workshop
+    Proceedings. CEUR-WS.org, 2023a. URL https://ceur-ws.org/Vol-3528/ paper1.pdf.
+    Beyond Language Models: Byte Models are Digital World Simulators Wu, S., Yu, D.,
+    Tan, X., and Sun, M. Clamp: Contrastive language-music pre-training for cross-modal
+    symbolic music information retrieval. In Sarti, A., Antonacci, F., Sandler, M.,
+    Bestagini, P., Dixon, S., Liang, B., Richard, G., and Pauwels, J. (eds.), Proceedings
+    of the 24th International Society for Music Information Re- trieval Conference,
+    ISMIR 2023, Milan, Italy, Novem- ber 5-9, 2023 , pp. 157–165, 2023b. doi: 10.5281/
+    ZENODO.10265247. URL https://doi.org/10. 5281/zenodo.10265247. Wu, Y ., Schuster,
+    M., Chen, Z., Le, Q. V ., Norouzi, M., Macherey, W., Krikun, M., Cao, Y ., Gao,
+    Q., Macherey, K., Klingner, J., Shah, A., Johnson, M., Liu, X., Kaiser, L., Gouws,
+    S., Kato, Y ., Kudo, T., Kazawa, H., Stevens, K., Kurian, G., Patil, N., Wang,
+    W., Young, C., Smith, J., Riesa, J., Rudnick, A., Vinyals, O., Corrado, G., Hughes,
+    M., and Dean, J. Google’s neural machine translation system: Bridging the gap
+    between human and machine translation. CoRR, abs/1609.08144, 2016. URL http: //arxiv.org/abs/1609.08144.
+    Xue, L., Barua, A., Constant, N., Al-Rfou, R., Narang, S., Kale, M., Roberts,
+    A., and Raffel, C. Byt5: Towards a token-free future with pre-trained byte-to-byte
+    models. Trans. Assoc. Comput. Linguistics , 10:291–306, 2022. doi: 10.1162/TACL\
+    A\ 00461. URL https://doi. org/10.1162/tacl_a_00461. Yang, D., Tian, J., Tan,
+    X., Huang, R., Liu, S., Chang, X., Shi, J., Zhao, S., Bian, J., Wu, X., et al.
+    Uniaudio: An au- dio foundation model toward universal audio generation. arXiv
+    preprint arXiv:2310.00704, 2023. Yu, L., Simig, D., Flaherty, C., Aghajanyan,
+    A., Zettlemoyer, L., and Lewis, M. MEGABYTE: Predicting million-byte sequences
+    with multiscale transformers. InThirty-seventh Conference on Neural Information
+    Processing Systems, 2023. URL https://openreview.net/forum? id=JTmO2V9Xpz. Zeng,
+    M., Tan, X., Wang, R., Ju, Z., Qin, T., and Liu, T. Musicbert: Symbolic music
+    understanding with large-scale pre-training. In Zong, C., Xia, F., Li, W., and
+    Navigli, R. (eds.), Findings of the Association for Computational Linguistics:
+    ACL/IJCNLP 2021, Online Event, August 1-6, 2021, volume ACL/IJCNLP 2021 of Findings
+    of ACL , pp. 791–800. Association for Com- putational Linguistics, 2021. doi:
+    10.18653/V1/2021. FINDINGS-ACL.70. URL https://doi.org/10. 18653/v1/2021.findings-acl.70.
+    Zhang, X., Zhao, J. J., and LeCun, Y . Character-level convolutional networks
+    for text classification. In Cortes, C., Lawrence, N. D., Lee, D. D., Sugiyama,
+    M., and Garnett, R. (eds.), Advances in Neural Infor- mation Processing Systems
+    28: Annual Conference on Neural Information Processing Systems 2015, December
+    7-12, 2015, Montreal, Quebec, Canada , pp. 649–657, 2015. URL https://proceedings.
+    neurips.cc/paper/2015/hash/ 250cf8b51c773f3f8dc8b4be867a9a02-Abstract. html. Zhu,
+    D., Chen, J., Shen, X., Li, X., and Elho- seiny, M. Minigpt-4: Enhancing vision-language
+    understanding with advanced large language models. CoRR, abs/2304.10592, 2023.
+    doi: 10.48550/ARXIV . 2304.10592. URL https://doi.org/10.48550/ arXiv.2304.10592.
+    Beyond Language Models: Byte Models are Digital World Simulators    
+              
+         DAG D A G C G / BC F ♯ mB mA F ♯ m A A B m D D     14
+               
+            DAG D A G C G / BC F ♯ mB mA F ♯ m A A B m
+    D D     14          
+              DAG D A G C G / BC F ♯ mB
+    mA F ♯ m A A B m D D      Figure 4. Sheet music example corresponding
+    to the ABC notation of a folk tune in D major. A. Symbolic Music Formats A.1.
+    ABC Notation ABC notation is a shorthand form of music notation that uses ASCII
+    characters to represent musical notes and symbols. It is a compact, human-readable,
+    and easily typed format that has gained popularity for its ability to facilitate
+    the swift digital transcription, sharing, and editing of music. Originating within
+    folk and traditional music circles, ABC notation has become a universal method
+    for musicians and enthusiasts to exchange music without the need for proprietary
+    software or extensive musical training. To illustrate the fundamentals of ABC
+    notation, consider the example below, which depicts a folk tune: X:1 L:1/8 M:3/4
+    K:D de |"D" f3 g a{/g}f |"A" e4 AB |"C" =c3 d"G/B" B{/A}G |"A" A4 fg | "D" a3
+    g fd |"A" e4 AB |"C" =c3 d e{/f}g |"D" f4 :: d{/edc}A |"Bm" B2 A2 F2 |"F#m" A3
+    B d{/edc}A |"G" B2 A2 F2 | "A" (E4 E)A |"Bm" B3 A FD |"F#m" C3 D (F/G/A) |"G"
+    B3 e"A" dc |"D" d4 :| The corresponding sheet music rendered from this ABC sequence
+    is shown in Fig. 4. In this example, the structure of ABC notation starts with
+    a header that includes: • X (Tune Number): This is a unique number assigned to
+    the tune, serving as a reference in collections or databases. • L (Unit Note Length):
+    This defines the default duration of notes. In this context, 1/8 indicates that
+    each note is an eighth note, which is a standard choice for folk tunes. • M (Meter):
+    This denotes the time signature of the piece, which determines the rhythmic pulse.
+    Here, 3/4 suggests a waltz-like rhythm. • K (Key): This sets the key signature
+    for the tune. D signifies that the piece is in the key of D major. After the header,
+    the body of the ABC notation consists of the musical notes themselves. Each note
+    is represented by a letter (A to G), which corresponds to the pitch. The octaves
+    are indicated by lower-cased letters or apostrophes for higher octaves and upper-cased
+    letters or commas for lower or higher octaves, respectively. The duration of notes
+    is modified by numbers; for instance, a 2 following a note would double its value,
+    while a /2 would halve it. Chords can be notated by enclosing the Beyond Language
+    Models: Byte Models are Digital World Simulators 7    
+         
+              = 120  
+         30 7     
+         
+             = 120   
+        30 7      
+         
+            = 120      
+      Figure 5. Sheet music example corresponding to the MIDI of the same folk
+    tune presented in Fig. 4. chord name in quotation marks to suggest harmony, such
+    as "F#m" representing the F sharp minor. Additional symbols are used for sharps
+    ˆ, flats , and naturals = to alter pitch, and various other characters represent
+    articulations and expressions. This notation describes the tune with sufficient
+    information, from its rhythmic structure down to the details of its melody and
+    harmony. As such, ABC notation serves as a bridge between the traditional form
+    of musical scores and the modern digital world, offering a text-based alternative
+    that is both efficient and widely accessible. For a detailed documentation of
+    ABC notation, please refer to the ABC notation standard2. A.2. MIDI MIDI, short
+    for Musical Instrument Digital Interface, is a technical standard that describes
+    a protocol, digital interface, and connectors and allows a wide variety of electronic
+    musical instruments, computers, and other related devices to connect and communicate
+    with one another. Unlike ABC notation, which is designed for human readability
+    and the transcription of musical scores, MIDI is focused on capturing and conveying
+    information about music performance and production in a format that machines can
+    interpret and process. The core of MIDI communication involves MIDI messages,
+    which are digital signals that represent various musical elements such as notes,
+    pitch, velocity (how hard a note is played), control changes (modifications to
+    sound parameters), and program changes (instrument changes). These messages do
+    not transmit audio; instead, they send instructions about how music should be
+    played or produced. This approach allows MIDI to be incredibly versatile and lightweight
+    compared to raw audio, suitable for real-time control during live performances
+    and detailed editing in studio environments. MIDI files, commonly with the extension
+    .mid or .midi, store sequences of MIDI messages that can be played back by computer
+    software or electronic instruments. These files make it possible to share and
+    distribute musical compositions in a form that can be easily modified, transposed,
+    or played back with different instrument sounds, offering a level of flexibility
+    and creative freedom that is unique to the digital music domain. 2https://abcnotation.com/wiki/abc:standard:v2.1
+    Beyond Language Models: Byte Models are Digital World Simulators There are several
+    ways to create and edit MIDI, each catering to different workflows and preferences:
+    • MIDI Keyboards and Controllers : Physical devices that allow musicians to input
+    notes and control data into a computer. They emulate traditional instruments and
+    can capture the nuances of a performance in MIDI format. • Piano Roll: A graphical
+    interface in digital audio workstations (as shown in Fig. 1) where notes are displayed
+    and edited on a grid representing pitch and time. It is intuitive for composing
+    melodies, chords, and rhythms. • Score Editor: Allows users to input and edit
+    music in traditional notation, converting written notes into MIDI data. Ideal
+    for those familiar with musical notation. • Programming and Scripting: Involves
+    writing code to generate and manipulate MIDI data, offering complex and generative
+    musical possibilities beyond manual input methods. For instance, complex MIDI
+    sequences and automation can be generated using software such as Max/MSP, Pure
+    Data, or programming languages (e.g., SuperCollider). Although MIDI offers immense
+    benefits for musicians and producers, when converting MIDI data back into score-oriented
+    symbolic music formats like ABC notation, certain challenges arise due to the
+    intrinsic differences between these formats. MIDI excels at capturing how a piece
+    of music is played, including the timing, velocity, and expressiveness of each
+    note. In contrast, ABC notation focuses on the structural elements of music, such
+    as melody, harmony, and rhythm, using a textual format that is more accessible
+    for human reading and writing but less detailed in terms of performance nuances.
+    To illustrate the conversion between MIDI and ABC notation, consider the following
+    example: X:1 L:1/8 M:3/4 K:D de f3 g | ag/<f/ e4 | AB =c3 d | BA/<G/ A4 | fg a3
+    g | fd e4 | AB =c3 d | ef/<g/ f4 | de f3 g | ag/<f/ e4 | AB =c3 d | BA/<G/ A4
+    | fg a3 g | fd e4 | AB =c3 d | ef/<g/ f4 | de/4d/4c/4A/4 B2 A2 | F2 A3 B | de/4d/4c/4A/4
+    B2 A2 | F2 E4 | EA B3 A | FD C3 D | F/G/A B3 e | dc d4 | de/4d/4c/4A/4 B2 A2 |
+    F2 A3 B | de/4d/4c/4A/4 B2 A2 | F2 E4 | EA B3 A | FD C3 D | F/G/A B3 e | dc d4
+    |] This is the same tune we have demonstrated in Fig, 4, but it has now been converted
+    from ABC notation to MIDI and subsequently back to ABC notation. The corresponding
+    sheet music, rendered from this ABC sequence, is shown in Fig. 5. One can observe
+    that the ABC sequence and the musical score appear significantly longer than the
+    original due to the elimination of repeat signs in MIDI, requiring repeated sections
+    to be explicitly written out. Additionally, the bar divisions and the ornaments
+    in the MIDI-to-ABC conversion might not align perfectly with the original ABC
+    notation. These ornaments are often represented as a series of rapid notes in
+    MIDI, which can complicate their translation back into ABC notation. While MIDI-rendered
+    sheet music and its ABC notation counterpart may sound identical when performed,
+    the visual complexity of the MIDI transcription can make it more challenging to
+    read than the ABC version. This discrepancy underscores the fact that MIDI and
+    ABC are formats tailored for different contexts. MIDI is adept at capturing nuanced
+    performance data, such as dynamics and subtle timing variations, which are essential
+    for playback fidelity but are not as visually straightforward as ABC notation.
+    On the other hand, ABC notation, with its simplified symbolic representation,
+    is not ideal for conveying detailed performance information. Both formats have
+    overlapping capabilities in representing musical information, yet each also possesses
+    unique characteristics that do not translate perfectly when converting from one
+    to the other. This results in a loss of information: nuances specific to each
+    format can be diminished or omitted entirely during the conversion process. Such
+    losses present a challenge in preserving the full intent and detail of a musical
+    piece when moving between ABC and MIDI formats. B. CPU States Dataset The CPU
+    States Dataset has been crafted using a Python script to simulate the operations
+    of a CPU, offering a controlled environment to assess the capabilities of bGPT
+    in modelling the hardware behaviour. This appendix offers an overview of the dataset,
+    introducing the structure, instruction set, and details of the dataset curation.
+    Beyond Language Models: Byte Models are Digital World Simulators The dataset comprises
+    entries of 1KB memory blocks, each paired with a subsequent 16-byte sequence representing
+    the CPU register states. The memory blocks encode varying numbers of machine instructions,
+    while the register state sequence includes the CPU status post-execution of each
+    instruction. The CPU registers in each state consist of: • Program Counter (PC):
+    1 byte in size, points to the next instruction in the memory. • Accumulator (ACC):
+    A 1-byte register involved in arithmetic and logic operations. • Instruction Register
+    (IR): Occupies 4 bytes, storing the currently executed instruction. • General-Purpose
+    Registers: An additional 10 bytes are allocated, emulating a range of registers
+    (labelled A-J) used for various computational purposes. Transitions between states
+    mimic the execution cycle of a CPU, including fetching instructions from memory,
+    decoding them to determine the required operation, and executing the operation
+    to modify the state. The execution process includes instructions for modifying
+    register values, performing arithmetic calculations, and controlling the program
+    flow. Each instruction in the dataset is encoded in a four-byte format OP ADDR1
+    ADDR2 ADDR3 , with each byte serving a specific purpose: • OP (Operation Code):
+    1 byte representing the opcode of the instruction to be executed. • ADDR1, ADDR2,
+    ADDR3: 1 byte each, representing up to three addresses that the instruction may
+    interact with. The opcode and addresses together describe the action to be taken
+    by the CPU. The instructions vary in terms of the number of addresses they use,
+    from zero-address to three-address instructions. This variability allows the simulation
+    of a wide range of operations, from simple data movement to complex arithmetic
+    and logical functions. Table 7 (located on page 19) details the instruction set
+    and the variants each instruction can have, depending on the values in the address
+    fields. The variant to be executed is determined by the non-zero value in the
+    address fields. For zero-address instructions, all address fields are zero. For
+    single-address instructions, ADDR1 holds the address of the register involved,
+    and the other fields are zero. For two- and three-address instructions, the respective
+    fields hold the addresses of the registers involved in the operation. In designing
+    the instruction set, complex instructions like jump commands were deliberately
+    excluded to prevent the occurrence of infinite loops or other complexities that
+    could hinder straightforward simulation. The Python script generates the CPU States
+    Dataset by randomly initializing the ACC and general-purpose registers for each
+    simulation, thereby ensuring a wide range of starting conditions. It then executes
+    a random sequence of instructions, varying in length from 1 to 256, with the effect
+    of each instruction on the CPU state being recorded. This results in a sequence
+    of states that reflects the cumulative impact of the executed instructions. The
+    script guarantees that each sequence culminates with a halt instruction HLT, marking
+    the end of a program. Furthermore, when considering only the register changes
+    related to instructions, there are over 516 million potential scenarios resulting
+    from combinations of various instruction types, registers, and their values. The
+    dataset thus produced comprises 2.1 million entries for the training set and 21,000
+    entries for the evaluation set. This process, with its random initial states and
+    varied instruction lengths, produces a diverse dataset that is essential for training
+    and evaluating the effectiveness of bGPT in modelling CPU states. To aid in a
+    more intuitive comprehension of the operational logic of the CPU, a randomly generated
+    program for executing 10 instructions along with their corresponding states in
+    human-readable form is provided below: Program: [’MUL J A’, ’DIV I’, ’MUL E D’,
+    ’ADD C’, ’LOADI 86’, ’MOV A H’, ’AND D E’, ’POP H’, ’CLR’, ’HLT’] State at step
+    0: PC: 0 ACC: 146 IR: HLT Registers: {’A’: 19, ’B’: 55, ’C’: 245, ’D’: 35, ’E’:
+    174, ’F’: 185, ’G’: 9, ’H’: 20, ’I’: 140, ’J’: 2} Beyond Language Models: Byte
+    Models are Digital World Simulators State at step 1: PC: 1 ACC: 146 IR: MUL J
+    A Registers: {’A’: 19, ’B’: 55, ’C’: 245, ’D’: 35, ’E’: 174, ’F’: 185, ’G’: 9,
+    ’H’: 20, ’I’: 140, ’J’: 2} State at step 2: PC: 2 ACC: 146 IR: DIV I Registers:
+    {’A’: 19, ’B’: 55, ’C’: 245, ’D’: 35, ’E’: 174, ’F’: 185, ’G’: 9, ’H’: 20, ’I’:
+    140, ’J’: 38} State at step 3: PC: 3 ACC: 1 IR: MUL E D Registers: {’A’: 19, ’B’:
+    55, ’C’: 245, ’D’: 35, ’E’: 174, ’F’: 185, ’G’: 9, ’H’: 20, ’I’: 140, ’J’: 38}
+    State at step 4: PC: 4 ACC: 1 IR: ADD C Registers: {’A’: 19, ’B’: 55, ’C’: 245,
+    ’D’: 35, ’E’: 255, ’F’: 185, ’G’: 9, ’H’: 20, ’I’: 140, ’J’: 38} State at step
+    5: PC: 5 ACC: 246 IR: LOADI 86 Registers: {’A’: 19, ’B’: 55, ’C’: 245, ’D’: 35,
+    ’E’: 255, ’F’: 185, ’G’: 9, ’H’: 20, ’I’: 140, ’J’: 38} State at step 6: PC: 6
+    ACC: 86 IR: MOV A H Registers: {’A’: 19, ’B’: 55, ’C’: 245, ’D’: 35, ’E’: 255,
+    ’F’: 185, ’G’: 9, ’H’: 20, ’I’: 140, ’J’: 38} State at step 7: PC: 7 ACC: 86 IR:
+    AND D E Registers: {’A’: 20, ’B’: 55, ’C’: 245, ’D’: 35, ’E’: 255, ’F’: 185, ’G’:
+    9, ’H’: 20, ’I’: 140, ’J’: 38} State at step 8: PC: 8 ACC: 86 IR: POP H Registers:
+    {’A’: 20, ’B’: 55, ’C’: 245, ’D’: 35, ’E’: 255, ’F’: 185, ’G’: 9, ’H’: 20, ’I’:
+    140, ’J’: 38} State at step 9: PC: 9 ACC: 86 IR: CLR Registers: {’A’: 20, ’B’:
+    55, ’C’: 245, ’D’: 35, ’E’: 255, ’F’: 185, ’G’: 9, ’H’: 86, ’I’: 140, ’J’: 38}
+    State at step 10: PC: 10 ACC: 0 IR: HLT Registers: {’A’: 20, ’B’: 55, ’C’: 245,
+    ’D’: 35, ’E’: 255, ’F’: 185, ’G’: 9, ’H’: 86, ’I’: 140, ’J’: 38} The dataset is
+    intended for use in machine learning research, particularly for developing models
+    capable of predicting CPU behaviour. It can also serve as an educational tool,
+    helping students understand CPU operation principles. Beyond Language Models:
+    Byte Models are Digital World Simulators Table 7. Defined instruction set and
+    the address variants of different instructions. Instruction Address Variants Meaning
+    HLT 0 Halts the CPU with “HLT” CLR 0, 1 Zeroes the accumulator with “CLR” or a
+    specific register with “CLR A” INC 0, 1 Increments the accumulator with “INC”
+    or a specific register with “INC A” DEC 0, 1 Decrements the accumulator with “DEC”
+    or a specific register with “DEC A” SHL 0, 1 Shifts the accumulator left by one
+    bit with “SHL” or a specific register with “SHL A” SHR 0, 1 Shifts the accumulator
+    right by one bit with “SHR” or a specific register with “SHR A” ROL 0, 1 Rotates
+    the accumulator left by one bit with “ROL” or a specific register with “ROL A”
+    ROR 0, 1 Rotates the accumulator right by one bit with “ROR” or a specific register
+    with “ROR A” NOT 0, 1 Performs bitwise NOT on the accumulator with “NOT” or a
+    specific register with “NOT A” PUSH 1 Pushes the value of a specific register
+    onto the stack with “PUSH A” POP 1 Pops the top of the stack into a specific register
+    with “POP A” LOADI 1 Loads an immediate value into the accumulator with “LOADI
+    value” SW AP 1, 2 Swaps values between the accumulator and a register with “SWAP
+    A” or between two registers with “SW AP A B” ADD 1, 2, 3 Adds using one, two,
+    or three addresses with examples “ADD A”, “ADD A B”, “ADD A B C” SUB 1, 2, 3 Subtracts
+    using one, two, or three addresses with examples “SUB A”, “SUB A B”, “SUB A B
+    C” MUL 1, 2, 3 Multiplies using one, two, or three addresses with examples “MUL
+    A”, “MUL A B”, “MUL A B C” DIV 1, 2, 3 Divides using one, two, or three addresses
+    with examples “DIV A”, “DIV A B”, “DIV A B C” AND 1, 2, 3 Performs bitwise AND
+    using one, two, or three addresses with examples “AND A”, “AND A B”, “AND A B
+    C” OR 1, 2, 3 Performs bitwise OR using one, two, or three addresses with examples
+    “OR A”, “OR A B”, “OR A B C” XOR 1, 2, 3 Performs bitwise XOR using one, two,
+    or three addresses with examples “XOR A”, “XOR A B”, “XOR A B C” MOV 2 Moves a
+    value from one register to another with “MOV A B”'
+  doi: 10.18653/v1/2022.acl-long.393
+  title: '3288409'
+  authors: 'Ao, J., Wang, R., Zhou, L., Wang, C., Ren, S., Wu, Y ., Liu, S., Ko, T.,
+    Li, Q., Zhang, Y ., Wei, Z., Qian, Y ., Li, J., and Wei, F. Speecht5: Unified-modal
+    encoder-decoder pre-training for spoken language processing. In Muresan, S., Nakov,
+    P., and Villavicencio, A. (eds.),Proceedings of the 60th Annual Meeting of the
+    Association for Com- putational Linguistics (Volume 1: Long Papers), ACL 2022,
+    Dublin, Ireland, May 22-27, 2022, pp. 5723–5738. Association for Computational
+    Linguistics, 2022. doi: 10. 18653/V1/2022.ACL-LONG.393. URL https://doi. org/10.18653/v1/2022.acl-long.393.
+    Borsos, Z., Marinier, R., Vincent, D., Kharitonov, E., Pietquin, O., Sharifi,
+    M., Roblek, D., Teboul, O., Grang- ier, D., Tagliasacchi, M., and Zeghidour, N.
+    Audiolm: A language modeling approach to audio generation. IEEE ACM Trans. Audio
+    Speech Lang. Process., 31:2523–2533, 2023. doi: 10.1109/TASLP'
+  year: '2023'
+  url: https://doi.org/10.18653/v1/2022.acl-long.393

@@ -452,19 +452,17 @@ slide(
              style="font-size:24px") + """
   </div>
   <div class="col" style="flex:1.2">
-    <div class="label">Question for the authors (illustrative)</div>
+    <div class="label">Question from the example review</div>
     <div class="draft">
-      <div class="h">Does the CPU result in the abstract hold beyond the simplified CPU?</div>
-      <div><span class="mono accent" style="font-size:22px">paper:p.1</span>
-        <span class="quote">“with an accuracy exceeding 99.99% in executing various operations”</span></div>
-      <div style="margin-top:8px"><span class="mono accent" style="font-size:22px">paper:p.8</span>
-        <span class="quote">“focused solely on simplified CPUs, omitting the use of real modern CPUs”</span></div>
-      <div style="margin-top:8px"><b>Requested action:</b> state this scope in the abstract.</div>
+      <div class="h">Is the 0.0011 BPB for ABC→MIDI explained by MIDI bytes that are near-deterministic given the ABC?</div>
+      <div><span class="mono accent" style="font-size:22px">paper:p.8</span>
+        <span class="quote">“BPBmidi evaluates data conversion, considering the complete ABC byte sequence is given.”</span></div>
+      <div style="margin-top:8px"><b>Requested response:</b> report the exact-match or valid-MIDI rate for greedy end-to-end conversion.</div>
     </div>
   </div>
 </div>
 """,
-    src="Illustrative question, §5.5 format · " + BGPT_SRC,
+    src="AI-generated review, no human judgement · Wu et al. 2024, arXiv:2402.19155, CC BY 4.0",
 )
 
 # 11 — sealed run
