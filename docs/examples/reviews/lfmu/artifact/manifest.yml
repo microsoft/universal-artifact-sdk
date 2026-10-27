@@ -1,0 +1,52 @@
+_generated: DO NOT EDIT — produced by `paper-to-artifact` from paper.pdf. Everything
+  here is GENERATED and attested (the paper's own statements), never independently
+  reproduced. Re-run the adapter to regenerate.
+format_version: evaluable-artifact/v3
+sdk_version: artifact-sdk/v1
+id: 005179f8c640
+title: paper
+source_format: paper/v1
+identity:
+  id: 005179f8c640
+  title: paper
+  author_name: null
+origin:
+  kind: paper
+  evidence_cap: attested
+  extractor:
+    tool: paper-to-artifact/v1
+    reader: pypdf
+    llm: null
+    verifier: null
+paper:
+  pdf: paper.pdf
+  references_export: paper_references.yml
+paths:
+  claims: claims.yml
+  results: results.yml
+  contributions: contributions.yml
+experiments: []
+evidence_inventory:
+  has_runnable_experiments: false
+  has_results: true
+  result_count: 556
+  has_traces: false
+  trace_count: 0
+  has_released_data: false
+  dataset_count: 0
+  has_study_metadata: false
+  has_paper_source: true
+  has_citations_export: true
+  has_related_work_export: false
+  has_research_agent: false
+  has_contributions: true
+  contribution_count: 3
+  experiments_attempted: 0
+  experiments_reported: 0
+  evidence_kinds:
+  - metrics
+  validation_modes:
+  - attest
+warnings:
+- 'paper-origin artifact: no experiments were run; all results are attested; the reproduction
+  dimension is unassessable.'

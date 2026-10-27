@@ -1,0 +1,336 @@
+{
+  "_generated": "DO NOT EDIT \u2014 produced by `reference-judge`. Re-run the judge to regenerate.",
+  "format_version": "evaluable-artifact/v3",
+  "run_id": "20261026T230835.249Z-7984",
+  "generated_at": "2026-10-26T23:08:35Z",
+  "judge_version": "0.1.0",
+  "identity": {
+    "id": "005179f8c640",
+    "title": "paper",
+    "author_name": null
+  },
+  "origin": {
+    "kind": "paper",
+    "evidence_cap": "attested",
+    "extractor": {
+      "tool": "paper-to-artifact/v1",
+      "reader": "pypdf",
+      "llm": null,
+      "verifier": null
+    }
+  },
+  "rubric": "PARTIAL",
+  "method_badge": null,
+  "badges": {
+    "available": "unverifiable",
+    "functional": "unverifiable",
+    "results_reproduced": "unverifiable"
+  },
+  "git_branch": null,
+  "findings": [
+    {
+      "id": "structure/readme",
+      "check": "structure",
+      "verdict": "unverifiable",
+      "message": "no standalone usage doc declared \u2014 documentation completeness is unassessable (usage guidance is expected in the paper and experiment dirs).",
+      "evidence": [],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "structure/paper",
+      "check": "structure",
+      "verdict": "verified",
+      "message": "paper present at paper.pdf.",
+      "evidence": [
+        "paper.pdf"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "structure/dependencies",
+      "check": "structure",
+      "verdict": "unverifiable",
+      "message": "no dependencies declared \u2014 Functional reproducibility is at risk.",
+      "evidence": [],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "structure/experiments",
+      "check": "structure",
+      "verdict": "unassessable",
+      "message": "no experiments registered \u2014 the artifact runs nothing (paper-origin / described-only); reproduction is unassessable, not a failure.",
+      "evidence": [
+        "manifest.yml#experiments",
+        "manifest.yml#evidence_inventory"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/C1.v1",
+      "check": "claim_validators",
+      "verdict": "advisory",
+      "message": "claim C1: attest[provenance] \u2014 provenance: 1 input(s) resolve to shipped, non-empty evidence.",
+      "evidence": [
+        "claims.yml#C1",
+        "results.yml#R1"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/C1.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "attested",
+      "method_badge": "attested",
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "paper_consistency/unassessable",
+      "check": "paper_consistency",
+      "verdict": "unassessable",
+      "message": "harvested 556 reported number(s) from paper.pdf (pypdf, 7 page(s)), but the artifact declares no shipped evidence to cross-check against (paper-origin / described-only) \u2014 paper\u2194data consistency is unassessable, not a failure.",
+      "evidence": [
+        "paper.pdf"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S3, S6",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "provenance/generated-marker",
+      "check": "provenance",
+      "verdict": "verified",
+      "message": "manifest.yml carries its generated marker.",
+      "evidence": [
+        "manifest.yml#_generated"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "provenance/claims",
+      "check": "provenance",
+      "verdict": "verified",
+      "message": "authored input claims.yml present and ledgered.",
+      "evidence": [
+        "claims.yml"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "provenance/reflection",
+      "check": "provenance",
+      "verdict": "unverifiable",
+      "message": "optional input reflection.md not shipped \u2014 nothing to audit (coverage note).",
+      "evidence": [
+        "reflection.md"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "provenance/checksums",
+      "check": "provenance",
+      "verdict": "unassessable",
+      "message": "No SHA256SUMS declaration; shipped checksum integrity unassessed.",
+      "evidence": [],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/execution_authenticity",
+      "check": "execution_authenticity",
+      "verdict": "unassessable",
+      "message": "execution authenticity is unassessable: no trace was declared, so whether the reported work actually ran cannot be judged (coverage note, not a failure).",
+      "evidence": [
+        "manifest.yml#evidence_inventory"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/execution_authenticity/provenance_journal",
+      "check": "execution_authenticity",
+      "verdict": "unassessable",
+      "message": "provenance journal is unassessable: no journal.yml was declared, so the narrated edit history cannot be reviewed (optional; coverage note, not a failure).",
+      "evidence": [
+        "manifest.yml#paths.journal"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/trace_report_faithfulness",
+      "check": "trace_report_faithfulness",
+      "verdict": "unassessable",
+      "message": "trace-report faithfulness is unassessable: no trace was declared to reconcile against the paper's account (coverage note, not a failure).",
+      "evidence": [
+        "manifest.yml#evidence_inventory"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/citation_integrity",
+      "check": "citation_integrity",
+      "verdict": "advisory",
+      "message": "citation integrity: all 1 exported reference(s) carry an existence-checkable identifier (DOI/arXiv/URL). Advisory \u2014 supportiveness is an inspection question.",
+      "evidence": [
+        "paper_references.yml"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/related_work_validity",
+      "check": "related_work_validity",
+      "verdict": "unassessable",
+      "message": "related-work validity is unassessable: a paper was read (from pdf) but no related-work section could be located to analyze (coverage note, not a failure). A future SDK related_work_export would remove the extraction ambiguity.",
+      "evidence": [
+        "manifest.yml#paper"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S4, S7",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/limitation_transparency",
+      "check": "limitation_transparency",
+      "verdict": "unassessable",
+      "message": "limitation transparency is unassessable: no reflection.md was shipped (optional; coverage note, not a failure).",
+      "evidence": [
+        "manifest.yml#paths.reflection"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "assessments/agent_faithfulness",
+      "check": "agent_faithfulness",
+      "verdict": "unassessable",
+      "message": "agent faithfulness is unassessable: no research-agent.md was shipped (optional; coverage note, not a failure).",
+      "evidence": [
+        "manifest.yml#research_agent"
+      ],
+      "command_to_reproduce": null,
+      "grounded_in": "S1, S3",
+      "validation_mode": null,
+      "mode_verdict": null,
+      "method_badge": null,
+      "display_weight": null,
+      "presentation_role": null,
+      "display": {}
+    }
+  ],
+  "warnings": [],
+  "contribution_diagnostics": [
+    {
+      "path": "contributions[0].supporting_claims",
+      "message": "claim support not declared",
+      "severity": "warning"
+    },
+    {
+      "path": "contributions[1].supporting_claims",
+      "message": "claim support not declared",
+      "severity": "warning"
+    },
+    {
+      "path": "contributions[2].supporting_claims",
+      "message": "claim support not declared",
+      "severity": "warning"
+    }
+  ],
+  "reference_check": null
+}

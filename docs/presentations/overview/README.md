@@ -40,8 +40,9 @@ clips text, truncates its footer, or uses text smaller than 24px (20px for code 
   shown are trimmed copies of real output that follows the published v3/v1 field names.
 - **Loss-Free Machine Unlearning table value** (slide 7): a deterministic paper-adapter run
   (spec scenario E4).
-- **Reviewer question** (slide 10): illustrative. It was written by hand in the reviewer
-  finding format (judge/reviewer spec §5.5); both quotes were checked against the cited pages.
+- **Reviewer question** (slide 10): taken from the AI-generated
+  [bGPT example review](../../examples/reviews/bgpt/README.md) (question 2, lightly trimmed).
+  It reflects no human judgement on the paper; the quote was checked against the cited page.
   The "unset" header is the fixed opening of every review draft (§5.12).
 - **Run manifest** (slide 11): abridged, in the shape defined by judge/reviewer spec §6.3.
 

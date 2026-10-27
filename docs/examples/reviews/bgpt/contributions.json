@@ -1,0 +1,1947 @@
+{
+  "_generated": "reference-reviewer: reviewer.contributions.assess_contributions",
+  "format_version": "contribution-review/v1",
+  "scope": "artifact-informed",
+  "status": "assessed",
+  "declarations": [
+    {
+      "id": "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+      "statement": "In this paper, we introduce bGPT, a model designed for binary data processing and digital world modelling by next byte prediction.",
+      "supporting_claims": [],
+      "inferred_supporting_claims": [
+        "C1",
+        "C2"
+      ],
+      "paper_ref": {
+        "char_start": 3380,
+        "char_end": 3510,
+        "quote": "In this paper, we introduce bGPT, a model designed for\nbinary data processing and digital world modelling by next\nbyte prediction."
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [
+          "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22",
+          "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
+        ],
+        "locator": {
+          "char_start": 3380,
+          "char_end": 3510,
+          "quote": "In this paper, we introduce bGPT, a model designed for\nbinary data processing and digital world modelling by next\nbyte prediction."
+        },
+        "claim_links": {
+          "kind": "reviewer-inference",
+          "method": "contribution-digest/v1",
+          "model": "redacted-model"
+        }
+      },
+      "display": {
+        "title": "bGPT: next byte prediction model for digital world simulation",
+        "summary": "Introduces bGPT, a model trained with next byte prediction on native binary data to process digital media and simulate algorithms and hardware, treating all data types as byte sequences in one framework.",
+        "source": "contribution-digest/v1"
+      }
+    },
+    {
+      "id": "contribution/ba3669b731cedee5d58135c26421d41246f4915ee4358b193da87af0e1fed38d",
+      "statement": "We start by present- ing its hierarchical Transformer framework, which segments byte sequences into patches to manage computational effi- ciency. Subsequently, we present the training objectives of bGPT, including generative modelling and classification",
+      "supporting_claims": [],
+      "paper_ref": {
+        "char_start": 10595,
+        "char_end": 10848,
+        "quote": "We start by present-\ning its hierarchical Transformer framework, which segments\nbyte sequences into patches to manage computational effi-\nciency. Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification"
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [
+          "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
+          "contribution/461a0bf1ad0b19af91355a33ac898117d1b4692112d9f3c654a34579a923316c"
+        ],
+        "locator": {
+          "char_start": 10595,
+          "char_end": 10848,
+          "quote": "We start by present-\ning its hierarchical Transformer framework, which segments\nbyte sequences into patches to manage computational effi-\nciency. Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification"
+        }
+      },
+      "display": {
+        "title": "Hierarchical patch-based Transformer for byte sequences",
+        "summary": "bGPT segments byte sequences into fixed-size patches, uses a patch-level decoder to predict next patch features and a byte-level decoder to reconstruct bytes, with generative and classification training objectives.",
+        "source": "contribution-digest/v1"
+      }
+    },
+    {
+      "id": "contribution/36a978d7c880f2a5f5978e4d7c0000b648d02614d703b8bb6bba5b9ea2def074",
+      "statement": "Our experiments demonstrate the effectiveness of bGPT in modelling digital media data, which showcases modality-agnostic knowledge transfer.",
+      "supporting_claims": [],
+      "paper_ref": {
+        "char_start": 36919,
+        "char_end": 37059,
+        "quote": "Our experiments\ndemonstrate the effectiveness of bGPT in modelling digital\nmedia data, which showcases modality-agnostic knowledge\ntransfer."
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [],
+        "locator": {
+          "char_start": 36919,
+          "char_end": 37059,
+          "quote": "Our experiments\ndemonstrate the effectiveness of bGPT in modelling digital\nmedia data, which showcases modality-agnostic knowledge\ntransfer."
+        }
+      },
+      "display": {
+        "title": "Modality-agnostic digital media processing with cross-modal transfer",
+        "summary": "bGPT performs generative modelling and classification on text, audio and images without modality-specific designs, approaching specialized models and showing cross-modal knowledge transfer.",
+        "source": "contribution-digest/v1"
+      }
+    },
+    {
+      "id": "contribution/43c6541ccc5f08f105cc48e9a1be28a317f9342824ed89763b2b3ec2ac89bae1",
+      "statement": "The bGPT model learns to convert text-based ABC notation music scores into binary MIDI performance signals and, reversely, convert MIDI back into ABC notation.",
+      "supporting_claims": [],
+      "inferred_supporting_claims": [
+        "C1"
+      ],
+      "paper_ref": {
+        "char_start": 19068,
+        "char_end": 19227,
+        "quote": "The bGPT model learns to convert\ntext-based ABC notation music scores into binary MIDI\nperformance signals and, reversely, convert MIDI back into\nABC notation."
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [],
+        "locator": {
+          "char_start": 19068,
+          "char_end": 19227,
+          "quote": "The bGPT model learns to convert\ntext-based ABC notation music scores into binary MIDI\nperformance signals and, reversely, convert MIDI back into\nABC notation."
+        },
+        "claim_links": {
+          "kind": "reviewer-inference",
+          "method": "contribution-digest/v1",
+          "model": "redacted-model"
+        }
+      },
+      "display": {
+        "title": "Algorithm simulation via ABC\u2013MIDI data conversion",
+        "summary": "bGPT learns to convert between text-based ABC notation and binary MIDI files, simulating and reverse-engineering a conversion algorithm directly from paired byte sequences.",
+        "source": "contribution-digest/v1"
+      }
+    },
+    {
+      "id": "contribution/c44dc1966499c65b567e60c698823e5627aca39ce3581e1f2557a436e80e3e89",
+      "statement": "For CPU state modelling, we introduce the CPU States dataset (with 2.1 million instances), offering a simplified representation of CPU behaviour for ease of data collec- tion and evaluation",
+      "supporting_claims": [],
+      "inferred_supporting_claims": [
+        "C2"
+      ],
+      "paper_ref": {
+        "char_start": 20705,
+        "char_end": 20894,
+        "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation"
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [
+          "contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca"
+        ],
+        "locator": {
+          "char_start": 20705,
+          "char_end": 20894,
+          "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation"
+        },
+        "claim_links": {
+          "kind": "reviewer-inference",
+          "method": "contribution-digest/v1",
+          "model": "redacted-model"
+        }
+      },
+      "display": {
+        "title": "CPU States dataset for hardware simulation",
+        "summary": "Introduces a 2.1-million-instance dataset of machine instructions paired with simplified CPU register state sequences, used to train bGPT to predict CPU state updates.",
+        "source": "contribution-digest/v1"
+      }
+    },
+    {
+      "id": "contribution/0b1aace80696323f14d4cfe9ed7630325143907cc74667144dc5b600495fe000",
+      "statement": "In summary, bGPT demonstrates strong scalability on native binary data with emergent abilities in data conversion and CPU state modelling",
+      "supporting_claims": [],
+      "inferred_supporting_claims": [
+        "C1",
+        "C2"
+      ],
+      "paper_ref": {
+        "char_start": 36245,
+        "char_end": 36382,
+        "quote": "In summary, bGPT demonstrates strong scalability on native\nbinary data with emergent abilities in data conversion and\nCPU state modelling"
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [],
+        "locator": {
+          "char_start": 36245,
+          "char_end": 36382,
+          "quote": "In summary, bGPT demonstrates strong scalability on native\nbinary data with emergent abilities in data conversion and\nCPU state modelling"
+        },
+        "claim_links": {
+          "kind": "reviewer-inference",
+          "method": "contribution-digest/v1",
+          "model": "redacted-model"
+        }
+      },
+      "display": {
+        "title": "Scalability and emergent abilities on native binary data",
+        "summary": "Shows that bGPT performance on data conversion and CPU state modelling improves strongly with data scale, with an abrupt improvement interpreted as emergent ability.",
+        "source": "contribution-digest/v1"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "It has almost flawlessly replicated the process of converting symbolic music data, achieving a low error rate of 0.0011 bits per byte in converting ABC notation to MIDI format.",
+      "kind": "empirical",
+      "measurability": "measurable",
+      "paper_ref": {
+        "quote": "0.0011",
+        "page": 1,
+        "section": "abstract",
+        "context": "It has almost flawlessly replicated the process of converting symbolic music data, achieving a low error rate of 0.0011 bits per byte in converting ABC notation to MIDI format."
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": [
+            "R1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "statement": "In addition, bGPT demonstrates exceptional capabilities in simulating CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.",
+      "kind": "empirical",
+      "measurability": "measurable",
+      "paper_ref": {
+        "quote": "99.99%",
+        "page": 1,
+        "section": "abstract",
+        "context": "In addition, bGPT demonstrates exceptional capabilities in simulating CPU behaviour, with an accuracy exceeding 99.99% in executing various operations."
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": [
+            "R2"
+          ]
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "R1",
+      "validates": [
+        "C1"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.0011,
+      "locators": {
+        "paper": {
+          "quote": "0.0011",
+          "token_class": "metric",
+          "page": 1,
+          "section": "abstract",
+          "context": "It has almost flawlessly replicated the process of converting symbolic music data, achieving a low error rate of 0.0011 bits per byte in converting ABC notation to MIDI format."
+        }
+      }
+    },
+    {
+      "id": "R2",
+      "validates": [
+        "C2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 99.99,
+      "locators": {
+        "paper": {
+          "quote": "99.99%",
+          "token_class": "percentage",
+          "page": 1,
+          "section": "abstract",
+          "context": "In addition, bGPT demonstrates exceptional capabilities in simulating CPU behaviour, with an accuracy exceeding 99.99% in executing various operations."
+        }
+      }
+    },
+    {
+      "id": "R3",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.0,
+      "locators": {
+        "paper": {
+          "quote": "1X",
+          "token_class": "ratio",
+          "page": 4,
+          "section": "training objectives",
+          "context": "For a byte sequence B = {b1, b2, ..., bT } of length T , the objective is minimizing the negative log-likelihood of the next byte prediction across the sequence, defined as: LGEN(\u03b8) =\u2212 T \u22121X i=1 log p(bi+1|b1, b2, ..., bi; \u03b8), (6) where \u03b8 r"
+        }
+      }
+    },
+    {
+      "id": "R4",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.3496,
+      "locators": {
+        "paper": {
+          "quote": "1.3496",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R5",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 84.74,
+      "locators": {
+        "paper": {
+          "quote": "84.74",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R6",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 3.4928,
+      "locators": {
+        "paper": {
+          "quote": "3.4928",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R7",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 76.73,
+      "locators": {
+        "paper": {
+          "quote": "76.73",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R8",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.5414,
+      "locators": {
+        "paper": {
+          "quote": "1.5414",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R9",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 92.43,
+      "locators": {
+        "paper": {
+          "quote": "92.43",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R10",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.0639,
+      "locators": {
+        "paper": {
+          "quote": "1.0639",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R11",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 92.49,
+      "locators": {
+        "paper": {
+          "quote": "92.49",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R12",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 3.6663,
+      "locators": {
+        "paper": {
+          "quote": "3.6663",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R13",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 77.02,
+      "locators": {
+        "paper": {
+          "quote": "77.02",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R14",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.5719,
+      "locators": {
+        "paper": {
+          "quote": "1.5719",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R15",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 93.56,
+      "locators": {
+        "paper": {
+          "quote": "93.56",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R16",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.4179,
+      "locators": {
+        "paper": {
+          "quote": "1.4179",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R17",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 83.16,
+      "locators": {
+        "paper": {
+          "quote": "83.16",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R18",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 3.1234,
+      "locators": {
+        "paper": {
+          "quote": "3.1234",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R19",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 88.69,
+      "locators": {
+        "paper": {
+          "quote": "88.69",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R20",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.5326,
+      "locators": {
+        "paper": {
+          "quote": "1.5326",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R21",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 93.91,
+      "locators": {
+        "paper": {
+          "quote": "93.91",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R22",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.3993,
+      "locators": {
+        "paper": {
+          "quote": "1.3993",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R23",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 83.59,
+      "locators": {
+        "paper": {
+          "quote": "83.59",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R24",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 3.3345,
+      "locators": {
+        "paper": {
+          "quote": "3.3345",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R25",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 83.51,
+      "locators": {
+        "paper": {
+          "quote": "83.51",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R26",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.4818,
+      "locators": {
+        "paper": {
+          "quote": "1.4818",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R27",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 96.03,
+      "locators": {
+        "paper": {
+          "quote": "96.03",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R28",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.4058,
+      "locators": {
+        "paper": {
+          "quote": "1.4058",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R29",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 83.8,
+      "locators": {
+        "paper": {
+          "quote": "83.80",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R30",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 3.1554,
+      "locators": {
+        "paper": {
+          "quote": "3.1554",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R31",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 87.65,
+      "locators": {
+        "paper": {
+          "quote": "87.65",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R32",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.4898,
+      "locators": {
+        "paper": {
+          "quote": "1.4898",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R33",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.66,
+      "locators": {
+        "paper": {
+          "quote": "95.66",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R34",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.0935,
+      "locators": {
+        "paper": {
+          "quote": "1.0935",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R35",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 91.75,
+      "locators": {
+        "paper": {
+          "quote": "91.75",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R36",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 3.2279,
+      "locators": {
+        "paper": {
+          "quote": "3.2279",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R37",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 84.32,
+      "locators": {
+        "paper": {
+          "quote": "84.32",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R38",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.5086,
+      "locators": {
+        "paper": {
+          "quote": "1.5086",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R39",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.09,
+      "locators": {
+        "paper": {
+          "quote": "95.09",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R40",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.9237,
+      "locators": {
+        "paper": {
+          "quote": "0.9237",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R41",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 94.5,
+      "locators": {
+        "paper": {
+          "quote": "94.50",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R42",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 98.13,
+      "locators": {
+        "paper": {
+          "quote": "98.13",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R43",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 98.11,
+      "locators": {
+        "paper": {
+          "quote": "98.11",
+          "token_class": "metric",
+          "page": 6,
+          "section": "baselines",
+          "context": "AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes) Model BPB Acc (%) BPB Acc (%) BPB Acc (%) bGPTrandom 1.3496 84.74 3.4928 76.73 1.5414 92.43 bGPTwiki 1.0639 92.49 3.6663 77.02 1.5719 93.56 bGPTimage 1.4179 83.16 3.1"
+        }
+      }
+    },
+    {
+      "id": "R44",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.0639,
+      "locators": {
+        "paper": {
+          "quote": "1.0639",
+          "token_class": "metric",
+          "page": 6,
+          "section": "results",
+          "context": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2small, scored 0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance."
+        }
+      }
+    },
+    {
+      "id": "R45",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 92.49,
+      "locators": {
+        "paper": {
+          "quote": "92.49%",
+          "token_class": "percentage",
+          "page": 6,
+          "section": "results",
+          "context": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2small, scored 0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance."
+        }
+      }
+    },
+    {
+      "id": "R46",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.9237,
+      "locators": {
+        "paper": {
+          "quote": "0.9237",
+          "token_class": "metric",
+          "page": 6,
+          "section": "results",
+          "context": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2small, scored 0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance."
+        }
+      }
+    },
+    {
+      "id": "R47",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 94.5,
+      "locators": {
+        "paper": {
+          "quote": "94.50%",
+          "token_class": "percentage",
+          "page": 6,
+          "section": "results",
+          "context": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2small, scored 0.9237 BPB and 94.50% accuracy, still demonstrates competitive performance."
+        }
+      }
+    },
+    {
+      "id": "R48",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 96.03,
+      "locators": {
+        "paper": {
+          "quote": "96.03%",
+          "token_class": "percentage",
+          "page": 6,
+          "section": "results",
+          "context": "Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2, coming close to the accuracy of AST at 98.11%."
+        }
+      }
+    },
+    {
+      "id": "R49",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 98.11,
+      "locators": {
+        "paper": {
+          "quote": "98.11%",
+          "token_class": "percentage",
+          "page": 6,
+          "section": "results",
+          "context": "Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2, coming close to the accuracy of AST at 98.11%."
+        }
+      }
+    },
+    {
+      "id": "R50",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 88.69,
+      "locators": {
+        "paper": {
+          "quote": "88.69%",
+          "token_class": "percentage",
+          "section": "results",
+          "context": "However, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%."
+        }
+      }
+    },
+    {
+      "id": "R51",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 98.13,
+      "locators": {
+        "paper": {
+          "quote": "98.13%",
+          "token_class": "percentage",
+          "section": "results",
+          "context": "However, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%."
+        }
+      }
+    },
+    {
+      "id": "R52",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 1.0935,
+      "locators": {
+        "paper": {
+          "quote": "1.0935",
+          "token_class": "metric",
+          "page": 6,
+          "section": "results",
+          "context": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of 91.75%, outperforms other variants but falls short of the per formance demonstrated by bGPTwiki, which is specifically tuned for text data."
+        }
+      }
+    },
+    {
+      "id": "R53",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 91.75,
+      "locators": {
+        "paper": {
+          "quote": "91.75%",
+          "token_class": "percentage",
+          "page": 6,
+          "section": "results",
+          "context": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of 91.75%, outperforms other variants but falls short of the per formance demonstrated by bGPTwiki, which is specifically tuned for text data."
+        }
+      }
+    },
+    {
+      "id": "R54",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.4052,
+      "locators": {
+        "paper": {
+          "quote": "0.4052",
+          "token_class": "metric",
+          "page": 7,
+          "section": "results",
+          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+        }
+      }
+    },
+    {
+      "id": "R55",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 80.74,
+      "locators": {
+        "paper": {
+          "quote": "80.74",
+          "token_class": "metric",
+          "page": 7,
+          "section": "results",
+          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+        }
+      }
+    },
+    {
+      "id": "R56",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.3899,
+      "locators": {
+        "paper": {
+          "quote": "0.3899",
+          "token_class": "metric",
+          "page": 7,
+          "section": "results",
+          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+        }
+      }
+    },
+    {
+      "id": "R57",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 84.66,
+      "locators": {
+        "paper": {
+          "quote": "84.66",
+          "token_class": "metric",
+          "page": 7,
+          "section": "results",
+          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+        }
+      }
+    },
+    {
+      "id": "R58",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.39,
+      "locators": {
+        "paper": {
+          "quote": "0.3900",
+          "token_class": "metric",
+          "page": 7,
+          "section": "results",
+          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+        }
+      }
+    },
+    {
+      "id": "R59",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 85.26,
+      "locators": {
+        "paper": {
+          "quote": "85.26",
+          "token_class": "metric",
+          "page": 7,
+          "section": "results",
+          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+        }
+      }
+    },
+    {
+      "id": "R60",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.6924,
+      "locators": {
+        "paper": {
+          "quote": "0.6924",
+          "token_class": "metric",
+          "page": 7,
+          "section": "data conversion",
+          "context": "Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969 99.9961 2021), byte models are naturally suited for this task, as they can directly work with binary data."
+        }
+      }
+    },
+    {
+      "id": "R61",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 27.2404,
+      "locators": {
+        "paper": {
+          "quote": "27.2404",
+          "token_class": "metric",
+          "page": 7,
+          "section": "data conversion",
+          "context": "Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969 99.9961 2021), byte models are naturally suited for this task, as they can directly work with binary data."
+        }
+      }
+    },
+    {
+      "id": "R62",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.0969,
+      "locators": {
+        "paper": {
+          "quote": "0.0969",
+          "token_class": "metric",
+          "page": 7,
+          "section": "data conversion",
+          "context": "Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969 99.9961 2021), byte models are naturally suited for this task, as they can directly work with binary data."
+        }
+      }
+    },
+    {
+      "id": "R63",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 99.9702,
+      "locators": {
+        "paper": {
+          "quote": "99.9702",
+          "token_class": "metric",
+          "page": 7,
+          "section": "data conversion",
+          "context": "Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969 99.9961 2021), byte models are naturally suited for this task, as they can directly work with binary data."
+        }
+      }
+    },
+    {
+      "id": "R64",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 99.9961,
+      "locators": {
+        "paper": {
+          "quote": "99.9961",
+          "token_class": "metric",
+          "page": 7,
+          "section": "data conversion",
+          "context": "Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969 99.9961 2021), byte models are naturally suited for this task, as they can directly work with binary data."
+        }
+      }
+    },
+    {
+      "id": "R65",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.0011,
+      "locators": {
+        "paper": {
+          "quote": "0.0011",
+          "token_class": "metric",
+          "page": 8,
+          "section": "data conversion",
+          "context": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI conversion, which is extremely close to perfect performance (where BPB reaches 0), surpassing the performance of the bGPT3 model by orders of magnitude."
+        }
+      }
+    },
+    {
+      "id": "R66",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 99.97,
+      "locators": {
+        "paper": {
+          "quote": "99.97%",
+          "token_class": "percentage",
+          "page": 8,
+          "section": "cpu state modelling",
+          "context": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), suggesting an efficiency beyond simple memorization, given that each test case contained an average of 128 random instructions, and the vast potential combinations o"
+        }
+      }
+    },
+    {
+      "id": "R67",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 99.99,
+      "locators": {
+        "paper": {
+          "quote": "99.99%",
+          "token_class": "percentage",
+          "page": 8,
+          "section": "cpu state modelling",
+          "context": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), suggesting an efficiency beyond simple memorization, given that each test case contained an average of 128 random instructions, and the vast potential combinations o"
+        }
+      }
+    },
+    {
+      "id": "R68",
+      "validates": [],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 10.18653,
+      "locators": {
+        "paper": {
+          "quote": "10.18653",
+          "token_class": "metric",
+          "page": 10,
+          "section": "references",
+          "context": "(eds.), Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing, EMNLP 2018: System Demonstrations, Brussels, 10.18653/v1/d18-2012."
+        }
+      }
+    }
+  ],
+  "assessments": [
+    {
+      "contribution_id": "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "contested",
+        "reasoning": "The authors report no comparison system for either task. Without a baseline, a near-perfect score could reflect how easy the task is rather than what bGPT can do. The abstract headlines 0.0011 BPB on MIDI. However, the paper's own Table 5 row shows the MIDI\u2192ABC direction is much weaker.",
+        "points": [
+          "The ABC\u2192MIDI and CPU results are reported, but there are no baselines. The CPU task is also heavily simplified, which limits support for 'simulating CPU behaviour'."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/580ea2b6304ed294903bac193ad6ad9a3aeb690db0459eecaff4bce991185728"
+        ],
+        "evidence": [
+          "paper:chars/30472-31335",
+          "paper:chars/36748-38535",
+          "paper:chars/31335-34448"
+        ],
+        "disagreement": false,
+        "link_basis": "inferred",
+        "linked_claims": [
+          "C1",
+          "C2"
+        ]
+      },
+      "significance": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "unresolved",
+        "reasoning": "The authors distinguish their work from MalConv and DeepVSA, which they describe as narrow-task models, and from ByT5, ByteFormer and MegaByte, which they describe as media-focused. Framing generic byte models as simulators of algorithms and hardware is a distinct angle. It has not been independently verified against the cited works. The authors set the evaluation scope (media, format conversion, CPU state) against prior work that they report as narrow. The novelty of this scope is credible as author-reported, but I have not verified it against the cited literature.",
+        "points": [
+          "The authors position their novelty as applying next-byte prediction to native binary data and simulation tasks, which they say prior work neglects. This framing is plausible but rests only on the authors' characterisation of the literature.",
+          "The authors' main originality claim is applying next-byte prediction to native binary data for digital-world simulation, a scope they distinguish from prior byte models that they describe as task-narrow."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/9b607b54c4ee9513859e11011c46769085015d5c628b54d186e1a113a4866ad9",
+          "contribution-review/paper/387d9123c22009ab466300473ec90965b08111d940d98b2bff4d56a1c6b69d56"
+        ],
+        "evidence": [
+          "paper:chars/7775-10479",
+          "paper:chars/1238-5446",
+          "paper:chars/36748-38535"
+        ],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+          "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843"
+        ]
+      }
+    },
+    {
+      "contribution_id": "contribution/ba3669b731cedee5d58135c26421d41246f4915ee4358b193da87af0e1fed38d",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "unresolved",
+        "reasoning": "No claims are linked to this contribution, so its claim support cannot be traced. ",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false,
+        "link_basis": "none",
+        "linked_claims": []
+      },
+      "significance": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "contested",
+        "reasoning": "The authors say the architecture is adapted from prior hierarchical models. They also report that MegaByte already models long byte sequences across modalities. Neither the method nor multi-modality byte modelling is therefore novel by the paper's own account. The authors describe the architecture as adapted from cited work. They also describe MegaByte as already handling multi-modal byte sequences. The stated difference is therefore the focus on native binary data and simulation tasks. The architectural difference from MegaByte is not specified, and I have not verified it independently.",
+        "points": [
+          "The architecture follows MegaByte-style hierarchical patching, as the paper itself acknowledges. Originality therefore lies in the task framing (native binary, algorithm and hardware simulation), not in the model.",
+          "The authors say the architecture is adapted from prior hierarchical byte models. Originality therefore rests on the scope of application (native binary data, algorithm and hardware simulation), not on the model design."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/2ee65cf1acfe4c565f5ba0b46124082f9ea89ce21acf65de33a0190c070cbbeb",
+          "contribution-review/paper/32b6dd8c7b7dfb8351d03fea38b9c9872e3f5ba1b869d46b471706234d020548"
+        ],
+        "evidence": [
+          "paper:chars/10851-15278",
+          "paper:chars/7775-10479"
+        ],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+          "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843"
+        ]
+      }
+    },
+    {
+      "contribution_id": "contribution/36a978d7c880f2a5f5978e4d7c0000b648d02614d703b8bb6bba5b9ea2def074",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "unresolved",
+        "reasoning": "No claims are linked to this contribution, so its claim support cannot be traced. A gap of almost 10 accuracy points on CIFAR-10 contradicts \"matches.\" Text (92.49 vs 94.50) and audio (96.03 vs 98.11) also fall below the baselines. In addition, the ViT and AST numbers were taken from the original papers, not reproduced under matched conditions. The authors themselves report a gap of roughly 9.4 points on CIFAR-10. The abstract wording does not acknowledge this gap.",
+        "points": [
+          "The abstract says bGPT \"matches specialized models.\" The paper's own results show gaps to the baselines, including a large CIFAR-10 gap.",
+          "The paper claims bGPT 'matches specialized models' on media tasks, but its own CIFAR-10 result contradicts this."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/8dc43c96407bb36aa9b91c1cb45dd88eb9bae8ecffcf0f3683c0530a5688d2ab",
+          "contribution-review/paper/22bfdfceaa723ffc6af5b9acbb9595ff343e40f66126f0f2894e6f68a176c53c"
+        ],
+        "evidence": [
+          "paper:chars/172-1238",
+          "paper:chars/25015-30472"
+        ],
+        "disagreement": false,
+        "link_basis": "none",
+        "linked_claims": []
+      },
+      "significance": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+          "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843"
+        ]
+      }
+    },
+    {
+      "contribution_id": "contribution/43c6541ccc5f08f105cc48e9a1be28a317f9342824ed89763b2b3ec2ac89bae1",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "supported",
+        "reasoning": "Near-zero BPB on MIDI given ABC indicates the model almost deterministically reproduces the converter's output. BPB is a likelihood measure, though, not the validity of generated files.",
+        "points": [
+          "The ABC\u2192MIDI BPB of 0.0011 is strong evidence that the model learns the deterministic conversion. The paper reports BPB only, not decoded conversion correctness, and the reverse direction is weaker."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/35e923aa6de46e5f3c4704d8786998d02eb43a616c160160cf4d4257a1a9e59c"
+        ],
+        "evidence": [
+          "paper:chars/31335-34448"
+        ],
+        "disagreement": false,
+        "link_basis": "inferred",
+        "linked_claims": [
+          "C1"
+        ]
+      },
+      "significance": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+          "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843"
+        ]
+      }
+    },
+    {
+      "contribution_id": "contribution/c44dc1966499c65b567e60c698823e5627aca39ce3581e1f2557a436e80e3e89",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "contested",
+        "reasoning": "Byte-wise accuracy can be high even if many state sequences contain errors. Many state bytes are trivially predictable: the PC increments and the IR copies the instruction. With no jumps and no baseline (for example, copy-previous-state or a per-instruction lookup), 99.99% cannot be read as evidence of simulation ability.",
+        "points": [
+          "The 99.99% CPU-simulation accuracy (C2) is a byte-wise metric on a simplified, jump-free ISA, with no baseline. It does not establish exact program-level simulation."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/64398f954c2abda5cdcba0714aff3187bdde9164b5303212833389de87ac99bb"
+        ],
+        "evidence": [
+          "paper:chars/34448-36748",
+          "paper:chars/40096-79998",
+          "paper:chars/30472-31335"
+        ],
+        "disagreement": false,
+        "link_basis": "inferred",
+        "linked_claims": [
+          "C2"
+        ]
+      },
+      "significance": {
+        "status": "supported",
+        "reasoning": "The new dataset and task framing give follow-up work a concrete starting point. The authors acknowledge the simplified setting, which limits immediate practical impact. A controlled synthetic benchmark for neural execution and state tracking is useful to the byte-model and program-execution communities. However, the dataset excludes jumps, which makes it easy.",
+        "points": [
+          "Likely impact: the paper opens an underexplored research direction (learning program and hardware behaviour from raw bytes) and contributes a reusable synthetic benchmark. The limitations section candidly scopes the claims.",
+          "The CPU States dataset and ABC\u2194MIDI task are new benchmarks that future byte-model work could build on. Their utility depends on whether they are released and how difficult they are."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/3edd8615b29ced7b827475a80bd2fd2280e537943e36488722a37087a99e942e",
+          "contribution-review/paper/d997f2937104705b5a257a03fda4703c5de5d211a06cef5c5ecd4966ef83afdd"
+        ],
+        "evidence": [
+          "paper:chars/36748-38535",
+          "paper:chars/18456-21674"
+        ],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+          "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843"
+        ]
+      }
+    },
+    {
+      "contribution_id": "contribution/0b1aace80696323f14d4cfe9ed7630325143907cc74667144dc5b600495fe000",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "contested",
+        "reasoning": "In the cited literature, emergence refers to behaviour across model or data scale, not to a jump within a single training run. The paper evaluates only three data scales at a fixed model size, which cannot characterise a scaling curve. A late drop in training loss can have other causes, such as a grokking-like optimisation effect. A sudden improvement within one training run differs from emergence across model or data scales. The paper tests only three data scales and a single model size.",
+        "points": [
+          "The 'emergent abilities' claim rests on three data scales and a loss jump during training, and the paper's rebuttal of metric artifacts is thin.",
+          "The 'emergent abilities' claim rests on a loss jump around epoch 11 for a single data scale, which is a training-dynamics observation rather than scale-dependent emergence."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/b51d19f08bcf0ed9d17fa97d67d15542610632266cf1d22c57f685617cd96ab9",
+          "contribution-review/paper/2aebff050c56f0beb49ac7b00005a34805c2c9099f584f3ddb138aab987af601"
+        ],
+        "evidence": [
+          "paper:chars/34448-36748",
+          "paper:chars/31335-34448"
+        ],
+        "disagreement": false,
+        "link_basis": "inferred",
+        "linked_claims": [
+          "C1",
+          "C2"
+        ]
+      },
+      "significance": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+          "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+          "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843"
+        ]
+      }
+    }
+  ],
+  "author_originality_statements": [
+    {
+      "id": "originality/0a2e1a8ec574e8753046287b511506332dae15cd5749b475048532eb964ea1cd",
+      "section": "abstract",
+      "stances": [
+        "claims",
+        "builds_on"
+      ],
+      "statement": "Inspired by the success of next token prediction in natural lan- guage processing, we introduce bGPT, a model with next byte prediction to simulate the digi- tal world. bGPT matches specialized models in performance across various modalities, including text, audio, and images, and offers new possibil- ities for predicting, simulating, and diagnosing algorithm or hardware behaviour.",
+      "quote": "Inspired by\nthe success of next token prediction in natural lan-\nguage processing, we introduce bGPT, a model\nwith next byte prediction to simulate the digi-\ntal world. bGPT matches specialized models in\nperformance across various modalities, including\ntext, audio, and images, and offers new possibil-\nities for predicting, simulating, and diagnosing\nalgorithm or hardware behaviour.",
+      "char_start": 361,
+      "char_end": 745,
+      "refs": [],
+      "context_refs": [],
+      "method": "author-originality-statement/v1"
+    },
+    {
+      "id": "originality/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+      "section": "introduction",
+      "stances": [
+        "claims"
+      ],
+      "statement": "In this paper, we introduce bGPT, a model designed for binary data processing and digital world modelling by next byte prediction.",
+      "quote": "In this paper, we introduce bGPT, a model designed for\nbinary data processing and digital world modelling by next\nbyte prediction.",
+      "char_start": 3380,
+      "char_end": 3510,
+      "refs": [],
+      "context_refs": [
+        "Raff et al., 2018",
+        "Guo et al., 2019"
+      ],
+      "method": "author-originality-statement/v1"
+    },
+    {
+      "id": "originality/13a91cfdd837f308b1f2e527c8e88493c848ec8298a78e6a58958150fa6e4843",
+      "section": "conclusion",
+      "stances": [
+        "claims",
+        "builds_on"
+      ],
+      "statement": "Conclusions In this paper, we present bGPT as a versatile simulator for the digital world, extending deep learning to binary data processing via next byte prediction.",
+      "quote": "Conclusions\n\nIn this paper, we present bGPT as a versatile simulator\nfor the digital world, extending deep learning to binary\ndata processing via next byte prediction.",
+      "char_start": 36751,
+      "char_end": 36918,
+      "refs": [],
+      "context_refs": [],
+      "method": "author-originality-statement/v1"
+    }
+  ],
+  "author_position": "Authors' stated position:\n- [claims, builds on] \u201cInspired by the success of next token prediction in natural lan- guage processing, we introduce bGPT, a model with next byte prediction to simulate the digi- tal world. bGPT matches specialized models in performance across various modalities, including text, audio, and images, and offers new possibil- ities for predicting, simulating, and diagnosing algorithm or hardware behaviour.\u201d\n- [claims; positioned against Raff et al., 2018, Guo et al., 2019] \u201cIn this paper, we introduce bGPT, a model designed for binary data processing and digital world modelling by next byte prediction.\u201d\n- [claims, builds on] \u201cConclusions In this paper, we present bGPT as a versatile simulator for the digital world, extending deep learning to binary data processing via next byte prediction.\u201d",
+  "diagnostics": [
+    {
+      "message": "claim support not declared",
+      "path": "contributions[0].supporting_claims",
+      "severity": "warning"
+    },
+    {
+      "message": "claim support not declared",
+      "path": "contributions[1].supporting_claims",
+      "severity": "warning"
+    },
+    {
+      "message": "claim support not declared",
+      "path": "contributions[2].supporting_claims",
+      "severity": "warning"
+    },
+    {
+      "message": "claim support not declared",
+      "path": "contributions[3].supporting_claims",
+      "severity": "warning"
+    },
+    {
+      "message": "claim support not declared",
+      "path": "contributions[4].supporting_claims",
+      "severity": "warning"
+    },
+    {
+      "message": "claim support not declared",
+      "path": "contributions[5].supporting_claims",
+      "severity": "warning"
+    }
+  ],
+  "coverage": {
+    "declaration_source": "captured-artifact",
+    "prior_work": "author statements in the submitted paper only; cited works were not read, so whether each stated difference holds against them is not checked",
+    "qualification": "human-owned; no automated qualification"
+  },
+  "graph": {
+    "contribution_count": 6,
+    "claim_count": 2,
+    "support_edge_count": 0,
+    "unassigned_claims": [
+      "C1",
+      "C2"
+    ],
+    "inferred_edge_count": 6,
+    "unlinked_claims": []
+  },
+  "digest": {
+    "method": "contribution-digest/v1",
+    "model": "redacted-model",
+    "extracted_candidates": [
+      {
+        "id": "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22",
+        "statement": "Inspired by the success of next token prediction in natural language processing, we introduce bGPT, a model with next byte prediction to simulate the digital world.",
+        "supporting_claims": [],
+        "paper_ref": {
+          "char_start": 361,
+          "char_end": 529,
+          "quote": "Inspired by\nthe success of next token prediction in natural lan-\nguage processing, we introduce bGPT, a model\nwith next byte prediction to simulate the digi-\ntal world."
+        },
+        "provenance": {
+          "kind": "paper-extraction",
+          "source": "paper:document",
+          "method": "explicit-author-advance-sentence/v1",
+          "locator": {
+            "char_start": 361,
+            "char_end": 529,
+            "quote": "Inspired by\nthe success of next token prediction in natural lan-\nguage processing, we introduce bGPT, a model\nwith next byte prediction to simulate the digi-\ntal world."
+          }
+        }
+      },
+      {
+        "id": "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+        "statement": "In this paper, we introduce bGPT, a model designed for binary data processing and digital world modelling by next byte prediction.",
+        "supporting_claims": [],
+        "paper_ref": {
+          "char_start": 3380,
+          "char_end": 3510,
+          "quote": "In this paper, we introduce bGPT, a model designed for\nbinary data processing and digital world modelling by next\nbyte prediction."
+        },
+        "provenance": {
+          "kind": "paper-extraction",
+          "source": "paper:document",
+          "method": "explicit-author-advance-sentence/v1",
+          "locator": {
+            "char_start": 3380,
+            "char_end": 3510,
+            "quote": "In this paper, we introduce bGPT, a model designed for\nbinary data processing and digital world modelling by next\nbyte prediction."
+          }
+        }
+      },
+      {
+        "id": "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
+        "statement": "In this section, we introduce bGPT, a model optimized for modelling digital data at the byte level.",
+        "supporting_claims": [],
+        "paper_ref": {
+          "char_start": 10495,
+          "char_end": 10594,
+          "quote": "In this section, we introduce bGPT, a model optimized for\nmodelling digital data at the byte level."
+        },
+        "provenance": {
+          "kind": "paper-extraction",
+          "source": "paper:document",
+          "method": "explicit-author-advance-sentence/v1",
+          "locator": {
+            "char_start": 10495,
+            "char_end": 10594,
+            "quote": "In this section, we introduce bGPT, a model optimized for\nmodelling digital data at the byte level."
+          }
+        }
+      },
+      {
+        "id": "contribution/461a0bf1ad0b19af91355a33ac898117d1b4692112d9f3c654a34579a923316c",
+        "statement": "Subsequently, we present the training objectives of bGPT, including generative modelling and classification.",
+        "supporting_claims": [],
+        "paper_ref": {
+          "char_start": 10741,
+          "char_end": 10849,
+          "quote": "Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification."
+        },
+        "provenance": {
+          "kind": "paper-extraction",
+          "source": "paper:document",
+          "method": "explicit-author-advance-sentence/v1",
+          "locator": {
+            "char_start": 10741,
+            "char_end": 10849,
+            "quote": "Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification."
+          }
+        }
+      },
+      {
+        "id": "contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca",
+        "statement": "For CPU state modelling, we introduce the CPU States dataset (with 2.1 million instances), offering a simplified representation of CPU behaviour for ease of data collection and evaluation.",
+        "supporting_claims": [],
+        "paper_ref": {
+          "char_start": 20705,
+          "char_end": 20895,
+          "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation."
+        },
+        "provenance": {
+          "kind": "paper-extraction",
+          "source": "paper:document",
+          "method": "explicit-author-advance-sentence/v1",
+          "locator": {
+            "char_start": 20705,
+            "char_end": 20895,
+            "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation."
+          }
+        }
+      },
+      {
+        "id": "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba",
+        "statement": "In this paper, we present bGPT as a versatile simulator for the digital world, extending deep learning to binary data processing via next byte prediction.",
+        "supporting_claims": [],
+        "paper_ref": {
+          "char_start": 36764,
+          "char_end": 36918,
+          "quote": "In this paper, we present bGPT as a versatile simulator\nfor the digital world, extending deep learning to binary\ndata processing via next byte prediction."
+        },
+        "provenance": {
+          "kind": "paper-extraction",
+          "source": "paper:document",
+          "method": "explicit-author-advance-sentence/v1",
+          "locator": {
+            "char_start": 36764,
+            "char_end": 36918,
+            "quote": "In this paper, we present bGPT as a versatile simulator\nfor the digital world, extending deep learning to binary\ndata processing via next byte prediction."
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "status": "completed"
+  }
+}
