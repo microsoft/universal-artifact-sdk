@@ -475,7 +475,7 @@ The rendered patch definition and ceiling count match the extracted text. The ̸
 - Source: `review-record:visual/0`
 - Source: `paper:chars/11776-11885`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Rendered formulas: P_N = [b_{(N−1)S+1}, ..., b_T, e,...,e] with an underbrace labeled S−(T mod S).
 
@@ -485,7 +485,7 @@ The underbrace padding count matches the text. The garbled '| {z }' is extractio
 - Source: `review-record:visual/1`
 - Source: `paper:chars/12865-12935`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Rendered formulas: E_i = Flatten(P_i) · W_linear, 1 ≤ i ≤ N, (3). The following text describes W_linear with shape (S × 257, H).
 
@@ -495,7 +495,7 @@ The rendered equation is consistent with the text. The 257D one-hot encoding (25
 - Source: `review-record:visual/2`
 - Source: `paper:chars/13892-13934`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Rendered formulas: Ê_i = Decoder_patch(ℰ_{<i} ⊕ 𝒳_{<i}), (4).
 
@@ -505,7 +505,7 @@ The rendered equation matches the extracted text, apart from calligraphic glyphs
 - Source: `review-record:visual/3`
 - Source: `paper:chars/14439-14473`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Captions: The diagram shows Byte Patches feeding a Linear Projection Layer, then Patch Embeds & Position Embeds (0, 1, 2, N), then a Patch-Level Transformer Decoder, then a Byte-Level Transformer Decoder producing Output Bytes. The <eop> tokens pad the patches.
 
@@ -515,7 +515,7 @@ The figure's components match both the caption and the three-component descripti
 - Source: `review-record:visual/4`
 - Source: `paper:chars/12668-12863`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Units: The page shows a patch matrix of S × 257 and a 257D one-hot vector covering all 256 byte values plus an <eop> token.
 
@@ -525,7 +525,7 @@ The dimension 257 = 256 + 1 is internally consistent across the rendered page an
 - Source: `review-record:visual/8`
 - Source: `paper:chars/13514-13611`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Rendered formulas: Page renders BPB_abc and BPB_midi with subscripts and bGPT^5, bGPT^3 with superscripts denoting data scale.
 
@@ -535,7 +535,7 @@ Rendered sub/superscripts match the extracted text and Section 5.3 notation (10^
 - Source: `review-record:visual/9`
 - Source: `paper:chars/33656-33745`
 - Source: `paper:p.8`
-- Source: `review-output:visual/page-8.png`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
 
 ### Reviewer coverage limitation: units (paper:p.8)
 
@@ -545,7 +545,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/10`
 - Source: `paper:chars/32550-32583`
 - Source: `paper:p.8`
-- Source: `review-output:visual/page-8.png`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.8)
 
@@ -555,7 +555,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/11`
 - Source: `paper:chars/32719-32760`
 - Source: `paper:p.8`
-- Source: `review-output:visual/page-8.png`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
 
 ### Reviewer coverage limitation: captions (paper:p.8)
 
@@ -565,7 +565,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/12`
 - Source: `paper:chars/32719-32760`
 - Source: `paper:p.8`
-- Source: `review-output:visual/page-8.png`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
 
 ### Reviewer coverage limitation: axes (paper:p.8)
 
@@ -575,7 +575,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/13`
 - Source: `paper:chars/35331-35430`
 - Source: `paper:p.8`
-- Source: `review-output:visual/page-8.png`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
 
 ### Reviewer coverage limitation: units (paper:p.1)
 
@@ -585,7 +585,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/15`
 - Source: `paper:chars/829-921`
 - Source: `paper:p.1`
-- Source: `review-output:visual/page-1.png`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
 
 ### Sample counts: Rendered text shows data scales 10^3 (bGPT^3), 10^4 (bGPT^4), 10^5 (bGPT^5), 10^6 (bGPT^6) with superscripts; data conversion uses 10^3 to 10^5 and CPU uses 10^4 to 10^6.
 
@@ -595,7 +595,7 @@ The extracted '103' and similar values are flattened superscripts; the rendered 
 - Source: `review-record:visual/21`
 - Source: `paper:chars/30886-30975`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Axes: The x-axis is labelled Epoch with ticks from 0 to 32 in steps of 4. The y-axis is labelled Loss with ticks from 0.2 to 1.2. The legend lists bGPT3/4/5 Train and Eval.
 
@@ -605,7 +605,7 @@ The plotted scales match the data-conversion scales of 10^3 to 10^5 and the 32 e
 - Source: `review-record:visual/22`
 - Source: `paper:chars/31908-31927`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Axes: The x-axis is labelled Epoch and runs from 0 to 32. The y-axis is labelled Loss with ticks from 0.4 to 1.6. The legend lists bGPT4/5/6 Train and Eval. One orange curve drops sharply around epoch 11-12.
 
@@ -615,7 +615,7 @@ The legend matches the CPU scales of 10^4 to 10^6. The visible drop in an orange
 - Source: `review-record:visual/23`
 - Source: `paper:chars/35331-35430`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Captions: Table 5 lists bGPT5 with an ABC→MIDI BPB_midi value of 0.0011. The other values are 1.4319/0.2381/0.2796/1.1227, 0.9789/0.0202/0.1751/0.1763, and 0.7362/0.0011/0.1341/0.0789.
 
@@ -625,7 +625,7 @@ The rendered values match both the extracted table and the text.
 - Source: `review-record:visual/24`
 - Source: `paper:chars/33656-33745`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Captions: Table 6 shows bGPT4 at 0.6924 BPB and 27.2404% accuracy, bGPT5 at 0.0969 and 99.9702%, and bGPT6 at 0.0969 and 99.9961%.
 
@@ -635,7 +635,7 @@ The rounded accuracies in the text match the table. The identical BPB values for
 - Source: `review-record:visual/25`
 - Source: `paper:chars/35044-35117`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Captions: Table 4 shows BPB/accuracy values of 0.4052/80.74 for random, 0.3899/84.66 for image, and 0.3900/85.26 for libri. The value 0.3899 and the libri accuracy 85.26 are in bold.
 
@@ -645,7 +645,7 @@ The rendered values match the text's claims that the BPB values are closely matc
 - Source: `review-record:visual/26`
 - Source: `paper:chars/29311-29356`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Units: The table headers show BPB and Acc (%), and Table 5 uses BPB_abc and BPB_midi subscripts.
 
@@ -655,7 +655,7 @@ The units used in the tables are consistent with the metric definitions in the t
 - Source: `review-record:visual/27`
 - Source: `paper:chars/32923-33012`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Captions: Figure 1 shows .wav, .bmp, .mid, .abc and .bin inputs feeding a central bGPT block. The outputs are a waveform, a 'Cat' label, sheet music, and CPU chip icons labelled 0, 1, 2, 3, ..., N. The rendered caption reads 'The bGPT framework simulates digital systems through native binary data, and integrates diverse data types into a single model, treating everything as a byte sequence.'
 
@@ -665,7 +665,7 @@ The figure shows several data types (audio, image, MIDI, ABC, binary) entering o
 - Source: `review-record:visual/28`
 - Source: `paper:chars/4825-5099`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Sample counts: Table 1 row 'CPU States (proposed)' shows Total Files (Million) 2.1; body text says the CPU States dataset has 2.1 million instances.
 
@@ -675,7 +675,7 @@ The rendered table count matches the text count of 2.1 million.
 - Source: `review-record:visual/34`
 - Source: `paper:chars/20705-20794`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Units: The column headers read 'Total Files (Million)', 'Total Bytes (GB)', 'Mean File Size (Byte)', and 'GPU hours per Epoch'. The caption describes file counts in millions, dataset sizes in gigabytes, average file sizes in bytes, and GPU hours per epoch.
 
@@ -685,7 +685,7 @@ The header units are consistent with the caption.
 - Source: `review-record:visual/35`
 - Source: `paper:chars/19668-19816`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Budgets: Table 2 lists Patch Size 16/16, Patch Length 512/512, Hidden Size 768, Epochs 32, Learning Rate 1e-04/1e-05, and Batch Size 16/1. Section 5.1 states a patch size of 16 and a sequence length of 512, with support for files up to 8KB.
 
@@ -695,7 +695,7 @@ Scope: paper-only; analysis: visual; evidence status: inference.
 - Source: `review-record:visual/36`
 - Source: `paper:chars/21970-22056`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Reviewer coverage limitation: units (paper:p.5)
 
@@ -705,7 +705,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/37`
 - Source: `paper:chars/18196-18454`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Captions: The Table 1 caption references NVIDIA V100 GPU hours. The table includes a 'GPU hours per Epoch' column with values such as 107, 2.1, and 18.
 
@@ -715,7 +715,7 @@ The caption content matches the rendered columns.
 - Source: `review-record:visual/38`
 - Source: `paper:chars/19554-19667`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Rendered formulas: Rendered: b̂_{i,j} = Decoder_byte(Ê_i, b_{i,<j}), 1 ≤ j ≤ S, labelled (5).
 
@@ -725,7 +725,7 @@ The rendered equation matches the extracted text and the surrounding definitions
 - Source: `review-record:visual/39`
 - Source: `paper:chars/15098-15146`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Rendered formulas: Rendered: L_GEN(θ) = −Σ_{i=1}^{T−1} log p(b_{i+1}|b_1,b_2,...,b_i;θ), labelled (6).
 
@@ -735,7 +735,7 @@ The negative sum of log-probabilities over i=1..T−1 for the next byte is consi
 - Source: `review-record:visual/40`
 - Source: `paper:chars/15682-15785`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Rendered formulas: Rendered: L_CLF(θ) = −Σ_{k=1}^{K} y_k log p(y_k|B;θ), labelled (7).
 
@@ -745,7 +745,7 @@ The summation bound K and the y_k terms match the stated definitions of a cross-
 - Source: `review-record:visual/41`
 - Source: `paper:chars/16706-16893`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Units: Text reads 'WAV format... 8000 Hz sampling rate, mono channel, and 8-bit depth, each trimmed to one-second lengths... BMP format with a resolution of 32×32, RGB colour, and 24-bit depth.'
 
@@ -755,7 +755,7 @@ The rendered units match the text. They are also consistent with the reported me
 - Source: `review-record:visual/42`
 - Source: `paper:chars/18196-18454`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.6)
 
@@ -765,7 +765,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/47`
 - Source: `paper:chars/24561-24634`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: captions (paper:p.6)
 
@@ -775,7 +775,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/48`
 - Source: `paper:chars/24389-24559`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: units (paper:p.6)
 
@@ -785,7 +785,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/49`
 - Source: `paper:chars/25826-25993`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: units (paper:p.6)
 
@@ -795,7 +795,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/50`
 - Source: `paper:chars/28554-28594`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: rendered formulas (paper:p.6)
 
@@ -805,7 +805,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/51`
 - Source: `paper:chars/24679-24728`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: captions (paper:p.16)
 
@@ -815,7 +815,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/54`
 - Source: `paper:chars/65157-65255`
 - Source: `paper:p.16`
-- Source: `review-output:visual/page-16.png`
+- Source: [`review-output:visual/page-16.png`](visual/page-16.png)
 
 ### Reviewer coverage limitation: captions (paper:p.16)
 
@@ -824,7 +824,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 
 - Source: `review-record:visual/55`
 - Source: `paper:p.16`
-- Source: `review-output:visual/page-16.png`
+- Source: [`review-output:visual/page-16.png`](visual/page-16.png)
 
 ### Sample counts: The code block has the header X:1, L:1/8, M:3/4, K:D. It is followed by six lines of bars ending 'FD C3 D | F/G/A B3 e | dc d4 |]'.
 
@@ -834,7 +834,7 @@ The rendered ABC example matches the extracted text and the original header from
 - Source: `review-record:visual/56`
 - Source: `paper:chars/69353-69435`
 - Source: `paper:p.16`
-- Source: `review-output:visual/page-16.png`
+- Source: [`review-output:visual/page-16.png`](visual/page-16.png)
 
 ### Reviewer coverage limitation: units (paper:p.17)
 
@@ -844,7 +844,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/65`
 - Source: `paper:chars/21207-21429`
 - Source: `paper:p.17`
-- Source: `review-output:visual/page-17.png`
+- Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.17)
 
@@ -854,7 +854,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/66`
 - Source: `paper:chars/20730-20794`
 - Source: `paper:p.17`
-- Source: `review-output:visual/page-17.png`
+- Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
 ### Sample counts: Instruction sequences vary 'in length from 1 to 256'; 'over 516 million potential scenarios'.
 
@@ -864,7 +864,7 @@ Range matches Section 4.2; 516 million also matches Section 5.3.2 ('over 516 mil
 - Source: `review-record:visual/67`
 - Source: `paper:chars/21430-21510`
 - Source: `paper:p.17`
-- Source: `review-output:visual/page-17.png`
+- Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.17)
 
@@ -874,7 +874,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/68`
 - Source: `paper:chars/76193-76340`
 - Source: `paper:p.17`
-- Source: `review-output:visual/page-17.png`
+- Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
 ### Captions: Caption reads 'Figure 5. Sheet music example corresponding to the MIDI of the same folk tune presented in Fig. 4.' above a six-system score with key signature of two sharps, 3/4 time and tempo marking quarter note = 120.
 
@@ -884,7 +884,7 @@ Rendered caption matches the text. The two-sharp key signature and 3/4 meter are
 - Source: `review-record:visual/71`
 - Source: `paper:chars/65157-65255`
 - Source: `paper:p.15`
-- Source: `review-output:visual/page-15.png`
+- Source: [`review-output:visual/page-15.png`](visual/page-15.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.15)
 
@@ -894,7 +894,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/72`
 - Source: `paper:chars/70007-70196`
 - Source: `paper:p.15`
-- Source: `review-output:visual/page-15.png`
+- Source: [`review-output:visual/page-15.png`](visual/page-15.png)
 
 ### Captions: Sheet music with key signature of two sharps (D major), 3/4 time, chord symbols D, A, C, G/B, Bm, F#m, G; caption reads 'Sheet music example corresponding to the ABC notation of a folk tune in D major.'
 
@@ -904,7 +904,7 @@ Rendered key signature (two sharps), meter 3/4 and chord labels match the captio
 - Source: `review-record:visual/89`
 - Source: `paper:chars/62105-62195`
 - Source: `paper:p.14`
-- Source: `review-output:visual/page-14.png`
+- Source: [`review-output:visual/page-14.png`](visual/page-14.png)
 
 ### Units: Measure numbers 6, 10, 14 appear at the starts of systems 2–4; repeat signs end system 2 and bracket systems 3–4; first system contains a pickup plus 5 bars.
 
@@ -914,7 +914,7 @@ Bar structure and repeat markers ('::' and ':|') in the ABC listing are consiste
 - Source: `review-record:visual/90`
 - Source: `paper:chars/62883-63001`
 - Source: `paper:p.14`
-- Source: `review-output:visual/page-14.png`
+- Source: [`review-output:visual/page-14.png`](visual/page-14.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.19)
 
@@ -924,7 +924,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/107`
 - Source: `paper:chars/21049-21133`
 - Source: `paper:p.19`
-- Source: `review-output:visual/page-19.png`
+- Source: [`review-output:visual/page-19.png`](visual/page-19.png)
 
 ### Sample counts: The Address Variants column shows: HLT 0; CLR, INC, DEC, SHL, SHR, ROL, ROR and NOT each 0, 1; PUSH, POP and LOADI each 1; SWAP 1, 2; ADD, SUB, MUL, DIV, AND, OR and XOR each 1, 2, 3; MOV 2.
 
@@ -934,7 +934,7 @@ Summing the listed variants gives 1 + 7×2 + 3×1 + 2 + 7×3 + 1 = 42, not the 4
 - Source: `review-record:visual/108`
 - Source: `paper:chars/21049-21133`
 - Source: `paper:p.19`
-- Source: `review-output:visual/page-19.png`
+- Source: [`review-output:visual/page-19.png`](visual/page-19.png)
 
 ### Captions: The caption reads 'Table 7. Defined instruction set and the address variants of different instructions.' The page is numbered 19.
 
@@ -944,7 +944,7 @@ The caption, the table content and the page location all match the appendix refe
 - Source: `review-record:visual/109`
 - Source: `paper:chars/73809-73956`
 - Source: `paper:p.19`
-- Source: `review-output:visual/page-19.png`
+- Source: [`review-output:visual/page-19.png`](visual/page-19.png)
 
 ### Sample counts: Page shows states at steps 1 through 10 (step 0 is on page 17), with PC incrementing 1..10 and final IR: HLT.
 
@@ -954,7 +954,7 @@ Ten executed-instruction states plus the initial state on p.17 match the stated 
 - Source: `review-record:visual/114`
 - Source: `paper:chars/75731-75868`
 - Source: `paper:p.18`
-- Source: `review-output:visual/page-18.png`
+- Source: [`review-output:visual/page-18.png`](visual/page-18.png)
 
 ### Reviewer coverage limitation: units (paper:p.18)
 
@@ -964,7 +964,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/115`
 - Source: `paper:chars/72454-72535`
 - Source: `paper:p.18`
-- Source: `review-output:visual/page-18.png`
+- Source: [`review-output:visual/page-18.png`](visual/page-18.png)
 
 ### Reviewer coverage limitation: captions (paper:p.18)
 
@@ -974,7 +974,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/116`
 - Source: `paper:chars/72539-72627`
 - Source: `paper:p.18`
-- Source: `review-output:visual/page-18.png`
+- Source: [`review-output:visual/page-18.png`](visual/page-18.png)
 
 ### Reviewer coverage limitation: rendered formulas (paper:p.18)
 
@@ -984,7 +984,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/117`
 - Source: `paper:chars/79937-79994`
 - Source: `paper:p.18`
-- Source: `review-output:visual/page-18.png`
+- Source: [`review-output:visual/page-18.png`](visual/page-18.png)
 
 ## Direct visual evidence (advisory)
 

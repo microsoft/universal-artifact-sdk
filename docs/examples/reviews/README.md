@@ -13,9 +13,10 @@
 > specification in [`docs/judge-reviewer-spec/`](../../judge-reviewer-spec/README.md) governs.
 
 Each example ran the paper adapter, the judge, and the reviewer on a public paper (the paper
-only, no code), in the `artifact-informed` scope. Each directory contains the review draft, the
-paper-level review, the judge findings, the candidate contributions, the run record, and the
-converted artifact.
+only, no code), in the `artifact-informed` scope. In each directory, start with the README: it
+links a one-page judge summary (claims, evidence, and verdicts) and gives a section-by-section
+guide to the long review draft. The directories also hold the run's JSON outputs, the page
+images the review cites, and the converted artifact.
 
 | Example | Paper |
 |---------|-------|

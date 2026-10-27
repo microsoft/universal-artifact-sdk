@@ -353,7 +353,7 @@ The caption describes replacing SSD's label-dependent importance estimation with
 - Source: `review-record:visual/0`
 - Source: `paper:chars/11866-12030`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Reviewer coverage limitation: rendered formulas (paper:p.4)
 
@@ -363,7 +363,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/2`
 - Source: `paper:chars/12582-12620`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Reviewer coverage limitation: budgets (paper:p.4)
 
@@ -373,7 +373,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/3`
 - Source: `paper:chars/12817-12945`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.4)
 
@@ -383,7 +383,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/4`
 - Source: `paper:chars/13353-13403`
 - Source: `paper:p.4`
-- Source: `review-output:visual/page-4.png`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
 ### Rendered formulas: The page renders the set-difference definition D_r = D \ D_f with calligraphic D symbols and subscripts r and f.
 
@@ -393,7 +393,7 @@ The rendered formula is consistent with the extracted text. The flattened subscr
 - Source: `review-record:visual/5`
 - Source: `paper:chars/1398-1497`
 - Source: `paper:p.1`
-- Source: `review-output:visual/page-1.png`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
 
 ### Rendered formulas: The abstract renders 'l_2 norm of the model output' with a subscript 2 on l.
 
@@ -403,7 +403,7 @@ The rendered l_2 notation is consistent with the extracted text and with the lat
 - Source: `review-record:visual/6`
 - Source: `paper:chars/927-981`
 - Source: `paper:p.1`
-- Source: `review-output:visual/page-1.png`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
 
 ### Reviewer coverage limitation: rendered formulas (paper:p.2)
 
@@ -413,7 +413,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/12`
 - Source: `paper:chars/4788-4890`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Reviewer coverage limitation: rendered formulas (paper:p.2)
 
@@ -423,7 +423,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/13`
 - Source: `paper:chars/5992-6041`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Rendered formulas: Ω_i = (1/N) Σ_{k=1}^N ||∂[l_2^2(f(x_k;θ))]/∂θ_i||, which is the gradient of the squared l2 norm.
 
@@ -433,7 +433,7 @@ The rendered formula uses the squared l2 norm, matching the text.
 - Source: `review-record:visual/14`
 - Source: `paper:chars/5750-5819`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Captions: The caption states α=10, λ=1 on Cifar100/20 and that ±0.0 is omitted. The LFSSD and SSD columns show values without ±.
 
@@ -443,7 +443,7 @@ The caption matches the table layout.
 - Source: `review-record:visual/15`
 - Source: `paper:chars/3752-3837`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Reviewer coverage limitation: budgets (paper:p.2)
 
@@ -453,7 +453,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/16`
 - Source: `paper:chars/15647-15731`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Reviewer coverage limitation: captions (paper:p.2)
 
@@ -463,7 +463,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/17`
 - Source: `paper:chars/20462-20535`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Reviewer coverage limitation: units (paper:p.2)
 
@@ -473,7 +473,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/18`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.2`
-- Source: `review-output:visual/page-2.png`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Sample counts: Appendix Benchmarks paragraph reads 'Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables.'
 
@@ -483,7 +483,7 @@ The rendered run count matches the extracted text.
 - Source: `review-record:visual/21`
 - Source: `paper:chars/10633-10734`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Units: Text states D_r and D_f in the tables denote accuracy on the respective subset 'in percent'.
 
@@ -493,7 +493,7 @@ The rendered unit (percent) for Dr/Df accuracy matches the extracted text.
 - Source: `review-record:visual/22`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Budgets: Text reads 'a model finetuned for 2 epochs on D_r'.
 
@@ -503,7 +503,7 @@ The rendered finetuning budget of 2 epochs matches the extracted text.
 - Source: `review-record:visual/23`
 - Source: `paper:chars/9926-9962`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Rendered formulas: Calligraphic D_r appears in 'retrained from scratch on only D_r' and 'finetuned ... on D_r'. Italic D_r and D_f appear in the table-description sentence. All subscripts render legibly.
 
@@ -513,7 +513,7 @@ The symbols render properly. The calligraphic versus italic font difference is a
 - Source: `review-record:visual/24`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.3`
-- Source: `review-output:visual/page-3.png`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.7)
 
@@ -523,7 +523,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/27`
 - Source: `paper:chars/23044-23103`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Reviewer coverage limitation: captions (paper:p.7)
 
@@ -533,7 +533,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/28`
 - Source: `paper:chars/20462-20585`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Reviewer coverage limitation: captions (paper:p.7)
 
@@ -543,7 +543,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/29`
 - Source: `paper:chars/3674-3795`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Reviewer coverage limitation: units (paper:p.7)
 
@@ -553,7 +553,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/30`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Reviewer coverage limitation: rendered formulas (paper:p.7)
 
@@ -563,7 +563,7 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 - Source: `review-record:visual/31`
 - Source: `paper:chars/20508-20535`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.7)
 
@@ -573,7 +573,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/32`
 - Source: `paper:chars/10633-10734`
 - Source: `paper:p.7`
-- Source: `review-output:visual/page-7.png`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
 ### Sample counts: Table 3 caption states one face unlearned per experiment with IDs [1,10,20,30,40] and results aggregated for 5 experiments; table shows RN rows with ± values.
 
@@ -583,7 +583,7 @@ Five listed IDs match the stated count of 5 experiments.
 - Source: `review-record:visual/35`
 - Source: `paper:chars/14760-14881`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.5)
 
@@ -593,7 +593,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/36`
 - Source: `paper:chars/10824-10956`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Reviewer coverage limitation: units (paper:p.5)
 
@@ -603,7 +603,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/37`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Reviewer coverage limitation: captions (paper:p.5)
 
@@ -613,7 +613,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/38`
 - Source: `paper:chars/13295-13404`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Budgets: Table 2 α=10 row: Dr 75.67%, Df 0.00%, MIA 0.00. Table 4 RN Rkt LFSSD: Dr 75.67±0.00, Df 0.00±0.00, MIA 0.00±0.00, caption LFSSD α = 10, λ = 1.
 
@@ -623,7 +623,7 @@ Hyperparameter settings and rocket results are consistent across tables.
 - Source: `review-record:visual/39`
 - Source: `paper:chars/15219-15340`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Reviewer coverage limitation: captions (paper:p.5)
 
@@ -633,7 +633,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/40`
 - Source: `paper:chars/4046-4111`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.5)
 
@@ -642,7 +642,7 @@ Substantive uncertainty. This is not evidence of a readability or scientific def
 
 - Source: `review-record:visual/41`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Rendered formulas: Captions render α = 50, λ = 0.1; α_RN = 10, α_ViT = 10 with proper subscripts; row labels render as calligraphic D_r, D_f.
 
@@ -652,7 +652,7 @@ Rendered symbols match the extracted text; garbled 'αV iT' is extraction noise.
 - Source: `review-record:visual/43`
 - Source: `paper:chars/14882-14924`
 - Source: `paper:p.5`
-- Source: `review-output:visual/page-5.png`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
 ### Captions: Caption reads 'Table 5: Class unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.'
 
@@ -662,7 +662,7 @@ The rendered caption and hyperparameters match the extracted text. The extracted
 - Source: `review-record:visual/44`
 - Source: `paper:chars/17822-17914`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: budgets (paper:p.6)
 
@@ -672,7 +672,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/45`
 - Source: `paper:chars/3674-3795`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.6)
 
@@ -682,7 +682,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/46`
 - Source: `paper:chars/10824-10904`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: units (paper:p.6)
 
@@ -692,7 +692,7 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 - Source: `review-record:visual/47`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Rendered formulas: The metric column renders calligraphic 𝒟_r and 𝒟_f symbols, and the caption renders α and λ symbols properly.
 
@@ -702,7 +702,7 @@ The symbols render correctly and match the notation used in the text.
 - Source: `review-record:visual/49`
 - Source: `paper:chars/10735-10803`
 - Source: `paper:p.6`
-- Source: `review-output:visual/page-6.png`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### C1: comparison unresolved
 

@@ -1,0 +1,37 @@
+{
+  "_generated": "reference-reviewer",
+  "status": "incomplete",
+  "packet_id": "b425c9805de5e0f6c80fbddb691cab969e1fed09fc1528c8af20368dacc9a01a",
+  "packet": {
+    "sources": {},
+    "paper_claims": [],
+    "source_settings": [],
+    "run_bindings": [
+      {
+        "claim_id": "C1",
+        "result_id": "",
+        "run_id": null,
+        "result_sha256": null,
+        "events": [],
+        "status": "unresolved",
+        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+      },
+      {
+        "claim_id": "C2",
+        "result_id": "",
+        "run_id": null,
+        "result_sha256": null,
+        "events": [],
+        "status": "unresolved",
+        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+      }
+    ]
+  },
+  "observations": [],
+  "limitations": [
+    "Claim C1: paper premise unselected or ambiguous.",
+    "Claim C2: paper premise unselected or ambiguous.",
+    "Advisory code/run reasoning was not performed."
+  ],
+  "activity": "read-only-source-inspection"
+}
