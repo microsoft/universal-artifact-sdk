@@ -2,7 +2,14 @@
   "_generated": "reference-reviewer",
   "status": "unavailable",
   "observations": [],
-  "selection": [],
+  "selection": [
+    {
+      "path": "figures/figure-1.png",
+      "status": "uninspected",
+      "claim_ids": [],
+      "reason": "No explicit grounded claim link or figure budget exhausted."
+    }
+  ],
   "figure_budget": 4,
   "outcome_summary": {
     "counts": [

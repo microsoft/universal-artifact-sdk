@@ -11,24 +11,216 @@
   "files": {},
   "records": [
     {
-      "claim_id": "C1",
+      "claim_id": "claim-1",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
       "paper_citation": "",
-      "paper_quote": "0.0011",
+      "paper_quote": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI conversion, which is extremely close to perfect performance (where BPB reaches 0), sur- passing the performance of the bGPT3 model by orders of magnitude.",
       "artifact_citation": "",
       "locator": {},
       "observed_value": null,
       "comparison": {}
     },
     {
-      "claim_id": "C2",
+      "claim_id": "claim-2",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
       "paper_citation": "",
-      "paper_quote": "99.99%",
+      "paper_quote": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), suggesting an efficiency beyond sim- ple memorization, given that each test case contained an average of 128 random instructions, and the vast potential combinations of instruction scenarios (over 516 million).",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-3",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "bGPT matches specialized models in performance across various modalities, including text, audio, and images, and offers new possibil- ities for predicting, simulating, and diagnosing algorithm or hardware behaviour.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-4",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2- small, scored 0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-5",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2, coming close to the accuracy of AST at 98.11%.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-15",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Table 6 shows significant perfor- mance variations, with a notable BPB drop from bGPT4 to bGPT5, but diminishing returns beyond bGPT5.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-16",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "A significant improvement in the performance of bGPT5 occurred around epoch 11, as shown in Fig. 3b, indicating an emergent ability in CPU state modelling.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-6",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-18",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Our experiments demonstrate the effectiveness of bGPT in modelling digital media data, which showcases modality-agnostic knowledge transfer.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-10",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimage on spectrograms with speech content, indicating effective cross- modal transfer and the importance of content alignment over mere data format.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-13",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-7",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "This indicates that bGPT models can achieve better perfor- mance in downstream tasks when there is a close match between pre-training and fine-tuning datasets, aligning with standard pre-training principles (Liu et al., 2022).",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-8",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix, yield performances that gen- erally align with the average performance of models pre- trained on individual modalities.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-9",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "However, negative trans- fer is observed when transitioning between text and other modalities, indicating that the benefits of structured pattern learning in pre-training do not universally apply.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-12",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "We observe a lower starting loss and a more rapid con- vergence in Fig. 3a as the data scale grows, indicating that increased data volume directly enhances model performance in simulating the data conversion process.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-11",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance does not extend to this spectrogram-based task.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-14",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Table 5 suggests consistently higher BPB for ABC in both directions, which is likely due to two factors:",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-19",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Notably, we avoided hyper- parameter tuning and data augmentation in all evaluations.",
       "artifact_citation": "",
       "locator": {},
       "observed_value": null,
@@ -44,7 +236,20 @@
   "visual_inspection": {
     "status": "unavailable",
     "observations": [],
-    "selection": [],
+    "selection": [
+      {
+        "path": "figures/figure-1.png",
+        "status": "uninspected",
+        "claim_ids": [],
+        "reason": "No explicit grounded claim link or figure budget exhausted."
+      },
+      {
+        "path": "figures/figure-2.png",
+        "status": "uninspected",
+        "claim_ids": [],
+        "reason": "No explicit grounded claim link or figure budget exhausted."
+      }
+    ],
     "figure_budget": 4,
     "outcome_summary": {
       "counts": [
@@ -99,14 +304,14 @@
   },
   "run_evidence": {
     "status": "incomplete",
-    "packet_id": "b425c9805de5e0f6c80fbddb691cab969e1fed09fc1528c8af20368dacc9a01a",
+    "packet_id": "37e309fc568e1141261dd43097ccbcf0aedce6a60120ebf94889ac10f803e6ab",
     "packet": {
       "sources": {},
       "paper_claims": [],
       "source_settings": [],
       "run_bindings": [
         {
-          "claim_id": "C1",
+          "claim_id": "claim-1",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -115,7 +320,151 @@
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         },
         {
-          "claim_id": "C2",
+          "claim_id": "claim-2",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-3",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-4",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-5",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-15",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-16",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-6",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-18",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-10",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-13",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-7",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-8",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-9",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-12",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-11",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-14",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-19",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -127,8 +476,24 @@
     },
     "observations": [],
     "limitations": [
-      "Claim C1: paper premise unselected or ambiguous.",
-      "Claim C2: paper premise unselected or ambiguous.",
+      "Claim claim-1: paper premise unselected or ambiguous.",
+      "Claim claim-2: paper premise unselected or ambiguous.",
+      "Claim claim-3: paper premise unselected or ambiguous.",
+      "Claim claim-4: paper premise unselected or ambiguous.",
+      "Claim claim-5: paper premise unselected or ambiguous.",
+      "Claim claim-15: paper premise unselected or ambiguous.",
+      "Claim claim-16: paper premise unselected or ambiguous.",
+      "Claim claim-6: paper premise unselected or ambiguous.",
+      "Claim claim-18: paper premise unselected or ambiguous.",
+      "Claim claim-10: paper premise unselected or ambiguous.",
+      "Claim claim-13: paper premise unselected or ambiguous.",
+      "Claim claim-7: paper premise unselected or ambiguous.",
+      "Claim claim-8: paper premise unselected or ambiguous.",
+      "Claim claim-9: paper premise unselected or ambiguous.",
+      "Claim claim-12: paper premise unselected or ambiguous.",
+      "Claim claim-11: paper premise unselected or ambiguous.",
+      "Claim claim-14: paper premise unselected or ambiguous.",
+      "Claim claim-19: paper premise unselected or ambiguous.",
       "Advisory code/run reasoning was not performed."
     ],
     "activity": "read-only-source-inspection"

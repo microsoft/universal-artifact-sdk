@@ -4,11 +4,11 @@ _generated: DO NOT EDIT — produced by `paper-to-artifact` from paper.pdf. Ever
 format_version: evaluable-artifact/v3
 sdk_version: artifact-sdk/v1
 id: 999e3d81d95a
-title: paper
+title: 'Beyond Language Models: Byte Models are Digital World Simulators'
 source_format: paper/v1
 identity:
   id: 999e3d81d95a
-  title: paper
+  title: 'Beyond Language Models: Byte Models are Digital World Simulators'
   author_name: null
 origin:
   kind: paper
@@ -16,8 +16,8 @@ origin:
   extractor:
     tool: paper-to-artifact/v1
     reader: pypdf
-    llm: null
-    verifier: null
+    llm: redacted-model
+    verifier: redacted-verifier-model
 paper:
   pdf: paper.pdf
   references_export: paper_references.yml
@@ -25,6 +25,7 @@ paths:
   claims: claims.yml
   results: results.yml
   contributions: contributions.yml
+  figures: figures.yml
 experiments: []
 evidence_inventory:
   has_runnable_experiments: false

@@ -16,15 +16,15 @@ origin:
   extractor:
     tool: paper-to-artifact/v1
     reader: pypdf
-    llm: null
-    verifier: null
+    llm: redacted-model
+    verifier: redacted-verifier-model
 paper:
   pdf: paper.pdf
-  references_export: paper_references.yml
 paths:
-  claims: claims.yml
   results: results.yml
   contributions: contributions.yml
+  figures: figures.yml
+  claims: claims.yml
 experiments: []
 evidence_inventory:
   has_runnable_experiments: false
@@ -36,7 +36,7 @@ evidence_inventory:
   dataset_count: 0
   has_study_metadata: false
   has_paper_source: true
-  has_citations_export: true
+  has_citations_export: false
   has_related_work_export: false
   has_research_agent: false
   has_contributions: true

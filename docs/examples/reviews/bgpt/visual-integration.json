@@ -1,121 +1,91 @@
 {
   "_generated": "reference-reviewer visual interpretation",
   "status": "completed",
-  "observation_count": 120,
-  "interpretation_observation_count": 31,
+  "observation_count": 127,
+  "interpretation_observation_count": 37,
   "coverage_only_records": [
     {
-      "citation": "review-record:visual/10",
+      "citation": "review-record:visual/17",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/11",
+      "citation": "review-record:visual/29",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/12",
+      "citation": "review-record:visual/30",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/13",
+      "citation": "review-record:visual/31",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/32",
       "reason": "Substantive uncertainty.",
       "resolution_reason": "substantive_uncertainty"
     },
     {
-      "citation": "review-record:visual/15",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/37",
+      "citation": "review-record:visual/34",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/47",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/48",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/49",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/50",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/51",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/54",
+      "citation": "review-record:visual/58",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/55",
-      "reason": "Substantive uncertainty.",
-      "resolution_reason": "substantive_uncertainty"
-    },
-    {
-      "citation": "review-record:visual/65",
-      "reason": "Missing or invalid confirmation.",
-      "resolution_reason": "confirmation_failure"
-    },
-    {
-      "citation": "review-record:visual/66",
+      "citation": "review-record:visual/59",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/68",
+      "citation": "review-record:visual/78",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/72",
+      "citation": "review-record:visual/86",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/87",
+      "reason": "Grounding failure: context, citation or readability.",
+      "resolution_reason": "grounding_failure"
     },
     {
       "citation": "review-record:visual/107",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/108",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/113",
       "reason": "Conflicting assessments.",
       "resolution_reason": "conflicting_assessments"
     },
     {
-      "citation": "review-record:visual/115",
-      "reason": "Conflicting assessments.",
-      "resolution_reason": "conflicting_assessments"
+      "citation": "review-record:visual/121",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
     },
     {
-      "citation": "review-record:visual/116",
-      "reason": "Substantive uncertainty.",
-      "resolution_reason": "substantive_uncertainty"
-    },
-    {
-      "citation": "review-record:visual/117",
-      "reason": "Substantive uncertainty.",
-      "resolution_reason": "substantive_uncertainty"
+      "citation": "review-record:visual/126",
+      "reason": "Grounding failure: context, citation or readability.",
+      "resolution_reason": "grounding_failure"
     }
   ],
   "not_applicable_records": [
-    {
-      "citation": "review-record:visual/5",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
     {
       "citation": "review-record:visual/6",
       "reason": "Not applicable.",
@@ -127,17 +97,17 @@
       "resolution_reason": "not_applicable"
     },
     {
+      "citation": "review-record:visual/13",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
       "citation": "review-record:visual/14",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/16",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/17",
+      "citation": "review-record:visual/15",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -157,22 +127,12 @@
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/29",
+      "citation": "review-record:visual/21",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/30",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/31",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/32",
+      "citation": "review-record:visual/28",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -182,27 +142,37 @@
       "resolution_reason": "not_applicable"
     },
     {
+      "citation": "review-record:visual/41",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/42",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
       "citation": "review-record:visual/43",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/44",
+      "citation": "review-record:visual/48",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/45",
+      "citation": "review-record:visual/49",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/46",
+      "citation": "review-record:visual/50",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/52",
+      "citation": "review-record:visual/51",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -212,22 +182,22 @@
       "resolution_reason": "not_applicable"
     },
     {
+      "citation": "review-record:visual/54",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/55",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/56",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
       "citation": "review-record:visual/57",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/58",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/59",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/60",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -252,12 +222,27 @@
       "resolution_reason": "not_applicable"
     },
     {
+      "citation": "review-record:visual/68",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
       "citation": "review-record:visual/69",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
     {
       "citation": "review-record:visual/70",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/71",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/72",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -283,11 +268,6 @@
     },
     {
       "citation": "review-record:visual/77",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/78",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -322,22 +302,17 @@
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/85",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/86",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
-      "citation": "review-record:visual/87",
-      "reason": "Not applicable.",
-      "resolution_reason": "not_applicable"
-    },
-    {
       "citation": "review-record:visual/88",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/89",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/90",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -422,6 +397,11 @@
       "resolution_reason": "not_applicable"
     },
     {
+      "citation": "review-record:visual/109",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
       "citation": "review-record:visual/110",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
@@ -437,7 +417,12 @@
       "resolution_reason": "not_applicable"
     },
     {
-      "citation": "review-record:visual/113",
+      "citation": "review-record:visual/116",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/117",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
     },
@@ -450,6 +435,26 @@
       "citation": "review-record:visual/119",
       "reason": "Not applicable.",
       "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/122",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/123",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/124",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/125",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
     }
   ],
   "outcome_summary": {
@@ -457,7 +462,7 @@
       {
         "outcome": "agreement",
         "label": "Confirmed text-image agreement",
-        "count": 30
+        "count": 36
       },
       {
         "outcome": "mismatch",
@@ -467,17 +472,17 @@
       {
         "outcome": "not_applicable",
         "label": "Not applicable",
-        "count": 68
+        "count": 74
       },
       {
         "outcome": "grounding_failure",
         "label": "Grounding failure: context, citation or readability",
-        "count": 0
+        "count": 2
       },
       {
         "outcome": "confirmation_failure",
         "label": "Missing or invalid confirmation",
-        "count": 7
+        "count": 3
       },
       {
         "outcome": "conflicting_assessments",
@@ -487,7 +492,7 @@
       {
         "outcome": "substantive_uncertainty",
         "label": "Substantive uncertainty",
-        "count": 4
+        "count": 1
       },
       {
         "outcome": "unspecified",
@@ -497,214 +502,172 @@
     ],
     "human_inspection": [
       {
-        "record_index": 10,
+        "record_index": 17,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.1",
+        "check": "sample_counts",
+        "paper_quote": "with an accuracy exceeding 99.99% in\nexecuting various operations",
+        "observation": "Abstract states \"an accuracy exceeding 99.99% in executing various operations\".",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered text matches the extracted text. Table 6 reports 99.9961 for bGPT6, which is consistent with exceeding 99.99%.",
+        "first_assessment": "agreement",
+        "first_reason": "The rendered text matches the extracted text. Table 6 reports 99.9961 for bGPT6, which is consistent with exceeding 99.99%.",
+        "second_assessment": "unresolved",
+        "second_reason": "The quoted text appears as rendered, but this page has no sample-count element to compare. Sample counts, such as evaluation-set sizes, would be on other pages, so a sample_counts check cannot be resolved from this image."
+      },
+      {
+        "record_index": 29,
         "outcome": "conflicting_assessments",
         "label": "Conflicting assessments",
         "location": "paper:p.8",
-        "check": "units",
-        "paper_quote": "bGPT5 0.7362 0.0011 0.1341 0.0789",
-        "observation": "Text states BPB_midi of 0.0011 in ABC to MIDI conversion for bGPT^5.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Value 0.0011 BPB matches Table 5 ABC\u2192MIDI BPBmidi for bGPT5, and bGPT3 is 0.2381, consistent with 'orders of magnitude'.",
+        "check": "rendered_formulas",
+        "paper_quote": "utilizing data scales ranging from 103\n(bGPT3), 104 (bGPT4), 105 (bGPT5), to 106 (bGPT6).",
+        "observation": "Page renders BPB with subscripts 'abc' and 'midi' (BPB_abc, BPB_midi) and model names with superscripts bGPT^3, bGPT^4, bGPT^5, bGPT^6.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The superscripts denote data-scale exponents (10^3 to 10^6). The extracted text flattens these superscripts into plain digits. That flattening is extraction noise, and the rendered notation is consistent with the paper's definitions.",
         "first_assessment": "agreement",
-        "first_reason": "Value 0.0011 BPB matches Table 5 ABC\u2192MIDI BPBmidi for bGPT5, and bGPT3 is 0.2381, consistent with 'orders of magnitude'.",
+        "first_reason": "The superscripts denote data-scale exponents (10^3 to 10^6). The extracted text flattens these superscripts into plain digits. That flattening is extraction noise, and the rendered notation is consistent with the paper's definitions.",
         "second_assessment": "unresolved",
-        "second_reason": "The quoted Table 5 row is not on this page, so its units cannot be checked here."
+        "second_reason": "The quoted sentence is not on this page, so its rendering of 10^n exponents cannot be checked here."
       },
       {
-        "record_index": 11,
+        "record_index": 30,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.8",
+        "check": "sample_counts",
+        "paper_quote": "bGPT5 0.7362 0.0011 0.1341 0.0789",
+        "observation": "Text states bGPT^5 achieves BPB_midi of 0.0011 in ABC to MIDI conversion, surpassing bGPT^3 by orders of magnitude.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): In Table 5, the ABC\u2192MIDI BPB_midi values are 0.0011 for bGPT5 and 0.2381 for bGPT3. That difference is about two orders of magnitude, which matches the page text.",
+        "first_assessment": "agreement",
+        "first_reason": "In Table 5, the ABC\u2192MIDI BPB_midi values are 0.0011 for bGPT5 and 0.2381 for bGPT3. That difference is about two orders of magnitude, which matches the page text.",
+        "second_assessment": "unresolved",
+        "second_reason": "The table row is located on another page. Only the 0.0011 value is corroborated by prose, so the full row cannot be verified here."
+      },
+      {
+        "record_index": 31,
         "outcome": "conflicting_assessments",
         "label": "Conflicting assessments",
         "location": "paper:p.8",
         "check": "sample_counts",
         "paper_quote": "bGPT5 0.0969 99.9702\nbGPT6 0.0969 99.9961",
-        "observation": "Text reports bGPT^5 and bGPT^6 accuracies (99.97% and 99.99%), average of 128 random instructions, over 516 million combinations.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Rounded accuracies match Table 6; 128 average is consistent with uniform 1\u2013256 instructions; 516 million matches Appendix B.",
+        "observation": "Page reports accuracies of 99.97% and 99.99% for bGPT^5 and bGPT^6, an average of 128 random instructions, and over 516 million combinations.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rounded accuracies match Table 6. The average of 128 is consistent with sequences of 1 to 256 instructions. The figure of over 516 million matches Appendix B.",
         "first_assessment": "agreement",
-        "first_reason": "Rounded accuracies match Table 6; 128 average is consistent with uniform 1\u2013256 instructions; 516 million matches Appendix B.",
+        "first_reason": "The rounded accuracies match Table 6. The average of 128 is consistent with sequences of 1 to 256 instructions. The figure of over 516 million matches Appendix B.",
         "second_assessment": "unresolved",
-        "second_reason": "The quoted table rows are not rendered here, and the page gives no sample count to compare against them."
+        "second_reason": "The rounded prose values are consistent with the quoted figures, but the table rows themselves, including the BPB values, are not visible on this page."
       },
       {
-        "record_index": 12,
-        "outcome": "conflicting_assessments",
-        "label": "Conflicting assessments",
-        "location": "paper:p.8",
-        "check": "captions",
-        "paper_quote": "bGPT5 0.0969 99.9702\nbGPT6 0.0969 99.9961",
-        "observation": "Text says Table 6 shows a notable BPB drop from bGPT^4 to bGPT^5 'but diminishing returns beyond bGPT^5'.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Table 6 lists identical BPB (0.0969) for bGPT5 and bGPT6, so BPB shows no improvement rather than diminishing returns; only accuracy changes slightly. Minor wording-versus-data tension.",
-        "first_assessment": "mismatch",
-        "first_reason": "Table 6 lists identical BPB (0.0969) for bGPT5 and bGPT6, so BPB shows no improvement rather than diminishing returns; only accuracy changes slightly. Minor wording-versus-data tension.",
-        "second_assessment": "unresolved",
-        "second_reason": "There is no caption on this page to compare with the quoted rows."
-      },
-      {
-        "record_index": 13,
+        "record_index": 32,
         "outcome": "substantive_uncertainty",
         "label": "Substantive uncertainty",
         "location": "paper:p.8",
         "check": "axes",
         "paper_quote": "A significant improvement in the performance of bGPT5\noccurred around epoch 11, as shown in Fig. 3b",
-        "observation": "Text claims bGPT^5 improvement around epoch 11 in Fig. 3b; Fig. 3 itself is not on this page.",
-        "explanation": "Epoch axis spans 0\u201332 per extracted Fig. 3, consistent, but the curve location of the jump cannot be verified from this page image.",
+        "observation": "Page text claims a significant improvement for bGPT^5 around epoch 11 in Fig. 3b and describes a lower starting loss with faster convergence in Fig. 3a. Figure 3 itself is on page 7, not this page.",
+        "explanation": "The curves needed to confirm the epoch-11 jump are not rendered on page 8. The extracted Fig. 3 data gives only axis ticks (Epoch 0\u201332), so the timing claim cannot be checked here.",
         "first_assessment": "",
         "first_reason": "",
         "second_assessment": "",
         "second_reason": ""
       },
       {
-        "record_index": 37,
+        "record_index": 34,
         "outcome": "conflicting_assessments",
         "label": "Conflicting assessments",
-        "location": "paper:p.5",
+        "location": "paper:p.8",
         "check": "units",
-        "paper_quote": "Audio files were converted to WA V\nformat, with specifications including an 8000 Hz sampling\nrate, mono channel, and 8-bit depth, each trimmed to one-\nsecond lengths. Image data were set to BMP format with a\nresolution of 32\u00d732, RGB colour, and 24-bit depth.",
-        "observation": "LibriSpeech and Speech Commands v2 show a mean file size of 8044 bytes. ImageNet and CIFAR-10 show 3126 bytes.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): One second of 8kHz 8-bit mono audio is 8000 bytes plus a header, giving about 8044. A 32\u00d732\u00d73 image is 3072 bytes plus a BMP header, giving about 3126. Both are consistent.",
+        "paper_quote": "We employed accuracy (Acc) as the metric to assess clas-\nsification performance and Bits-Per-Byte (BPB) for other\ngenerative modelling tasks",
+        "observation": "BPB is used for losses and percentages are used for accuracies.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The units on this page match the metric definitions in the paper.",
         "first_assessment": "agreement",
-        "first_reason": "One second of 8kHz 8-bit mono audio is 8000 bytes plus a header, giving about 8044. A 32\u00d732\u00d73 image is 3072 bytes plus a BMP header, giving about 3126. Both are consistent.",
+        "first_reason": "The units on this page match the metric definitions in the paper.",
         "second_assessment": "unresolved",
-        "second_reason": "The specifications are not shown on this page. The file sizes are consistent with them: 8000 Hz \u00d7 1 s \u00d7 1 byte plus a WAV header is about 8044 bytes, and 32\u00d732\u00d73 bytes plus a BMP header is about 3126 bytes. However, this consistency is inferred rather than displayed, so the claim cannot be confirmed from this page."
+        "second_reason": "The quoted metric definition is on another page and cannot be checked against this image."
       },
       {
-        "record_index": 54,
+        "record_index": 58,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.16",
+        "check": "captions",
+        "paper_quote": "Figure 1. The bGPT framework simulates digital systems through native binary data, and integrates diverse data types into a single model,\ntreating everything as a byte sequence.",
+        "observation": "Bullet reads: 'Piano Roll: A graphical interface in digital audio workstations (as shown in Fig. 1) where notes are displayed and edited on a grid representing pitch and time.'",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The page cites Fig. 1 as showing a piano-roll interface. The supplied text captions Fig. 1 as the bGPT framework overview, not a DAW piano-roll interface. The cross-reference does not match the caption. The extracted Fig. 1 content (file icons and byte indices) does not establish a piano-roll depiction.",
+        "first_assessment": "mismatch",
+        "first_reason": "The page cites Fig. 1 as showing a piano-roll interface. The supplied text captions Fig. 1 as the bGPT framework overview, not a DAW piano-roll interface. The cross-reference does not match the caption. The extracted Fig. 1 content (file icons and byte indices) does not establish a piano-roll depiction.",
+        "second_assessment": "unresolved",
+        "second_reason": "The Figure 1 caption is not on this page, so it cannot be compared here."
+      },
+      {
+        "record_index": 59,
         "outcome": "conflicting_assessments",
         "label": "Conflicting assessments",
         "location": "paper:p.16",
         "check": "captions",
         "paper_quote": "Figure 5. Sheet music example corresponding to the MIDI of the same folk tune presented in Fig. 4.",
-        "observation": "The paragraph after the code block says the tune is the same one shown in 'Fig, 4' and that the corresponding sheet music is 'shown in Fig. 5'.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The page's cross-references to Fig. 4 (original ABC tune) and Fig. 5 (MIDI-converted score) match the captions given elsewhere in the paper. The 'Fig, 4' comma is a minor typographic slip, not a scientific inconsistency.",
+        "observation": "The text says the converted tune's sheet music 'is shown in Fig. 5' and refers back to 'Fig, 4' as the original tune.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The page's references to Fig. 4 (original ABC) and Fig. 5 (MIDI-converted score) match the supplied captions. The comma in 'Fig, 4' is a typographic slip and does not change the referent.",
         "first_assessment": "agreement",
-        "first_reason": "The page's cross-references to Fig. 4 (original ABC tune) and Fig. 5 (MIDI-converted score) match the captions given elsewhere in the paper. The 'Fig, 4' comma is a minor typographic slip, not a scientific inconsistency.",
+        "first_reason": "The page's references to Fig. 4 (original ABC) and Fig. 5 (MIDI-converted score) match the supplied captions. The comma in 'Fig, 4' is a typographic slip and does not change the referent.",
         "second_assessment": "unresolved",
-        "second_reason": "The Figure 5 caption is not on this page, so the image cannot confirm or contradict the caption text."
+        "second_reason": "The Figure 5 caption appears on a different page (15), not this image."
       },
       {
-        "record_index": 55,
-        "outcome": "substantive_uncertainty",
-        "label": "Substantive uncertainty",
-        "location": "paper:p.16",
+        "record_index": 78,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.9",
         "check": "captions",
-        "paper_quote": "Figure 1. The bGPT framework simulates digital systems through native binary data, and integrates diverse data types into a single model, treating everything as a byte sequence.",
-        "observation": "The Piano Roll bullet reads 'A graphical interface in digital audio workstations (as shown in Fig. 1)'.",
-        "explanation": "Fig. 1 is the bGPT framework overview. Its caption does not mention a piano roll. The figure may include a piano-roll icon next to the .mid input, but Fig. 1 is not rendered on this page. The reference therefore cannot be confirmed or refuted.",
-        "first_assessment": "",
-        "first_reason": "",
-        "second_assessment": "",
-        "second_reason": ""
-      },
-      {
-        "record_index": 66,
-        "outcome": "conflicting_assessments",
-        "label": "Conflicting assessments",
-        "location": "paper:p.17",
-        "check": "sample_counts",
-        "paper_quote": "we introduce the CPU States\ndataset (with 2.1 million instances)",
-        "observation": "Text reads '2.1 million entries for the training set and 21,000 entries for the evaluation set.'",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Training count matches Section 4.2 and Table 1 (2.1 million files).",
+        "paper_quote": "Its ability to simulate or reverse-engineer algorithms and\nhardware has two major implications: 1) it can significantly\nboost technological innovation",
+        "observation": "Rendered heading '7. Impact Statements' followed by three paragraphs, the second listing two implications: '1) it can significantly boost technological innovation' and '2) it poses a risk to intellectual property'.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered section text matches the extracted text; this is a textual consistency check, not a scientific-element check.",
         "first_assessment": "agreement",
-        "first_reason": "Training count matches Section 4.2 and Table 1 (2.1 million files).",
+        "first_reason": "The rendered section text matches the extracted text; this is a textual consistency check, not a scientific-element check.",
         "second_assessment": "unresolved",
-        "second_reason": "The 2.1 million figure appears on the page, but the page attributes it to the training set, with a separate 21,000-entry evaluation set. The quote presents 2.1 million as the dataset's instance count. That is consistent if it refers to training instances only, but it differs if it means the full dataset (about 2.121 million). The visible evidence cannot settle which meaning is intended."
+        "second_reason": "The requested check is captions, but the quoted text appears as ordinary body prose in the Impact Statements section rather than in a caption. This page has no caption element to compare against, so a caption check does not apply. The prose wording matches the quote, but that only shows the text is the same. It does not confirm anything about a caption."
       },
       {
-        "record_index": 68,
-        "outcome": "conflicting_assessments",
-        "label": "Conflicting assessments",
-        "location": "paper:p.17",
-        "check": "sample_counts",
-        "paper_quote": "State at step 1:\nPC: 1\nACC: 146\nIR: MUL J A\nRegisters: {\u2019A\u2019: 19, \u2019B\u2019: 55, \u2019C\u2019: 245, \u2019D\u2019: 35, \u2019E\u2019: 174, \u2019F\u2019: 185, \u2019G\u2019: 9, \u2019H\u2019: 20, \u2019I\u2019: 140, \u2019J\u2019: 2}",
-        "observation": "Example program list shows 10 instructions ending with 'HLT'; State at step 0 shows 'IR: HLT', 'ACC: 146', registers A:19 \u2026 J:2.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): After 'MUL J A' at step 1 register J remains 2 (19\u00d72=38 appears only at step 2), suggesting states are offset by one from the instruction shown in IR; step 0 lists IR as HLT before execution. This internal inconsistency in the example continues onto page 18.",
-        "first_assessment": "mismatch",
-        "first_reason": "After 'MUL J A' at step 1 register J remains 2 (19\u00d72=38 appears only at step 2), suggesting states are offset by one from the instruction shown in IR; step 0 lists IR as HLT before execution. This internal inconsistency in the example continues onto page 18.",
-        "second_assessment": "unresolved",
-        "second_reason": "The quoted step-1 state is not on the provided page; according to the extracted text it appears on page 18. The page cannot confirm or contradict it."
-      },
-      {
-        "record_index": 72,
+        "record_index": 86,
         "outcome": "conflicting_assessments",
         "label": "Conflicting assessments",
         "location": "paper:p.15",
         "check": "sample_counts",
-        "paper_quote": "the ABC sequence and the musical score appear significantly longer than the original due to\nthe elimination of repeat signs in MIDI, requiring repeated sections to be explicitly written out",
-        "observation": "System measure numbers 7, 13, 19, 25, 30 are visible; the final system ends at roughly measure 33 with a final barline and no repeat signs.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered score has no repeat signs and is written out across about 33 bars, which is consistent with the converted MIDI-to-ABC example and the described lengthening.",
+        "paper_quote": "de f3 g | ag/<f/ e4 | AB =c3 d | BA/<G/ A4 | fg a3 g | fd e4 |",
+        "observation": "Measure numbers run up to 30 on the last system, which contains about 4 measures, for roughly 33 bars in total.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The converted ABC on page 16 has 6 lines with about 32 bars plus a pickup. This is consistent with the roughly 33 rendered measures and with the statement that the score is longer because repeats are written out.",
         "first_assessment": "agreement",
-        "first_reason": "The rendered score has no repeat signs and is written out across about 33 bars, which is consistent with the converted MIDI-to-ABC example and the described lengthening.",
+        "first_reason": "The converted ABC on page 16 has 6 lines with about 32 bars plus a pickup. This is consistent with the roughly 33 rendered measures and with the statement that the score is longer because repeats are written out.",
         "second_assessment": "unresolved",
-        "second_reason": "The page supports two parts of the claim: Figure 5 has no repeat signs and appears to write out repeated material. However, the claim that it is significantly longer than the original needs Figure 4 and the original ABC text for comparison. Neither is shown in this image, so the length comparison cannot be checked from this page."
+        "second_reason": "The six bars and the approximate pitch contour of the first system are consistent with the quoted ABC line. However, the quote itself comes from another page. At this resolution I cannot reliably confirm the fine rhythms, such as the dotted-sixteenth '/<' figures, note by note, so I cannot establish exact correspondence."
       },
       {
-        "record_index": 107,
+        "record_index": 113,
         "outcome": "conflicting_assessments",
         "label": "Conflicting assessments",
         "location": "paper:p.19",
         "check": "sample_counts",
         "paper_quote": "These states include various instructions, totaling 21 unique\ntypes with 43 variants",
         "observation": "Table 7 lists 21 instruction rows: HLT, CLR, INC, DEC, SHL, SHR, ROL, ROR, NOT, PUSH, POP, LOADI, SWAP, ADD, SUB, MUL, DIV, AND, OR, XOR, MOV.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered table contains exactly 21 instruction types, which matches the stated count of unique types.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The 21 rendered instruction rows match the stated 21 unique instruction types.",
         "first_assessment": "agreement",
-        "first_reason": "The rendered table contains exactly 21 instruction types, which matches the stated count of unique types.",
+        "first_reason": "The 21 rendered instruction rows match the stated 21 unique instruction types.",
         "second_assessment": "mismatch",
-        "second_reason": "The count of 21 unique types matches the table. The variant count shown in the table is 44, not 43, so the quoted total disagrees with the visible table."
+        "second_reason": "The table supports the count of 21 unique instruction types. However, the address variants listed in the table add up to 44, not 43. The variant count in the quote therefore does not match the table."
       },
       {
-        "record_index": 108,
+        "record_index": 114,
         "outcome": "mismatch",
         "label": "Confirmed text-image mismatch (advisory)",
         "location": "paper:p.19",
         "check": "sample_counts",
         "paper_quote": "These states include various instructions, totaling 21 unique\ntypes with 43 variants",
-        "observation": "The Address Variants column shows: HLT 0; CLR, INC, DEC, SHL, SHR, ROL, ROR and NOT each 0, 1; PUSH, POP and LOADI each 1; SWAP 1, 2; ADD, SUB, MUL, DIV, AND, OR and XOR each 1, 2, 3; MOV 2.",
-        "explanation": "Summing the listed variants gives 1 + 7\u00d72 + 3\u00d71 + 2 + 7\u00d73 + 1 = 42, not the 43 stated in the text. No row on the page accounts for an additional variant.",
+        "observation": "The Address Variants column shows HLT=0 (1 variant); CLR, INC, DEC, SHL, SHR, ROL, ROR and NOT=0,1 (8\u00d72=16); PUSH, POP and LOADI=1 (3); SWAP=1,2 (2); ADD, SUB, MUL, DIV, AND, OR and XOR=1,2,3 (7\u00d73=21); MOV=2 (1). Together these list 44 address variants.",
+        "explanation": "The variants rendered in Table 7 add up to 44, not the 43 stated in Section 4.2.",
         "first_assessment": "mismatch",
-        "first_reason": "Summing the listed variants gives 1 + 7\u00d72 + 3\u00d71 + 2 + 7\u00d73 + 1 = 42, not the 43 stated in the text. No row on the page accounts for an additional variant.",
+        "first_reason": "The variants rendered in Table 7 add up to 44, not the 43 stated in Section 4.2.",
         "second_assessment": "mismatch",
-        "second_reason": "The 21 types agree with the table. The claim of 43 variants conflicts with the 44 variants enumerated in Table 7."
-      },
-      {
-        "record_index": 115,
-        "outcome": "conflicting_assessments",
-        "label": "Conflicting assessments",
-        "location": "paper:p.18",
-        "check": "units",
-        "paper_quote": "Accumulator (ACC): A 1-byte register involved in arithmetic and logic operations.",
-        "observation": "All register and ACC values shown (0\u2013255, e.g., 245, 255, 246, 86) lie within single-byte range.",
-        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The displayed values are consistent with the 1-byte register sizes described in Appendix B.",
-        "first_assessment": "agreement",
-        "first_reason": "The displayed values are consistent with the 1-byte register sizes described in Appendix B.",
-        "second_assessment": "unresolved",
-        "second_reason": "The quoted definition of ACC as a 1-byte register does not appear on this page, so its unit statement cannot be checked here. The ACC values shown fit within a byte, but that is only consistent with the claim and does not confirm the stated size."
-      },
-      {
-        "record_index": 116,
-        "outcome": "substantive_uncertainty",
-        "label": "Substantive uncertainty",
-        "location": "paper:p.18",
-        "check": "captions",
-        "paper_quote": "Instruction Register (IR): Occupies 4 bytes, storing the currently executed instruction.",
-        "observation": "Each state's IR shows the next instruction in the program list (step 1 IR 'MUL J A' while the register J changes from 2 at step 1 to 38 at step 2; step 0 IR is HLT), so IR appears to lag/lead relative to the effects shown.",
-        "explanation": "The effect of MUL J A (J: 2\u219238 = 2\u00d719) appears at step 2, where IR shows DIV I, suggesting IR holds the fetched/next instruction rather than the one whose effect is shown. Whether this is a convention or an inconsistency is not determinable from the text.",
-        "first_assessment": "",
-        "first_reason": "",
-        "second_assessment": "",
-        "second_reason": ""
-      },
-      {
-        "record_index": 117,
-        "outcome": "substantive_uncertainty",
-        "label": "Substantive uncertainty",
-        "location": "paper:p.18",
-        "check": "rendered_formulas",
-        "paper_quote": "Moves a value from one register to another with \u201cMOV A B\u201d",
-        "observation": "Step 3\u21924: E changes 174\u2192255 under MUL E D (174\u00d735 would overflow); step 6\u21927: A changes 19\u219220 after MOV A H (H=20); step 8\u21929: H becomes 86 after POP H; step 9\u219210 ACC becomes 0 after CLR.",
-        "explanation": "Most transitions are consistent with a one-step-delayed effect and saturating arithmetic, but saturation/stack semantics are not specified in the paper, so correctness of values like E=255 cannot be confirmed.",
-        "first_assessment": "",
-        "first_reason": "",
-        "second_assessment": "",
-        "second_reason": ""
+        "second_reason": "The 21 types agree with the table. The stated 43 variants conflicts with the 44 address variants visibly enumerated in Table 7."
       }
     ]
   },
@@ -719,77 +682,96 @@
         "review-record:visual/2",
         "review-record:visual/3",
         "review-record:visual/4",
+        "review-record:visual/5",
         "review-record:visual/8",
         "review-record:visual/9",
-        "review-record:visual/21",
-        "review-record:visual/22",
-        "review-record:visual/23",
-        "review-record:visual/24",
-        "review-record:visual/25"
+        "review-record:visual/10",
+        "review-record:visual/11",
+        "review-record:visual/12",
+        "review-record:visual/16"
       ],
       "packet_ids": [
-        "86f1669dc005cc1748373dd80d1809a4438702adf0219ef99ab5c1251c767453"
+        "c9428a18c04648cfd9fa4505892cfa620d3ee3c6aaab71abd5ea239999147e59"
       ],
       "status": "completed",
       "finding_ids": [
-        "paper/09615667bdb16d7eaff6848bcf9aa8da3888645e451aad43b7134b0ddc7cc8d2",
-        "paper/884d63d66bc608be890f718888bb8f832fab3d77a524942a3152036c05b2651b",
-        "paper/76dca9ad02a45bec7dffe3732756c9c6234e2551b3029b2f6a15df7639d31599"
+        "paper/c68e3014468fee8d1c4c59d1fd4c8e4ba36d1dab6025efa03a828865cea251d1"
       ]
     },
     {
       "index": 1,
       "record_citations": [
+        "review-record:visual/22",
+        "review-record:visual/23",
+        "review-record:visual/24",
+        "review-record:visual/25",
         "review-record:visual/26",
         "review-record:visual/27",
-        "review-record:visual/28",
-        "review-record:visual/34",
         "review-record:visual/35",
         "review-record:visual/36",
+        "review-record:visual/37",
         "review-record:visual/38",
-        "review-record:visual/39",
-        "review-record:visual/40",
-        "review-record:visual/41",
-        "review-record:visual/42"
+        "review-record:visual/39"
       ],
       "packet_ids": [
-        "cd1384a785c96aa15e0f484930932daf4731aa1e3c6e5f98fc59578857659695"
+        "7361a864bb80e14de4d9af351e84865fba3f5e6080c81de57d36e84a0a2d432f"
       ],
       "status": "completed",
       "finding_ids": [
-        "paper/ea34b4a182a260e63ab8c4dfb964ba0730242f5ffd9c1d44027a393fd27fc691"
+        "paper/c57f464c56d94680082be1492e67d623ab07e244afc9510ccf9698e3d05abbfc",
+        "paper/74cb0d422b316fc4fbe8b9d6177efbbefeec7bdccc30c4d0b135afe34afc3c31",
+        "paper/44ad25a00f1d90d62d2fd7c4f1c03b998edc6de199d3a43c0d69d6e20ff15cb2",
+        "paper/06fd6b2094605ad2a4d1b466d65850b939ce07721d18fc68aa6a21ad56c6abe6"
       ]
     },
     {
       "index": 2,
       "record_citations": [
-        "review-record:visual/56",
-        "review-record:visual/67",
-        "review-record:visual/71",
-        "review-record:visual/89",
-        "review-record:visual/90",
-        "review-record:visual/108",
-        "review-record:visual/109",
-        "review-record:visual/114"
+        "review-record:visual/40",
+        "review-record:visual/44",
+        "review-record:visual/45",
+        "review-record:visual/46",
+        "review-record:visual/47",
+        "review-record:visual/52",
+        "review-record:visual/60",
+        "review-record:visual/65",
+        "review-record:visual/66",
+        "review-record:visual/67"
       ],
       "packet_ids": [
-        "94e44dac8aa793e29d752ac5a7907b948c2c99f4cbfe3dd36a13c2206a541e56"
+        "2087daf906e1fb62f3e45f52f6b6dc7870527d3525c0b228c9744108461486c6"
+      ],
+      "status": "completed",
+      "finding_ids": []
+    },
+    {
+      "index": 3,
+      "record_citations": [
+        "review-record:visual/85",
+        "review-record:visual/114",
+        "review-record:visual/115",
+        "review-record:visual/120"
+      ],
+      "packet_ids": [
+        "3caca71d9f8166c16c7ad9b0f1f5d5212fcf76051c8afe86957b9d4792305d7c"
       ],
       "status": "completed",
       "finding_ids": [
-        "paper/76a1a4ac4beaf6f8b345f54825fd622e852bbb2dae9e39034c1546df002add5e"
+        "paper/0ba8e3d81c1cb995fb314adf1322d34ffa1ef4e6a9a8b2027dc5cba0330bf82a"
       ]
     }
   ],
   "finding_ids": [
-    "paper/09615667bdb16d7eaff6848bcf9aa8da3888645e451aad43b7134b0ddc7cc8d2",
-    "paper/884d63d66bc608be890f718888bb8f832fab3d77a524942a3152036c05b2651b",
-    "paper/76dca9ad02a45bec7dffe3732756c9c6234e2551b3029b2f6a15df7639d31599",
-    "paper/ea34b4a182a260e63ab8c4dfb964ba0730242f5ffd9c1d44027a393fd27fc691",
-    "paper/76a1a4ac4beaf6f8b345f54825fd622e852bbb2dae9e39034c1546df002add5e"
+    "paper/c68e3014468fee8d1c4c59d1fd4c8e4ba36d1dab6025efa03a828865cea251d1",
+    "paper/c57f464c56d94680082be1492e67d623ab07e244afc9510ccf9698e3d05abbfc",
+    "paper/74cb0d422b316fc4fbe8b9d6177efbbefeec7bdccc30c4d0b135afe34afc3c31",
+    "paper/44ad25a00f1d90d62d2fd7c4f1c03b998edc6de199d3a43c0d69d6e20ff15cb2",
+    "paper/06fd6b2094605ad2a4d1b466d65850b939ce07721d18fc68aa6a21ad56c6abe6",
+    "paper/0ba8e3d81c1cb995fb314adf1322d34ffa1ef4e6a9a8b2027dc5cba0330bf82a"
   ],
   "selected_for_synthesis": [
-    "paper/ea34b4a182a260e63ab8c4dfb964ba0730242f5ffd9c1d44027a393fd27fc691"
+    "paper/c57f464c56d94680082be1492e67d623ab07e244afc9510ccf9698e3d05abbfc",
+    "paper/74cb0d422b316fc4fbe8b9d6177efbbefeec7bdccc30c4d0b135afe34afc3c31"
   ],
   "limitations": [
     "Same-model image agreement is not independent scientific validation.",
@@ -798,10 +780,11 @@
     "Unresolved inspection is reviewer coverage, never author-facing feedback."
   ],
   "accepted_finding_ids": [
-    "paper/ea34b4a182a260e63ab8c4dfb964ba0730242f5ffd9c1d44027a393fd27fc691",
-    "paper/884d63d66bc608be890f718888bb8f832fab3d77a524942a3152036c05b2651b",
-    "paper/09615667bdb16d7eaff6848bcf9aa8da3888645e451aad43b7134b0ddc7cc8d2",
-    "paper/76dca9ad02a45bec7dffe3732756c9c6234e2551b3029b2f6a15df7639d31599",
-    "paper/76a1a4ac4beaf6f8b345f54825fd622e852bbb2dae9e39034c1546df002add5e"
+    "paper/c57f464c56d94680082be1492e67d623ab07e244afc9510ccf9698e3d05abbfc",
+    "paper/74cb0d422b316fc4fbe8b9d6177efbbefeec7bdccc30c4d0b135afe34afc3c31",
+    "paper/44ad25a00f1d90d62d2fd7c4f1c03b998edc6de199d3a43c0d69d6e20ff15cb2",
+    "paper/0ba8e3d81c1cb995fb314adf1322d34ffa1ef4e6a9a8b2027dc5cba0330bf82a",
+    "paper/06fd6b2094605ad2a4d1b466d65850b939ce07721d18fc68aa6a21ad56c6abe6",
+    "paper/c68e3014468fee8d1c4c59d1fd4c8e4ba36d1dab6025efa03a828865cea251d1"
   ]
 }
