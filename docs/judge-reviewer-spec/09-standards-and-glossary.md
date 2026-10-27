@@ -41,7 +41,7 @@ Rules:
 | **Bare integer** | A source token that is a plain number without a radix point and without a unit suffix (`2023`, `12`). A property of the token, not of its value: `81.0` is not a bare integer. Never harvested as a result (§3.4). |
 | **Check** | A deterministic function from an artifact to a list of findings (§4.4). |
 | **Claim** | A statement the paper makes, declared in `claims.yml`, with validators that link it to Results. A claim may be a `finding` or a `hypothesis`. |
-| **Claim support** | One of the three contribution axes: whether a contribution is backed by claims, through declared `supporting_claims` or reviewer-inferred links, and how well those claims are settled (§5.13.3). |
+| **Claim support** | One of the three contribution axes: whether a contribution is backed by claims, through declared `supporting_claims` or inferred links (`inferred_supporting_claims`, from the paper adapter's enrichment or the reviewer), and how well those claims are settled (§5.13.3). |
 | **Consumer** | Any tool that reads a sealed run. Must validate it first (§6.7). |
 | **Contribution** | A candidate advance the paper puts forward (SDK §2.4.2), either declared in the artifact's `contributions.yml` or extracted from the paper's own text. The tool reviews contributions along three separate axes; it never decides whether one qualifies (§5.13). |
 | **Contribution diagnostic** | A structural problem in the declared contributions (for example, an unresolved claim reference). Reported beside the findings, never as a finding, and never affects the rubric, badges, or exit code (§4.5.7). |
