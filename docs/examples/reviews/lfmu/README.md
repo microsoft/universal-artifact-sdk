@@ -27,7 +27,7 @@ assessment by the SDK maintainers.
   `005179f8c64043b9c7e0b5f3d3b642d4c6a482806328554a153659434b50ce50` (spec §8.7 conformance paper `lfmu`).
 - Path: the paper adapter (spec §3) converted the PDF to an attested, paper-only evaluable
   artifact ([`artifact/`](artifact/)); the judge (§4) and the reviewer (§5) then ran in the
-  `artifact-informed` scope with an LLM provider. Run `20261026T230005.281Z-1cdb`.
+  `artifact-informed` scope with an LLM provider. Run `20261027T212642.530Z-3a86`.
 
 ## Where to start
 
@@ -84,7 +84,7 @@ The spec (§5.12) requires two renderings of the same findings:
   (`evidence-packet.json`), page-level visual coverage (`visual-coverage.json`), the
   human-decision file, and the sealed run manifest (`manifest.json`). Because files were edited
   and omitted, this copy is **not** a sealed run and will not pass §6 seal verification.
-- The LLM provider and model identifiers are replaced with `redacted-provider` and
-  `redacted-model`; tool names are replaced with `reference-reviewer` and `reference-judge`;
+- The LLM provider and model identifiers are replaced with `redacted-provider`,
+  `redacted-model`, and `redacted-verifier-model`; tool names are replaced with `reference-reviewer` and `reference-judge`;
   local paths are replaced with relative ones; an internal build hash is removed from version
   strings. Nothing else was changed.

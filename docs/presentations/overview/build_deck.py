@@ -520,9 +520,9 @@ slide(
   <div class="col">
     <table>
       <tr><th>Level</th><th>Scenarios</th></tr>
-      <tr><td style="white-space:nowrap"><b>L1</b> judge core</td><td>J1–J45</td></tr>
-      <tr><td style="white-space:nowrap"><b>L2</b> paper adapter</td><td>A1–A23</td></tr>
-      <tr><td style="white-space:nowrap"><b>L3</b> reviewer</td><td>R1–R21, scripted model</td></tr>
+      <tr><td style="white-space:nowrap"><b>L1</b> judge core</td><td>J1–J50</td></tr>
+      <tr><td style="white-space:nowrap"><b>L2</b> paper adapter</td><td>A1–A35</td></tr>
+      <tr><td style="white-space:nowrap"><b>L3</b> reviewer</td><td>R1–R27, scripted model</td></tr>
       <tr><td style="white-space:nowrap"><b>L4</b> reproduction</td><td>P1–P6</td></tr>
       <tr><td>Real papers</td><td>E1–E5: two CC BY papers</td></tr>
     </table>

@@ -1,40 +1,1042 @@
-_generated: DO NOT EDIT — produced by `paper-to-artifact`. Everything here is GENERATED
-  and attested (the paper's own statements), never independently reproduced. Re-run
-  the adapter to regenerate.
+_generated: DO NOT EDIT — produced by `paper-to-artifact` from paper.pdf. Everything
+  here is GENERATED and attested (the paper's own statements), never independently
+  reproduced. Re-run the adapter to regenerate.
+extractor_model: redacted-model
+verifier_model: redacted-verifier-model
+substantiator_model: redacted-model
+completeness:
+  assessed: true
+  complete: false
+  missing:
+  - bGPT's central contribution is a unified next-byte-prediction framework that directly
+    models native binary data and treats diverse data types as byte sequences.
+  - The conclusion highlights strong scalability on native binary data and signs of
+    emergent abilities overall.
+  note: Major contribution-level claims from the introduction and conclusion are not
+    explicitly represented.
+  model: redacted-verifier-model
+contribution_links:
+  provenance: reviewer-inference
+  method: llm-extractor/v1
+  model: redacted-model
 claims:
-- id: C1
-  statement: It has almost flawlessly replicated the process of converting symbolic
-    music data, achieving a low error rate of 0.0011 bits per byte in converting ABC
-    notation to MIDI format.
+- id: claim-1
+  statement: bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI,
+    near-perfect.
+  quote: The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to
+    MIDI conversion, which is extremely close to perfect performance (where BPB reaches
+    0), sur- passing the performance of the bGPT3 model by orders of magnitude.
+  page: 0
+  section: evaluation
+  locator: The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to
+    MIDI co
+  measurability: unbound
   kind: empirical
-  measurability: measurable
+  metric: BPB
+  value: '0.0011'
+  comparison: vs bGPT3 0.2381
+  experiment: null
+  priority: 1.0
+  evidence_refs:
+  - Table 5
+  evidence_values:
+  - '0.0011'
+  - '0.2381'
+  role: load-bearing
+  contributions:
+  - contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22
+  - contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002
+  - contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a
+  - contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba
+  contribution_rank:
+    contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22: 2
+    contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002: 2
+    contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a: 2
+    contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba: 2
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote appears and supports the 0.0011 BPB near-perfect result. [guard]
+      quote not found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
   paper_ref:
-    quote: '0.0011'
-    page: 1
-    section: abstract
-    context: It has almost flawlessly replicated the process of converting symbolic
-      music data, achieving a low error rate of 0.0011 bits per byte in converting
-      ABC notation to MIDI format.
+    quote: The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to
+      MIDI conversion, which is extremely close to perfect performance (where BPB
+      reaches 0), sur- passing the performance of the bGPT3 model by orders of magnitude.
+    page: 0
+    section: evaluation
+    locator: The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC
+      to MIDI co
   validators:
   - id: v1
     kind: attest
     checks: provenance
     inputs:
-    - R1
-- id: C2
-  statement: In addition, bGPT demonstrates exceptional capabilities in simulating
-    CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.
+    - R65
+    - R69
+  extractor_priority: 1.0
+  tier: load-bearing
+  at_risk:
+  - quote not found in paper
+- id: claim-2
+  statement: bGPT simulates CPU behaviour with accuracy exceeding 99.99%.
+  quote: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
+    suggesting an efficiency beyond sim- ple memorization, given that each test case
+    contained an average of 128 random instructions, and the vast potential combinations
+    of instruction scenarios (over 516 million).
+  page: 0
+  section: evaluation
+  locator: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
+    sugge
+  measurability: unbound
   kind: empirical
-  measurability: measurable
+  metric: accuracy
+  value: 99.99%
+  comparison: null
+  experiment: null
+  priority: 1.0
+  evidence_refs:
+  - Table 6
+  evidence_values:
+  - '99.9702'
+  - '99.9961'
+  role: load-bearing
+  contributions:
+  - contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22
+  - contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002
+  - contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a
+  - contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca
+  - contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba
+  contribution_rank:
+    contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22: 1
+    contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002: 1
+    contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a: 1
+    contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca: 1
+    contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba: 1
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote reports 99.97% and 99.99%, not accuracy exceeding 99.99%. [guard]
+      quote not found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
   paper_ref:
-    quote: 99.99%
-    page: 1
-    section: abstract
-    context: In addition, bGPT demonstrates exceptional capabilities in simulating
-      CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.
+    quote: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
+      suggesting an efficiency beyond sim- ple memorization, given that each test
+      case contained an average of 128 random instructions, and the vast potential
+      combinations of instruction scenarios (over 516 million).
+    page: 0
+    section: evaluation
+    locator: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
+      sugge
   validators:
   - id: v1
     kind: attest
     checks: provenance
     inputs:
     - R2
+    - R70
+  extractor_priority: 1.0
+  tier: load-bearing
+  at_risk:
+  - quote not found in paper
+- id: claim-3
+  statement: bGPT matches specialized models across text, audio and images.
+  quote: bGPT matches specialized models in performance across various modalities,
+    including text, audio, and images, and offers new possibil- ities for predicting,
+    simulating, and diagnosing algorithm or hardware behaviour.
+  page: 0
+  section: abstract
+  locator: bGPT matches specialized models in performance across various modalities,
+    includ
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: specialized models
+  experiment: null
+  priority: 1.0
+  evidence_refs:
+  - Table 3
+  evidence_values: []
+  role: load-bearing
+  contributions:
+  - contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22
+  - contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002
+  - contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba
+  contribution_rank:
+    contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22: 3
+    contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002: 3
+    contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba: 3
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote appears verbatim and supports the statement. [guard] quote not
+      found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: bGPT matches specialized models in performance across various modalities,
+      including text, audio, and images, and offers new possibil- ities for predicting,
+      simulating, and diagnosing algorithm or hardware behaviour.
+    page: 0
+    section: abstract
+    locator: bGPT matches specialized models in performance across various modalities,
+      includ
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.95
+  tier: load-bearing
+  at_risk:
+  - quote not found in paper
+- id: claim-4
+  statement: bGPTwiki gets 1.0639 BPB and 92.49% on AG News vs GPT2-small 0.9237 BPB
+    and 94.50%.
+  quote: For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of
+    92.49% on AG News, which, while not quite at the level of GPT2- small, scored
+    0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.
+  page: 0
+  section: evaluation
+  locator: 'For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy
+    of 92.49% '
+  measurability: unbound
+  kind: empirical
+  metric: BPB / accuracy
+  value: 92.49%
+  comparison: GPT2-small 94.50%
+  experiment: null
+  priority: 1.0
+  evidence_refs:
+  - Table 3
+  evidence_values:
+  - '1.0639'
+  - '92.49'
+  - '0.9237'
+  - '94.50'
+  role: load-bearing
+  contributions:
+  - contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22
+  - contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002
+  - contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a
+  - contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba
+  contribution_rank:
+    contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22: 5
+    contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002: 5
+    contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a: 3
+    contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba: 5
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quoted BPB and accuracy values match the paper. [guard] quote not found
+      verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of
+      92.49% on AG News, which, while not quite at the level of GPT2- small, scored
+      0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.
+    page: 0
+    section: evaluation
+    locator: 'For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy
+      of 92.49% '
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R9
+    - R10
+    - R11
+    - R40
+    - R41
+    - R44
+    - R45
+    - R46
+  extractor_priority: 0.8
+  tier: load-bearing
+  at_risk:
+  - quote not found in paper
+- id: claim-5
+  statement: bGPTlibri reaches 96.03% on Speech Commands v2 vs AST 98.11%.
+  quote: Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2,
+    coming close to the accuracy of AST at 98.11%.
+  page: 6
+  section: evaluation
+  locator: 'Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2,
+    coming '
+  measurability: unbound
+  kind: empirical
+  metric: accuracy
+  value: 96.03%
+  comparison: AST 98.11%
+  experiment: null
+  priority: 0.98
+  evidence_refs:
+  - Table 3
+  evidence_values:
+  - '96.03'
+  - '98.11'
+  role: load-bearing
+  contributions:
+  - contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22
+  - contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002
+  - contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a
+  - contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba
+  contribution_rank:
+    contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22: 4
+    contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002: 4
+    contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a: 4
+    contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba: 4
+  verification:
+    status: confirmed
+    quote_found: true
+    note: The quoted accuracies match the paper.
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2,
+      coming close to the accuracy of AST at 98.11%.
+    page: 6
+    section: evaluation
+    locator: 'Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands
+      v2, coming '
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R48
+    - R71
+    - R72
+  extractor_priority: 0.8
+  tier: load-bearing
+  at_risk: []
+- id: claim-15
+  statement: CPU state modelling BPB drops sharply from bGPT4 to bGPT5 with diminishing
+    returns beyond.
+  quote: Table 6 shows significant perfor- mance variations, with a notable BPB drop
+    from bGPT4 to bGPT5, but diminishing returns beyond bGPT5.
+  page: 0
+  section: evaluation
+  locator: Table 6 shows significant perfor- mance variations, with a notable BPB
+    drop from
+  measurability: unbound
+  kind: empirical
+  metric: BPB
+  value: 0.6924 to 0.0969
+  comparison: null
+  experiment: null
+  priority: 0.9725
+  evidence_refs:
+  - Table 6
+  - Table 5
+  evidence_values:
+  - '0.6924'
+  - '0.0969'
+  - '27.2404'
+  role: load-bearing
+  contributions:
+  - contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca
+  contribution_rank:
+    contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca: 2
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote directly reports the bGPT4-to-bGPT5 drop and diminishing returns.
+      [guard] quote not found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: Table 6 shows significant perfor- mance variations, with a notable BPB
+      drop from bGPT4 to bGPT5, but diminishing returns beyond bGPT5.
+    page: 0
+    section: evaluation
+    locator: Table 6 shows significant perfor- mance variations, with a notable BPB
+      drop from
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R60
+    - R61
+    - R62
+  extractor_priority: 0.85
+  tier: load-bearing
+  at_risk:
+  - quote not found in paper
+- id: claim-16
+  statement: bGPT5 shows a sudden improvement around epoch 11, an emergent ability
+    in CPU modelling.
+  quote: A significant improvement in the performance of bGPT5 occurred around epoch
+    11, as shown in Fig. 3b, indicating an emergent ability in CPU state modelling.
+  page: 8
+  section: evaluation
+  locator: 'A significant improvement in the performance of bGPT5 occurred around
+    epoch 11, '
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.945
+  evidence_refs:
+  - Figure 3
+  evidence_values: []
+  role: load-bearing
+  contributions:
+  - contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca
+  contribution_rank:
+    contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca: 3
+  verification:
+    status: confirmed
+    quote_found: true
+    note: The quote directly reports the epoch-11 improvement and interprets it as
+      emergent ability.
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: A significant improvement in the performance of bGPT5 occurred around epoch
+      11, as shown in Fig. 3b, indicating an emergent ability in CPU state modelling.
+    page: 8
+    section: evaluation
+    locator: 'A significant improvement in the performance of bGPT5 occurred around
+      epoch 11, '
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.7
+  tier: load-bearing
+  at_risk: []
+- id: claim-6
+  statement: bGPTimage lags ViT on CIFAR-10 (88.69% vs 98.13%).
+  quote: How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with
+    bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.
+  page: 0
+  section: evaluation
+  locator: How- ever, in the analysis of CIFAR-10, a noticeable difference is seen
+    with bGP
+  measurability: unbound
+  kind: empirical
+  metric: accuracy
+  value: 88.69%
+  comparison: ViT 98.13%
+  experiment: null
+  priority: 0.905
+  evidence_refs:
+  - Table 3
+  evidence_values:
+  - '88.69'
+  - '98.13'
+  role: load-bearing
+  contributions:
+  - contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a
+  contribution_rank:
+    contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a: 5
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quoted CIFAR-10 comparison matches the paper. [guard] quote not found
+      verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: How- ever, in the analysis of CIFAR-10, a noticeable difference is seen
+      with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.
+    page: 0
+    section: evaluation
+    locator: How- ever, in the analysis of CIFAR-10, a noticeable difference is seen
+      with bGP
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R50
+    - R73
+    - R74
+  extractor_priority: 0.7
+  tier: load-bearing
+  at_risk:
+  - quote not found in paper
+- id: claim-18
+  statement: bGPT is effective in digital media modelling with modality-agnostic knowledge
+    transfer.
+  quote: Our experiments demonstrate the effectiveness of bGPT in modelling digital
+    media data, which showcases modality-agnostic knowledge transfer.
+  page: 8
+  section: conclusion
+  locator: Our experiments demonstrate the effectiveness of bGPT in modelling digital
+    media
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.6425
+  evidence_refs:
+  - Table 3
+  - Table 4
+  evidence_values: []
+  role: headline
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: confirmed
+    quote_found: true
+    note: The quote appears verbatim and supports the statement.
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: Our experiments demonstrate the effectiveness of bGPT in modelling digital
+      media data, which showcases modality-agnostic knowledge transfer.
+    page: 8
+    section: conclusion
+    locator: Our experiments demonstrate the effectiveness of bGPT in modelling digital
+      media
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.85
+  tier: headline
+  at_risk: []
+- id: claim-10
+  statement: On spectrogram Speech Commands, bGPTlibri achieves higher accuracy than
+    bGPTimage, showing content alignment matters over format.
+  quote: Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimage
+    on spectrograms with speech content, indicating effective cross- modal transfer
+    and the importance of content alignment over mere data format.
+  page: 0
+  section: evaluation
+  locator: Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than
+    bGPTimag
+  measurability: unbound
+  kind: empirical
+  metric: accuracy
+  value: 85.26%
+  comparison: bGPTimage 84.66%, random 80.74%
+  experiment: null
+  priority: 0.3325
+  evidence_refs:
+  - Table 4
+  evidence_values:
+  - '85.26'
+  - '84.66'
+  - '80.74'
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote directly supports the accuracy and content-alignment claim. [guard]
+      quote not found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than
+      bGPTimage on spectrograms with speech content, indicating effective cross- modal
+      transfer and the importance of content alignment over mere data format.
+    page: 0
+    section: evaluation
+    locator: Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than
+      bGPTimag
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R5
+    - R55
+    - R57
+    - R59
+  extractor_priority: 0.65
+  tier: supporting
+  at_risk: []
+- id: claim-13
+  statement: BPB for both conversion directions decreases significantly with data
+    scale.
+  quote: From Table 5, we see that as the scale of data increases, BPB for both ABC
+    to MIDI and MIDI to ABC conversions decrease significantly.
+  page: 8
+  section: evaluation
+  locator: From Table 5, we see that as the scale of data increases, BPB for both
+    ABC to MI
+  measurability: unbound
+  kind: empirical
+  metric: BPB
+  value: null
+  comparison: across scales
+  experiment: null
+  priority: 0.3325
+  evidence_refs:
+  - Table 5
+  evidence_values:
+  - '0.2796'
+  - '0.1751'
+  - '0.1341'
+  - '1.1227'
+  - '0.1763'
+  - '0.0789'
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: confirmed
+    quote_found: true
+    note: The quote directly reports significant BPB decreases in both conversion
+      directions.
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: From Table 5, we see that as the scale of data increases, BPB for both
+      ABC to MIDI and MIDI to ABC conversions decrease significantly.
+    page: 8
+    section: evaluation
+    locator: From Table 5, we see that as the scale of data increases, BPB for both
+      ABC to MI
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R75
+    - R76
+    - R77
+    - R78
+    - R79
+    - R80
+  extractor_priority: 0.65
+  tier: supporting
+  at_risk: []
+- id: claim-7
+  statement: Pre-training matched to the fine-tuning domain yields better downstream
+    performance.
+  quote: This indicates that bGPT models can achieve better perfor- mance in downstream
+    tasks when there is a close match between pre-training and fine-tuning datasets,
+    aligning with standard pre-training principles (Liu et al., 2022).
+  page: 0
+  section: evaluation
+  locator: This indicates that bGPT models can achieve better perfor- mance in downstream
+    t
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.33
+  evidence_refs:
+  - Table 3
+  evidence_values: []
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote directly supports better performance with domain-matched pre-training.
+      [guard] quote not found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: This indicates that bGPT models can achieve better perfor- mance in downstream
+      tasks when there is a close match between pre-training and fine-tuning datasets,
+      aligning with standard pre-training principles (Liu et al., 2022).
+    page: 0
+    section: evaluation
+    locator: This indicates that bGPT models can achieve better perfor- mance in downstream
+      t
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.6
+  tier: supporting
+  at_risk: []
+- id: claim-8
+  statement: Mixed-modality pre-trained models perform around the average of single-modality
+    models.
+  quote: bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix,
+    yield performances that gen- erally align with the average performance of models
+    pre- trained on individual modalities.
+  page: 0
+  section: evaluation
+  locator: bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix,
+    yiel
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.33
+  evidence_refs:
+  - Table 3
+  evidence_values:
+  - '1.0935'
+  - '91.75'
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote directly supports the statement. [guard] quote not found verbatim
+      in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix,
+      yield performances that gen- erally align with the average performance of models
+      pre- trained on individual modalities.
+    page: 0
+    section: evaluation
+    locator: bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix,
+      yiel
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R34
+    - R35
+    - R52
+  extractor_priority: 0.6
+  tier: supporting
+  at_risk: []
+- id: claim-9
+  statement: Cross-modal fine-tuning shows positive transfer between audio and images
+    but negative transfer between text and other modalities.
+  quote: However, negative trans- fer is observed when transitioning between text
+    and other modalities, indicating that the benefits of structured pattern learning
+    in pre-training do not universally apply.
+  page: 0
+  section: evaluation
+  locator: However, negative trans- fer is observed when transitioning between text
+    and oth
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.33
+  evidence_refs:
+  - Table 3
+  evidence_values: []
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote supports negative transfer involving text but does not support
+      the claimed positive transfer between audio and images. [guard] quote not found
+      verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: However, negative trans- fer is observed when transitioning between text
+      and other modalities, indicating that the benefits of structured pattern learning
+      in pre-training do not universally apply.
+    page: 0
+    section: evaluation
+    locator: However, negative trans- fer is observed when transitioning between text
+      and oth
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.6
+  tier: supporting
+  at_risk: []
+- id: claim-12
+  statement: Larger data scale gives lower starting loss and faster convergence in
+    data conversion.
+  quote: We observe a lower starting loss and a more rapid con- vergence in Fig. 3a
+    as the data scale grows, indicating that increased data volume directly enhances
+    model performance in simulating the data conversion process.
+  page: 0
+  section: evaluation
+  locator: We observe a lower starting loss and a more rapid con- vergence in Fig.
+    3a as th
+  measurability: non_measurable
+  kind: empirical
+  metric: loss
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.3275
+  evidence_refs:
+  - Figure 3
+  evidence_values: []
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote directly reports lower starting loss and faster convergence with
+      greater data scale. [guard] quote not found verbatim in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: We observe a lower starting loss and a more rapid con- vergence in Fig.
+      3a as the data scale grows, indicating that increased data volume directly enhances
+      model performance in simulating the data conversion process.
+    page: 0
+    section: evaluation
+    locator: We observe a lower starting loss and a more rapid con- vergence in Fig.
+      3a as th
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.55
+  tier: supporting
+  at_risk: []
+- id: claim-11
+  statement: bGPTimage and bGPTlibri have closely matched BPB on spectrograms.
+  quote: The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri,
+    suggesting that the disparity observed in their CIFAR-10 performance does not
+    extend to this spectrogram-based task.
+  page: 7
+  section: evaluation
+  locator: The results of Table 4 reveal closely matched BPB between bGPTimage and
+    bGPTlibr
+  measurability: unbound
+  kind: empirical
+  metric: BPB
+  value: 0.3899 vs 0.3900
+  comparison: null
+  experiment: null
+  priority: 0.325
+  evidence_refs:
+  - Table 4
+  evidence_values:
+  - '0.3899'
+  - '0.3900'
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: confirmed
+    quote_found: true
+    note: The quote directly reports closely matched BPB.
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: The results of Table 4 reveal closely matched BPB between bGPTimage and
+      bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance
+      does not extend to this spectrogram-based task.
+    page: 7
+    section: evaluation
+    locator: The results of Table 4 reveal closely matched BPB between bGPTimage and
+      bGPTlibr
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs:
+    - R56
+    - R58
+  extractor_priority: 0.5
+  tier: supporting
+  at_risk: []
+- id: claim-14
+  statement: BPB for ABC is consistently higher than MIDI in both directions.
+  quote: 'Table 5 suggests consistently higher BPB for ABC in both directions, which
+    is likely due to two factors:'
+  page: 8
+  section: evaluation
+  locator: Table 5 suggests consistently higher BPB for ABC in both directions, which
+    is li
+  measurability: unbound
+  kind: empirical
+  metric: BPB
+  value: null
+  comparison: ABC vs MIDI
+  experiment: null
+  priority: 0.3225
+  evidence_refs:
+  - Table 5
+  evidence_values: []
+  role: supporting
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: confirmed
+    quote_found: true
+    note: The quote directly states that ABC BPB is consistently higher in both directions.
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: 'Table 5 suggests consistently higher BPB for ABC in both directions, which
+      is likely due to two factors:'
+    page: 8
+    section: evaluation
+    locator: Table 5 suggests consistently higher BPB for ABC in both directions,
+      which is li
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.45
+  tier: supporting
+  at_risk: []
+- id: claim-19
+  statement: Models are 110M parameters trained without hyperparameter tuning or data
+    augmentation.
+  quote: Notably, we avoided hyper- parameter tuning and data augmentation in all
+    evaluations.
+  page: 0
+  section: evaluation
+  locator: Notably, we avoided hyper- parameter tuning and data augmentation in all
+    evaluat
+  measurability: non_measurable
+  kind: empirical
+  metric: null
+  value: null
+  comparison: null
+  experiment: null
+  priority: 0.115
+  evidence_refs:
+  - Table 2
+  evidence_values: []
+  role: setup
+  contributions: []
+  contribution_rank: {}
+  verification:
+    status: disputed
+    quote_found: false
+    note: The quote supports the absence of hyperparameter tuning and augmentation
+      but does not mention the 110M parameter count. [guard] quote not found verbatim
+      in paper
+    model: redacted-verifier-model
+  substantiation:
+    status: unchecked
+    evidence: []
+    rationale: ''
+    model: ''
+    coverage: {}
+  paper_ref:
+    quote: Notably, we avoided hyper- parameter tuning and data augmentation in all
+      evaluations.
+    page: 0
+    section: evaluation
+    locator: Notably, we avoided hyper- parameter tuning and data augmentation in
+      all evaluat
+  validators:
+  - id: v1
+    kind: attest
+    checks: provenance
+    inputs: []
+  extractor_priority: 0.3
+  tier: setup
+  at_risk: []
+gaps:
+- quote: We observe a strong scalability of bGPT in mod- elling native binary data
+    and even signs of emergent abilities.
+  page: 0
+  section: conclusion
+  reason: 'dropped: same finding as claim-15 (merged)'
