@@ -1,0 +1,114 @@
+{
+  "_generated": "reference-reviewer reconciliation",
+  "status": "incomplete",
+  "activity": "shipped-evidence-inspection",
+  "paper_source_sha256": "005179f8c64043b9c7e0b5f3d3b642d4c6a482806328554a153659434b50ce50",
+  "budget": {
+    "file_bytes": 256000,
+    "total_bytes": 1000000,
+    "files": 16
+  },
+  "files": {},
+  "records": [
+    {
+      "claim_id": "C1",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "76.39\u00b10.00",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    }
+  ],
+  "limitations": [
+    "Only uniquely quoted, explicitly linked scalar numeric_close claims are compared.",
+    "Only explicit tabular metric/unit/context mappings are compared; other layouts remain unresolved. Semantic interpretation and causal validity need human review.",
+    "Producer narratives, code reads and numeric agreement are not reproduction.",
+    "Undeclared evidence is not missing content; packaging is not scientific criticism."
+  ],
+  "visual_inspection": {
+    "status": "unavailable",
+    "observations": [],
+    "selection": [],
+    "figure_budget": 4,
+    "outcome_summary": {
+      "counts": [
+        {
+          "outcome": "agreement",
+          "label": "Confirmed text-image agreement",
+          "count": 0
+        },
+        {
+          "outcome": "mismatch",
+          "label": "Confirmed text-image mismatch (advisory)",
+          "count": 0
+        },
+        {
+          "outcome": "not_applicable",
+          "label": "Not applicable",
+          "count": 0
+        },
+        {
+          "outcome": "grounding_failure",
+          "label": "Grounding failure: context, citation or readability",
+          "count": 0
+        },
+        {
+          "outcome": "confirmation_failure",
+          "label": "Missing or invalid confirmation",
+          "count": 0
+        },
+        {
+          "outcome": "conflicting_assessments",
+          "label": "Conflicting assessments",
+          "count": 0
+        },
+        {
+          "outcome": "substantive_uncertainty",
+          "label": "Substantive uncertainty",
+          "count": 0
+        },
+        {
+          "outcome": "unspecified",
+          "label": "Unresolved reason not recorded",
+          "count": 0
+        }
+      ],
+      "human_inspection": []
+    },
+    "scope": "artifact-informed",
+    "limitations": [
+      "Only explicitly claim-linked PNGs within the 4 MB / 1400-pixel budget are supported.",
+      "Model visual/data interpretations are advisory, not independently verified support."
+    ]
+  },
+  "run_evidence": {
+    "status": "incomplete",
+    "packet_id": "e7eed0b7316bcee771fe9ae426a9b961e79dd798ea110545044372a16452b1c6",
+    "packet": {
+      "sources": {},
+      "paper_claims": [],
+      "source_settings": [],
+      "run_bindings": [
+        {
+          "claim_id": "C1",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        }
+      ]
+    },
+    "observations": [],
+    "limitations": [
+      "Claim C1: paper premise unselected or ambiguous.",
+      "Advisory code/run reasoning was not performed."
+    ],
+    "activity": "read-only-source-inspection"
+  }
+}

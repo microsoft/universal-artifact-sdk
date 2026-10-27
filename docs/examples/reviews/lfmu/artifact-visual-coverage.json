@@ -1,0 +1,57 @@
+{
+  "_generated": "reference-reviewer",
+  "status": "unavailable",
+  "observations": [],
+  "selection": [],
+  "figure_budget": 4,
+  "outcome_summary": {
+    "counts": [
+      {
+        "outcome": "agreement",
+        "label": "Confirmed text-image agreement",
+        "count": 0
+      },
+      {
+        "outcome": "mismatch",
+        "label": "Confirmed text-image mismatch (advisory)",
+        "count": 0
+      },
+      {
+        "outcome": "not_applicable",
+        "label": "Not applicable",
+        "count": 0
+      },
+      {
+        "outcome": "grounding_failure",
+        "label": "Grounding failure: context, citation or readability",
+        "count": 0
+      },
+      {
+        "outcome": "confirmation_failure",
+        "label": "Missing or invalid confirmation",
+        "count": 0
+      },
+      {
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "count": 0
+      },
+      {
+        "outcome": "substantive_uncertainty",
+        "label": "Substantive uncertainty",
+        "count": 0
+      },
+      {
+        "outcome": "unspecified",
+        "label": "Unresolved reason not recorded",
+        "count": 0
+      }
+    ],
+    "human_inspection": []
+  },
+  "scope": "artifact-informed",
+  "limitations": [
+    "Only explicitly claim-linked PNGs within the 4 MB / 1400-pixel budget are supported.",
+    "Model visual/data interpretations are advisory, not independently verified support."
+  ]
+}

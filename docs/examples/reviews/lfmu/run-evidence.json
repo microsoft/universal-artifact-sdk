@@ -1,0 +1,27 @@
+{
+  "_generated": "reference-reviewer",
+  "status": "incomplete",
+  "packet_id": "e7eed0b7316bcee771fe9ae426a9b961e79dd798ea110545044372a16452b1c6",
+  "packet": {
+    "sources": {},
+    "paper_claims": [],
+    "source_settings": [],
+    "run_bindings": [
+      {
+        "claim_id": "C1",
+        "result_id": "",
+        "run_id": null,
+        "result_sha256": null,
+        "events": [],
+        "status": "unresolved",
+        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+      }
+    ]
+  },
+  "observations": [],
+  "limitations": [
+    "Claim C1: paper premise unselected or ambiguous.",
+    "Advisory code/run reasoning was not performed."
+  ],
+  "activity": "read-only-source-inspection"
+}

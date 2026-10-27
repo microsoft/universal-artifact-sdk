@@ -1,0 +1,519 @@
+{
+  "_generated": "reference-reviewer visual interpretation",
+  "status": "completed",
+  "observation_count": 50,
+  "interpretation_observation_count": 14,
+  "coverage_only_records": [
+    {
+      "citation": "review-record:visual/2",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/3",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/4",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/12",
+      "reason": "Substantive uncertainty.",
+      "resolution_reason": "substantive_uncertainty"
+    },
+    {
+      "citation": "review-record:visual/13",
+      "reason": "Substantive uncertainty.",
+      "resolution_reason": "substantive_uncertainty"
+    },
+    {
+      "citation": "review-record:visual/16",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/17",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/18",
+      "reason": "Substantive uncertainty.",
+      "resolution_reason": "substantive_uncertainty"
+    },
+    {
+      "citation": "review-record:visual/27",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/28",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/29",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/30",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/31",
+      "reason": "Missing or invalid confirmation.",
+      "resolution_reason": "confirmation_failure"
+    },
+    {
+      "citation": "review-record:visual/32",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/36",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/37",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/38",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/40",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/41",
+      "reason": "Substantive uncertainty.",
+      "resolution_reason": "substantive_uncertainty"
+    },
+    {
+      "citation": "review-record:visual/45",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/46",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    },
+    {
+      "citation": "review-record:visual/47",
+      "reason": "Conflicting assessments.",
+      "resolution_reason": "conflicting_assessments"
+    }
+  ],
+  "not_applicable_records": [
+    {
+      "citation": "review-record:visual/1",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/7",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/8",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/9",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/10",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/11",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/19",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/20",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/25",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/26",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/33",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/34",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/42",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    },
+    {
+      "citation": "review-record:visual/48",
+      "reason": "Not applicable.",
+      "resolution_reason": "not_applicable"
+    }
+  ],
+  "outcome_summary": {
+    "counts": [
+      {
+        "outcome": "agreement",
+        "label": "Confirmed text-image agreement",
+        "count": 14
+      },
+      {
+        "outcome": "mismatch",
+        "label": "Confirmed text-image mismatch (advisory)",
+        "count": 0
+      },
+      {
+        "outcome": "not_applicable",
+        "label": "Not applicable",
+        "count": 14
+      },
+      {
+        "outcome": "grounding_failure",
+        "label": "Grounding failure: context, citation or readability",
+        "count": 0
+      },
+      {
+        "outcome": "confirmation_failure",
+        "label": "Missing or invalid confirmation",
+        "count": 6
+      },
+      {
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "count": 12
+      },
+      {
+        "outcome": "substantive_uncertainty",
+        "label": "Substantive uncertainty",
+        "count": 4
+      },
+      {
+        "outcome": "unspecified",
+        "label": "Unresolved reason not recorded",
+        "count": 0
+      }
+    ],
+    "human_inspection": [
+      {
+        "record_index": 12,
+        "outcome": "substantive_uncertainty",
+        "label": "Substantive uncertainty",
+        "location": "paper:p.2",
+        "check": "rendered_formulas",
+        "paper_quote": "Here, \u03b1 and \u03bb are hyper-parameters, and []Df,i and []Di are the ith element of the diagonal of\nthe FIM",
+        "observation": "Equation 1 is rendered with empty bracket glyphs '[]' in the conditions and in \u03b2: '[]_{D_f,i} > \u03b1[]_{D,i}' and '\u03b2 = min(\u03bb[]_{D,i}/[]_{D_f,i}, 1)'. No importance symbol (for example, a Fisher diagonal) appears inside the brackets.",
+        "explanation": "Rendered formula requires human confirmation; an extraction difference alone is not an authoring defect.",
+        "first_assessment": "",
+        "first_reason": "",
+        "second_assessment": "",
+        "second_reason": ""
+      },
+      {
+        "record_index": 13,
+        "outcome": "substantive_uncertainty",
+        "label": "Substantive uncertainty",
+        "location": "paper:p.2",
+        "check": "rendered_formulas",
+        "paper_quote": "substitute into equation 1 in place of [] and []f",
+        "observation": "The text below Eq. 3 reads 'substitute into equation 1 in place of [] and []_f', using empty brackets instead of a named symbol.",
+        "explanation": "Rendered formula requires human confirmation; an extraction difference alone is not an authoring defect.",
+        "first_assessment": "",
+        "first_reason": "",
+        "second_assessment": "",
+        "second_reason": ""
+      },
+      {
+        "record_index": 16,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.2",
+        "check": "budgets",
+        "paper_quote": "lamp Dr 76.39\u00b10.00 72.89\u00b10.34 64.01\u00b10.63 74.76\u00b10.19 73.52\u00b10.48 76.08\u00b10.00 76.36\u00b10.00",
+        "observation": "The Cifar100 lamp row (ResNet18 Dr 76.39/72.89/76.36/76.08) and the Cifar20 row (LFSSD Df 7.29, SSD 0.00) match the appendix Tables 4 and 6.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The page-2 values are consistent with the appendix tables.",
+        "first_assessment": "agreement",
+        "first_reason": "The page-2 values are consistent with the appendix tables.",
+        "second_assessment": "unresolved",
+        "second_reason": "The quoted row comes from the appendix Table 4, which is not on this page. The overlapping values (76.39, 72.89, 76.08, 76.36) are consistent, but the full row cannot be checked here."
+      },
+      {
+        "record_index": 17,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.2",
+        "check": "captions",
+        "paper_quote": "Table 6: Subclass unlearning on Cifar20. SSD: \u03b1RN = 10, \u03b1V iT = 25, \u03bb = 1",
+        "observation": "The caption gives \u03b1=10 for both Cifar100 and Cifar20, and the Cifar20 rows are reported under that setting. The Cifar20 rows match Table 6 (subclass).",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): SSD ViT used \u03b1=25 for Cifar20 subclass unlearning, which contradicts Table 1's blanket \u03b1=10.",
+        "first_assessment": "mismatch",
+        "first_reason": "SSD ViT used \u03b1=25 for Cifar20 subclass unlearning, which contradicts Table 1's blanket \u03b1=10.",
+        "second_assessment": "unresolved",
+        "second_reason": "Table 6 is in the appendix and is not on this page, so its caption cannot be checked here."
+      },
+      {
+        "record_index": 18,
+        "outcome": "substantive_uncertainty",
+        "label": "Substantive uncertainty",
+        "location": "paper:p.2",
+        "check": "units",
+        "paper_quote": "Dr and Df in the tables denote the accuracy on the respective subset\nof data in percent.",
+        "observation": "Table 1 reports Dr, Df and MIA values with no unit shown.",
+        "explanation": "The appendix gives Dr and Df in percent, but MIA's unit or scale is not stated.",
+        "first_assessment": "",
+        "first_reason": "",
+        "second_assessment": "",
+        "second_reason": ""
+      },
+      {
+        "record_index": 29,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.7",
+        "check": "captions",
+        "paper_quote": "Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices) unlearning with \u03b1 =10,\n\u03bb =1 on Cifar100/20.",
+        "observation": "Table 6 caption gives LFSSD \u03b1 = 10, \u03bb = 1 for Cifar20 subclass unlearning; the ViT lamp row shows LFSSD Df 24.05.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Table 1 states SSD used \u03b1=10 for subclass, but Table 6 caption gives SSD \u03b1_ViT = 25 while reproducing the same ViT subclass SSD values (14.58, 95.54, 3.2) in Table 1; the stated SSD hyperparameters for these values are inconsistent between captions.",
+        "first_assessment": "mismatch",
+        "first_reason": "Table 1 states SSD used \u03b1=10 for subclass, but Table 6 caption gives SSD \u03b1_ViT = 25 while reproducing the same ViT subclass SSD values (14.58, 95.54, 3.2) in Table 1; the stated SSD hyperparameters for these values are inconsistent between captions.",
+        "second_assessment": "unresolved",
+        "second_reason": "The Table 1 caption is on another page, so it cannot be checked from this image."
+      },
+      {
+        "record_index": 30,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.7",
+        "check": "units",
+        "paper_quote": "Dr and Df in the tables denote the accuracy on the respective subset\nof data in percent.",
+        "observation": "Values shown as plain numbers with \u00b1 and no % sign; metrics Dr, Df, MIA.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Values lie in 0\u2013100 consistent with percentages as stated in the appendix.",
+        "first_assessment": "agreement",
+        "first_reason": "Values lie in 0\u2013100 consistent with percentages as stated in the appendix.",
+        "second_assessment": "unresolved",
+        "second_reason": "The values fall within the 0\u2013100 range, which is consistent with percentages. However, the page does not state the unit, and the definition is on another page."
+      },
+      {
+        "record_index": 32,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.7",
+        "check": "sample_counts",
+        "paper_quote": "Runs are repeated 10 times for each method, with the mean and standard\ndeviation shown in the tables.",
+        "observation": "Table 7 SSD and LFSSD entries show nonzero std (e.g., 88.68\u00b13.36, 89.82\u00b12.30), while Table 6 SSD/LFSSD show \u00b10.00.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Nonzero std for deterministic methods in random forgetting is plausible since forget sets vary across runs; consistent with repeated-run reporting.",
+        "first_assessment": "agreement",
+        "first_reason": "Nonzero std for deterministic methods in random forgetting is plausible since forget sets vary across runs; consistent with repeated-run reporting.",
+        "second_assessment": "unresolved",
+        "second_reason": "The \u00b1 notation is consistent with reporting mean and standard deviation. The 10-run count is not visible on this page; it is stated elsewhere in the paper."
+      },
+      {
+        "record_index": 36,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.5",
+        "check": "sample_counts",
+        "paper_quote": "Since SSD (and therefore LFSSD) is deterministic, there is no standard deviation\n\n3\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)",
+        "observation": "Table 3 SSD and LFSSD columns show nonzero standard deviations (e.g., 98.42\u00b10.13, 98.15\u00b10.20, LFSSD MIA 0.38\u00b10.58).",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Paper states deterministic methods have no std across repeated runs; nonzero std here plausibly reflects aggregation over 5 face IDs rather than repeated runs, but the table does not distinguish this, so the stated \u00b1 semantics are inconsistent with the general claim.",
+        "first_assessment": "mismatch",
+        "first_reason": "Paper states deterministic methods have no std across repeated runs; nonzero std here plausibly reflects aggregation over 5 face IDs rather than repeated runs, but the table does not distinguish this, so the stated \u00b1 semantics are inconsistent with the general claim.",
+        "second_assessment": "unresolved",
+        "second_reason": "The quoted text is not on this page, so it cannot be checked here."
+      },
+      {
+        "record_index": 37,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.5",
+        "check": "units",
+        "paper_quote": "Dr and Df in the tables denote the accuracy on the respective subset\nof data in percent.",
+        "observation": "Table 2 Dr and Df Accuracy shown with % signs; MIA column shown without units.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Accuracy columns rendered in percent, consistent with text.",
+        "first_assessment": "agreement",
+        "first_reason": "Accuracy columns rendered in percent, consistent with text.",
+        "second_assessment": "unresolved",
+        "second_reason": "Table 2 agrees with the percent claim. Tables 3 and 4 do not show units, though their values are consistent with percentages. The defining sentence is not on this page, so the claim cannot be fully confirmed here."
+      },
+      {
+        "record_index": 38,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.5",
+        "check": "captions",
+        "paper_quote": "For LFSSD we performed a simplified\nhyperparameter search keeping lambda fixed at 1 and alpha values [1, 50].",
+        "observation": "Caption: \u03bb = 1, CIFAR100 rocket class; \u03b1 rows 1,5,10,25,50; values without \u00b1.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Rendered \u03b1 range and \u03bb match text; no \u00b1 consistent with determinism claim.",
+        "first_assessment": "agreement",
+        "first_reason": "Rendered \u03b1 range and \u03bb match text; no \u00b1 consistent with determinism claim.",
+        "second_assessment": "unresolved",
+        "second_reason": "Table 2 is consistent with \u03bb fixed at 1 and \u03b1 spanning 1 to 50. However, the search-procedure sentence itself is on another page, so whether this table fully represents that search cannot be confirmed here."
+      },
+      {
+        "record_index": 40,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.5",
+        "check": "captions",
+        "paper_quote": "Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89",
+        "observation": "Table 4 RN/ViT lamp rows: RN LFSSD Dr 76.36, SSD 76.08; ViT SSD Df 36.89, LFSSD MIA 2.20.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Lamp values on page 5 match Table 1 values.",
+        "first_assessment": "agreement",
+        "first_reason": "Lamp values on page 5 match Table 1 values.",
+        "second_assessment": "unresolved",
+        "second_reason": "The quoted Table 1 row is not on this page. Related Table 4 values are consistent with it, but the row itself cannot be checked here."
+      },
+      {
+        "record_index": 41,
+        "outcome": "substantive_uncertainty",
+        "label": "Substantive uncertainty",
+        "location": "paper:p.5",
+        "check": "sample_counts",
+        "paper_quote": "",
+        "observation": "RN baby SSD Dr shows '44.05*\u00b10.00' with an asterisk; no footnote visible on page 5.",
+        "explanation": "Asterisk meaning is not explained in the supplied text or visible page, so its interpretation cannot be confirmed.",
+        "first_assessment": "",
+        "first_reason": "",
+        "second_assessment": "",
+        "second_reason": ""
+      },
+      {
+        "record_index": 45,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.6",
+        "check": "budgets",
+        "paper_quote": "Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices) unlearning with \u03b1 =10,\n\u03bb =1 on Cifar100/20.",
+        "observation": "The Table 5 caption shows LFSSD \u03b1 = 5, \u03bb = 1 for Cifar20 full-class unlearning.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Table 5 uses \u03b1=5 for LFSSD on Cifar20 class unlearning. Table 1 states \u03b1=10 for Cifar100/20. However, Table 1's Cifar20 rows report subclass results, which match Table 6 (\u03b1=10), so this may not be a true conflict. It is noted as a hyperparameter inconsistency only if Table 1's \u03b1 is read as covering Cifar20 class unlearning.",
+        "first_assessment": "mismatch",
+        "first_reason": "Table 5 uses \u03b1=5 for LFSSD on Cifar20 class unlearning. Table 1 states \u03b1=10 for Cifar100/20. However, Table 1's Cifar20 rows report subclass results, which match Table 6 (\u03b1=10), so this may not be a true conflict. It is noted as a hyperparameter inconsistency only if Table 1's \u03b1 is read as covering Cifar20 class unlearning.",
+        "second_assessment": "unresolved",
+        "second_reason": "Table 1 and its hyperparameter settings are not present on page 6, so they cannot be checked here."
+      },
+      {
+        "record_index": 46,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.6",
+        "check": "sample_counts",
+        "paper_quote": "Since SSD (and therefore LFSSD) is deterministic, there is no standard deviation",
+        "observation": "Rows show RN and ViT blocks, each with 5 classes (ED, NS, people, veg, Veh2) and 3 metrics (D_r, D_f, MIA). Deterministic SSD and LFSSD columns show \u00b10.00.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The SSD and LFSSD columns all render \u00b10.00, which is consistent with the stated deterministic behavior.",
+        "first_assessment": "agreement",
+        "first_reason": "The SSD and LFSSD columns all render \u00b10.00, which is consistent with the stated deterministic behavior.",
+        "second_assessment": "unresolved",
+        "second_reason": "The \u00b10.00 values are consistent with deterministic methods, but the page does not show run counts or state determinism, so the claim itself cannot be confirmed from this image."
+      },
+      {
+        "record_index": 47,
+        "outcome": "conflicting_assessments",
+        "label": "Conflicting assessments",
+        "location": "paper:p.6",
+        "check": "units",
+        "paper_quote": "Dr and Df in the tables denote the accuracy on the respective subset\nof data in percent.",
+        "observation": "D_r and D_f values are in the 0\u2013100 range with no % sign, e.g., RN ED D_r baseline 82.56\u00b10.00 and LFSSD 83.19\u00b10.00.",
+        "explanation": "The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The values are consistent with percentages, and the rendered cells match the extracted values I spot-checked (e.g., ViT ED D_f SSD 53.53, ViT Veh2 MIA LFSSD 9.12).",
+        "first_assessment": "agreement",
+        "first_reason": "The values are consistent with percentages, and the rendered cells match the extracted values I spot-checked (e.g., ViT ED D_f SSD 53.53, ViT Veh2 MIA LFSSD 9.12).",
+        "second_assessment": "unresolved",
+        "second_reason": "Values are compatible with percentages, but the table shows no explicit unit, so percent is not directly confirmed on this page."
+      }
+    ]
+  },
+  "batch_character_target": 24000,
+  "coverage_status": "incomplete",
+  "batches": [
+    {
+      "index": 0,
+      "record_citations": [
+        "review-record:visual/0",
+        "review-record:visual/5",
+        "review-record:visual/6",
+        "review-record:visual/14",
+        "review-record:visual/15",
+        "review-record:visual/21",
+        "review-record:visual/22",
+        "review-record:visual/23",
+        "review-record:visual/24",
+        "review-record:visual/35",
+        "review-record:visual/39",
+        "review-record:visual/43"
+      ],
+      "packet_ids": [
+        "56a7dbfb77ac8f1d12d8f5e2f1e006b4bccf83db038c3614b7ecaddaa02df1e4"
+      ],
+      "status": "completed",
+      "finding_ids": [
+        "paper/4657deb6d33c442d166f279449e0962a681f71e7b99de37513bbd3a04a6a3e37",
+        "paper/d6d7776b88cc689d0ef223a6be00c74beb3e8410f26ebfe1e22594e6d4a5bbf4"
+      ]
+    },
+    {
+      "index": 1,
+      "record_citations": [
+        "review-record:visual/44",
+        "review-record:visual/49"
+      ],
+      "packet_ids": [
+        "5fdaa993e10730e6acbb0f0f2724979e0e0f9c6ab38c44aa4bf67934d186d38f"
+      ],
+      "status": "completed",
+      "finding_ids": []
+    }
+  ],
+  "finding_ids": [
+    "paper/4657deb6d33c442d166f279449e0962a681f71e7b99de37513bbd3a04a6a3e37",
+    "paper/d6d7776b88cc689d0ef223a6be00c74beb3e8410f26ebfe1e22594e6d4a5bbf4"
+  ],
+  "selected_for_synthesis": [
+    "paper/4657deb6d33c442d166f279449e0962a681f71e7b99de37513bbd3a04a6a3e37",
+    "paper/d6d7776b88cc689d0ef223a6be00c74beb3e8410f26ebfe1e22594e6d4a5bbf4"
+  ],
+  "limitations": [
+    "Same-model image agreement is not independent scientific validation.",
+    "Visual interpretations are advisory; humans own the final assessment.",
+    "A single oversized record is kept intact, not silently truncated.",
+    "Unresolved inspection is reviewer coverage, never author-facing feedback."
+  ],
+  "accepted_finding_ids": [
+    "paper/4657deb6d33c442d166f279449e0962a681f71e7b99de37513bbd3a04a6a3e37",
+    "paper/d6d7776b88cc689d0ef223a6be00c74beb3e8410f26ebfe1e22594e6d4a5bbf4"
+  ]
+}
