@@ -625,14 +625,19 @@ list. Each returned item has `title` (≤ 10 words), `summary` (one sentence, �
 used at most once overall), and `claim_ids` (≤ 8 distinct existing claim IDs); at most 6 items.
 These limits are reference values (non-normative).
 
-- **Source-extracted candidates** are **replaced** by the validated items: `id` =
+- **Replaceable candidates** — the candidate set in which **every** candidate's
+  `provenance.kind` is tool-produced (`paper-extraction` or `reviewer-inference`): all
+  source-extracted candidates, and artifact declarations that a tool produced — are **replaced**
+  by the validated items: `id` =
   `contribution/<sha256 of the whitespace-collapsed quote>`, `statement` = that collapsed quote,
   `paper_ref` = `{quote, char_start, char_end}` (the exact span), claim links as below, and
   `provenance` = `{kind: reviewer-inference, method, derived_from: [candidate ids], locator}`.
   Two items quoting the same span fail validation.
-- **Declared candidates** are **never replaced, merged, split, or reordered**. The digest must
-  return exactly one item per declaration and may only add `display` text and **inferred** claim
-  links (below).
+- **Protected candidates** — the candidate set in which **any** candidate is an author
+  declaration (`provenance.kind: author-declaration`) or has no `provenance.kind` — are **never
+  replaced, merged, split, or reordered**; the whole set is protected, including any
+  tool-produced members. The digest must return exactly one item per candidate and may only add
+  `display` text and **inferred** claim links (below).
 - **Claim links (both branches).** For every candidate row the digest emits (a declaration, or
   an item that replaces one or more extracted candidates), with *covered candidates* being the
   declaration itself or the candidates the item replaces:

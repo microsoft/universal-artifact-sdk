@@ -28,11 +28,10 @@ explorer therefore treats every input byte as data, never as code or as an instr
 - Markdown (README, reflection, drafts, Markdown evidence) is converted to HTML and then
   sanitized with an allow-list: no `<script>`, `<style>`, `<iframe>`, `<object>`, `<embed>`,
   `<form>`, or event-handler attributes; no `javascript:`, `vbscript:`, or `data:` URLs except
-  `data:` images; no remote `src`. Raw HTML in Markdown is either removed or passed through the
-  same sanitizer.
+  `data:` images; no remote `src`. Raw HTML in Markdown is not interpreted: it is rendered as
+  literal text (§3.1).
 - SVG files are displayed only through `<img>` (which does not execute scripts), never inlined.
-- Links to copied files use relative URLs; links in content to external sites are shown with their
-  target visible and open only on explicit user action (§6.3).
+- Links to copied files use relative URLs. Every other link is an external link (§6.3).
 - The site SHOULD ship a restrictive Content Security Policy (for example via a `<meta>` element)
   that allows scripts and styles only from the site itself and forbids network connections other
   than same-origin reads of the site's files.
@@ -42,9 +41,12 @@ explorer therefore treats every input byte as data, never as code or as an instr
 - The build makes no network request: no reference resolution, DOI lookup, model call, package
   download, or URL fetch. Values that would need one (reference checks, external dataset sizes)
   come only from the run or are absent.
-- The site makes no network request beyond reading its own files. External URLs in the inputs
-  (dataset `uri`, reference `url`, DOIs) are shown as text or as plain links the reader may click;
-  they are never loaded automatically (no remote images, frames, prefetch, or analytics).
+- The site makes no network request beyond reading its own files. **External links** — `http:`,
+  `https:`, and `mailto:` URLs in the inputs (dataset `uri`, reference `url`, DOIs written as
+  `https://doi.org/…`, Markdown links) — are rendered as hyperlinks whose full target is visible
+  beside the link text, carry `rel="noopener noreferrer"`, and are followed only when the reader
+  clicks them. A URL with any other scheme is shown as text. Nothing external is ever loaded
+  automatically (no remote images, frames, prefetch, or analytics).
 
 ## 6.4 Integrity
 

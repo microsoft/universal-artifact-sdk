@@ -15,7 +15,7 @@ except for the cross-reference lists that §4.4 fills on claims and results (`ju
 "evaluation": {
   "run": {
     "sealed": true,
-    "run_id": "20261027T212706.923Z-179e",
+    "run_id": "20261028T213946.517Z-1083",
     "scope": "artifact-informed",
     "judge_only": false,
     "status": "completed",
@@ -53,8 +53,8 @@ Present when the run has a judge result (`manifest.judge.path`, JR §6.6.1); els
 | `judge_version`, `format_version`, `rubric`, `method_badge`, `badges`, `origin`, `warnings` | `judge.json`, verbatim |
 | `findings` | `judge.json.findings`, each copied verbatim (JR §4.2), plus `joins` (§4.4) |
 | `contribution_diagnostics` | `judge.json.contribution_diagnostics`, verbatim; also used for the top-level list (§3.5) |
-| `reference_check` | `{available, resolver, counts}` from `judge.json.reference_check`, or `null`; per-reference verdicts go to `references[].check` (§3.12) |
-| `activity`, `submission_executed` | manifest `judge` block |
+| `reference_check` | `{available, resolver, counts}` from `judge.json.reference_check`; when that is `null` or absent, from `reference-check.json` if it is a run output (mode B) or present (mode C, §2.7) — JR §6.6.2 stores the same object in both places; else `null`. Per-reference `verdicts` from the same source go to `references[].check` (§3.12) |
+| `activity`, `submission_executed` | manifest `judge` block (mode B); `run.json.input_provenance.judge` (mode C, §4.7), which JR §6.7 rule 7 requires to equal the manifest block; `null` when neither exists |
 
 `evaluation.judge.run_id` and `evaluation.run.run_id` are different identifiers and are never
 compared or reconciled by the explorer: JR §6.3 records the judge's run identifier in the
@@ -106,38 +106,62 @@ nothing else (no text matching, no model call):
 | review finding | claim | `evidence_details.claim_id` (comparison findings, JR §5.10.2) | `reconciliation` |
 | review finding | result | an evidence citation `result:<id>` | `citation` |
 | review finding | contribution | an evidence citation `contribution:<id>` | `citation` |
-| review finding | claim, contribution, or unknown | `target` (below) | `target` |
+| review finding | claim, result, contribution, or judge finding | `target`, when it is a reference (below) | `target` |
 | review finding | judge finding | an evidence citation `judge:<id>` | `citation` |
 | review finding | judge finding | an ID in the finding's own `judge_finding_ids` | `judge-ref` |
 
 **The `joins` key.** Every judge and review finding in `data.json` carries `joins`: a list of
-`{kind, id, via, resolved}` records, where `kind` is `claim`, `result`, `contribution`,
-`judge_finding`, or `unknown`; `id` is the bare identifier (without prefix or anchor); `via` is the
-rule's value from the table; and `resolved` is `true` when a record of that kind with that ID
-exists (claims and results in the artifact; contributions among the run's reviewed candidates or
-the artifact's contributions; judge findings in `evaluation.judge.findings`). Records are listed
-in this order — `target`, then `evidence` entries in their order, then
+`{kind, id, via, resolved}` records, where `kind` is `claim`, `result`, `contribution`, or
+`judge_finding`; `id` is the bare identifier (without prefix or anchor); `via` is the rule's
+value from the table; and `resolved` is `true` when a record of that kind with that ID exists in
+the **resolution set** of its kind:
+
+| Kind | Resolution set |
+|------|----------------|
+| `claim`, `result` | the artifact's claims, results |
+| `contribution` | the artifact's contributions, the run's `contribution_review.declarations`, and `paper_contribution_review.declarations` (by `id`) |
+| `judge_finding` | `evaluation.judge.findings` |
+
+Records are listed in this order — `target`, then `evidence` entries in their order, then
 `evidence_details.claim_id`, then `judge_finding_ids` in their order — and a `(kind, id, via)`
 triple appears once (first occurrence). A finding with no join has `joins: []`. The `joins` key
 is the only place the explorer records its joins on a finding; every field the finding itself
-carries, including its own `judge_finding_ids`, stays verbatim and is never overwritten or merged.
+carries, including its own `judge_finding_ids` and `target`, stays verbatim and is never
+overwritten or merged. An unresolved join (`resolved: false`) is kept, shown as unresolved, and
+reported in `warnings` (aggregation per §3.1 allowed): it is an explicit identifier that names
+nothing.
 
-**Target resolution.** A `target` of the form `contribution:<id>` is a contribution join. A bare
-`target` is resolved against, in order: the artifact's claim IDs (`kind: claim`), the run's
-reviewed-candidate IDs, then the artifact's contribution IDs (`kind: contribution`); the first
-match wins. A bare target matching none gives `{kind: "unknown", id: <target>, via: "target",
-resolved: false}`. Any other `target` form is not a join.
+**Target grammar.** JR §5.5 makes `target` free text, defaulting to `""`, with
+`contribution:<id>` for contribution axes; real targets include prose such as `abstract` or
+`Table 3 / Section 5.2.2`. The explorer classifies each `target` as exactly one of:
+
+1. **No target**: absent, `null`, not a string, or empty after trimming. No join.
+2. **Prefixed reference**: the trimmed string is `<prefix>:<id>` where `<prefix>` is `claim`,
+   `result`, `contribution`, or `judge` (giving kind `claim`, `result`, `contribution`,
+   `judge_finding`) and `<id>` is non-empty and contains no whitespace. One `target` join of that
+   kind, resolved or not.
+3. **Malformed reference**: the trimmed string starts with one of those four prefixes and a colon,
+   but the rest is empty or contains whitespace. No join; one warning naming the finding.
+4. **Bare reference**: any other trimmed string that equals, exactly and case-sensitively, an ID
+   in a resolution set, tried in this order: claims, the run's
+   `contribution_review.declarations`, `paper_contribution_review.declarations`, the artifact's
+   contributions, judge findings. One resolved `target` join of the first matching kind. (A
+   converted judge finding's `target` is the full judge finding ID, JR §5.10.1, and joins this way.)
+5. **Free text**: anything else. No join and **no warning**; the site shows it as plain text
+   ("About: …", §5.4.6). Prose is not an identifier, so it is never reported as unresolved.
 
 **Direct references only.** A finding is joined to a claim, result, or contribution only when
 that finding itself names it by one of the rules above. Joins are never transitive: a review
 finding that cites a judge finding (`judge:<id>` or `judge_finding_ids`) is joined to that judge
 finding, **not** to the judge finding's claims or results; a review finding that cites a
 contribution is not joined to that contribution's claims. The site may show the judge finding's
-own claim links when the reader opens it, but never lists the review finding under those claims. A join target that does not exist is kept (`resolved: false`) and shown as unresolved.
+own claim links when the reader opens it, but never lists the review finding under those claims.
 
-The core claim and result records receive `judge_finding_ids` and `review_finding_ids`: the IDs
-of findings with a resolved join of that record's kind and ID, in the order the findings appear
-in their source file, each ID once. The explorer MUST NOT derive a per-claim status,
+The core claim and result records receive `judge_finding_ids` and `review_finding_ids`, and
+artifact contributions receive `review_finding_ids`: the IDs of findings with a resolved join of
+that record's kind and ID, in the order the findings appear in their source file, each ID once.
+The site lists, for a run's reviewed candidate, the review findings whose `joins` name its ID
+(§5.4.2); nothing is stored on the run's records. The explorer MUST NOT derive a per-claim status,
 count of "supporting" versus "contradicting" findings, or any other aggregate of finding
 assessments (I2). It MAY show the number of linked findings.
 
@@ -169,9 +193,11 @@ The site inherits every consumer obligation of JR §6.8. In particular it MUST:
    "Reviewer (advisory)" for reviewer findings — and show the finding's own epistemic status,
    confidence, and grounding status verbatim when present.
 9. **Separate the artifact from the analysis.** Reviewed contribution candidates come from the
-   run and may differ from the artifact's declarations (a digest may merge or replace
-   candidates, JR §5.13.2). The site shows the run's candidates as the run's, links each to the
-   artifact contributions named in its `derived_from` or sharing its ID, and never rewrites the
+   run. Whether a run's candidates repeat, merge, or replace the artifact's contributions is the
+   run's business (JR §5.13); the explorer neither checks it nor depends on it, and shows what it
+   reads. The site shows the run's candidates
+   as the run's, each with its own `provenance.kind` label (§5.6), links each to the artifact
+   contributions named in its `provenance.derived_from` or sharing its ID, and never rewrites the
    artifact's list to match.
 
 ## 4.6 Run files copied into the site
@@ -180,23 +206,32 @@ Only these run files are copied, under `run/` with their run-relative paths, and
 key of the manifest's `outputs` (or `inputs`, for the snapshot paper):
 
 - `review-draft.md` and `paper-review.md` (`files.draft`, `files.paper_review`);
-- every file named by a `review-output:<path>` citation in a copied finding (for example the
-  rendered page images under `visuals/`);
+- every file named by a `review-output:<path>` citation at any citation site (below), for
+  example the rendered page images under `visuals/`;
+- every file that a Markdown link or image in a copied run Markdown file resolves to (§2.5,
+  Markdown targets, with the run directory as root), when it is a key of `outputs`; any other
+  target is `null` in that file's `embedded` map;
 - in paper-only scope, the snapshot paper (`manifest.paper`).
 
-The explorer re-hashes each file as it copies it; a hash that differs from the manifest means the
-run changed after validation, and the build stops with exit `2` without leaving a partial site.
+The explorer re-hashes **every** file it reads or copies from the run as it does so — run outputs
+against `outputs`, snapshot files (including every artifact asset taken from
+`snapshot/artifact/`) against `inputs`. A hash that differs from the manifest means the run
+changed after validation, and the build stops with exit `2` without leaving a partial site.
 Snapshot artifact files are copied under `assets/` like any artifact file (§3.1), since in mode B
 the snapshot **is** the artifact.
 
-`evaluation.citation_assets` maps every `artifact:` and `review-output:` citation string that
-appears in a copied finding, verbatim (including any `#<fragment>`), to the asset reference of
-the copied file (`url` under `assets/` or `run/`), or to `null` when it is unresolved or not
-copied. The viewer links these citations only through this map.
+**Citation sites** are every list of citation strings in the copied overlay: each finding's
+`evidence`; `synthesis.contribution_evidence`, `synthesis.originality_evidence`, and
+`synthesis.impact_evidence`; and every `evidence` list inside `contribution_review` and
+`paper_contribution_review` (for example in each assessment axis). `evaluation.citation_assets`
+maps every `artifact:` and `review-output:` citation string found at any citation site, verbatim
+(including any `#<fragment>`), to the asset reference of the copied file (`url` under `assets/`
+or `run/`), or to `null` when it is unresolved or not copied. The viewer links these citations
+only through this map.
 
 ### 4.6.1 Citation rendering
 
-Each citation of JR §5.3.2 renders as:
+Each citation of JR §5.3.2, at any citation site, renders as:
 
 | Citation | Rendered as |
 |----------|-------------|
@@ -208,6 +243,10 @@ Each citation of JR §5.3.2 renders as:
 | other `review-record:` forms | the citation text (the explorer does not copy visual or run-evidence records in v1) |
 | `review-output:<path>` | a link to its `citation_assets` URL under `run/` when copied (images inline), else the citation text |
 | anything else | the citation text, verbatim |
+
+Judge finding `evidence` entries are artifact paths with optional anchors (JR §4.2), not JR
+§5.3.2 citations. An entry that produced a join (§4.4) renders as a link to the joined record's
+route, with the entry text visible; every other entry renders as its text, verbatim.
 
 ## 4.7 Unsealed preview (mode C)
 
@@ -225,6 +264,7 @@ possible; and the banner of §5.5 is mandatory. `evaluation.run` is filled per k
 | `stages` | `run.json.input_provenance.stages`, else `{}` |
 | `judge_only` | derived as in §4.1 |
 | `status`, `options`, `stage_notes` | `null` (manifest-only fields) |
+| judge `activity`, `submission_executed` (§4.2) | `run.json.input_provenance.judge` |
 | `files` | `draft` / `paper_review`: asset references of `review-draft.md` / `paper-review.md` when present in the outputs directory, else `null` |
 
 Without `run.json`, every key above except `sealed`, `judge_only` (`false`), and `files` is `null`.

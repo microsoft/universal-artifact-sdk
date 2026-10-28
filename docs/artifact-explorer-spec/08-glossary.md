@@ -11,7 +11,10 @@
 | **Attribution** | The label naming the tool or role that produced a value the authors did not write (§5.6). |
 | **Build warning** | A human-readable note in `data.json.warnings` about input the explorer could not use; never a judgment of the work (§3.2). |
 | **Data document** | `data.json`, the `artifact-explorer/data/v1` object that is the contract between builder and viewer (§3). |
-| **Declared link** | A claim listed in a contribution's `supporting_claims` (SDK §2.4.2). |
+| **Declared** | Recorded in the artifact's own files, whoever produced them (authors, a paper adapter, or another producer). Not a synonym of "author-declared": who wrote a contribution is its `provenance.kind` (§3.1). |
+| **Declared link** | A claim listed in a contribution's `supporting_claims` (SDK §2.4.2), whoever produced that contribution record. |
+| **External link** | An `http:`, `https:`, or `mailto:` URL from the inputs, shown with its target visible and followed only on a click (§6.3). |
+| **Free-text target** | A finding `target` that is neither empty nor an identifier reference; shown as plain text, never joined or warned about (§4.4). |
 | **Display title** | The title shown in the site header: the paper source's title, else the PDF metadata title (labeled as such), else the manifest title, else the ID; its origin is recorded in `display_title_source` (§3.3). |
 | **Judge-only run** | A sealed `artifact-informed` run in which every reviewer stage is `not-requested` (JR §1.2, §6.4); shown with a judge overlay and no review (§4.3). |
 | **Page unknown** | A claim or figure page that is missing, not an integer, or less than 1; recorded as `null` and never rendered as a page number (§3.4). |

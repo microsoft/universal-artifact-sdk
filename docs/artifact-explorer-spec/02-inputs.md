@@ -61,10 +61,18 @@ exception, and the research-agent metadata rule. It reads these files beyond the
 | README | probe (§2.6) | Markdown or text | §3.13 |
 
 **Malformed content is reported, not fatal.** When an index (other than `manifest.yml`) is
-missing, fails path safety (§2.5), does not parse, or lacks its top-level list, the explorer
-uses an empty list and adds a build warning (§3.2) naming the file. A list element that is not a
+declared but missing, fails path safety (§2.5), does not parse, or lacks its top-level list, the
+explorer uses an empty list and adds a build warning (§3.2) naming the file. An index that is
+**not declared** and absent at its default file name is simply empty, with no warning: absence
+is not a defect (I3). A list element that is not a
 mapping is skipped with a warning. Contribution loading additionally produces the contribution
 diagnostics of the JR §2.3.1 contributions table; §3.5 says which list the site shows.
+
+**Duplicate IDs.** When two records of one collection share an `id` (or an experiment `slug`),
+both are kept in declaration order and a warning names the duplicate. Every lookup by that ID —
+cross-references, joins (§4.4), and routes (§5.3) — resolves to the **first** record. Derived
+cross-reference lists (§3) are filled on the first record only; a later duplicate keeps its
+copied fields and has empty derived lists.
 
 Unknown fields on any record are preserved in the data document (§3.1) and never interpreted.
 YAML values are projected into JSON by the rule in §3.1.
@@ -73,7 +81,12 @@ YAML values are projected into JSON by the rule in §3.1.
 
 1. The explorer MUST run JR §6.7 **consumer validation** on the run directory before reading
    anything else in it. Any failure is a run-gate rejection (exit `2`) whose message lists every
-   failed rule. There is no flag to bypass it (I9).
+   failed rule. There is no flag to bypass it (I9). JR §6.3 fixes key order and separators for
+   the `input_digest` serialization but not how non-ASCII characters are written; until it
+   does, the explorer accepts the digest when it matches either the serialization with non-ASCII
+   characters written literally (UTF-8) or the one with each of them escaped as `\uXXXX`
+   (lower-case hex digits, UTF-16 surrogate pairs above U+FFFF). For ASCII-only paths the two
+   coincide.
 2. The run is then read **only** through files listed in the manifest's `inputs` (under
    `snapshot/`) and `outputs`. A file present in the directory but not listed is never read.
 3. **Artifact-informed scope** (`scope: artifact-informed`): the artifact is
@@ -99,6 +112,15 @@ the artifact directory (or run directory, for run files) as the root. A rejected
 **unresolved**: the data document records `null` for the asset with a build warning, and the
 site shows the declared path as text, marked unavailable. A rejected path is never a crash and
 never copied. See also §6.1.
+
+**Markdown link and image targets** are URL references, not SDK declarations, so they are first
+normalized: a target that has a URI scheme (for example `https:`, `mailto:`) or starts with `/`
+or `//` is external and never resolved; otherwise the `?query` and `#fragment` are removed,
+the rest is percent-decoded, joined to the directory of the Markdown file, and `.` and `..`
+segments are removed as in RFC 3986 §5.2.4. The result must then be a path inside the input root
+that passes the rules above (a target that climbs above the root is rejected). So `./fig.png`
+and `a/../fig.png` resolve, and `../../etc/x` does not. Declared paths in SDK index files are
+**not** normalized: JR §2.4 rejects `.` and `..` segments there.
 
 ## 2.6 Discovery probes
 
