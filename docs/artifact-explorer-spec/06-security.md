@@ -31,6 +31,8 @@ explorer therefore treats every input byte as data, never as code or as an instr
   `data:` images; no remote `src`. Raw HTML in Markdown is not interpreted: it is rendered as
   literal text (§3.1).
 - SVG files are displayed only through `<img>` (which does not execute scripts), never inlined.
+- A model-reported image region (§4.3) is drawn only from its four numbers, each clamped to
+  `[0, 1]`; a region that is not four numbers is not drawn.
 - Links to copied files use relative URLs. Every other link is an external link (§6.3).
 - The site SHOULD ship a restrictive Content Security Policy (for example via a `<meta>` element)
   that allows scripts and styles only from the site itself and forbids network connections other

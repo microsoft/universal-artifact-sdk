@@ -125,7 +125,7 @@ changes `input_digest` and `run.json.input_provenance`.
 | X22 | `C1.paper_ref` is `{page: 0, section: "4"}`; separately `{section: "4"}`; separately `{page: "6"}`. | `claims[0].paper_location.page` `null` each time (page unknown); `section` `"4"` in the first two; `claims[0].paper_ref` keeps the original value (`page: 0` in the first case). |
 | X23 | Default fixture plus `paper: {pdf: paper.pdf, source: paper.tex}`, `paper.tex` containing `\title{Streaming Parsers}`, and `paper.pdf` with document-metadata title `Untitled`. | `paper.title` `Streaming Parsers`; `paper.metadata_title` `Untitled`; `identity.display_title` `Streaming Parsers`; `display_title_source` `paper-source`. |
 | X24 | X23 without `paper.tex` (and without `source`); separately with a metadata title of only spaces. | First: `display_title` `Untitled`, `display_title_source` `pdf-metadata`. Second: `display_title` `Demo`, `display_title_source` `manifest-title`, `paper.metadata_title` `null`. |
-| X25 | Default fixture plus a root `related_work.yml` (top-level `related_work`, one entry) declared as `paths.related_work`. | `data.json` has no `related_work` key and `counts` has no `related_work` entry; the file is not copied; no warning is required. |
+| X25 | Default fixture plus a root `related_work.yml` (top-level `related_work`, one entry `{id: rw1, statement: "We extend [1].", refs: ["[1]"], relation: builds_on, comparative: false}`) declared as `paths.paper_related_work`; separately the same file declared as `paths.related_work`. | First: `related_work` is that one entry verbatim and `counts.related_work` `1`. Second: `related_work` `[]`, `counts.related_work` `0`, the file is not copied, and no warning is required (§3.14). |
 | X26 | bgpt `artifact/`; build. | `counts`: `claims` 20, `contributions` 6, `results` 38, `references` 58, `experiments` 0. Claims in file order (`claim-1`, `claim-2`, `claim-3`, `claim-5`, `claim-17`, `claim-4`, …, `claim-21`). `identity.display_title` `Beyond Language Models: Byte Models are Digital World Simulators` (`manifest-title`). `claim-4.paper_location.page` `6`; `claim-3.paper_location.page` `1`. `contributions[3].link_basis` `none`. `claim-1` has 4 inferred links, each with `sources` `[extractor-inference]`. `paths.figures` declared but no file: `figures` `[]` and a warning (no probe). `paper.pdf` `null` (declared, absent). `identity.origin.kind` `paper`. |
 | X27 | lfmu `artifact/`; build. | `identity.title` `paper`; `identity.display_title` `paper` with `display_title_source` `manifest-title` (the example ships no paper file); `counts.claims` 9; `counts.contributions` 3; `counts.results` 54. |
 | X28 | Default fixture plus `manifest.producer: {tool: x, anything: [1, 2]}` and an unknown claim field `foo: bar`. | `identity.producer` copied verbatim; `claims[0].extra` `{foo: bar}`. |
@@ -197,11 +197,48 @@ changes `input_digest` and `run.json.input_provenance`.
 | X79 | X60's site. | `#/evaluation/reconciliation/0` shows reconciliation record 0 with a link to its claim; `#/paper/references/<id>` for the first reference shows that reference's `raw` text. |
 | X80 | X42's site. | `#/provenance` shows `S-AI` as the run ID and `J-AI` labeled as the judge's run ID. |
 
-## 7.7 Scenario counts
+## 7.7 Amendment 1 scenarios
+
+These scenarios cover the review page, reading labels, page offsets, visual records, related
+work, and the two OPTIONAL human-record sections. They use the fixtures of §7.3 and the examples
+as above; "re-sealed" means steps 4–5 of the recipe.
+
+**L2.**
+
+| ID | Fixture / action | Expected |
+|----|------------------|----------|
+| X81 | S-AI with an output `evidence-packet.json` holding `total_chars: 9` and `excerpts` `[{citation: "paper:chars/6-9", text: "efg"}, {citation: "paper:chars/0-6", text: "ab\fcd\f"}]` (`\f` = U+000C); re-sealed. Separately, the same without the `paper:chars/0-6` excerpt. | First: `evaluation.paper_pages` `[0, 3, 6]`; `run/evidence-packet.json` is not written. Second: `paper_pages` `null`. |
+| X82 | S-AI with `visual-coverage.json` holding `status: completed`, `outcome_summary: {counts: [{outcome: agreement, label: "Agreement", count: 1}]}`, and `observations: [{page: 1, image_path: visual/page-1.png, check: captions, classification: agreement, region: [0.1, 0.2, 0.5, 0.6], region_status: model-reported}]`, with `visual/page-1.png` written and listed in `outputs`; re-sealed. | `evaluation.review.visual.paper.outcome_summary` equals the file's; `observations[0].image_path_asset.url` `run/visual/page-1.png` and the file is copied; `visual.artifact` `null` (its file has status `unavailable` and no `observations`). |
+| X83 | X42 with a publication-approval record (OPTIONAL §4.8) `{approved: true, run_id: S-AI, review_draft_sha256: <SHA-256 of review-draft.md>, approved_by: Reviewer A, approved_at: 2026-01-02T00:00:00Z}`; separately with `review_draft_sha256` of another file. | First: `evaluation.approval` `{approved_by: Reviewer A, approved_at: "2026-01-02T00:00:00Z", run_id: S-AI, review_draft_sha256: …}`; `evaluation.review.human_owned` still all `null`. Second: `evaluation.approval` `null` and a warning. |
+| X84 | Default fixture plus a references export holding `{id: r1, raw: x}`; mode A with a separate reference-check result (OPTIONAL §4.9) `{available: true, resolver: fixture, counts: {verified: 1}, verdicts: [{id: r1, raw: x, status: verified}], warnings: []}`; separately with the verdict's `raw` `y`. | First: `reference_check.source` `separate`; `references[0].check.status` `verified`. Second: `reference_check` `null`, `references[0].check` `null`, and a warning; exit `0`. |
+
+**L3.**
+
+| ID | Fixture / action | Expected |
+|----|------------------|----------|
+| X85 | X60's site. | The navigation has a Review entry. `#/review/acceptance` shows "Reasons to accept"; `#/review/no-such-bucket`, `#/evaluation/visual/100000`, and `#/paper/page/0` each show the "not found" notice. X66's site: `#/paper/page/2` shows the paper in the site's viewer with a URL ending in `#page=2` and a link that opens it in a new tab. |
+| X86 | X60's site, `#/review`. | Labeled "Reviewer (advisory)". The first synthesis heading is "Decision synthesis". Bucket headings appear in the order "Reasons to accept" (4), "Decision-critical concerns" (4), "Questions for the authors" (3), "Writing quality" (5), "Suggested improvements" (9), "Evidence review" (77), "Other findings" (27); counts as shown. `#/evaluation` shows the bucket headings with the same counts, each linking to the Review page. |
+| X87 | X60's site, `#/contributions`. | "Reviewed candidates (from analysis run `20261028T213946.517Z-1083`)" appears before a collapsed block headed "As extracted from the paper" with the count 6; the collapsed block holds the six artifact contributions with their statements as in `artifact/contributions.yml`. Each reviewed candidate shows "Merged from:" with at least one link to an artifact contribution and "not yet qualified by a human". The "Paper-only contribution review" block follows, collapsed. |
+| X88 | S-AI with the artifact declaring `K1` (`provenance: {kind: author-declaration}`, statement "We add caching.") and `contributions.json` declaring `N1` (`provenance: {kind: reviewer-inference, derived_from: [K1]}`) and `N2` (no `derived_from`), each with an assessment; re-sealed (steps 2–5). | `#/contributions` shows `K1` first and expanded, with "Reviewer assessment (advisory)" holding `N1` beneath it; "Additional reviewer candidates" lists `N2` only; no block headed "As extracted from the paper". `data.json` `contributions` and `contribution_review` are unchanged by the display. |
+| X89 | X74's site, `#/contributions`. | No heading and no link text contains the 64-hex-digit ID; the contribution is labeled "Contribution 1: …". `#/contributions/<encoded id>` shows the full ID. |
+| X90 | X26's site, `#/contributions` and `#/claims/claim-4`. | No page shows serialized data such as `"char_start":` or `{"page"`; `claim-4` shows its location as "p. 6" with its section when recorded. |
+| X91 | X81 (first case) with `findings.json` holding `F1` with `evidence` `[paper:chars/6-9]` and `evidence_quotes` `[{citation: "paper:chars/6-9", quote: "efg"}]`; re-sealed. Separately the second case of X81 with the same finding. | First: `#/findings/F1` shows "efg" as a quotation and "p. 3" linking to `#/paper/page/3`. Second: "efg" with "page not recorded". In both, the text `paper:chars/6-9` remains available on the citation. |
+| X92 | X25's first site, `#/paper`. | Shows "We extend [1]." under "Related-work positioning", with `builds_on` and the note that relation labels are heuristic. |
+| X93 | Default fixture plus `C2` ("Latency is 3 ms.", `stance: finding`); `C1` carries `contribution_rank: 2` and `C2` carries `contribution_rank: 1`. | `#/claims` lists `C1` before `C2`. Where a page shows `contribution_rank`, it is labeled as producer metadata and is not a link. |
+| X94 | X82 with `findings.json` holding `F1` with `evidence` `[review-record:visual/0]`; re-sealed. | `#/findings/F1` links "Visual record 0" to `#/evaluation/visual/0`, which shows the image and the region label `model-reported`. `#/evaluation` shows "Agreement" with the count 1 and "Counts are observations, not validated claims." |
+| X95 | X83's first site (OPTIONAL §4.8). | Overview and `#/evaluation` show "Publication approved by Reviewer A"; `#/evaluation` still shows the three "unset" lines. X83's second site shows no approval. |
+| X96 | X84's first site (OPTIONAL §4.9). | `#/paper` shows "separate pass" and the status `verified` for `r1`. |
+
+## 7.8 Scenario counts
 
 | Level | Scenarios |
 |-------|-----------|
 | L1 | X1–X41 (41) |
-| L2 | X42–X58 (17) |
+| L2 | X42–X58, X81–X82 (19) |
 | L2 +C | X59–X65 (7) |
-| L3 | X66–X80 (15) |
+| L2 OPTIONAL §4.8 / §4.9 | X83 / X84 |
+| L3 | X66–X80, X85–X94 (25) |
+| L3 OPTIONAL §4.8 / §4.9 | X95 / X96 |
+
+An explorer that implements an OPTIONAL section (§2.7, §4.8, §4.9) passes its scenarios; one
+that does not implements none of its behavior.
