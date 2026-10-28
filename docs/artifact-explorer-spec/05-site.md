@@ -36,7 +36,7 @@ The viewer is a single page with hash routes, so links survive static hosting:
 
 | Route | Section | Shows |
 |-------|---------|-------|
-| `#/overview` (default) | Overview | `display_title`, origin notice (§5.5), counts, evidence inventory, and, with a run, the run summary of §5.4.6 |
+| `#/overview` (default) | Overview | `display_title`, origin notice (§5.5), counts, evidence inventory (labeled "as declared in the manifest", §3.2), and, with a run, the run summary of §5.4.6 |
 | `#/evaluation` | Evaluation | §5.4.6; with no run: "No analysis run was supplied." |
 | `#/evaluation/reconciliation/<i>` | Evaluation | reconciliation record *i* (0-based position in `evaluation.review.reconciliation`), the target of `review-record:comparison/<i>` citations |
 | `#/contributions`, `#/contributions/<id>` | Contributions | §5.4.2 |
@@ -44,7 +44,7 @@ The viewer is a single page with hash routes, so links survive static hosting:
 | `#/paper`, `#/paper/references/<id>` | Paper | the paper PDF and/or source, title, authors, abstract, references with any check status; the second form scrolls to and highlights reference `<id>` (the target of `reference:<id>` citations) |
 | `#/materials`, `#/materials/<kind>/<id>` | Materials | results, experiments, exhibits, figures, datasets, traces, assessments (`<kind>` is the collection name) |
 | `#/provenance` | Provenance | identity, `producer`, `origin`, environment, research agent, journal, README, reflection, and the run record (§4.1) |
-| `#/findings/<id>` | — | one judge or reviewer finding (full ID), with its source label and links |
+| `#/findings/<id>` | — | one judge or reviewer finding (full ID), with its source label, links, and its `target`: a reference (§4.4 target grammar, cases 2 and 4) as a link, unresolved ones marked; free text as plain text after "About:"; nothing for no target or a malformed reference beyond the verbatim text |
 
 `<id>` is the record's full ID, percent-encoded as a URI component (contribution IDs contain `/`
 and are never truncated). An unknown route or ID shows a "not found" notice with a link to the
@@ -72,13 +72,23 @@ order within a group.
   the work makes no contribution."
 - Each artifact contribution shows its number (`index`), statement, `type`, `paper_ref`, its
   provenance label (§5.6), declared claims, inferred claims with attribution, `significance` and
-  `originality` exactly as declared, and its `link_basis` label (§4.5 item 4).
+  `originality` exactly as recorded, its `link_basis` label (§4.5 item 4), and, with a run, its
+  `review_finding_ids`. "Declared" claims are those the artifact's contribution record lists in
+  `supporting_claims`; the provenance label, not the word "declared", says who wrote the record
+  (§3.1).
 - With a run, a separate block "Reviewed candidates (from analysis run `<run_id>`)" lists the
-  run's contribution review per §4.5 items 2–6 and 9: for each candidate, the three axes as
-  separate statuses with their points and sources, `human_qualification` as "not yet qualified by
-  a human", and the sentence "Advisory assessments; the human reviewer decides whether each
-  contribution qualifies." When `paper_contribution_review` is non-null it is shown as a
-  separate, labeled block.
+  run's contribution review per §4.5 items 2–6 and 9. Its source is `evaluation.review.contribution_review`:
+  one entry per element of its `declarations`, in order, each paired with the element of
+  `assessments` whose `contribution_id` equals the declaration's `id` (a declaration with no
+  assessment shows "not assessed"; an assessment with no declaration is listed after the
+  declarations under its `contribution_id`). For each candidate: its statement and provenance
+  label (§5.6), the three axes as separate statuses with their points and sources,
+  `human_qualification` as "not yet qualified by a human", the review findings whose `joins` name
+  its ID (§4.4), and the sentence "Advisory assessments; the human reviewer decides whether each
+  contribution qualifies." When `contribution_review` has no `declarations` list (for example
+  the status object `{status: unavailable, reason}` of JR §6.2), the block shows its `status` and
+  `reason` instead. When `paper_contribution_review` is non-null it is shown, by the same rules,
+  as a separate block headed "Paper-only contribution review (from analysis run `<run_id>`)".
 - Contribution diagnostics follow, under §4.5 item 7, grouped and numbered as JR §5.13.5
   describes for the draft.
 
@@ -87,7 +97,7 @@ order within a group.
 Each record shows its copied fields and its cross-references as links. Evidence assets render by
 kind (§5.7). Experiments show disposition status; a non-active experiment shows its status and
 rationale prominently, since dropped work is part of the record (SDK §2.2.2). Datasets show
-`location.kind` and, for `external`, the `uri` as text (§6.3).
+`location.kind` and, for `external`, the `uri` as an external link (§6.3).
 
 ### 5.4.4 Paper
 
@@ -182,7 +192,7 @@ record) but MUST contain the phrase.
 | Kind | Rendering |
 |------|-----------|
 | `image` | inline `<img>` with alternative text (caption, else ID, else file name) |
-| `markdown` | rendered to HTML, then sanitized (§6.2); each link or image target is looked up verbatim in the asset reference's `embedded` map (§3.1) and rewritten to that URL; a target mapped to `null` or absent from the map is shown as text |
+| `markdown` | rendered as CommonMark with raw HTML disabled (§3.1), then sanitized (§6.2). Each link or image destination is looked up in the asset reference's `embedded` map: a non-`null` value is rewritten to its `url` (keeping the original `#fragment` for links); an external `http:`, `https:`, or `mailto:` link is an external link (§6.3); an external image is never loaded and is shown as its alternative text followed by its URL as text; any other target is shown as text |
 | `text` | escaped, preformatted; large files MAY be truncated in view with a link to the full file |
 | `pdf` | link, or embedded viewer from the copied file |
 | `other` | download link only |
