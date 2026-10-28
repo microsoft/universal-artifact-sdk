@@ -5,7 +5,6 @@ results:
 - id: R1
   validates:
   - claim-1
-  - claim-4
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -20,27 +19,9 @@ results:
         baseline retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00
         90.10±0.19 89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00
         0.00 36.89 '
-- id: R2
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 72.89
-  locators:
-    paper:
-      quote: 72.89±0.34
-      token_class: pm
-      page: 2
-      section: introduction
-      context: 'ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD
-        baseline retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00
-        90.10±0.19 89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00
-        0.00 36.89 '
 - id: R4
   validates:
-  - claim-1
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -58,8 +39,7 @@ results:
 - id: R6
   validates:
   - claim-1
-  - claim-4
-  - claim-7
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -74,43 +54,9 @@ results:
         baseline retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00
         90.10±0.19 89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00
         0.00 36.89 '
-- id: R10
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.6
-  locators:
-    paper:
-      quote: 95.60±0.00
-      token_class: pm
-      page: 2
-      section: introduction
-      context: 'ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD
-        baseline retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00
-        90.10±0.19 89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00
-        0.00 36.89 '
-- id: R14
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.77
-  locators:
-    paper:
-      quote: 95.77±0.00
-      token_class: pm
-      page: 2
-      section: introduction
-      context: 'ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD
-        baseline retrain LFSSD SSD Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00
-        90.10±0.19 89.03 89.06 Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00
-        0.00 36.89 '
 - id: R26
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -128,9 +74,8 @@ results:
 - id: R28
   validates:
   - claim-1
-  - claim-4
-  - claim-6
-  - claim-7
+  - claim-8
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -147,7 +92,7 @@ results:
         One face unlear'
 - id: R33
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -164,7 +109,7 @@ results:
         One face unlear'
 - id: R34
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -179,9 +124,26 @@ results:
         MIA 1 16.87% 0.00% 26.60 5 74.72% 0.00% 0.00 10 75.67% 0.00% 0.00 25 76.10%
         0.00% 0.00 50 76.32% 71.88% 29.40 Table 3: Face unlearning (class unlearning):
         One face unlear'
+- id: R39
+  validates:
+  - claim-9
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 98.42
+  locators:
+    paper:
+      quote: 98.42±0.13
+      token_class: pm
+      page: 5
+      section: references
+      context: 'LFSSD is deterministic, thus no ± reported. α Dr Accuracy Df Accuracy
+        MIA 1 16.87% 0.00% 26.60 5 74.72% 0.00% 0.00 10 75.67% 0.00% 0.00 25 76.10%
+        0.00% 0.00 50 76.32% 71.88% 29.40 Table 3: Face unlearning (class unlearning):
+        One face unlear'
 - id: R40
   validates:
-  - claim-7
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -199,9 +161,8 @@ results:
 - id: R42
   validates:
   - claim-1
-  - claim-4
-  - claim-6
-  - claim-7
+  - claim-8
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -216,9 +177,26 @@ results:
         MIA 1 16.87% 0.00% 26.60 5 74.72% 0.00% 0.00 10 75.67% 0.00% 0.00 25 76.10%
         0.00% 0.00 50 76.32% 71.88% 29.40 Table 3: Face unlearning (class unlearning):
         One face unlear'
+- id: R49
+  validates:
+  - claim-9
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 1.11
+  locators:
+    paper:
+      quote: 1.11±0.01
+      token_class: pm
+      page: 5
+      section: references
+      context: 'LFSSD is deterministic, thus no ± reported. α Dr Accuracy Df Accuracy
+        MIA 1 16.87% 0.00% 26.60 5 74.72% 0.00% 0.00 10 75.67% 0.00% 0.00 25 76.10%
+        0.00% 0.00 50 76.32% 71.88% 29.40 Table 3: Face unlearning (class unlearning):
+        One face unlear'
 - id: R50
   validates:
-  - claim-7
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -236,7 +214,6 @@ results:
 - id: R51
   validates:
   - claim-1
-  - claim-4
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -254,8 +231,7 @@ results:
 - id: R58
   validates:
   - claim-1
-  - claim-4
-  - claim-7
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -273,7 +249,6 @@ results:
 - id: R65
   validates:
   - claim-1
-  - claim-4
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -281,23 +256,6 @@ results:
   locators:
     paper:
       quote: 76.39±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
-- id: R66
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 72.89
-  locators:
-    paper:
-      quote: 72.89±0.34
       token_class: pm
       page: 5
       section: references
@@ -325,7 +283,6 @@ results:
 - id: R71
   validates:
   - claim-1
-  - claim-4
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -340,78 +297,9 @@ results:
         teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
         73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
         0.00±0.00 0.00±'
-- id: R79
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 72.9
-  locators:
-    paper:
-      quote: 72.90±0.45
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
-- id: R90
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 72.83
-  locators:
-    paper:
-      quote: 72.83±0.42
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
-- id: R100
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 2.2
-  locators:
-    paper:
-      quote: 2.20±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
-- id: R102
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 72.83
-  locators:
-    paper:
-      quote: 72.83±0.54
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
 - id: R121
   validates:
-  - claim-1
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -428,8 +316,7 @@ results:
         0.00±0.00 0.00±'
 - id: R129
   validates:
-  - claim-1
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -447,7 +334,6 @@ results:
 - id: R133
   validates:
   - claim-1
-  - claim-4
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -465,7 +351,6 @@ results:
 - id: R134
   validates:
   - claim-1
-  - claim-4
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -497,43 +382,9 @@ results:
         teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
         73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
         0.00±0.00 0.00±'
-- id: R139
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.6
-  locators:
-    paper:
-      quote: 95.60±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
-- id: R146
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 90.02
-  locators:
-    paper:
-      quote: 90.02±0.22
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 76.38±0.00 73.10±0.55 64.03±0.8 74.71±0.19
-        73.69±0.27 44.05*±0.00 75.80±0.00 Df 72.48±0.00 0.00±0.00 0.00±0.00 0.08±0.25
-        0.00±0.00 0.00±'
 - id: R151
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -550,8 +401,7 @@ results:
         0.00±0.00 0.00±'
 - id: R162
   validates:
-  - claim-1
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -569,8 +419,7 @@ results:
 - id: R192
   validates:
   - claim-1
-  - claim-4
-  - claim-7
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -587,7 +436,7 @@ results:
         83.19±0.00 Df 82.26±0.'
 - id: R232
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -602,26 +451,9 @@ results:
         vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
         RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
         83.19±0.00 Df 82.26±0.'
-- id: R258
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.73
-  locators:
-    paper:
-      quote: 95.73±0.00
-      token_class: pm
-      page: 6
-      section: references
-      context: 'ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2:
-        vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
-        RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
-        83.19±0.00 Df 82.26±0.'
 - id: R265
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -636,26 +468,9 @@ results:
         vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
         RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
         83.19±0.00 Df 82.26±0.'
-- id: R278
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.71
-  locators:
-    paper:
-      quote: 95.71±0.00
-      token_class: pm
-      page: 6
-      section: references
-      context: 'ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2:
-        vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
-        RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
-        83.19±0.00 Df 82.26±0.'
 - id: R302
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -670,43 +485,9 @@ results:
         vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
         RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
         83.19±0.00 Df 82.26±0.'
-- id: R313
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.59
-  locators:
-    paper:
-      quote: 95.59±0.00
-      token_class: pm
-      page: 6
-      section: references
-      context: 'ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2:
-        vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
-        RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
-        83.19±0.00 Df 82.26±0.'
-- id: R318
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.64
-  locators:
-    paper:
-      quote: 95.64±0.00
-      token_class: pm
-      page: 6
-      section: references
-      context: 'ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2:
-        vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
-        RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
-        83.19±0.00 Df 82.26±0.'
 - id: R329
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -721,26 +502,9 @@ results:
         vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD
         RN ED Dr 82.56±0.00 82.13±0.23 73.19±1.08 82.04±0.29 81.34±0.18 83.15±0.00
         83.19±0.00 Df 82.26±0.'
-- id: R337
-  validates:
-  - claim-1
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 72.94
-  locators:
-    paper:
-      quote: 72.94±0.82
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
 - id: R359
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -755,9 +519,26 @@ results:
         teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
         81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
         37.70±9.59 8.85'
+- id: R361
+  validates:
+  - claim-1
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 79.58
+  locators:
+    paper:
+      quote: 79.58±0.00
+      token_class: pm
+      page: 5
+      section: references
+      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
+        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
+        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
+        37.70±9.59 8.85'
 - id: R362
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -775,8 +556,7 @@ results:
 - id: R368
   validates:
   - claim-1
-  - claim-4
-  - claim-7
+  - claim-9
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -793,7 +573,7 @@ results:
         37.70±9.59 8.85'
 - id: R369
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -808,26 +588,9 @@ results:
         teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
         81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
         37.70±9.59 8.85'
-- id: R375
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 3.4
-  locators:
-    paper:
-      quote: 3.40±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
 - id: R379
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -844,7 +607,7 @@ results:
         37.70±9.59 8.85'
 - id: R395
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -861,7 +624,7 @@ results:
         37.70±9.59 8.85'
 - id: R397
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -878,7 +641,7 @@ results:
         37.70±9.59 8.85'
 - id: R398
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -893,67 +656,16 @@ results:
         teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
         81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
         37.70±9.59 8.85'
-- id: R432
+- id: R465
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
-  reported_value: 2.2
+  reported_value: 14.58
   locators:
     paper:
-      quote: 2.20±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
-- id: R433
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.69
-  locators:
-    paper:
-      quote: 95.69±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
-- id: R454
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.77
-  locators:
-    paper:
-      quote: 95.77±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
-- id: R459
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.68
-  locators:
-    paper:
-      quote: 95.68±0.00
+      quote: 14.58±0.00
       token_class: pm
       page: 5
       section: references
@@ -963,7 +675,7 @@ results:
         37.70±9.59 8.85'
 - id: R466
   validates:
-  - claim-4
+  - claim-1
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -978,77 +690,9 @@ results:
         teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
         81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
         37.70±9.59 8.85'
-- id: R473
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 5.8
-  locators:
-    paper:
-      quote: 5.80±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
-- id: R479
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.66
-  locators:
-    paper:
-      quote: 95.66±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
-- id: R493
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.73
-  locators:
-    paper:
-      quote: 95.73±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
-- id: R511
-  validates:
-  - claim-4
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 95.67
-  locators:
-    paper:
-      quote: 95.67±0.00
-      token_class: pm
-      page: 5
-      section: references
-      context: 'MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune
-        teacher amnesiac SSD LFSSD RN baby Dr 82.45±0.00 81.45±0.3 72.94±0.82 81.25±0.19
-        81.02±0.2 79.25±0.00 78.93±0.00 Df 86.98±0.00 80.03±3.4 66.52±6.19 75.17±2.66
-        37.70±9.59 8.85'
 - id: R532
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1065,8 +709,7 @@ results:
         90.00±2.73 59.04±'
 - id: R533
   validates:
-  - claim-1
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1083,7 +726,7 @@ results:
         90.00±2.73 59.04±'
 - id: R535
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1100,7 +743,7 @@ results:
         90.00±2.73 59.04±'
 - id: R542
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1117,7 +760,7 @@ results:
         90.00±2.73 59.04±'
 - id: R549
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1134,7 +777,7 @@ results:
         90.00±2.73 59.04±'
 - id: R551
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1151,7 +794,7 @@ results:
         90.00±2.73 59.04±'
 - id: R556
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1168,7 +811,7 @@ results:
         90.00±2.73 59.04±'
 - id: R557
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1186,7 +829,7 @@ results:
       - Table 2
 - id: R558
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1204,7 +847,7 @@ results:
       - Table 2
 - id: R559
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1222,7 +865,7 @@ results:
       - Table 2
 - id: R560
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1240,7 +883,7 @@ results:
       - Table 2
 - id: R561
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1258,7 +901,7 @@ results:
       - Table 2
 - id: R562
   validates:
-  - claim-6
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1276,7 +919,7 @@ results:
       - Table 2
 - id: R563
   validates:
-  - claim-8
+  - claim-10
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -1285,7 +928,7 @@ results:
     paper:
       quote: '99.52'
       page: 7
-      section: evaluation
+      section: body
       context: 'Table 7: Random sample unlearning on Cifar10 (100 samples).'
       refs:
       - Table 7

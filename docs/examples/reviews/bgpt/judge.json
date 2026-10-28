@@ -1,8 +1,8 @@
 {
   "_generated": "DO NOT EDIT \u2014 produced by `reference-judge`. Re-run the judge to regenerate.",
   "format_version": "evaluable-artifact/v3",
-  "run_id": "20261027T214351.399Z-75bf",
-  "generated_at": "2026-10-27T21:43:51Z",
+  "run_id": "20261028T215337.690Z-e243",
+  "generated_at": "2026-10-28T21:53:37Z",
   "judge_version": "0.1.0",
   "identity": {
     "id": "999e3d81d95a",
@@ -149,31 +149,6 @@
       "display": {}
     },
     {
-      "id": "claim_validators/claim-4.v1",
-      "check": "claim_validators",
-      "verdict": "advisory",
-      "message": "claim claim-4: attest[provenance] \u2014 provenance: 8 input(s) resolve to shipped, non-empty evidence.",
-      "evidence": [
-        "claims.yml#claim-4",
-        "results.yml#R9",
-        "results.yml#R10",
-        "results.yml#R11",
-        "results.yml#R40",
-        "results.yml#R41",
-        "results.yml#R44",
-        "results.yml#R45",
-        "results.yml#R46"
-      ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-4.v1",
-      "grounded_in": "S1, S3",
-      "validation_mode": "attest",
-      "mode_verdict": "attested",
-      "method_badge": "attested",
-      "display_weight": 1.0,
-      "presentation_role": null,
-      "display": {}
-    },
-    {
       "id": "claim_validators/claim-5.v1",
       "check": "claim_validators",
       "verdict": "advisory",
@@ -194,39 +169,80 @@
       "display": {}
     },
     {
-      "id": "claim_validators/claim-15.v1",
+      "id": "claim_validators/claim-17.v1",
       "check": "claim_validators",
       "verdict": "advisory",
-      "message": "claim claim-15: attest[provenance] \u2014 provenance: 3 input(s) resolve to shipped, non-empty evidence.",
+      "message": "claim claim-17: attest[provenance] \u2014 provenance: 2 input(s) resolve to shipped, non-empty evidence.",
       "evidence": [
-        "claims.yml#claim-15",
+        "claims.yml#claim-17",
         "results.yml#R60",
-        "results.yml#R61",
         "results.yml#R62"
       ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-15.v1",
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-17.v1",
       "grounded_in": "S1, S3",
       "validation_mode": "attest",
       "mode_verdict": "attested",
       "method_badge": "attested",
-      "display_weight": 0.9725,
+      "display_weight": 0.9625,
       "presentation_role": null,
       "display": {}
     },
     {
-      "id": "claim_validators/claim-16.v1",
+      "id": "claim_validators/claim-4.v1",
+      "check": "claim_validators",
+      "verdict": "advisory",
+      "message": "claim claim-4: attest[provenance] \u2014 provenance: 8 input(s) resolve to shipped, non-empty evidence.",
+      "evidence": [
+        "claims.yml#claim-4",
+        "results.yml#R9",
+        "results.yml#R10",
+        "results.yml#R11",
+        "results.yml#R40",
+        "results.yml#R41",
+        "results.yml#R44",
+        "results.yml#R45",
+        "results.yml#R46"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-4.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "attested",
+      "method_badge": "attested",
+      "display_weight": 0.96,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/claim-18.v1",
       "check": "claim_validators",
       "verdict": "unverifiable",
-      "message": "claim claim-16: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "message": "claim claim-18: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
       "evidence": [
-        "claims.yml#claim-16"
+        "claims.yml#claim-18"
       ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-16.v1",
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-18.v1",
       "grounded_in": "S1, S3",
       "validation_mode": "attest",
       "mode_verdict": "unverifiable",
       "method_badge": null,
-      "display_weight": 0.945,
+      "display_weight": 0.9525,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/claim-13.v1",
+      "check": "claim_validators",
+      "verdict": "unverifiable",
+      "message": "claim claim-13: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "evidence": [
+        "claims.yml#claim-13"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-13.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "unverifiable",
+      "method_badge": null,
+      "display_weight": 0.6425,
       "presentation_role": null,
       "display": {}
     },
@@ -246,63 +262,25 @@
       "validation_mode": "attest",
       "mode_verdict": "attested",
       "method_badge": "attested",
-      "display_weight": 0.905,
+      "display_weight": 0.335,
       "presentation_role": null,
       "display": {}
     },
     {
-      "id": "claim_validators/claim-18.v1",
-      "check": "claim_validators",
-      "verdict": "unverifiable",
-      "message": "claim claim-18: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
-      "evidence": [
-        "claims.yml#claim-18"
-      ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-18.v1",
-      "grounded_in": "S1, S3",
-      "validation_mode": "attest",
-      "mode_verdict": "unverifiable",
-      "method_badge": null,
-      "display_weight": 0.6425,
-      "presentation_role": null,
-      "display": {}
-    },
-    {
-      "id": "claim_validators/claim-10.v1",
+      "id": "claim_validators/claim-15.v1",
       "check": "claim_validators",
       "verdict": "advisory",
-      "message": "claim claim-10: attest[provenance] \u2014 provenance: 4 input(s) resolve to shipped, non-empty evidence.",
+      "message": "claim claim-15: attest[provenance] \u2014 provenance: 6 input(s) resolve to shipped, non-empty evidence.",
       "evidence": [
-        "claims.yml#claim-10",
-        "results.yml#R5",
-        "results.yml#R55",
-        "results.yml#R57",
-        "results.yml#R59"
-      ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-10.v1",
-      "grounded_in": "S1, S3",
-      "validation_mode": "attest",
-      "mode_verdict": "attested",
-      "method_badge": "attested",
-      "display_weight": 0.3325,
-      "presentation_role": null,
-      "display": {}
-    },
-    {
-      "id": "claim_validators/claim-13.v1",
-      "check": "claim_validators",
-      "verdict": "advisory",
-      "message": "claim claim-13: attest[provenance] \u2014 provenance: 6 input(s) resolve to shipped, non-empty evidence.",
-      "evidence": [
-        "claims.yml#claim-13",
+        "claims.yml#claim-15",
+        "results.yml#R65",
         "results.yml#R75",
         "results.yml#R76",
         "results.yml#R77",
         "results.yml#R78",
-        "results.yml#R79",
-        "results.yml#R80"
+        "results.yml#R79"
       ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-13.v1",
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-15.v1",
       "grounded_in": "S1, S3",
       "validation_mode": "attest",
       "mode_verdict": "attested",
@@ -332,12 +310,13 @@
       "id": "claim_validators/claim-8.v1",
       "check": "claim_validators",
       "verdict": "advisory",
-      "message": "claim claim-8: attest[provenance] \u2014 provenance: 3 input(s) resolve to shipped, non-empty evidence.",
+      "message": "claim claim-8: attest[provenance] \u2014 provenance: 4 input(s) resolve to shipped, non-empty evidence.",
       "evidence": [
         "claims.yml#claim-8",
         "results.yml#R34",
         "results.yml#R35",
-        "results.yml#R52"
+        "results.yml#R52",
+        "results.yml#R53"
       ],
       "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-8.v1",
       "grounded_in": "S1, S3",
@@ -345,6 +324,60 @@
       "mode_verdict": "attested",
       "method_badge": "attested",
       "display_weight": 0.33,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/claim-10.v1",
+      "check": "claim_validators",
+      "verdict": "unverifiable",
+      "message": "claim claim-10: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "evidence": [
+        "claims.yml#claim-10"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-10.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "unverifiable",
+      "method_badge": null,
+      "display_weight": 0.33,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/claim-12.v1",
+      "check": "claim_validators",
+      "verdict": "advisory",
+      "message": "claim claim-12: attest[provenance] \u2014 provenance: 3 input(s) resolve to shipped, non-empty evidence.",
+      "evidence": [
+        "claims.yml#claim-12",
+        "results.yml#R5",
+        "results.yml#R57",
+        "results.yml#R59"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-12.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "attested",
+      "method_badge": "attested",
+      "display_weight": 0.3275,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/claim-14.v1",
+      "check": "claim_validators",
+      "verdict": "unverifiable",
+      "message": "claim claim-14: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "evidence": [
+        "claims.yml#claim-14"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-14.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "unverifiable",
+      "method_badge": null,
+      "display_weight": 0.3275,
       "presentation_role": null,
       "display": {}
     },
@@ -361,24 +394,7 @@
       "validation_mode": "attest",
       "mode_verdict": "unverifiable",
       "method_badge": null,
-      "display_weight": 0.33,
-      "presentation_role": null,
-      "display": {}
-    },
-    {
-      "id": "claim_validators/claim-12.v1",
-      "check": "claim_validators",
-      "verdict": "unverifiable",
-      "message": "claim claim-12: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
-      "evidence": [
-        "claims.yml#claim-12"
-      ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-12.v1",
-      "grounded_in": "S1, S3",
-      "validation_mode": "attest",
-      "mode_verdict": "unverifiable",
-      "method_badge": null,
-      "display_weight": 0.3275,
+      "display_weight": 0.325,
       "presentation_role": null,
       "display": {}
     },
@@ -402,31 +418,53 @@
       "display": {}
     },
     {
-      "id": "claim_validators/claim-14.v1",
+      "id": "claim_validators/claim-16.v1",
       "check": "claim_validators",
-      "verdict": "unverifiable",
-      "message": "claim claim-14: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "verdict": "advisory",
+      "message": "claim claim-16: attest[provenance] \u2014 provenance: 5 input(s) resolve to shipped, non-empty evidence.",
       "evidence": [
-        "claims.yml#claim-14"
+        "claims.yml#claim-16",
+        "results.yml#R1",
+        "results.yml#R65",
+        "results.yml#R80",
+        "results.yml#R81",
+        "results.yml#R82"
       ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-14.v1",
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-16.v1",
       "grounded_in": "S1, S3",
       "validation_mode": "attest",
-      "mode_verdict": "unverifiable",
-      "method_badge": null,
+      "mode_verdict": "attested",
+      "method_badge": "attested",
       "display_weight": 0.3225,
       "presentation_role": null,
       "display": {}
     },
     {
-      "id": "claim_validators/claim-19.v1",
+      "id": "claim_validators/claim-20.v1",
       "check": "claim_validators",
       "verdict": "unverifiable",
-      "message": "claim claim-19: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "message": "claim claim-20: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
       "evidence": [
-        "claims.yml#claim-19"
+        "claims.yml#claim-20"
       ],
-      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-19.v1",
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-20.v1",
+      "grounded_in": "S1, S3",
+      "validation_mode": "attest",
+      "mode_verdict": "unverifiable",
+      "method_badge": null,
+      "display_weight": 0.115,
+      "presentation_role": null,
+      "display": {}
+    },
+    {
+      "id": "claim_validators/claim-21.v1",
+      "check": "claim_validators",
+      "verdict": "unverifiable",
+      "message": "claim claim-21: attest[provenance] could not be established \u2014 no inputs declared to attest (integrity flag; never a silent pass).",
+      "evidence": [
+        "claims.yml#claim-21"
+      ],
+      "command_to_reproduce": "reference-judge artifact --explain claim_validators/claim-21.v1",
       "grounded_in": "S1, S3",
       "validation_mode": "attest",
       "mode_verdict": "unverifiable",

@@ -2,6 +2,22 @@ _generated: DO NOT EDIT — produced by `paper-to-artifact` from paper.pdf. Ever
   here is GENERATED and attested (the paper's own statements), never independently
   reproduced. Re-run the adapter to regenerate.
 results:
+- id: R1
+  validates:
+  - claim-16
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.0011
+  locators:
+    paper:
+      quote: '0.0011'
+      token_class: metric
+      page: 1
+      section: abstract
+      context: It has almost flawlessly replicated the process of converting symbolic
+        music data, achieving a low error rate of 0.0011 bits per byte in converting
+        ABC notation to MIDI format.
 - id: R2
   validates:
   - claim-2
@@ -19,7 +35,7 @@ results:
         CPU behaviour, with an accuracy exceeding 99.99% in executing various operations.
 - id: R5
   validates:
-  - claim-10
+  - claim-12
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -246,22 +262,22 @@ results:
       context: For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and
         accuracy of 91.75%, outperforms other variants but falls short of the per
         formance demonstrated by bGPTwiki, which is specifically tuned for text data.
-- id: R55
+- id: R53
   validates:
-  - claim-10
+  - claim-8
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
-  reported_value: 80.74
+  reported_value: 91.75
   locators:
     paper:
-      quote: '80.74'
-      token_class: metric
-      page: 7
+      quote: 91.75%
+      token_class: percentage
+      page: 6
       section: results
-      context: 'Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri
-        0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage
-        and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
+      context: For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and
+        accuracy of 91.75%, outperforms other variants but falls short of the per
+        formance demonstrated by bGPTwiki, which is specifically tuned for text data.
 - id: R56
   validates:
   - claim-11
@@ -280,7 +296,7 @@ results:
         and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
 - id: R57
   validates:
-  - claim-10
+  - claim-12
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -312,7 +328,7 @@ results:
         and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
 - id: R59
   validates:
-  - claim-10
+  - claim-12
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -328,7 +344,7 @@ results:
         and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance '
 - id: R60
   validates:
-  - claim-15
+  - claim-17
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -342,25 +358,9 @@ results:
       context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
         99.9961 2021), byte models are naturally suited for this task, as they can
         directly work with binary data.
-- id: R61
-  validates:
-  - claim-15
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 27.2404
-  locators:
-    paper:
-      quote: '27.2404'
-      token_class: metric
-      page: 7
-      section: data conversion
-      context: Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969
-        99.9961 2021), byte models are naturally suited for this task, as they can
-        directly work with binary data.
 - id: R62
   validates:
-  - claim-15
+  - claim-17
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -377,6 +377,8 @@ results:
 - id: R65
   validates:
   - claim-1
+  - claim-15
+  - claim-16
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -401,7 +403,7 @@ results:
   locators:
     paper:
       quote: '0.2381'
-      page: 0
+      page: 8
       section: evaluation
       context: The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC
         to MIDI conversion, which is extremely close to perfect performance (where
@@ -415,11 +417,11 @@ results:
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
-  reported_value: 99.9702
+  reported_value: 99.97
   locators:
     paper:
-      quote: '99.9702'
-      page: 0
+      quote: '99.97'
+      page: 8
       section: evaluation
       context: Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%),
         suggesting an efficiency beyond sim- ple memorization, given that each test
@@ -469,7 +471,7 @@ results:
   locators:
     paper:
       quote: '88.69'
-      page: 0
+      page: 6
       section: evaluation
       context: How- ever, in the analysis of CIFAR-10, a noticeable difference is
         seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.
@@ -485,7 +487,7 @@ results:
   locators:
     paper:
       quote: '98.13'
-      page: 0
+      page: 6
       section: evaluation
       context: How- ever, in the analysis of CIFAR-10, a noticeable difference is
         seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.
@@ -493,7 +495,39 @@ results:
       - Table 3
 - id: R75
   validates:
-  - claim-13
+  - claim-15
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.2381
+  locators:
+    paper:
+      quote: '0.2381'
+      page: 8
+      section: evaluation
+      context: From Table 5, we see that as the scale of data increases, BPB for both
+        ABC to MIDI and MIDI to ABC conversions decrease significantly.
+      refs:
+      - Table 5
+- id: R76
+  validates:
+  - claim-15
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.0202
+  locators:
+    paper:
+      quote: '0.0202'
+      page: 8
+      section: evaluation
+      context: From Table 5, we see that as the scale of data increases, BPB for both
+        ABC to MIDI and MIDI to ABC conversions decrease significantly.
+      refs:
+      - Table 5
+- id: R77
+  validates:
+  - claim-15
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -507,9 +541,9 @@ results:
         ABC to MIDI and MIDI to ABC conversions decrease significantly.
       refs:
       - Table 5
-- id: R76
+- id: R78
   validates:
-  - claim-13
+  - claim-15
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -523,9 +557,9 @@ results:
         ABC to MIDI and MIDI to ABC conversions decrease significantly.
       refs:
       - Table 5
-- id: R77
+- id: R79
   validates:
-  - claim-13
+  - claim-15
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -539,41 +573,41 @@ results:
         ABC to MIDI and MIDI to ABC conversions decrease significantly.
       refs:
       - Table 5
-- id: R78
-  validates:
-  - claim-13
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 1.1227
-  locators:
-    paper:
-      quote: '1.1227'
-      page: 8
-      section: evaluation
-      context: From Table 5, we see that as the scale of data increases, BPB for both
-        ABC to MIDI and MIDI to ABC conversions decrease significantly.
-      refs:
-      - Table 5
-- id: R79
-  validates:
-  - claim-13
-  kind: metrics
-  validation_mode: attest
-  evidence: paper.pdf
-  reported_value: 0.1763
-  locators:
-    paper:
-      quote: '0.1763'
-      page: 8
-      section: evaluation
-      context: From Table 5, we see that as the scale of data increases, BPB for both
-        ABC to MIDI and MIDI to ABC conversions decrease significantly.
-      refs:
-      - Table 5
 - id: R80
   validates:
-  - claim-13
+  - claim-16
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.7362
+  locators:
+    paper:
+      quote: '0.7362'
+      page: 8
+      section: evaluation
+      context: 'Table 5 suggests consistently higher BPB for ABC in both directions,
+        which is likely due to two factors:'
+      refs:
+      - Table 5
+- id: R81
+  validates:
+  - claim-16
+  kind: metrics
+  validation_mode: attest
+  evidence: paper.pdf
+  reported_value: 0.1341
+  locators:
+    paper:
+      quote: '0.1341'
+      page: 8
+      section: evaluation
+      context: 'Table 5 suggests consistently higher BPB for ABC in both directions,
+        which is likely due to two factors:'
+      refs:
+      - Table 5
+- id: R82
+  validates:
+  - claim-16
   kind: metrics
   validation_mode: attest
   evidence: paper.pdf
@@ -583,7 +617,7 @@ results:
       quote: '0.0789'
       page: 8
       section: evaluation
-      context: From Table 5, we see that as the scale of data increases, BPB for both
-        ABC to MIDI and MIDI to ABC conversions decrease significantly.
+      context: 'Table 5 suggests consistently higher BPB for ABC in both directions,
+        which is likely due to two factors:'
       refs:
       - Table 5

@@ -12,9 +12,8 @@
         "claim-1",
         "claim-2",
         "claim-3",
-        "claim-4",
         "claim-5",
-        "claim-6"
+        "claim-4"
       ],
       "paper_ref": {
         "char_start": 3380,
@@ -29,7 +28,6 @@
         "derived_from": [
           "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22",
           "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
-          "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
           "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
         ],
         "locator": {
@@ -46,32 +44,8 @@
               "claim-1",
               "claim-2",
               "claim-3",
-              "claim-4",
-              "claim-5"
-            ]
-          },
-          {
-            "kind": "extractor-inference",
-            "method": "llm-extractor/v1",
-            "model": "redacted-model",
-            "claims": [
-              "claim-1",
-              "claim-2",
-              "claim-3",
-              "claim-4",
-              "claim-5"
-            ]
-          },
-          {
-            "kind": "extractor-inference",
-            "method": "llm-extractor/v1",
-            "model": "redacted-model",
-            "claims": [
-              "claim-1",
-              "claim-2",
-              "claim-4",
               "claim-5",
-              "claim-6"
+              "claim-4"
             ]
           },
           {
@@ -82,26 +56,45 @@
               "claim-1",
               "claim-2",
               "claim-3",
-              "claim-4",
-              "claim-5"
+              "claim-5",
+              "claim-4"
+            ]
+          },
+          {
+            "kind": "extractor-inference",
+            "method": "llm-extractor/v1",
+            "model": "redacted-model",
+            "claims": [
+              "claim-1",
+              "claim-2",
+              "claim-3",
+              "claim-5",
+              "claim-4"
             ]
           }
         ]
       },
       "display": {
-        "title": "bGPT: byte-level model via next byte prediction",
-        "summary": "Introduces bGPT, a hierarchical patch-based Transformer trained with next byte prediction on native binary data to model and simulate the digital world, treating all data types as byte sequences.",
+        "title": "bGPT: next byte prediction model for digital world simulation",
+        "summary": "Introduces bGPT, a model trained via next byte prediction on native binary data to process digital media and simulate digital systems, treating all data types as byte sequences in a single framework.",
         "source": "contribution-digest/v1"
       }
     },
     {
-      "id": "contribution/461a0bf1ad0b19af91355a33ac898117d1b4692112d9f3c654a34579a923316c",
-      "statement": "Subsequently, we present the training objectives of bGPT, including generative modelling and classification.",
+      "id": "contribution/eebb9fdd5226df6dc63ffdb99c307239476000f85a46cc9a5cf6d4a37595c42a",
+      "statement": "We start by present- ing its hierarchical Transformer framework, which segments byte sequences into patches to manage computational effi- ciency. Subsequently, we present the training objectives of bGPT, including generative modelling and classification.",
       "supporting_claims": [],
+      "inferred_supporting_claims": [
+        "claim-1",
+        "claim-2",
+        "claim-3",
+        "claim-5",
+        "claim-4"
+      ],
       "paper_ref": {
-        "char_start": 10741,
+        "char_start": 10595,
         "char_end": 10849,
-        "quote": "Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification."
+        "quote": "We start by present-\ning its hierarchical Transformer framework, which segments\nbyte sequences into patches to manage computational effi-\nciency. Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification."
       },
       "provenance": {
         "kind": "reviewer-inference",
@@ -109,17 +102,32 @@
         "method": "contribution-digest/v1",
         "model": "redacted-model",
         "derived_from": [
+          "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
           "contribution/461a0bf1ad0b19af91355a33ac898117d1b4692112d9f3c654a34579a923316c"
         ],
         "locator": {
-          "char_start": 10741,
+          "char_start": 10595,
           "char_end": 10849,
-          "quote": "Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification."
-        }
+          "quote": "We start by present-\ning its hierarchical Transformer framework, which segments\nbyte sequences into patches to manage computational effi-\nciency. Subsequently, we present the training objectives of\nbGPT, including generative modelling and classification."
+        },
+        "claim_link_sources": [
+          {
+            "kind": "extractor-inference",
+            "method": "llm-extractor/v1",
+            "model": "redacted-model",
+            "claims": [
+              "claim-1",
+              "claim-2",
+              "claim-3",
+              "claim-5",
+              "claim-4"
+            ]
+          }
+        ]
       },
       "display": {
-        "title": "Generative and classification training objectives for byte models",
-        "summary": "Defines a generative next-byte objective followed by a classification objective using pooled patch-level features for categorizing byte sequences.",
+        "title": "Hierarchical patch-based byte Transformer with generative and classification objectives",
+        "summary": "bGPT segments byte sequences into fixed-size patches, using a linear projection, patch-level decoder and byte-level decoder, trained with next byte prediction and then adapted to classification via pooled features.",
         "source": "contribution-digest/v1"
       }
     },
@@ -131,11 +139,11 @@
         "claim-3",
         "claim-4",
         "claim-5",
-        "claim-18",
+        "claim-13",
         "claim-7",
-        "claim-8",
-        "claim-9",
-        "claim-10"
+        "claim-10",
+        "claim-12",
+        "claim-8"
       ],
       "paper_ref": {
         "char_start": 36919,
@@ -162,18 +170,18 @@
               "claim-3",
               "claim-4",
               "claim-5",
-              "claim-18",
+              "claim-13",
               "claim-7",
-              "claim-8",
-              "claim-9",
-              "claim-10"
+              "claim-10",
+              "claim-12",
+              "claim-8"
             ]
           }
         ]
       },
       "display": {
-        "title": "Modality-agnostic digital media processing and cross-modal transfer",
-        "summary": "Shows a single byte model handles text, audio and image generation and classification without modality-specific designs, and analyzes cross-modal knowledge transfer between pre-training and fine-tuning modalities.",
+        "title": "Byte-level digital media modelling with cross-modal knowledge transfer",
+        "summary": "bGPT performs generative modelling and classification on text, audio and images at the byte level without modality-specific design, approaching specialized models and showing modality-agnostic knowledge transfer.",
         "source": "contribution-digest/v1"
       }
     },
@@ -183,9 +191,8 @@
       "supporting_claims": [],
       "inferred_supporting_claims": [
         "claim-1",
-        "claim-12",
-        "claim-13",
-        "claim-14"
+        "claim-14",
+        "claim-15"
       ],
       "paper_ref": {
         "char_start": 746,
@@ -210,32 +217,32 @@
             "model": "redacted-model",
             "claims": [
               "claim-1",
-              "claim-12",
-              "claim-13",
-              "claim-14"
+              "claim-14",
+              "claim-15"
             ]
           }
         ]
       },
       "display": {
-        "title": "Algorithm simulation via ABC-MIDI data conversion",
-        "summary": "Applies byte modelling to simulate and reverse-engineer a symbolic music conversion algorithm between ABC notation and binary MIDI files.",
+        "title": "Algorithm simulation via ABC-MIDI symbolic music conversion",
+        "summary": "bGPT learns to simulate and reverse-engineer conversion between text-based ABC notation and binary MIDI files, reaching 0.0011 bits per byte for ABC-to-MIDI conversion.",
         "source": "contribution-digest/v1"
       }
     },
     {
-      "id": "contribution/c44dc1966499c65b567e60c698823e5627aca39ce3581e1f2557a436e80e3e89",
-      "statement": "For CPU state modelling, we introduce the CPU States dataset (with 2.1 million instances), offering a simplified representation of CPU behaviour for ease of data collec- tion and evaluation",
+      "id": "contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca",
+      "statement": "For CPU state modelling, we introduce the CPU States dataset (with 2.1 million instances), offering a simplified representation of CPU behaviour for ease of data collec- tion and evaluation.",
       "supporting_claims": [],
       "inferred_supporting_claims": [
         "claim-2",
-        "claim-15",
-        "claim-16"
+        "claim-17",
+        "claim-18",
+        "claim-20"
       ],
       "paper_ref": {
         "char_start": 20705,
-        "char_end": 20894,
-        "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation"
+        "char_end": 20895,
+        "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation."
       },
       "provenance": {
         "kind": "reviewer-inference",
@@ -247,8 +254,8 @@
         ],
         "locator": {
           "char_start": 20705,
-          "char_end": 20894,
-          "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation"
+          "char_end": 20895,
+          "quote": "For CPU state modelling, we introduce the CPU States\ndataset (with 2.1 million instances), offering a simplified\nrepresentation of CPU behaviour for ease of data collec-\ntion and evaluation."
         },
         "claim_link_sources": [
           {
@@ -257,31 +264,39 @@
             "model": "redacted-model",
             "claims": [
               "claim-2",
-              "claim-15",
-              "claim-16"
+              "claim-17",
+              "claim-18"
+            ]
+          },
+          {
+            "kind": "reviewer-inference",
+            "method": "contribution-digest/v1",
+            "model": "redacted-model",
+            "claims": [
+              "claim-20"
             ]
           }
         ]
       },
       "display": {
-        "title": "CPU States dataset for hardware simulation",
-        "summary": "Introduces a 2.1-million-instance synthetic dataset pairing memory blocks of machine instructions with sequences of 16-byte CPU register states.",
+        "title": "CPU States dataset for hardware behaviour modelling",
+        "summary": "Introduces a 2.1-million-instance dataset pairing machine-instruction memory blocks with sequences of 16-byte CPU register states for a simplified CPU.",
         "source": "contribution-digest/v1"
       }
     },
     {
-      "id": "contribution/4e91bd8dd09545cfa2859fc83a6af0477062b9d0c9892700022177cd55f16936",
-      "statement": "In addition, bGPT demonstrates exceptional capabilities in simulating CPU be- haviour, with an accuracy exceeding 99.99% in executing various operations",
+      "id": "contribution/51d758c3e8f080fc9cac3d547fa83910a5f4bbc90ad83de21ac5c6c1a2a647c3",
+      "statement": "In addition, bGPT demonstrates exceptional capabilities in simulating CPU be- haviour, with an accuracy exceeding 99.99% in executing various operations.",
       "supporting_claims": [],
       "inferred_supporting_claims": [
         "claim-2",
-        "claim-15",
-        "claim-16"
+        "claim-17",
+        "claim-18"
       ],
       "paper_ref": {
         "char_start": 923,
-        "char_end": 1075,
-        "quote": "In addition, bGPT demonstrates\nexceptional capabilities in simulating CPU be-\nhaviour, with an accuracy exceeding 99.99% in\nexecuting various operations"
+        "char_end": 1076,
+        "quote": "In addition, bGPT demonstrates\nexceptional capabilities in simulating CPU be-\nhaviour, with an accuracy exceeding 99.99% in\nexecuting various operations."
       },
       "provenance": {
         "kind": "reviewer-inference",
@@ -291,8 +306,8 @@
         "derived_from": [],
         "locator": {
           "char_start": 923,
-          "char_end": 1075,
-          "quote": "In addition, bGPT demonstrates\nexceptional capabilities in simulating CPU be-\nhaviour, with an accuracy exceeding 99.99% in\nexecuting various operations"
+          "char_end": 1076,
+          "quote": "In addition, bGPT demonstrates\nexceptional capabilities in simulating CPU be-\nhaviour, with an accuracy exceeding 99.99% in\nexecuting various operations."
         },
         "claim_link_sources": [
           {
@@ -301,15 +316,15 @@
             "model": "redacted-model",
             "claims": [
               "claim-2",
-              "claim-15",
-              "claim-16"
+              "claim-17",
+              "claim-18"
             ]
           }
         ]
       },
       "display": {
-        "title": "CPU state modelling with scaling and emergent abilities",
-        "summary": "Demonstrates bGPT predicting CPU register state updates from machine instructions, with performance scaling with data and an abrupt emergent improvement.",
+        "title": "Near-perfect CPU state simulation with scaling and emergence",
+        "summary": "bGPT predicts CPU register state updates from machine instructions with over 99.99% accuracy, showing strong data scalability and signs of emergent ability.",
         "source": "contribution-digest/v1"
       }
     }
@@ -317,9 +332,9 @@
   "claims": [
     {
       "id": "claim-1",
-      "statement": "bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI, near-perfect.",
+      "statement": "bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI, near-perfect and orders of magnitude better than bGPT3.",
       "quote": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI conversion, which is extremely close to perfect performance (where BPB reaches 0), sur- passing the performance of the bGPT3 model by orders of magnitude.",
-      "page": 0,
+      "page": 8,
       "section": "evaluation",
       "locator": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI co",
       "measurability": "unbound",
@@ -344,15 +359,15 @@
         "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
       ],
       "contribution_rank": {
-        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 2,
-        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 2,
+        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 3,
+        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 3,
         "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 2,
-        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 2
+        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 3
       },
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote appears and supports the 0.0011 BPB near-perfect result. [guard] quote not found verbatim in paper",
+        "note": "Quoted result and comparison appear verbatim. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -364,7 +379,7 @@
       },
       "paper_ref": {
         "quote": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI conversion, which is extremely close to perfect performance (where BPB reaches 0), sur- passing the performance of the bGPT3 model by orders of magnitude.",
-        "page": 0,
+        "page": 8,
         "section": "evaluation",
         "locator": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI co"
       },
@@ -387,9 +402,9 @@
     },
     {
       "id": "claim-2",
-      "statement": "bGPT simulates CPU behaviour with accuracy exceeding 99.99%.",
+      "statement": "bGPT5 and bGPT6 achieve near-perfect CPU state modelling accuracy of 99.97% and 99.99%.",
       "quote": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), suggesting an efficiency beyond sim- ple memorization, given that each test case contained an average of 128 random instructions, and the vast potential combinations of instruction scenarios (over 516 million).",
-      "page": 0,
+      "page": 8,
       "section": "evaluation",
       "locator": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), sugge",
       "measurability": "unbound",
@@ -403,8 +418,8 @@
         "Table 6"
       ],
       "evidence_values": [
-        "99.9702",
-        "99.9961"
+        "99.97",
+        "99.99"
       ],
       "role": "load-bearing",
       "contributions": [
@@ -415,16 +430,16 @@
         "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
       ],
       "contribution_rank": {
-        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 1,
-        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 1,
-        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 1,
+        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 2,
+        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 2,
+        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 3,
         "contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca": 1,
-        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 1
+        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 2
       },
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote reports 99.97% and 99.99%, not accuracy exceeding 99.99%. [guard] quote not found verbatim in paper",
+        "note": "The paper reports rounded accuracies of 99.97% and 99.99%. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -436,7 +451,7 @@
       },
       "paper_ref": {
         "quote": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), suggesting an efficiency beyond sim- ple memorization, given that each test case contained an average of 128 random instructions, and the vast potential combinations of instruction scenarios (over 516 million).",
-        "page": 0,
+        "page": 8,
         "section": "evaluation",
         "locator": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), sugge"
       },
@@ -461,7 +476,7 @@
       "id": "claim-3",
       "statement": "bGPT matches specialized models across text, audio and images.",
       "quote": "bGPT matches specialized models in performance across various modalities, including text, audio, and images, and offers new possibil- ities for predicting, simulating, and diagnosing algorithm or hardware behaviour.",
-      "page": 0,
+      "page": 1,
       "section": "abstract",
       "locator": "bGPT matches specialized models in performance across various modalities, includ",
       "measurability": "non_measurable",
@@ -479,17 +494,19 @@
       "contributions": [
         "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22",
         "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
         "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
       ],
       "contribution_rank": {
-        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 3,
-        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 3,
-        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 3
+        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 1,
+        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 1,
+        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 1,
+        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 1
       },
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote appears verbatim and supports the statement. [guard] quote not found verbatim in paper",
+        "note": "Appears verbatim in the abstract. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -501,7 +518,7 @@
       },
       "paper_ref": {
         "quote": "bGPT matches specialized models in performance across various modalities, including text, audio, and images, and offers new possibil- ities for predicting, simulating, and diagnosing algorithm or hardware behaviour.",
-        "page": 0,
+        "page": 1,
         "section": "abstract",
         "locator": "bGPT matches specialized models in performance across various modalities, includ"
       },
@@ -520,86 +537,8 @@
       ]
     },
     {
-      "id": "claim-4",
-      "statement": "bGPTwiki gets 1.0639 BPB and 92.49% on AG News vs GPT2-small 0.9237 BPB and 94.50%.",
-      "quote": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2- small, scored 0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.",
-      "page": 0,
-      "section": "evaluation",
-      "locator": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% ",
-      "measurability": "unbound",
-      "kind": "empirical",
-      "metric": "BPB / accuracy",
-      "value": "92.49%",
-      "comparison": "GPT2-small 94.50%",
-      "experiment": null,
-      "priority": 1.0,
-      "evidence_refs": [
-        "Table 3"
-      ],
-      "evidence_values": [
-        "1.0639",
-        "92.49",
-        "0.9237",
-        "94.50"
-      ],
-      "role": "load-bearing",
-      "contributions": [
-        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22",
-        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
-        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
-        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
-      ],
-      "contribution_rank": {
-        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 5,
-        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 5,
-        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 3,
-        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 5
-      },
-      "verification": {
-        "status": "disputed",
-        "quote_found": false,
-        "note": "The quoted BPB and accuracy values match the paper. [guard] quote not found verbatim in paper",
-        "model": "redacted-verifier-model"
-      },
-      "substantiation": {
-        "status": "unchecked",
-        "evidence": [],
-        "rationale": "",
-        "model": "",
-        "coverage": {}
-      },
-      "paper_ref": {
-        "quote": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2- small, scored 0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.",
-        "page": 0,
-        "section": "evaluation",
-        "locator": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% "
-      },
-      "validators": [
-        {
-          "id": "v1",
-          "kind": "attest",
-          "checks": "provenance",
-          "inputs": [
-            "R9",
-            "R10",
-            "R11",
-            "R40",
-            "R41",
-            "R44",
-            "R45",
-            "R46"
-          ]
-        }
-      ],
-      "extractor_priority": 0.8,
-      "tier": "load-bearing",
-      "at_risk": [
-        "quote not found in paper"
-      ]
-    },
-    {
       "id": "claim-5",
-      "statement": "bGPTlibri reaches 96.03% on Speech Commands v2 vs AST 98.11%.",
+      "statement": "bGPTlibri reaches 96.03% on Speech Commands v2, close to AST's 98.11%.",
       "quote": "Likewise, bGPTlibri reached an accuracy of 96.03% on Speech Commands v2, coming close to the accuracy of AST at 98.11%.",
       "page": 6,
       "section": "evaluation",
@@ -634,7 +573,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quoted accuracies match the paper.",
+        "note": "The reported bGPTlibri and AST accuracies match.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -667,27 +606,25 @@
       "at_risk": []
     },
     {
-      "id": "claim-15",
+      "id": "claim-17",
       "statement": "CPU state modelling BPB drops sharply from bGPT4 to bGPT5 with diminishing returns beyond.",
       "quote": "Table 6 shows significant perfor- mance variations, with a notable BPB drop from bGPT4 to bGPT5, but diminishing returns beyond bGPT5.",
-      "page": 0,
+      "page": 8,
       "section": "evaluation",
       "locator": "Table 6 shows significant perfor- mance variations, with a notable BPB drop from",
       "measurability": "unbound",
       "kind": "empirical",
       "metric": "BPB",
       "value": "0.6924 to 0.0969",
-      "comparison": null,
+      "comparison": "bGPT4 vs bGPT5/6",
       "experiment": null,
-      "priority": 0.9725,
+      "priority": 0.9625,
       "evidence_refs": [
-        "Table 6",
-        "Table 5"
+        "Table 6"
       ],
       "evidence_values": [
         "0.6924",
-        "0.0969",
-        "27.2404"
+        "0.0969"
       ],
       "role": "load-bearing",
       "contributions": [
@@ -699,7 +636,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote directly reports the bGPT4-to-bGPT5 drop and diminishing returns. [guard] quote not found verbatim in paper",
+        "note": "Appears directly and is consistent with Table 6. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -711,7 +648,7 @@
       },
       "paper_ref": {
         "quote": "Table 6 shows significant perfor- mance variations, with a notable BPB drop from bGPT4 to bGPT5, but diminishing returns beyond bGPT5.",
-        "page": 0,
+        "page": 8,
         "section": "evaluation",
         "locator": "Table 6 shows significant perfor- mance variations, with a notable BPB drop from"
       },
@@ -722,33 +659,112 @@
           "checks": "provenance",
           "inputs": [
             "R60",
-            "R61",
             "R62"
           ]
         }
       ],
-      "extractor_priority": 0.85,
+      "extractor_priority": 0.65,
       "tier": "load-bearing",
       "at_risk": [
         "quote not found in paper"
       ]
     },
     {
-      "id": "claim-16",
-      "statement": "bGPT5 shows a sudden improvement around epoch 11, an emergent ability in CPU modelling.",
+      "id": "claim-4",
+      "statement": "bGPTwiki gets 1.0639 BPB and 92.49% on AG News vs GPT2-small 0.9237 BPB and 94.50%.",
+      "quote": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2- small, scored 0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.",
+      "page": 6,
+      "section": "evaluation",
+      "locator": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% ",
+      "measurability": "unbound",
+      "kind": "empirical",
+      "metric": "BPB / accuracy",
+      "value": "92.49%",
+      "comparison": "GPT2-small 94.50%",
+      "experiment": null,
+      "priority": 0.96,
+      "evidence_refs": [
+        "Table 3"
+      ],
+      "evidence_values": [
+        "1.0639",
+        "92.49",
+        "0.9237",
+        "94.50"
+      ],
+      "role": "load-bearing",
+      "contributions": [
+        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22",
+        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002",
+        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a",
+        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba"
+      ],
+      "contribution_rank": {
+        "contribution/afe657c7f74ae9b96a74a06af5309ace238abe086593a7b575745f24b4477d22": 5,
+        "contribution/c7a6e524bd7dbe73eebcf928ccae8544b93583e3e133c85457722586ac641002": 5,
+        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 5,
+        "contribution/47f356ecab873a473102e65d5f3239c482ec85cca86b79c9b5cd31c8b50f53ba": 5
+      },
+      "verification": {
+        "status": "disputed",
+        "quote_found": false,
+        "note": "All reported BPB and accuracy values match. [guard] quote not found verbatim in paper",
+        "model": "redacted-verifier-model"
+      },
+      "substantiation": {
+        "status": "unchecked",
+        "evidence": [],
+        "rationale": "",
+        "model": "",
+        "coverage": {}
+      },
+      "paper_ref": {
+        "quote": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% on AG News, which, while not quite at the level of GPT2- small, scored 0.9237 BPB and 94.50% accuracy, still demon- strates competitive performance.",
+        "page": 6,
+        "section": "evaluation",
+        "locator": "For instance, bGPTwiki achieved a score of 1.0639 BPB and an accuracy of 92.49% "
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": [
+            "R9",
+            "R10",
+            "R11",
+            "R40",
+            "R41",
+            "R44",
+            "R45",
+            "R46"
+          ]
+        }
+      ],
+      "extractor_priority": 0.8,
+      "tier": "load-bearing",
+      "at_risk": [
+        "quote not found in paper"
+      ]
+    },
+    {
+      "id": "claim-18",
+      "statement": "bGPT5 shows a sudden improvement around epoch 11, indicating an emergent ability in CPU state modelling.",
       "quote": "A significant improvement in the performance of bGPT5 occurred around epoch 11, as shown in Fig. 3b, indicating an emergent ability in CPU state modelling.",
       "page": 8,
       "section": "evaluation",
       "locator": "A significant improvement in the performance of bGPT5 occurred around epoch 11, ",
       "measurability": "non_measurable",
       "kind": "empirical",
-      "metric": null,
+      "metric": "loss",
       "value": null,
       "comparison": null,
       "experiment": null,
-      "priority": 0.945,
+      "priority": 0.9525,
       "evidence_refs": [
-        "Figure 3"
+        "Figure 3",
+        "Table 5",
+        "Table 6"
       ],
       "evidence_values": [],
       "role": "load-bearing",
@@ -761,7 +777,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote directly reports the epoch-11 improvement and interprets it as emergent ability.",
+        "note": "The epoch-11 improvement and emergent-ability interpretation appear directly.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -785,78 +801,13 @@
           "inputs": []
         }
       ],
-      "extractor_priority": 0.7,
+      "extractor_priority": 0.85,
       "tier": "load-bearing",
       "at_risk": []
     },
     {
-      "id": "claim-6",
-      "statement": "bGPTimage lags ViT on CIFAR-10 (88.69% vs 98.13%).",
-      "quote": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
-      "page": 0,
-      "section": "evaluation",
-      "locator": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGP",
-      "measurability": "unbound",
-      "kind": "empirical",
-      "metric": "accuracy",
-      "value": "88.69%",
-      "comparison": "ViT 98.13%",
-      "experiment": null,
-      "priority": 0.905,
-      "evidence_refs": [
-        "Table 3"
-      ],
-      "evidence_values": [
-        "88.69",
-        "98.13"
-      ],
-      "role": "load-bearing",
-      "contributions": [
-        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a"
-      ],
-      "contribution_rank": {
-        "contribution/6f7b23c11f9aa432503db77565c2564d950726eb00789f2499019371f654059a": 5
-      },
-      "verification": {
-        "status": "disputed",
-        "quote_found": false,
-        "note": "The quoted CIFAR-10 comparison matches the paper. [guard] quote not found verbatim in paper",
-        "model": "redacted-verifier-model"
-      },
-      "substantiation": {
-        "status": "unchecked",
-        "evidence": [],
-        "rationale": "",
-        "model": "",
-        "coverage": {}
-      },
-      "paper_ref": {
-        "quote": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
-        "page": 0,
-        "section": "evaluation",
-        "locator": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGP"
-      },
-      "validators": [
-        {
-          "id": "v1",
-          "kind": "attest",
-          "checks": "provenance",
-          "inputs": [
-            "R50",
-            "R73",
-            "R74"
-          ]
-        }
-      ],
-      "extractor_priority": 0.7,
-      "tier": "load-bearing",
-      "at_risk": [
-        "quote not found in paper"
-      ]
-    },
-    {
-      "id": "claim-18",
-      "statement": "bGPT is effective in digital media modelling with modality-agnostic knowledge transfer.",
+      "id": "claim-13",
+      "statement": "bGPT shows modality-agnostic knowledge transfer in digital media modelling.",
       "quote": "Our experiments demonstrate the effectiveness of bGPT in modelling digital media data, which showcases modality-agnostic knowledge transfer.",
       "page": 8,
       "section": "conclusion",
@@ -869,7 +820,6 @@
       "experiment": null,
       "priority": 0.6425,
       "evidence_refs": [
-        "Table 3",
         "Table 4"
       ],
       "evidence_values": [],
@@ -879,7 +829,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote appears verbatim and supports the statement.",
+        "note": "Appears verbatim in the conclusion.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -908,26 +858,25 @@
       "at_risk": []
     },
     {
-      "id": "claim-10",
-      "statement": "On spectrogram Speech Commands, bGPTlibri achieves higher accuracy than bGPTimage, showing content alignment matters over format.",
-      "quote": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimage on spectrograms with speech content, indicating effective cross- modal transfer and the importance of content alignment over mere data format.",
-      "page": 0,
+      "id": "claim-6",
+      "statement": "bGPTimage lags ViT on CIFAR-10 (88.69% vs 98.13%).",
+      "quote": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
+      "page": 6,
       "section": "evaluation",
-      "locator": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimag",
+      "locator": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGP",
       "measurability": "unbound",
       "kind": "empirical",
       "metric": "accuracy",
-      "value": "85.26%",
-      "comparison": "bGPTimage 84.66%, random 80.74%",
+      "value": "88.69%",
+      "comparison": "ViT 98.13%",
       "experiment": null,
-      "priority": 0.3325,
+      "priority": 0.335,
       "evidence_refs": [
-        "Table 4"
+        "Table 3"
       ],
       "evidence_values": [
-        "85.26",
-        "84.66",
-        "80.74"
+        "88.69",
+        "98.13"
       ],
       "role": "supporting",
       "contributions": [],
@@ -935,7 +884,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote directly supports the accuracy and content-alignment claim. [guard] quote not found verbatim in paper",
+        "note": "The CIFAR-10 comparison appears verbatim. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -946,10 +895,10 @@
         "coverage": {}
       },
       "paper_ref": {
-        "quote": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimage on spectrograms with speech content, indicating effective cross- modal transfer and the importance of content alignment over mere data format.",
-        "page": 0,
+        "quote": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
+        "page": 6,
         "section": "evaluation",
-        "locator": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimag"
+        "locator": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGP"
       },
       "validators": [
         {
@@ -957,20 +906,19 @@
           "kind": "attest",
           "checks": "provenance",
           "inputs": [
-            "R5",
-            "R55",
-            "R57",
-            "R59"
+            "R50",
+            "R73",
+            "R74"
           ]
         }
       ],
-      "extractor_priority": 0.65,
+      "extractor_priority": 0.7,
       "tier": "supporting",
       "at_risk": []
     },
     {
-      "id": "claim-13",
-      "statement": "BPB for both conversion directions decreases significantly with data scale.",
+      "id": "claim-15",
+      "statement": "BPB for both conversion directions decreases significantly as data scale increases.",
       "quote": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
       "page": 8,
       "section": "evaluation",
@@ -979,19 +927,19 @@
       "kind": "empirical",
       "metric": "BPB",
       "value": null,
-      "comparison": "across scales",
+      "comparison": "bGPT3 vs bGPT4 vs bGPT5",
       "experiment": null,
       "priority": 0.3325,
       "evidence_refs": [
         "Table 5"
       ],
       "evidence_values": [
+        "0.2381",
+        "0.0202",
+        "0.0011",
         "0.2796",
         "0.1751",
-        "0.1341",
-        "1.1227",
-        "0.1763",
-        "0.0789"
+        "0.1341"
       ],
       "role": "supporting",
       "contributions": [],
@@ -999,7 +947,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote directly reports significant BPB decreases in both conversion directions.",
+        "note": "Appears verbatim in the evaluation.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1021,12 +969,12 @@
           "kind": "attest",
           "checks": "provenance",
           "inputs": [
+            "R65",
             "R75",
             "R76",
             "R77",
             "R78",
-            "R79",
-            "R80"
+            "R79"
           ]
         }
       ],
@@ -1036,9 +984,9 @@
     },
     {
       "id": "claim-7",
-      "statement": "Pre-training matched to the fine-tuning domain yields better downstream performance.",
+      "statement": "Pre-training strongly influences performance; matching pre-training and fine-tuning domains gives better results.",
       "quote": "This indicates that bGPT models can achieve better perfor- mance in downstream tasks when there is a close match between pre-training and fine-tuning datasets, aligning with standard pre-training principles (Liu et al., 2022).",
-      "page": 0,
+      "page": 6,
       "section": "evaluation",
       "locator": "This indicates that bGPT models can achieve better perfor- mance in downstream t",
       "measurability": "non_measurable",
@@ -1058,7 +1006,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote directly supports better performance with domain-matched pre-training. [guard] quote not found verbatim in paper",
+        "note": "The quote directly supports domain-matched pre-training benefits. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1070,7 +1018,7 @@
       },
       "paper_ref": {
         "quote": "This indicates that bGPT models can achieve better perfor- mance in downstream tasks when there is a close match between pre-training and fine-tuning datasets, aligning with standard pre-training principles (Liu et al., 2022).",
-        "page": 0,
+        "page": 6,
         "section": "evaluation",
         "locator": "This indicates that bGPT models can achieve better perfor- mance in downstream t"
       },
@@ -1088,16 +1036,16 @@
     },
     {
       "id": "claim-8",
-      "statement": "Mixed-modality pre-trained models perform around the average of single-modality models.",
-      "quote": "bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix, yield performances that gen- erally align with the average performance of models pre- trained on individual modalities.",
-      "page": 0,
+      "statement": "Mixed-modality pre-trained models perform roughly at the average of single-modality models; bGPTmix on AG News 1.0935 BPB, 91.75%.",
+      "quote": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of 91.75%, outperforms other variants but falls short of the per- formance demonstrated by bGPTwiki, which is specifically tuned for text data.",
+      "page": 6,
       "section": "evaluation",
-      "locator": "bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix, yiel",
-      "measurability": "non_measurable",
+      "locator": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of",
+      "measurability": "unbound",
       "kind": "empirical",
-      "metric": null,
-      "value": null,
-      "comparison": null,
+      "metric": "BPB / accuracy",
+      "value": "91.75%",
+      "comparison": "bGPTwiki 92.49%",
       "experiment": null,
       "priority": 0.33,
       "evidence_refs": [
@@ -1113,7 +1061,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote directly supports the statement. [guard] quote not found verbatim in paper",
+        "note": "The quote supports the AG News example but not the broader average-performance claim; that appears elsewhere. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1124,10 +1072,10 @@
         "coverage": {}
       },
       "paper_ref": {
-        "quote": "bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix, yield performances that gen- erally align with the average performance of models pre- trained on individual modalities.",
-        "page": 0,
+        "quote": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of 91.75%, outperforms other variants but falls short of the per- formance demonstrated by bGPTwiki, which is specifically tuned for text data.",
+        "page": 6,
         "section": "evaluation",
-        "locator": "bGPT models pre-trained on mixed modalities, namely bGPTsignal and bGPTmix, yiel"
+        "locator": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of"
       },
       "validators": [
         {
@@ -1137,7 +1085,8 @@
           "inputs": [
             "R34",
             "R35",
-            "R52"
+            "R52",
+            "R53"
           ]
         }
       ],
@@ -1146,17 +1095,17 @@
       "at_risk": []
     },
     {
-      "id": "claim-9",
+      "id": "claim-10",
       "statement": "Cross-modal fine-tuning shows positive transfer between audio and images but negative transfer between text and other modalities.",
       "quote": "However, negative trans- fer is observed when transitioning between text and other modalities, indicating that the benefits of structured pattern learning in pre-training do not universally apply.",
-      "page": 0,
+      "page": 6,
       "section": "evaluation",
       "locator": "However, negative trans- fer is observed when transitioning between text and oth",
       "measurability": "non_measurable",
       "kind": "empirical",
       "metric": null,
       "value": null,
-      "comparison": null,
+      "comparison": "random initialization",
       "experiment": null,
       "priority": 0.33,
       "evidence_refs": [
@@ -1169,7 +1118,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote supports negative transfer involving text but does not support the claimed positive transfer between audio and images. [guard] quote not found verbatim in paper",
+        "note": "The quote supports negative text transfer only, not the claimed positive audio-image transfer. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1181,7 +1130,7 @@
       },
       "paper_ref": {
         "quote": "However, negative trans- fer is observed when transitioning between text and other modalities, indicating that the benefits of structured pattern learning in pre-training do not universally apply.",
-        "page": 0,
+        "page": 6,
         "section": "evaluation",
         "locator": "However, negative trans- fer is observed when transitioning between text and oth"
       },
@@ -1199,16 +1148,75 @@
     },
     {
       "id": "claim-12",
+      "statement": "bGPTlibri achieves higher accuracy than bGPTimage on spectrograms, indicating content alignment matters over format.",
+      "quote": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimage on spectrograms with speech content, indicating effective cross- modal transfer and the importance of content alignment over mere data format.",
+      "page": 7,
+      "section": "evaluation",
+      "locator": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimag",
+      "measurability": "unbound",
+      "kind": "empirical",
+      "metric": "accuracy",
+      "value": "85.26%",
+      "comparison": "bGPTimage 84.66%",
+      "experiment": null,
+      "priority": 0.3275,
+      "evidence_refs": [
+        "Table 4"
+      ],
+      "evidence_values": [
+        "85.26",
+        "84.66"
+      ],
+      "role": "supporting",
+      "contributions": [],
+      "contribution_rank": {},
+      "verification": {
+        "status": "disputed",
+        "quote_found": false,
+        "note": "The quote directly supports the accuracy and content-alignment interpretation. [guard] quote not found verbatim in paper",
+        "model": "redacted-verifier-model"
+      },
+      "substantiation": {
+        "status": "unchecked",
+        "evidence": [],
+        "rationale": "",
+        "model": "",
+        "coverage": {}
+      },
+      "paper_ref": {
+        "quote": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimage on spectrograms with speech content, indicating effective cross- modal transfer and the importance of content alignment over mere data format.",
+        "page": 7,
+        "section": "evaluation",
+        "locator": "Notably, bGPTlibri, pre-trained on audio, achieves higher accuracy than bGPTimag"
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": [
+            "R5",
+            "R57",
+            "R59"
+          ]
+        }
+      ],
+      "extractor_priority": 0.55,
+      "tier": "supporting",
+      "at_risk": []
+    },
+    {
+      "id": "claim-14",
       "statement": "Larger data scale gives lower starting loss and faster convergence in data conversion.",
       "quote": "We observe a lower starting loss and a more rapid con- vergence in Fig. 3a as the data scale grows, indicating that increased data volume directly enhances model performance in simulating the data conversion process.",
-      "page": 0,
+      "page": 8,
       "section": "evaluation",
       "locator": "We observe a lower starting loss and a more rapid con- vergence in Fig. 3a as th",
       "measurability": "non_measurable",
       "kind": "empirical",
       "metric": "loss",
       "value": null,
-      "comparison": null,
+      "comparison": "across data scales",
       "experiment": null,
       "priority": 0.3275,
       "evidence_refs": [
@@ -1221,7 +1229,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote directly reports lower starting loss and faster convergence with greater data scale. [guard] quote not found verbatim in paper",
+        "note": "The quoted scaling observation appears directly. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1233,7 +1241,7 @@
       },
       "paper_ref": {
         "quote": "We observe a lower starting loss and a more rapid con- vergence in Fig. 3a as the data scale grows, indicating that increased data volume directly enhances model performance in simulating the data conversion process.",
-        "page": 0,
+        "page": 8,
         "section": "evaluation",
         "locator": "We observe a lower starting loss and a more rapid con- vergence in Fig. 3a as th"
       },
@@ -1250,8 +1258,60 @@
       "at_risk": []
     },
     {
+      "id": "claim-9",
+      "statement": "bGPTsignal performs between bGPTimage and bGPTlibri.",
+      "quote": "Similar trends can be observed in the case of bGPTsignal, which typically shows performance lev- els that lie somewhere between bGPTimage and bGPTlibri.",
+      "page": 6,
+      "section": "evaluation",
+      "locator": "Similar trends can be observed in the case of bGPTsignal, which typically shows ",
+      "measurability": "non_measurable",
+      "kind": "empirical",
+      "metric": null,
+      "value": null,
+      "comparison": null,
+      "experiment": null,
+      "priority": 0.325,
+      "evidence_refs": [
+        "Table 3"
+      ],
+      "evidence_values": [],
+      "role": "supporting",
+      "contributions": [],
+      "contribution_rank": {},
+      "verification": {
+        "status": "disputed",
+        "quote_found": false,
+        "note": "Appears directly in the paper. [guard] quote not found verbatim in paper",
+        "model": "redacted-verifier-model"
+      },
+      "substantiation": {
+        "status": "unchecked",
+        "evidence": [],
+        "rationale": "",
+        "model": "",
+        "coverage": {}
+      },
+      "paper_ref": {
+        "quote": "Similar trends can be observed in the case of bGPTsignal, which typically shows performance lev- els that lie somewhere between bGPTimage and bGPTlibri.",
+        "page": 6,
+        "section": "evaluation",
+        "locator": "Similar trends can be observed in the case of bGPTsignal, which typically shows "
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": []
+        }
+      ],
+      "extractor_priority": 0.5,
+      "tier": "supporting",
+      "at_risk": []
+    },
+    {
       "id": "claim-11",
-      "statement": "bGPTimage and bGPTlibri have closely matched BPB on spectrograms.",
+      "statement": "On spectrogram Speech Commands, bGPTimage and bGPTlibri have closely matched BPB.",
       "quote": "The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance does not extend to this spectrogram-based task.",
       "page": 7,
       "section": "evaluation",
@@ -1276,7 +1336,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote directly reports closely matched BPB.",
+        "note": "The paper reports nearly identical BPB values, 0.3899 and 0.3900.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1308,8 +1368,8 @@
       "at_risk": []
     },
     {
-      "id": "claim-14",
-      "statement": "BPB for ABC is consistently higher than MIDI in both directions.",
+      "id": "claim-16",
+      "statement": "BPB for ABC is consistently higher than for MIDI in both directions.",
       "quote": "Table 5 suggests consistently higher BPB for ABC in both directions, which is likely due to two factors:",
       "page": 8,
       "section": "evaluation",
@@ -1324,14 +1384,19 @@
       "evidence_refs": [
         "Table 5"
       ],
-      "evidence_values": [],
+      "evidence_values": [
+        "0.7362",
+        "0.0011",
+        "0.1341",
+        "0.0789"
+      ],
       "role": "supporting",
       "contributions": [],
       "contribution_rank": {},
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote directly states that ABC BPB is consistently higher in both directions.",
+        "note": "The paper explicitly states this, although Table 5's bGPT5 reverse-direction values appear inconsistent with it.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1352,7 +1417,13 @@
           "id": "v1",
           "kind": "attest",
           "checks": "provenance",
-          "inputs": []
+          "inputs": [
+            "R1",
+            "R65",
+            "R80",
+            "R81",
+            "R82"
+          ]
         }
       ],
       "extractor_priority": 0.45,
@@ -1360,10 +1431,62 @@
       "at_risk": []
     },
     {
-      "id": "claim-19",
-      "statement": "Models are 110M parameters trained without hyperparameter tuning or data augmentation.",
+      "id": "claim-20",
+      "statement": "CPU States dataset has 2.1 million instances.",
+      "quote": "CPU States (proposed) 2.1 6.09 3103 36",
+      "page": 5,
+      "section": "body",
+      "locator": "CPU States (proposed) 2.1 6.09 3103 36",
+      "measurability": "non_measurable",
+      "kind": "empirical",
+      "metric": null,
+      "value": "2.1 million",
+      "comparison": null,
+      "experiment": null,
+      "priority": 0.115,
+      "evidence_refs": [
+        "Table 1"
+      ],
+      "evidence_values": [],
+      "role": "setup",
+      "contributions": [],
+      "contribution_rank": {},
+      "verification": {
+        "status": "confirmed",
+        "quote_found": true,
+        "note": "Both Table 1 and the body identify 2.1 million instances.",
+        "model": "redacted-verifier-model"
+      },
+      "substantiation": {
+        "status": "unchecked",
+        "evidence": [],
+        "rationale": "",
+        "model": "",
+        "coverage": {}
+      },
+      "paper_ref": {
+        "quote": "CPU States (proposed) 2.1 6.09 3103 36",
+        "page": 5,
+        "section": "body",
+        "locator": "CPU States (proposed) 2.1 6.09 3103 36"
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": []
+        }
+      ],
+      "extractor_priority": 0.3,
+      "tier": "setup",
+      "at_risk": []
+    },
+    {
+      "id": "claim-21",
+      "statement": "All models use a 110M-parameter configuration, patch size 16, sequence length 512, without hyperparameter tuning or data augmentation.",
       "quote": "Notably, we avoided hyper- parameter tuning and data augmentation in all evaluations.",
-      "page": 0,
+      "page": 5,
       "section": "evaluation",
       "locator": "Notably, we avoided hyper- parameter tuning and data augmentation in all evaluat",
       "measurability": "non_measurable",
@@ -1383,7 +1506,7 @@
       "verification": {
         "status": "disputed",
         "quote_found": false,
-        "note": "The quote supports the absence of hyperparameter tuning and augmentation but does not mention the 110M parameter count. [guard] quote not found verbatim in paper",
+        "note": "The quote supports only the absence of tuning and augmentation, not parameter count, patch size, or sequence length. [guard] quote not found verbatim in paper",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -1395,7 +1518,7 @@
       },
       "paper_ref": {
         "quote": "Notably, we avoided hyper- parameter tuning and data augmentation in all evaluations.",
-        "page": 0,
+        "page": 5,
         "section": "evaluation",
         "locator": "Notably, we avoided hyper- parameter tuning and data augmentation in all evaluat"
       },
@@ -1413,6 +1536,25 @@
     }
   ],
   "results": [
+    {
+      "id": "R1",
+      "validates": [
+        "claim-16"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.0011,
+      "locators": {
+        "paper": {
+          "quote": "0.0011",
+          "token_class": "metric",
+          "page": 1,
+          "section": "abstract",
+          "context": "It has almost flawlessly replicated the process of converting symbolic music data, achieving a low error rate of 0.0011 bits per byte in converting ABC notation to MIDI format."
+        }
+      }
+    },
     {
       "id": "R2",
       "validates": [
@@ -1435,7 +1577,7 @@
     {
       "id": "R5",
       "validates": [
-        "claim-10"
+        "claim-12"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1698,21 +1840,21 @@
       }
     },
     {
-      "id": "R55",
+      "id": "R53",
       "validates": [
-        "claim-10"
+        "claim-8"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 80.74,
+      "reported_value": 91.75,
       "locators": {
         "paper": {
-          "quote": "80.74",
-          "token_class": "metric",
-          "page": 7,
+          "quote": "91.75%",
+          "token_class": "percentage",
+          "page": 6,
           "section": "results",
-          "context": "Model BPB Acc (%) bGPTrandom 0.4052 80.74 bGPTimage 0.3899 84.66 bGPTlibri 0.3900 85.26 The results of Table 4 reveal closely matched BPB between bGPTimage and bGPTlibri, suggesting that the disparity observed in their CIFAR-10 performance "
+          "context": "For example,bGPTmix on the AG News dataset, with a BPB of 1.0935 and accuracy of 91.75%, outperforms other variants but falls short of the per formance demonstrated by bGPTwiki, which is specifically tuned for text data."
         }
       }
     },
@@ -1738,7 +1880,7 @@
     {
       "id": "R57",
       "validates": [
-        "claim-10"
+        "claim-12"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1776,7 +1918,7 @@
     {
       "id": "R59",
       "validates": [
-        "claim-10"
+        "claim-12"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1795,7 +1937,7 @@
     {
       "id": "R60",
       "validates": [
-        "claim-15"
+        "claim-17"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1812,28 +1954,9 @@
       }
     },
     {
-      "id": "R61",
-      "validates": [
-        "claim-15"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 27.2404,
-      "locators": {
-        "paper": {
-          "quote": "27.2404",
-          "token_class": "metric",
-          "page": 7,
-          "section": "data conversion",
-          "context": "Model BPB Acc (%) bGPT4 0.6924 27.2404 bGPT5 0.0969 99.9702 bGPT6 0.0969 99.9961 2021), byte models are naturally suited for this task, as they can directly work with binary data."
-        }
-      }
-    },
-    {
       "id": "R62",
       "validates": [
-        "claim-15"
+        "claim-17"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1852,7 +1975,9 @@
     {
       "id": "R65",
       "validates": [
-        "claim-1"
+        "claim-1",
+        "claim-15",
+        "claim-16"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1880,7 +2005,7 @@
       "locators": {
         "paper": {
           "quote": "0.2381",
-          "page": 0,
+          "page": 8,
           "section": "evaluation",
           "context": "The bGPT5 model achieves an impressively low BPBmidi of 0.0011 in ABC to MIDI conversion, which is extremely close to perfect performance (where BPB reaches 0), sur- passing the performance of the bGPT3 model by orders of magnitude.",
           "refs": [
@@ -1897,11 +2022,11 @@
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 99.9702,
+      "reported_value": 99.97,
       "locators": {
         "paper": {
-          "quote": "99.9702",
-          "page": 0,
+          "quote": "99.97",
+          "page": 8,
           "section": "evaluation",
           "context": "Both bGPT5 and bGPT6 achieved near-perfect accuracies (99.97% and 99.99%), suggesting an efficiency beyond sim- ple memorization, given that each test case contained an average of 128 random instructions, and the vast potential combinations of instruction scenarios (over 516 million).",
           "refs": [
@@ -1964,7 +2089,7 @@
       "locators": {
         "paper": {
           "quote": "88.69",
-          "page": 0,
+          "page": 6,
           "section": "evaluation",
           "context": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
           "refs": [
@@ -1985,7 +2110,7 @@
       "locators": {
         "paper": {
           "quote": "98.13",
-          "page": 0,
+          "page": 6,
           "section": "evaluation",
           "context": "How- ever, in the analysis of CIFAR-10, a noticeable difference is seen with bGPTimage lagging ViT, with an accuracy of 88.69% against 98.13%.",
           "refs": [
@@ -1997,7 +2122,49 @@
     {
       "id": "R75",
       "validates": [
-        "claim-13"
+        "claim-15"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.2381,
+      "locators": {
+        "paper": {
+          "quote": "0.2381",
+          "page": 8,
+          "section": "evaluation",
+          "context": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
+          "refs": [
+            "Table 5"
+          ]
+        }
+      }
+    },
+    {
+      "id": "R76",
+      "validates": [
+        "claim-15"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.0202,
+      "locators": {
+        "paper": {
+          "quote": "0.0202",
+          "page": 8,
+          "section": "evaluation",
+          "context": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
+          "refs": [
+            "Table 5"
+          ]
+        }
+      }
+    },
+    {
+      "id": "R77",
+      "validates": [
+        "claim-15"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -2016,9 +2183,9 @@
       }
     },
     {
-      "id": "R76",
+      "id": "R78",
       "validates": [
-        "claim-13"
+        "claim-15"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -2037,9 +2204,9 @@
       }
     },
     {
-      "id": "R77",
+      "id": "R79",
       "validates": [
-        "claim-13"
+        "claim-15"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -2058,51 +2225,51 @@
       }
     },
     {
-      "id": "R78",
-      "validates": [
-        "claim-13"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 1.1227,
-      "locators": {
-        "paper": {
-          "quote": "1.1227",
-          "page": 8,
-          "section": "evaluation",
-          "context": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
-          "refs": [
-            "Table 5"
-          ]
-        }
-      }
-    },
-    {
-      "id": "R79",
-      "validates": [
-        "claim-13"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 0.1763,
-      "locators": {
-        "paper": {
-          "quote": "0.1763",
-          "page": 8,
-          "section": "evaluation",
-          "context": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
-          "refs": [
-            "Table 5"
-          ]
-        }
-      }
-    },
-    {
       "id": "R80",
       "validates": [
-        "claim-13"
+        "claim-16"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.7362,
+      "locators": {
+        "paper": {
+          "quote": "0.7362",
+          "page": 8,
+          "section": "evaluation",
+          "context": "Table 5 suggests consistently higher BPB for ABC in both directions, which is likely due to two factors:",
+          "refs": [
+            "Table 5"
+          ]
+        }
+      }
+    },
+    {
+      "id": "R81",
+      "validates": [
+        "claim-16"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 0.1341,
+      "locators": {
+        "paper": {
+          "quote": "0.1341",
+          "page": 8,
+          "section": "evaluation",
+          "context": "Table 5 suggests consistently higher BPB for ABC in both directions, which is likely due to two factors:",
+          "refs": [
+            "Table 5"
+          ]
+        }
+      }
+    },
+    {
+      "id": "R82",
+      "validates": [
+        "claim-16"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -2113,7 +2280,7 @@
           "quote": "0.0789",
           "page": 8,
           "section": "evaluation",
-          "context": "From Table 5, we see that as the scale of data increases, BPB for both ABC to MIDI and MIDI to ABC conversions decrease significantly.",
+          "context": "Table 5 suggests consistently higher BPB for ABC in both directions, which is likely due to two factors:",
           "refs": [
             "Table 5"
           ]
@@ -2127,21 +2294,11 @@
       "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
-        "status": "contested",
-        "reasoning": "The paper's own results show a roughly 9.4-point gap on images, which contradicts 'matches' for that modality. In addition, the vision and audio baseline numbers are copied from the original studies rather than run under shared settings. A gap of nearly 10 points on CIFAR-10, along with gaps on AG News and Speech Commands, contradicts 'matches'. This affects the media-modelling contribution.",
-        "points": [
-          "The linked numeric claims match the tables, but the abstract's claim that bGPT 'matches specialized models' overstates Table 3, especially on CIFAR-10.",
-          "The abstract claims bGPT 'matches specialized models', but Table 3 shows clear gaps, most notably 88.69% vs 98.13% on CIFAR-10."
-        ],
-        "finding_ids": [
-          "contribution-review/paper/4c48a47ad5cf574623a0ba46ad0cffc1cad867f7104a0bda4e20929d179f5d15",
-          "contribution-review/paper/ea321105c8898e09a5e5f797f48154985f0d86b7043bb8151a755f8e2820cc59"
-        ],
-        "evidence": [
-          "paper:chars/172-1238",
-          "paper:chars/25015-30472",
-          "paper:chars/23408-25015"
-        ],
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
         "disagreement": false,
         "link_basis": "inferred",
         "declared_claims": [],
@@ -2149,17 +2306,15 @@
           "claim-1",
           "claim-2",
           "claim-3",
-          "claim-4",
           "claim-5",
-          "claim-6"
+          "claim-4"
         ],
         "linked_claims": [
           "claim-1",
           "claim-2",
           "claim-3",
-          "claim-4",
           "claim-5",
-          "claim-6"
+          "claim-4"
         ]
       },
       "significance": {
@@ -2172,19 +2327,16 @@
       },
       "originality": {
         "status": "contested",
-        "reasoning": "By the authors' own description, prior work already models multimodal byte sequences with hierarchical Transformers. The originality therefore rests on the task framing and the evaluation, not on the model itself. The difference from MegaByte and ByteFormer is author-reported and not verified here. The paper says the architecture is adapted from cited work. It also describes MegaByte (author-reported) as already modelling multi-modal byte sequences. The stated distinction therefore rests on native binary data and simulation tasks. The related-work section concedes only that prior work 'often neglects' native binary data, whereas the impact statement implies primacy. No technical difference from MegaByte is stated, and no comparison against it is reported.",
+        "reasoning": "The paper itself reports MegaByte as a multi-modal byte model and says bGPT adapts its hierarchical patch architecture; the stated distinction is application scope (native binary data, simulation), not modelling. The originality therefore rests on tasks/evaluation, which the framing ('paradigm shift', 'introduce bGPT') does not make explicit. Cited works' content is author-reported and not independently verified.",
         "points": [
-          "The authors explicitly build bGPT's architecture on prior hierarchical byte models (MegaByte and others). The architectural novelty is therefore modest, and the claimed difference lies in applying the model to native binary data and simulation.",
-          "The paper explicitly adapts its architecture from prior hierarchical/patch byte models. Its originality therefore lies in the binary-native simulation framing and tasks, not the model design, yet the impact statement frames bGPT more broadly."
+          "Authors position bGPT as next-byte prediction for native binary data, but their own background concedes prior byte models (ByteFormer, MegaByte, MambaByte) already model bytes across modalities; the architectural difference from MegaByte is not stated."
         ],
         "finding_ids": [
-          "contribution-review/paper/b3b8c38119c155e7cb896c2fb2fadf8999741a3c6452dbbe3294fccac45aeab1",
-          "contribution-review/paper/3c1455f2f7d48464fb89358f08d7cadd92469c718bdf5719936e3e1c12e78191"
+          "contribution-review/paper/43879dcde02c7af995857dea69de49bbe99fdb984c5a7172282d8163cc7e7868"
         ],
         "evidence": [
-          "paper:chars/10851-15278",
           "paper:chars/7775-10479",
-          "paper:chars/38535-40096"
+          "paper:chars/10851-15278"
         ],
         "disagreement": false,
         "basis": "author-statements-only",
@@ -2196,20 +2348,32 @@
       }
     },
     {
-      "contribution_id": "contribution/461a0bf1ad0b19af91355a33ac898117d1b4692112d9f3c654a34579a923316c",
+      "contribution_id": "contribution/eebb9fdd5226df6dc63ffdb99c307239476000f85a46cc9a5cf6d4a37595c42a",
       "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
-        "status": "unresolved",
-        "reasoning": "No claims are linked to this contribution, so its claim support cannot be traced. ",
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
         "points": [],
         "finding_ids": [],
         "evidence": [],
         "disagreement": false,
-        "link_basis": "none",
+        "link_basis": "inferred",
         "declared_claims": [],
-        "inferred_claims": [],
-        "linked_claims": []
+        "inferred_claims": [
+          "claim-1",
+          "claim-2",
+          "claim-3",
+          "claim-5",
+          "claim-4"
+        ],
+        "linked_claims": [
+          "claim-1",
+          "claim-2",
+          "claim-3",
+          "claim-5",
+          "claim-4"
+        ]
       },
       "significance": {
         "status": "unassessed",
@@ -2220,11 +2384,20 @@
         "disagreement": false
       },
       "originality": {
-        "status": "unassessed",
-        "reasoning": "No grounded, candidate-targeted finding for this axis.",
-        "points": [],
-        "finding_ids": [],
-        "evidence": [],
+        "status": "contested",
+        "reasoning": "The authors say the architecture is adapted from prior work. They also describe MegaByte as already modelling multimodal byte sequences. Novelty therefore rests on the task framing and the evaluation rather than on the model. The descriptions of the cited works are as the authors report them; I did not verify them. Authors say they adapt an architecture inspired by cited work, so the architecture should be presented as reused design.",
+        "points": [
+          "By the authors' own account, the architecture is adapted from prior work. The originality therefore lies in applying byte models to native binary simulation tasks.",
+          "The hierarchical patch architecture is explicitly derived from prior work; it is not an original component."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/aa8287eb8088084482d6cf8e79c033f7f92c7dec4b4642c22a97af9d22d8fc4d",
+          "contribution-review/paper/a41a3449dd3a69f58241fdb6b68040d27a64a2a02f8b5f9cf1c5b1abc636b2e8"
+        ],
+        "evidence": [
+          "paper:chars/10851-15278",
+          "paper:chars/7775-10479"
+        ],
         "disagreement": false,
         "basis": "author-statements-only",
         "author_statement_ids": [
@@ -2240,14 +2413,17 @@
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
         "status": "contested",
-        "reasoning": "With a 0.6-point gap and identical BPB, the conclusion that 'content alignment' matters more than format is weakly supported unless variance is reported.",
+        "reasoning": "A ~9.4-point CIFAR-10 gap, plus gaps on AG News and Speech Commands, contradicts 'matches'. Also ViT/AST numbers are taken from original studies, not same-setting runs. The paper's own image result contradicts 'matches' for the image modality.",
         "points": [
-          "The paper supports the cross-modal transfer claims with a single run per condition and small differences. For example, the spectrogram accuracies of 85.26 vs 84.66 differ by only 0.6 points."
+          "Media results are competitive but below specialized baselines, so 'matches specialized models' overstates Table 3.",
+          "The abstract's claim that bGPT 'matches specialized models' overstates Table 3, where CIFAR-10 shows a gap of about 9.4 points."
         ],
         "finding_ids": [
-          "contribution-review/paper/9337b62de876267531f581555dd9821849195d87a31c49a00d33d30f2dc06775"
+          "contribution-review/paper/8cc000a75a7523186677b2eb9c01e001b2aba4d3ba4f17f42563c42500419d50",
+          "contribution-review/paper/abfbaae3364547eb31629d2d6bc959da62ed74fe1a80452ee421dd98dfae41e4"
         ],
         "evidence": [
+          "paper:chars/172-1238",
           "paper:chars/25015-30472"
         ],
         "disagreement": false,
@@ -2257,21 +2433,21 @@
           "claim-3",
           "claim-4",
           "claim-5",
-          "claim-18",
+          "claim-13",
           "claim-7",
-          "claim-8",
-          "claim-9",
-          "claim-10"
+          "claim-10",
+          "claim-12",
+          "claim-8"
         ],
         "linked_claims": [
           "claim-3",
           "claim-4",
           "claim-5",
-          "claim-18",
+          "claim-13",
           "claim-7",
-          "claim-8",
-          "claim-9",
-          "claim-10"
+          "claim-10",
+          "claim-12",
+          "claim-8"
         ]
       },
       "significance": {
@@ -2302,31 +2478,23 @@
       "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
-        "status": "unresolved",
-        "reasoning": "Teacher-forced BPB does not guarantee that decoded MIDI files are valid or exactly match the reference, so 'almost flawlessly replicated' needs output-level evidence.",
-        "points": [
-          "The ABC\u2192MIDI result of 0.0011 BPB is well supported by Table 5, but it measures likelihood, not the correctness of generated conversions."
-        ],
-        "finding_ids": [
-          "contribution-review/paper/bd49e65cb5547e43b1a919ce3c05b93abc10b22914553b98f9e8f7c2add8f9fb"
-        ],
-        "evidence": [
-          "paper:chars/31335-34448"
-        ],
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
         "disagreement": false,
         "link_basis": "inferred",
         "declared_claims": [],
         "inferred_claims": [
           "claim-1",
-          "claim-12",
-          "claim-13",
-          "claim-14"
+          "claim-14",
+          "claim-15"
         ],
         "linked_claims": [
           "claim-1",
-          "claim-12",
-          "claim-13",
-          "claim-14"
+          "claim-14",
+          "claim-15"
         ]
       },
       "significance": {
@@ -2353,7 +2521,7 @@
       }
     },
     {
-      "contribution_id": "contribution/c44dc1966499c65b567e60c698823e5627aca39ce3581e1f2557a436e80e3e89",
+      "contribution_id": "contribution/81b452be8c00f4aeb9ee7056eae62737da7f13ee7927a9cfa7df42434c85ceca",
       "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
@@ -2367,42 +2535,38 @@
         "declared_claims": [],
         "inferred_claims": [
           "claim-2",
-          "claim-15",
-          "claim-16"
+          "claim-17",
+          "claim-18",
+          "claim-20"
         ],
         "linked_claims": [
           "claim-2",
-          "claim-15",
-          "claim-16"
+          "claim-17",
+          "claim-18",
+          "claim-20"
         ]
       },
       "significance": {
         "status": "supported",
-        "reasoning": "A new dataset combined with near-zero MIDI BPB in ABC\u2192MIDI conversion gives other researchers a concrete testbed for learned program and hardware emulation.",
+        "reasoning": "The task framing and dataset are the most original elements by the authors' own positioning, and near-perfect results suggest byte models can learn deterministic digital processes, of interest to program analysis/security researchers.",
         "points": [
-          "Simulating algorithms and hardware from raw bytes (ABC\u2194MIDI conversion, the CPU States dataset) is a distinctive task framing with a reusable dataset."
+          "Applying a byte model to algorithm (ABC\u2192MIDI) and simulated-CPU state prediction is a distinctive, likely-influential framing with a new dataset others can build on."
         ],
         "finding_ids": [
-          "contribution-review/paper/b815463732b31b46f3ca7290efcd5bc77618665a5b41ef2964cb0d588b028731"
+          "contribution-review/paper/f76f09d6731a36a693c449fd9ef4ff78131da3186917938d6fabf2f1209d5f34"
         ],
         "evidence": [
           "paper:chars/18456-21674",
-          "paper:chars/31335-34448"
+          "paper:chars/34448-36748"
         ],
         "disagreement": false
       },
       "originality": {
-        "status": "unresolved",
-        "reasoning": "The authors claim this dataset as their own, and the paper cites no prior equivalent. Novelty is judged against the paper's own positioning.",
-        "points": [
-          "The CPU States dataset is introduced as new and is described in detail in Appendix B."
-        ],
-        "finding_ids": [
-          "contribution-review/paper/c5f9aafc21803bfae316639737d5d5d244f701417a384441b57cb4282d107e62"
-        ],
-        "evidence": [
-          "paper:chars/18456-21674"
-        ],
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
         "disagreement": false,
         "basis": "author-statements-only",
         "author_statement_ids": [
@@ -2413,20 +2577,23 @@
       }
     },
     {
-      "contribution_id": "contribution/4e91bd8dd09545cfa2859fc83a6af0477062b9d0c9892700022177cd55f16936",
+      "contribution_id": "contribution/51d758c3e8f080fc9cac3d547fa83910a5f4bbc90ad83de21ac5c6c1a2a647c3",
       "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
-        "status": "unresolved",
-        "reasoning": "Byte-wise accuracy across all state bytes may be inflated by bytes that rarely change between consecutive states, such as most registers. If so, 99.99% would overstate per-instruction correctness.",
+        "status": "contested",
+        "reasoning": "Byte-wise accuracy counts every byte of each 16-byte state, and many of those bytes may simply be copied from the previous state. Without a copy-previous-state baseline, the 99.99% figure may overstate how well the model simulates the CPU. Byte-wise accuracy includes many trivially copied bytes (unchanged registers); without a copy-previous-state baseline or held-out instruction compositions, 99.99% and emergence cannot be interpreted.",
         "points": [
-          "The CPU-simulation claim lacks any non-learned baseline. The task's simplifications also limit the 'hardware simulation' claim."
+          "The CPU-simulation claim lacks simple baselines, and byte-wise accuracy may be inflated by bytes that are easy to predict.",
+          "CPU and conversion results lack any baseline; 'beyond memorization' and 'emergent ability' are not tested."
         ],
         "finding_ids": [
-          "contribution-review/paper/4fed2fcda014281f5f13ee722ec69626695affce0af37b43551cfe2097a38848"
+          "contribution-review/paper/8440d6348cc4a1a51870d967c02b2374202d461e867578328317b4b31c9e509a",
+          "contribution-review/paper/45c464e0a9001e948a9149f732c5fa52e981509cd4f4f559d04b89667373fb7c"
         ],
         "evidence": [
           "paper:chars/34448-36748",
+          "paper:chars/30472-31335",
           "paper:chars/36748-38535"
         ],
         "disagreement": false,
@@ -2434,27 +2601,26 @@
         "declared_claims": [],
         "inferred_claims": [
           "claim-2",
-          "claim-15",
-          "claim-16"
+          "claim-17",
+          "claim-18"
         ],
         "linked_claims": [
           "claim-2",
-          "claim-15",
-          "claim-16"
+          "claim-17",
+          "claim-18"
         ]
       },
       "significance": {
         "status": "supported",
-        "reasoning": "Near-zero BPB on binary MIDI output and high byte accuracy on CPU states show that a generic byte model can learn deterministic digital processes. This direction could open new uses for byte models beyond media data.",
+        "reasoning": "The reported table values show very low BPB for ABC\u2192MIDI conversion and very high byte accuracy for CPU state prediction.",
         "points": [
-          "Treating algorithm and hardware simulation as next-byte prediction over native binary data is a distinctive and potentially influential framing, backed by concrete, measurable tasks."
+          "Simulating CPU state updates and ABC\u2192MIDI conversion with a single byte model is a fresh and potentially impactful demonstration."
         ],
         "finding_ids": [
-          "contribution-review/paper/7c04328e6020fd6ff6af848cd23ac602d02d42f23b41cf15404b99ab01e54cc6"
+          "contribution-review/paper/433e71fcd0e26dfbc2708456fcd0afd5f477041beeb11b3235a3761e4f169b54"
         ],
         "evidence": [
-          "paper:chars/31335-34448",
-          "paper:chars/34448-36748"
+          "paper:chars/31335-34448"
         ],
         "disagreement": false
       },
@@ -2527,11 +2693,6 @@
   "diagnostics": [
     {
       "message": "claim support not declared or inferred",
-      "path": "contributions[1].supporting_claims",
-      "severity": "warning"
-    },
-    {
-      "message": "claim support not declared or inferred",
       "path": "contributions[3].supporting_claims",
       "severity": "warning"
     }
@@ -2543,32 +2704,37 @@
   },
   "graph": {
     "contribution_count": 6,
-    "claim_count": 18,
+    "claim_count": 20,
     "support_edge_count": 0,
     "unassigned_claims": [
       "claim-1",
       "claim-2",
       "claim-3",
-      "claim-4",
       "claim-5",
-      "claim-15",
-      "claim-16",
-      "claim-6",
+      "claim-17",
+      "claim-4",
       "claim-18",
-      "claim-10",
       "claim-13",
+      "claim-6",
+      "claim-15",
       "claim-7",
       "claim-8",
-      "claim-9",
+      "claim-10",
       "claim-12",
-      "claim-11",
       "claim-14",
-      "claim-19"
-    ],
-    "inferred_edge_count": 24,
-    "unlinked_claims": [
+      "claim-9",
       "claim-11",
-      "claim-19"
+      "claim-16",
+      "claim-20",
+      "claim-21"
+    ],
+    "inferred_edge_count": 28,
+    "unlinked_claims": [
+      "claim-6",
+      "claim-9",
+      "claim-11",
+      "claim-16",
+      "claim-21"
     ]
   },
   "digest": {
@@ -2583,8 +2749,8 @@
           "claim-1",
           "claim-2",
           "claim-3",
-          "claim-4",
-          "claim-5"
+          "claim-5",
+          "claim-4"
         ],
         "paper_ref": {
           "char_start": 361,
@@ -2609,8 +2775,8 @@
                 "claim-1",
                 "claim-2",
                 "claim-3",
-                "claim-4",
-                "claim-5"
+                "claim-5",
+                "claim-4"
               ]
             }
           ]
@@ -2624,8 +2790,8 @@
           "claim-1",
           "claim-2",
           "claim-3",
-          "claim-4",
-          "claim-5"
+          "claim-5",
+          "claim-4"
         ],
         "paper_ref": {
           "char_start": 3380,
@@ -2650,8 +2816,8 @@
                 "claim-1",
                 "claim-2",
                 "claim-3",
-                "claim-4",
-                "claim-5"
+                "claim-5",
+                "claim-4"
               ]
             }
           ]
@@ -2664,9 +2830,9 @@
         "inferred_supporting_claims": [
           "claim-1",
           "claim-2",
-          "claim-4",
+          "claim-3",
           "claim-5",
-          "claim-6"
+          "claim-4"
         ],
         "paper_ref": {
           "char_start": 10495,
@@ -2690,9 +2856,9 @@
               "claims": [
                 "claim-1",
                 "claim-2",
-                "claim-4",
+                "claim-3",
                 "claim-5",
-                "claim-6"
+                "claim-4"
               ]
             }
           ]
@@ -2724,8 +2890,8 @@
         "supporting_claims": [],
         "inferred_supporting_claims": [
           "claim-2",
-          "claim-15",
-          "claim-16"
+          "claim-17",
+          "claim-18"
         ],
         "paper_ref": {
           "char_start": 20705,
@@ -2748,8 +2914,8 @@
               "model": "redacted-model",
               "claims": [
                 "claim-2",
-                "claim-15",
-                "claim-16"
+                "claim-17",
+                "claim-18"
               ]
             }
           ]
@@ -2763,8 +2929,8 @@
           "claim-1",
           "claim-2",
           "claim-3",
-          "claim-4",
-          "claim-5"
+          "claim-5",
+          "claim-4"
         ],
         "paper_ref": {
           "char_start": 36764,
@@ -2789,8 +2955,8 @@
                 "claim-1",
                 "claim-2",
                 "claim-3",
-                "claim-4",
-                "claim-5"
+                "claim-5",
+                "claim-4"
               ]
             }
           ]

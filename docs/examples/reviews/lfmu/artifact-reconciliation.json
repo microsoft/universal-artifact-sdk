@@ -23,31 +23,19 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-2",
+      "claim_id": "claim-9",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
       "paper_citation": "",
-      "paper_quote": "Here, we show this new approach to dampening important parameters is equally effective as Fisher information, without relying on labelled data.",
+      "paper_quote": "Table 3: Face unlearning (class unlearning): One face unlearned per experiment [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et al. (2023).",
       "artifact_citation": "",
       "locator": {},
       "observed_value": null,
       "comparison": {}
     },
     {
-      "claim_id": "claim-4",
-      "result_id": "",
-      "classification": "unresolved",
-      "reason": "No declared result edge resolves.",
-      "paper_citation": "",
-      "paper_quote": "Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices) unlearning with \u03b1 =10, \u03bb =1 on Cifar100/20.",
-      "artifact_citation": "",
-      "locator": {},
-      "observed_value": null,
-      "comparison": {}
-    },
-    {
-      "claim_id": "claim-8",
+      "claim_id": "claim-10",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -63,15 +51,15 @@
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
-      "paper_citation": "",
-      "paper_quote": "Table 3: Face unlearning (class unlearning): One face unlearned per experiment [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et al. (2023).",
+      "paper_citation": "paper:chars/12946-12991",
+      "paper_quote": "In practice, this is similar in compute time.",
       "artifact_citation": "",
       "locator": {},
       "observed_value": null,
       "comparison": {}
     },
     {
-      "claim_id": "claim-3",
+      "claim_id": "claim-4",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -83,7 +71,7 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-10",
+      "claim_id": "claim-5",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -95,19 +83,7 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-5",
-      "result_id": "",
-      "classification": "unresolved",
-      "reason": "No declared result edge resolves.",
-      "paper_citation": "",
-      "paper_quote": "LFSSD has the same complexity as SSD with the difference being that LFSSD calculates the norm of the output instead of the loss. In practice, this is similar in compute time.",
-      "artifact_citation": "",
-      "locator": {},
-      "observed_value": null,
-      "comparison": {}
-    },
-    {
-      "claim_id": "claim-6",
+      "claim_id": "claim-8",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -119,7 +95,7 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-9",
+      "claim_id": "claim-6",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -150,14 +126,141 @@
     "Undeclared evidence is not missing content; packaging is not scientific criticism."
   ],
   "visual_inspection": {
-    "status": "unavailable",
-    "observations": [],
+    "status": "incomplete",
+    "observations": [
+      {
+        "visual_citation": "artifact:figures/figure-1.png",
+        "image_sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
+        "image_path": "visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
+        "scope": "artifact-informed",
+        "claim_ids": [
+          "claim-7"
+        ],
+        "check": "budgets",
+        "classification": "unresolved",
+        "resolution_reason": "grounding_failure",
+        "visual_observation": "The attached image is entirely black. No figure content, axes, labels, text, or data marks can be seen.",
+        "paper_quote": "In practice, this is similar in compute time.",
+        "explanation": "The claim says LFSSD and SSD have similar compute time. The rendered image has no readable content, so I could not check it against the figure. The comparison record also reports that no declared result edge resolves. Its citation (paper:chars/12946-12991) is not in allowed_citations, although the quoted text does appear in the appendix 'Resources' paragraph.",
+        "paper_citation": "paper:chars/12946-12991",
+        "epistemic_status": "unassessed",
+        "region": null,
+        "region_status": "page-only",
+        "figure": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
+        "evidence_packet_id": "f146ec38a9f83c08ac9ba7a28b69fa9357c8be0207b2b14666a827341307c16d",
+        "quote_repair": null
+      },
+      {
+        "visual_citation": "artifact:figures/figure-1.png",
+        "image_sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
+        "image_path": "visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
+        "scope": "artifact-informed",
+        "claim_ids": [
+          "claim-7"
+        ],
+        "check": "captions",
+        "classification": "unresolved",
+        "resolution_reason": "grounding_failure",
+        "visual_observation": "The image is fully black and shows no caption or diagram elements.",
+        "paper_quote": "Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\nrameter importance estimation of SSD resulting in the LFSSD method.",
+        "explanation": "The paper's Figure 1 diagram has labeled components such as 'Synapse selection (\u03b1)', 'Synaptic dampening (\u03bb)', and 'Unlearned model'. I could not confirm any of them because the image is unreadable.",
+        "paper_citation": "paper:chars/11866-12030",
+        "epistemic_status": "unassessed",
+        "region": null,
+        "region_status": "page-only",
+        "figure": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
+        "evidence_packet_id": "f146ec38a9f83c08ac9ba7a28b69fa9357c8be0207b2b14666a827341307c16d",
+        "quote_repair": null
+      }
+    ],
     "selection": [
       {
         "path": "figures/figure-1.png",
-        "status": "uninspected",
-        "claim_ids": [],
-        "reason": "No explicit grounded claim link or figure budget exhausted."
+        "status": "incomplete",
+        "claim_ids": [
+          "claim-7"
+        ],
+        "sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
+        "evidence_packet": {
+          "source_sha256": "005179f8c64043b9c7e0b5f3d3b642d4c6a482806328554a153659434b50ce50",
+          "query": "In practice, this is similar in compute time.",
+          "extraction_sha256": "c0a009e1783ac6e29c85f419b0973aee377eec8d4df21ebed434b527e486eb9d",
+          "budget": 23701,
+          "total_chars": 23701,
+          "excerpts": [
+            {
+              "citation": "paper:chars/0-284",
+              "section": "front",
+              "start": 0,
+              "end": 284,
+              "text": "Accepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nLOSS -FREE MACHINE UNLEARNING\n\nJack Foster\u22171,2, Stefan Schoepf \u22171,2 & Alexandra Brintrup 1,2\n1Department of Engineering, University of Cambridge\n2The Alan Turing Institute\n*Indicates equal contribution\n{jwf40,ss2823,ab702}@cam.ac.uk\n\n",
+              "section_start": 0,
+              "heading": "Accepted as a Tiny Paper at ICLR 2024 (Preprint)"
+            },
+            {
+              "citation": "paper:chars/284-1165",
+              "section": "abstract",
+              "start": 284,
+              "end": 1165,
+              "text": "ABSTRACT\n\nWe present a machine unlearning approach that is both retraining- and label-free.\nMost existing machine unlearning approaches require a model to be fine-tuned\nto remove information while preserving performance. This is computationally\nexpensive and necessitates the storage of the whole dataset for the lifetime of\nthe model. Retraining-free approaches often utilise Fisher information, which\nis derived from the loss and requires labelled data which may not be available.\nThus, we present an extension to the Selective Synaptic Dampening algorithm,\nsubstituting the diagonal of the Fisher information matrix for the gradient of the\nl2 norm of the model output to approximate sensitivity. We evaluate our method\nin a range of experiments using ResNet18 and Vision Transformer. Results show\nour label-free method is competitive with existing state-of-the-art approaches.\n\n",
+              "section_start": 284,
+              "heading": "ABSTRACT"
+            },
+            {
+              "citation": "paper:chars/1165-4392",
+              "section": "introduction",
+              "start": 1165,
+              "end": 4392,
+              "text": "1 I NTRODUCTION & RELATED WORK\n\nWith increasing regulations around machine learning, the ability for a trained model to forget private\nor harmful information is essential. This task is typically formulated by splitting some training\ndataset D into a subset of data that needs to be forgotten Df , and the retained data Dr = D \\ Df .\nThe objective is to forget Df from the model, while simultaneously preserving model performance\non Dr (Cao & Yang, 2015). To solve this problem, several methods have been proposed that disrupt\nthe model\u2019s functional mapping for samples in Df (e.g. by learning random labels), while also\ntraining for a small number of epochs over Dr to repair or protect performance (Chundawat et al.,\n2023a;b; Graves et al., 2021; Tarun et al., 2023; Kurmanji et al., 2023). This is computationally\nexpensive and requires the storage of the full dataset permanently. In contrast, recent methods such\nas FisherForgetting from Golatkar et al. (2020) or Selective Synaptic Dampening (SSD) from Foster\net al. (2023) have explored retraining-free approaches, with the latter achieving state-of-the-art\nperformance. These often involve estimating the importance of parameters for the forget set,\nallowing them to be disrupted through noise or dampening, but without destroying performance\non the retain set. Parameter importance estimation is typically achieved via the diagonal of the\nFisher information matrix (FIM), which in practice is calculated as the square of the first-order\ngradients of the loss. This requires access to a ground truth label, which may not always be\navailable. Therefore, we propose a novel extension of SSD that does not require access to the loss\nor ground truth labels, which we refer to as Loss-Free Selective Synaptic Dampening (LFSSD).\nLFSSD replaces the Fisher-based importance estimation with an approximation of the sensitivity of\nthe model to perturbations of each parameter, which may be interpreted as parameter importance.\nSuch importance estimation has been shown to be effective in continual learning (Aljundi et al.,\n2018), yet it has not been applied in unlearning. Here, we show this new approach to dampening\nimportant parameters is equally effective as Fisher information, without relying on labelled data.\nTo the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only\nthe unlabelled forget samples at forgetting time.\n\n1\n\narXiv:2402.19308v1  [cs.LG]  29 Feb 2024\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nTable 1: Full- (class lamp) and subclass (lamp is part of electrical devices) unlearning with \u03b1 =10,\n\u03bb =1 on Cifar100/20. (LF)SSD is deterministic, \u2019\u00b10.0\u2019 omitted. Full benchmarks in the appendix.\n\nResNet18 Vision Transformer\ndata metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD\nCifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06\nDf 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89\nMIA 92.40\u00b10.00 0.32\u00b10.00 0.00 0.20 95.60\u00b10.00 2.27\u00b10.01 2.20 0.40\nCifar20 Dr 82.61\u00b10.00 81.81\u00b10.19 81.54 79.58 95.77\u00b10.00 94.69\u00b10.13 95.68 95.54\nDf 72.66\u00b10.00 22.95\u00b14.72 7.29 0.00 89.58\u00b10.00 34.55\u00b18.62 24.05 14.58\nMIA 83.40\u00b10.00 4.29\u00b10.01 3.40 2.00 81.00\u00b10.00 5.60\u00b10.02 5.80 3.2\n\n",
+              "section_start": 1165,
+              "heading": "1 I NTRODUCTION & RELATED WORK"
+            },
+            {
+              "citation": "paper:chars/4392-6820",
+              "section": "methods & results",
+              "start": 4392,
+              "end": 6820,
+              "text": "2 M ETHODS & R ESULTS\n\nWe build upon the approach presented in SSD (Foster et al., 2023). Given the parameter importance\nover both D and Df , we can select parameters that are disproportionately important for the forget\nset, and reduce their magnitude to induce forgetting in the model:\n\n\u03b8i =\n\n\u001a\u03b2\u03b8i, if []Df,i > \u03b1[]D,i\n\n\u03b8i, if []Df,i \u2264 \u03b1[]D,i\n\u2200i \u2208 [0, |\u03b8|] where \u03b2 = min( \u03bb[]D,i\n[]Df,i\n, 1) (1)\n\nHere, \u03b1 and \u03bb are hyper-parameters, and []Df,i and []Di are the ith element of the diagonal of\nthe FIM, calculated over Df and D, respectively. Fisher information is calculated over D not Dr,\nmeaning this is only calculated once, and then the train-set may be discarded after. We replace\nthe Fisher information with the sensitivity estimation from Aljundi et al. (2018), which we now\nintroduce. Given some neural network output, f (x; \u03b8), and some small perturbation \u03b4 = {\u03b4i} in the\nparameters \u03b8 = {\u03b8i}, we can approximate the change in the neural network\u2019s output by:\n\nf (x; \u03b8 + \u03b4) \u2212 f (x; \u03b8) \u2248\nX\n\ni\n\n\u2202f (x; \u03b8)\n\u2202\u03b8i\n\u03b4i (2)\n\nThe importance of a parameter can be measured by how muchf (x; \u03b8) changes, given a small pertur-\nbation to the parameter. Assuming \u03b4i is a small, constant change, this is equivalent to the magnitude\nof the gradient. For multi-dimensional outputs, this gradient must be calculated over every dimen-\nsion which is expensive, and so instead the gradient can be calculated over the squared l2 norm of\nthe output. Putting this together, we arrive at the final importance estimation equation:\n\n\u2126i = 1\nN\n\nNX\n\nk=1\n\n\u2225 \u2202[l2\n2(f (xk; \u03b8))]\n\u2202\u03b8i\n\u2225 (3)\n\nWhich we can calculate over D and Df and substitute into equation 1 in place of [] and []f . Results\ncan be seen in Table 1, with further results available in the appendix. The objective is to maximise\nthe Dr accuracy while having a low membership inference attack score (MIA) similar to the retrain\ncolumn (Shokri et al., 2017). Similarity to the retrained model is necessary, as \u201dover-forgetting\u201d can\nlead to the Streisand effect (e.g., labelling a cat as a boat is an obvious modification) (Chundawat\net al., 2023a). The results show that LFSSD produces scores similar to that of a model trained\non only Dr, and is competitive with state-of-the-art methods such as SSD, while being the first\nmethod to require no labelled data and no retraining. A shared limitation with SSD is the reliance\non choosing \u03b1 and \u03bb values that balance forgetting and model performance.\n\n",
+              "section_start": 4392,
+              "heading": "2 M ETHODS & R ESULTS"
+            },
+            {
+              "citation": "paper:chars/6820-7514",
+              "section": "conclusion",
+              "start": 6820,
+              "end": 7514,
+              "text": "3 C ONCLUSION\n\nDeveloping lightweight yet effective machine unlearning approaches is a significant open problem.\nIn this work, we presented a novel extension of existing literature that is the first retraining free\nmachine unlearning method to require only the unlabelled input samples for the forget set. By not\nrequiring the long-term storage of the retain dataset, a labelled forget set, or the loss over the forget\nset, LFSSD is lightweight, robust and more practically useful than its predecessors.\n\n2\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nURM S TATEMENT\n\nThe authors acknowledge that at least one key author of this work meets the URM criteria of ICLR\n2024 Tiny Papers Track\n\n",
+              "section_start": 6820,
+              "heading": "3 C ONCLUSION"
+            },
+            {
+              "citation": "paper:chars/7514-23701",
+              "section": "references",
+              "start": 7514,
+              "end": 23701,
+              "text": "REFERENCES\nRahaf Aljundi, Francesca Babiloni, Mohamed Elhoseiny, Marcus Rohrbach, and Tinne Tuytelaars.\nMemory aware synapses: Learning what (not) to forget. In Proceedings of the European confer-\nence on computer vision (ECCV), pp. 139\u2013154, 2018.\n\nBurak. Pinterest face recognition dataset. www.kaggle.com/datasets/hereisburak/pins-face-\nrecognition, 2020.\n\nYinzhi Cao and Junfeng Yang. Towards making systems forget with machine unlearning. In 2015\nIEEE symposium on security and privacy, pp. 463\u2013480. IEEE, 2015.\n\nVikram S Chundawat, Ayush K Tarun, Murari Mandal, and Mohan Kankanhalli. Can bad teaching\ninduce forgetting? unlearning in deep networks using an incompetent teacher. In Proceedings of\nthe AAAI Conference on Artificial Intelligence, volume 37, pp. 7210\u20137217, 2023a.\n\nVikram S Chundawat, Ayush K Tarun, Murari Mandal, and Mohan Kankanhalli. Zero-shot machine\nunlearning. IEEE Transactions on Information Forensics and Security, 2023b.\n\nJack Foster, Stefan Schoepf, and Alexandra Brintrup. Fast machine unlearning without retraining\nthrough selective synaptic dampening. arXiv preprint arXiv:2308.07707, 2023.\n\nAditya Golatkar, Alessandro Achille, and Stefano Soatto. Eternal sunshine of the spotless net:\nSelective forgetting in deep networks. In Proceedings of the IEEE/CVF Conference on Computer\nVision and Pattern Recognition (CVPR), June 2020.\n\nLaura Graves, Vineel Nagisetty, and Vijay Ganesh. Amnesiac machine learning. In Proceedings of\nthe AAAI Conference on Artificial Intelligence, volume 35, pp. 11516\u201311524, 2021.\n\nAlex Krizhevsky and Geoff Hinton. Convolutional deep belief networks on cifar-10. Unpublished\nmanuscript, 40(7):1\u20139, 2010.\n\nMeghdad Kurmanji, Peter Triantafillou, and Eleni Triantafillou. Towards unbounded machine un-\nlearning. arXiv preprint arXiv:2302.09880, 2023.\n\nReza Shokri, Marco Stronati, Congzheng Song, and Vitaly Shmatikov. Membership inference at-\ntacks against machine learning models. In 2017 IEEE symposium on security and privacy (SP) ,\npp. 3\u201318. IEEE, 2017.\n\nAyush K Tarun, Vikram S Chundawat, Murari Mandal, and Mohan Kankanhalli. Fast yet effective\nmachine unlearning. IEEE Transactions on Neural Networks and Learning Systems, 2023.\n\nA A PPENDIX\n\nBenchmarks. We evaluate LFSSD in the same manner as Chundawat et al. (2023a); Foster et al.\n(2023), comparing against a baseline model without any unlearning, a model retrained from scratch\non only Dr, a model finetuned for 2 epochs on Dr, and several existing state-of-the-art methods\n(Chundawat et al., 2023a; Graves et al., 2021; Foster et al., 2023) (teacher, amnesiac, SSD). Three\nkey tasks are evaluated using ResNet18 (RN) and Vision Transformer (ViT): full class, subclass,\nand random forgetting. Fullclass entails forgetting an entire class from the dataset (e.g. rocket from\nCifar100), subclass involves forgetting a related subclass from the dataset (e.g. all rockets from class\nVehicle2 in Cifar20), and random forgetting selects a random subset of samples across all classes.\nDatasets used include the Cifar suite (Krizhevsky & Hinton, 2010), and the PINS face recognition\ndataset (Burak, 2020). Runs are repeated 10 times for each method, with the mean and standard\ndeviation shown in the tables. Dr and Df in the tables denote the accuracy on the respective subset\nof data in percent. Since SSD (and therefore LFSSD) is deterministic, there is no standard deviation\n\n3\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nApproximate parameter importances\nlabel-free via output gradients\n\nSelect and dampen parameters using\nSSD to induce forgetting\n\nProtect generalization\n\nTarget forget set\nimportance\n\nSynapse selection (\u03b1)\n\nUnlearned\nmodel\n\nLoss-free importance estimation Selective Synaptic Dampening\n\nSynaptic dampening (\u03bb)Approximate parameter importances\n\nlabel-free via output gradients\nSelect and dampen parameters using\nSSD to induce forgetting\nProtect generalization\nTarget forget set\nimportance\nSynapse selection (\u03b1)\nUnlearned\nmodel\nLoss-free importance estimation Selective Synaptic Dampening\nSynaptic dampening (\u03bb)Approximate parameter importances\n\nlabel-free via output gradients\nSelect and dampen parameters using\nSSD to induce forgetting\nProtect generalization\nTarget forget set\nimportance\nSynapse selection (\u03b1)\nUnlearned\nmodel\nLoss-free importance estimation Selective Synaptic Dampening\nSynaptic dampening (\u03bb)\n\nFigure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\nrameter importance estimation of SSD resulting in the LFSSD method.\n\nacross repeated runs. We use the same membership inference attack as in Chundawat et al. (2023a);\nFoster et al. (2023), where logistic regression is used to classify samples as seen or unseen for a\ngiven model, based the entropy of the model outputs for that sample.\n\nResources. A single backward pass over the full dataset D is O(bf ull\u00b7 p) where bf ullis the number\nof batches in the dataset and p is the number of parameters in the model. Similarly, the complexity\nfor the forget and retain set is O(bf orget\u00b7 p) and O(bretain \u00b7 p), respectively. Note that bretain \u2248\nbf ull>> bf orget. SSD requires only one computation of the gradients for D (can be saved and\nreused), then for every forget request it requires one computation forDf to then apply the dampening\nin O(bf orget\u00b7 p).\n\nLFSSD has the same complexity as SSD with the difference being that LFSSD calculates the norm\nof the output instead of the loss. In practice, this is similar in compute time.\n\nOther methods are retraining-based and depend on the number of epochs N, generally on the order\nof O(N \u00b7 bretain \u00b7 p), which is much larger.\n\nSensitivity analysis. The values for alpha and lambda for SSD are taken from Foster et al. (2023)\nwhere the authors used Optuna to search for ideal parameters. For LFSSD we performed a simplified\nhyperparameter search keeping lambda fixed at 1 and alpha values [1, 50]. We pick one value per\nunlearning task (e.g. full class, sub-class, random) to show robustness across classes and do not\nuse the best alpha per individual class/subclass (e.g., taking alpha 25 for rocket, alpha 5 for another\nclass, etc.). A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there\nis a significant drop off in performance when picking an alpha that is too aggressive or conservative\nbut the method has a wide plateau in which it performs well.\n\nUnlearning scenarios without labels. For cases where labels are hard to get we expect two main\nscenarios: First, having a catalogue of undesired/copyrighted data (e.g., images) that we want to\nunlearn from the model just to be on the safe side legally even if it might not be in the model. In this\ncase, we do not have the labels. Second, models that were trained with semi-supervised learning\ncould benefit from our method when we do not want to rely on the accuracy of pseudo labels.\n\n4\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nTable 2: Sensitivity analysis for LFSSD parameter \u03b1 with \u03bb = 1 on CIFAR100 rocket class\nunlearning. LFSSD is deterministic, thus no \u00b1 reported.\n\n\u03b1 Dr Accuracy Df Accuracy MIA\n1 16.87% 0.00% 26.60\n5 74.72% 0.00% 0.00\n10 75.67% 0.00% 0.00\n25 76.10% 0.00% 0.00\n50 76.32% 71.88% 29.40\n\nTable 3: Face unlearning (class unlearning): One face unlearned per experiment [ID 1,10,20,30,40]\nand results aggregated for 5 experiments as in Foster et al. (2023). SSD: \u03b1 = 50, \u03bb = 0.1; LFSSD:\n\u03b1 = 10, \u03bb = 1\n\nmetric baseline retrain finetune teacher amnesiac SSD LFSSD\nRN Dr 98.52\u00b10.02 100.00\u00b10.00 99.72\u00b10.45 96.72\u00b10.44 99.99\u00b10.02 98.42\u00b10.13 98.15\u00b10.20\nDf 97.84\u00b11.99 0.00\u00b10.00 4.32\u00b14.61 0.13\u00b10.4 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 34.38\u00b10.23 0.00\u00b10.00 0.80\u00b10.01 0.02\u00b10.00 8.92\u00b10.03 1.11\u00b10.01 0.38\u00b10.58\n\nTable 4: Class unlearning on Cifar100. SSD: \u03b1RN = 10, \u03b1V iT = 10, \u03bb = 1; LFSSD: \u03b1 = 10,\n\u03bb = 1. MR: mushroom, Rkt: Rocket.\n\nclass metric baseline retrain finetune teacher amnesiac SSD LFSSD\nRN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00\nDf 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 92.60\u00b10.00 2.44\u00b10.01 24.52\u00b10.07 0.00\u00b10.00 50.86\u00b10.05 5.40\u00b10.00 0.00\u00b10.00\nlamp Dr 76.39\u00b10.00 72.89\u00b10.34 64.01\u00b10.63 74.76\u00b10.19 73.52\u00b10.48 76.08\u00b10.00 76.36\u00b10.00\nDf 70.49\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 92.40\u00b10.00 0.32\u00b10.00 12.92\u00b10.04 0.00\u00b10.00 46.24\u00b10.04 0.20\u00b10.00 0.00\u00b10.00\nMR Dr 76.28\u00b10.00 72.90\u00b10.45 63.97\u00b10.67 74.53\u00b10.26 73.56\u00b10.48 75.59\u00b10.00 76.28\u00b10.00\nDf 80.12\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 95.20\u00b10.00 0.22\u00b10.00 12.98\u00b10.03 0.00\u00b10.00 46.48\u00b10.04 0.20\u00b10.00 0.00\u00b10.00\nRkt Dr 76.27\u00b10.00 72.83\u00b10.42 64.05\u00b10.88 74.53\u00b10.26 73.34\u00b10.45 74.54\u00b10.00 75.67\u00b10.00\nDf 80.90\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 93.40\u00b10.00 1.04\u00b10.00 13.70\u00b10.04 0.00\u00b10.00 29.56\u00b10.02 2.20\u00b10.00 0.00\u00b10.00\nsea Dr 76.23\u00b10.00 72.83\u00b10.54 63.80\u00b11.36 74.56\u00b10.18 73.14\u00b10.42 73.56\u00b10.00 75.43\u00b10.00\nDf 85.85\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 93.40\u00b10.00 5.84\u00b10.02 26.54\u00b10.08 0.02\u00b10.00 29.50\u00b10.03 0.60\u00b10.00 0.00\u00b10.00\nViT baby Dr 88.93\u00b10.00 90.27\u00b10.15 80.74\u00b11.38 87.48\u00b10.41 88.43\u00b10.71 88.59\u00b10.00 88.12\u00b10.00\nDf 90.19\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 23.80\u00b122.51 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 75.60\u00b10.00 21.53\u00b10.03 26.77\u00b10.13 0.00\u00b10.00 1.83\u00b10.00 0.60\u00b10.00 4.00\u00b10.00\nlamp Dr 88.84\u00b10.00 90.10\u00b10.19 80.25\u00b11.48 87.50\u00b10.43 88.43\u00b10.6 89.06\u00b10.00 89.03\u00b10.00\nDf 97.22\u00b10.00 0.00\u00b10.00 0.36\u00b10.89 25.25\u00b112.5 0.00\u00b10.00 36.89\u00b10.00 0.00\u00b10.00\nMIA 95.60\u00b10.00 2.27\u00b10.01 11.77\u00b10.04 0.13\u00b10.00 2.70\u00b10.00 0.40\u00b10.00 2.20\u00b10.00\nMR Dr 88.87\u00b10.00 90.02\u00b10.22 81.14\u00b10.79 87.42\u00b10.41 88.34\u00b10.72 88.82\u00b10.00 88.93\u00b10.00\nDf 94.88\u00b10.00 0.00\u00b10.00 2.33\u00b12.37 12.82\u00b15.92 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 92.80\u00b10.00 0.70\u00b10.00 7.10\u00b10.02 0.03\u00b10.00 0.47\u00b10.00 3.80\u00b10.00 2.60\u00b10.00\nRkt Dr 88.88\u00b10.00 90.07\u00b10.09 80.82\u00b11.37 87.46\u00b10.53 87.92\u00b10.89 88.90\u00b10.00 88.86\u00b10.00\nDf 94.70\u00b10.00 0.00\u00b10.00 0.46\u00b10.72 4.20\u00b15.24 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 94.40\u00b10.00 3.23\u00b10.00 19.00\u00b10.09 0.03\u00b10.00 1.00\u00b10.01 1.80\u00b10.00 10.60\u00b10.00\nsea Dr 88.91\u00b10.00 90.27\u00b10.21 80.82\u00b11.36 87.72\u00b10.22 88.25\u00b10.29 87.95\u00b10.00 88.67\u00b10.00\nDf 90.54\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 51.13\u00b117.37 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 80.40\u00b10.00 8.43\u00b10.02 21.97\u00b10.07 0.00\u00b10.00 0.77\u00b10.00 3.20\u00b10.00 4.20\u00b10.00\n\n5\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nTable 5: Class unlearning on Cifar20. SSD: \u03b1RN = 10, \u03b1V iT = 10, \u03bb = 1; LFSSD: \u03b1 = 5, \u03bb = 1.\nED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.\n\nclass metric baseline retrain finetune teacher amnesiac SSD LFSSD\nRN ED Dr 82.56\u00b10.00 82.13\u00b10.23 73.19\u00b11.08 82.04\u00b10.29 81.34\u00b10.18 83.15\u00b10.00 83.19\u00b10.00\nDf 82.26\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 10.88\u00b11.3 0.00\u00b10.00 1.76\u00b10.00 0.00\u00b10.00\nMIA 89.56\u00b10.00 8.91\u00b10.01 30.37\u00b10.05 0.00\u00b10.00 7.02\u00b10.01 4.16\u00b10.00 3.80\u00b10.00\nNS Dr 82.10\u00b10.00 81.33\u00b10.22 72.03\u00b11.63 81.36\u00b10.27 80.70\u00b10.4 82.33\u00b10.00 82.44\u00b10.00\nDf 91.08\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 10.91\u00b12.16 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 88.68\u00b10.00 3.77\u00b10.01 17.60\u00b10.03 0.00\u00b10.00 3.71\u00b10.01 3.28\u00b10.00 2.68\u00b10.00\npeople Dr 82.11\u00b10.00 81.20\u00b10.19 72.46\u00b11.01 81.31\u00b10.16 80.64\u00b10.34 82.31\u00b10.00 82.08\u00b10.00\nDf 90.70\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 1.07\u00b10.48 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 91.72\u00b10.00 1.36\u00b10.00 16.20\u00b10.04 0.00\u00b10.00 6.28\u00b10.01 1.12\u00b10.00 1.36\u00b10.00\nveg Dr 82.31\u00b10.00 81.39\u00b10.21 71.42\u00b11.32 81.46\u00b10.3 81.01\u00b10.33 82.38\u00b10.00 82.47\u00b10.00\nDf 86.90\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 2.67\u00b11.35 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 89.52\u00b10.00 9.74\u00b10.01 29.39\u00b10.08 0.00\u00b10.00 5.00\u00b10.01 16.96\u00b10.00 5.44\u00b10.00\nVeh2 Dr 82.69\u00b10.00 82.11\u00b10.19 73.50\u00b10.86 81.96\u00b10.21 81.13\u00b10.3 82.97\u00b10.00 82.72\u00b10.00\nDf 80.41\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 3.62\u00b11.07 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 82.56\u00b10.00 13.54\u00b10.01 30.63\u00b10.04 0.00\u00b10.00 7.54\u00b10.01 6.68\u00b10.00 3.92\u00b10.00\nViT ED Dr 95.73\u00b10.00 94.71\u00b10.14 87.35\u00b11.44 93.42\u00b10.62 93.45\u00b10.44 95.82\u00b10.00 95.84\u00b10.00\nDf 95.03\u00b10.00 0.00\u00b10.00 0.28\u00b10.22 4.14\u00b13.75 0.03\u00b10.08 53.53\u00b10.00 0.68\u00b10.00\nMIA 91.60\u00b10.00 9.82\u00b10.01 23.60\u00b10.04 0.02\u00b10.00 1.70\u00b10.00 1.32\u00b10.00 4.00\u00b10.00\nNS Dr 95.71\u00b10.00 94.79\u00b10.11 87.45\u00b11.2 93.50\u00b10.4 93.68\u00b10.56 93.63\u00b10.00 95.13\u00b10.00\nDf 95.37\u00b10.00 0.00\u00b10.00 0.05\u00b10.15 2.63\u00b12.08 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 85.04\u00b10.00 4.70\u00b10.01 16.97\u00b10.04 0.06\u00b10.00 1.04\u00b10.00 1.88\u00b10.00 4.72\u00b10.00\npeople Dr 95.54\u00b10.00 94.54\u00b10.14 80.18\u00b119.88 93.19\u00b10.54 93.28\u00b10.41 95.33\u00b10.00 95.50\u00b10.00\nDf 98.54\u00b10.00 0.00\u00b10.00 0.09\u00b10.14 2.91\u00b13.36 0.00\u00b10.00 0.00\u00b10.00 2.52\u00b10.00\nMIA 89.48\u00b10.00 1.56\u00b10.00 8.08\u00b10.03 0.01\u00b10.00 0.60\u00b10.00 1.20\u00b10.00 1.00\u00b10.00\nveg Dr 95.59\u00b10.00 94.54\u00b10.21 87.09\u00b11.24 92.92\u00b10.51 93.29\u00b10.41 95.71\u00b10.00 95.64\u00b10.00\nDf 97.57\u00b10.00 0.00\u00b10.00 0.30\u00b10.29 8.28\u00b16.79 0.02\u00b10.07 0.00\u00b10.00 0.59\u00b10.00\nMIA 91.32\u00b10.00 4.41\u00b10.01 14.72\u00b10.05 0.02\u00b10.00 1.02\u00b10.00 1.88\u00b10.00 3.00\u00b10.00\nVeh2 Dr 95.73\u00b10.00 94.85\u00b10.13 87.75\u00b11.64 93.59\u00b10.3 93.88\u00b10.15 93.12\u00b10.00 95.94\u00b10.00\nDf 95.22\u00b10.00 0.00\u00b10.00 0.04\u00b10.12 4.88\u00b14.12 0.00\u00b10.00 0.00\u00b10.00 0.00\u00b10.00\nMIA 84.04\u00b10.00 22.96\u00b10.03 38.15\u00b10.08 0.02\u00b10.00 1.20\u00b10.00 7.04\u00b10.00 9.12\u00b10.00\n\n6\fAccepted as a Tiny Paper at ICLR 2024 (Preprint)\n\nTable 6: Subclass unlearning on Cifar20. SSD: \u03b1RN = 10, \u03b1V iT = 25, \u03bb = 1; LFSSD: \u03b1 = 10,\n\u03bb = 1. MR: mushroom, Rkt: Rocket.\n\nclass metric baseline retrain finetune teacher amnesiac SSD LFSSD\nRN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00\nDf 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85\u00b10.00 0.78\u00b10.00\nMIA 90.40\u00b10.00 44.82\u00b10.02 56.20\u00b10.06 0.04\u00b10.00 13.65\u00b10.02 1.40\u00b10.00 1.00\u00b10.00\nlamp Dr 82.61\u00b10.00 81.81\u00b10.19 72.46\u00b10.95 81.51\u00b10.19 81.36\u00b10.36 79.58\u00b10.00 81.54\u00b10.00\nDf 72.66\u00b10.00 22.95\u00b14.72 17.25\u00b16.58 16.82\u00b13.07 7.44\u00b11.73 0.00\u00b10.00 7.29\u00b10.00\nMIA 83.40\u00b10.00 4.29\u00b10.01 21.55\u00b10.04 0.04\u00b10.00 15.73\u00b10.03 2.00\u00b10.00 3.40\u00b10.00\nMR Dr 82.60\u00b10.00 81.66\u00b10.21 72.51\u00b11.15 81.50\u00b10.2 81.44\u00b10.18 80.05\u00b10.00 80.38\u00b10.00\nDf 72.22\u00b10.00 10.48\u00b12.02 7.46\u00b14.89 8.77\u00b12.79 1.09\u00b11.13 0.78\u00b10.00 0.78\u00b10.00\nMIA 86.80\u00b10.00 2.27\u00b10.00 18.09\u00b10.02 0.00\u00b10.00 12.80\u00b10.03 4.00\u00b10.00 3.80\u00b10.00\nRkt Dr 82.54\u00b10.00 81.54\u00b10.24 72.41\u00b10.95 81.48\u00b10.27 81.46\u00b10.26 82.43\u00b10.00 80.49\u00b10.00\nDf 79.34\u00b10.00 10.74\u00b13.4 9.75\u00b16.68 6.41\u00b13.57 0.76\u00b10.73 2.17\u00b10.00 0.00\u00b10.00\nMIA 89.40\u00b10.00 3.85\u00b10.01 18.67\u00b10.05 0.00\u00b10.00 6.60\u00b10.01 10.80\u00b10.00 6.60\u00b10.00\nsea Dr 82.37\u00b10.00 81.30\u00b10.27 72.50\u00b11.55 81.22\u00b10.24 81.05\u00b10.31 81.72\u00b10.00 79.84\u00b10.00\nDf 96.27\u00b10.00 91.47\u00b11.92 82.69\u00b17.17 75.13\u00b14.12 46.78\u00b18.55 75.35\u00b10.00 18.06\u00b10.00\nMIA 90.80\u00b10.00 52.09\u00b10.03 62.82\u00b10.11 0.00\u00b10.00 4.45\u00b10.01 21.80\u00b10.00 2.20\u00b10.00\nViT baby Dr 95.69\u00b10.00 94.50\u00b10.19 87.60\u00b10.75 92.98\u00b10.53 93.35\u00b10.26 95.54\u00b10.00 95.38\u00b10.00\nDf 96.44\u00b10.00 93.23\u00b11.09 85.45\u00b14.47 46.66\u00b117.88 38.76\u00b17.36 94.10\u00b10.00 86.81\u00b10.00\nMIA 91.60\u00b10.00 77.37\u00b10.03 66.57\u00b10.07 0.03\u00b10.00 0.93\u00b10.01 77.20\u00b10.00 1.60\u00b10.00\nlamp Dr 95.77\u00b10.00 94.69\u00b10.13 87.72\u00b10.52 93.57\u00b10.67 93.66\u00b10.5 95.54\u00b10.00 95.68\u00b10.00\nDf 89.58\u00b10.00 34.55\u00b18.62 16.90\u00b110.4 8.23\u00b17.05 0.59\u00b11.45 14.58\u00b10.00 24.05\u00b10.00\nMIA 81.00\u00b10.00 5.60\u00b10.02 14.73\u00b10.04 0.10\u00b10.00 2.00\u00b10.01 3.2\u00b10.00 5.80\u00b10.00\nMR Dr 95.69\u00b10.00 94.60\u00b10.13 87.37\u00b10.91 93.55\u00b10.42 93.42\u00b10.46 95.51\u00b10.00 95.66\u00b10.00\nDf 97.05\u00b10.00 26.57\u00b16.41 15.71\u00b112.13 13.01\u00b19.11 0.20\u00b10.36 6.68\u00b10.00 31.42\u00b10.00\nMIA 77.80\u00b10.00 2.34\u00b10.01 9.25\u00b10.04 0.00\u00b10.00 1.50\u00b10.01 0.40\u00b10.00 0.80\u00b10.00\nRkt Dr 95.73\u00b10.00 94.61\u00b10.13 85.70\u00b13.05 93.60\u00b10.29 93.47\u00b10.22 95.13\u00b10.00 95.66\u00b10.00\nDf 94.53\u00b10.00 22.26\u00b18.34 6.25\u00b16.03 3.35\u00b12.89 0.85\u00b11.71 5.12\u00b10.00 2.17\u00b10.00\nMIA 80.40\u00b10.00 3.44\u00b10.01 16.04\u00b10.03 0.02\u00b10.00 0.78\u00b10.00 5.40\u00b10.00 3.00\u00b10.00\nsea Dr 95.67\u00b10.00 94.55\u00b10.22 87.65\u00b11.56 93.57\u00b10.26 93.26\u00b10.24 95.57\u00b10.00 94.45\u00b10.00\nDf 99.22\u00b10.00 95.12\u00b10.81 89.17\u00b14.17 25.97\u00b114.01 21.42\u00b18.5 97.05\u00b10.00 20.83\u00b10.00\nMIA 88.40\u00b10.00 65.96\u00b10.04 65.04\u00b10.13 0.17\u00b10.00 0.40\u00b10.00 82.20\u00b10.00 6.60\u00b10.00\n\nTable 7: Random sample unlearning on Cifar10 (100 samples). SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD:\n\u03b1 = 3.5, \u03bb = 1\n\nmetric baseline retrain finetune teacher amnesiac SSD LFSSD\nRN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30\nDf 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b14.79 93.61\u00b14.99 94.94\u00b12.89\nMIA 75.78\u00b10.04 74.22\u00b10.04 74.58\u00b10.05 49.28\u00b10.07 25.18\u00b10.05 72.65\u00b10.05 73.86\u00b16.33\nViT Dr 98.88\u00b10.00 98.61\u00b10.08 97.28\u00b10.33 97.58\u00b10.36 97.62\u00b10.35 98.01\u00b11.56 98.53\u00b10.27\nDf 100.00\u00b10.00 98.80\u00b10.76 97.19\u00b10.98 86.75\u00b13.57 73.49\u00b15.11 98.07\u00b12.35 99.52\u00b10.84\nMIA 90.76\u00b10.03 91.77\u00b10.02 86.14\u00b10.02 33.53\u00b10.06 10.44\u00b10.05 85.54\u00b10.11 90.12\u00b13.40\n\n7",
+              "section_start": 7514,
+              "heading": "REFERENCES"
+            }
+          ],
+          "excluded": [],
+          "status": "selected",
+          "selected_chars": 23701,
+          "inspection": "context-selected-not-support-validated",
+          "packet_id": "f146ec38a9f83c08ac9ba7a28b69fa9357c8be0207b2b14666a827341307c16d"
+        },
+        "attempts": [
+          {
+            "response": "{\"observations\": [{\"check\": \"budgets\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The attached image is entirely black. No figure content, axes, labels, text, or data marks can be seen.\", \"paper_quote\": \"In practice, this is similar in compute time.\", \"explanation\": \"The claim says LFSSD and SSD have similar compute time. The rendered image has no readable content, so I could not check it against the figure. The comparison record also reports that no declared result edge resolves. Its citation (paper:chars/12946-12991) is not in allowed_citations, although the quoted text does appear in the appendix 'Resources' paragraph.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}, {\"check\": \"captions\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The image is fully black and shows no caption or diagram elements.\", \"paper_quote\": \"Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\\nrameter importance estimation of SSD resulting in the LFSSD method.\", \"explanation\": \"The paper's Figure 1 diagram has labeled components such as 'Synapse selection (\u03b1)', 'Synaptic dampening (\u03bb)', and 'Unlearned model'. I could not confirm any of them because the image is unreadable.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}]}",
+            "errors": []
+          }
+        ],
+        "reason": "Applicable visual comparisons remain unresolved.",
+        "verification": {
+          "status": "not-needed",
+          "attempts": [],
+          "requested": []
+        }
       }
     ],
     "figure_budget": 4,
@@ -181,7 +284,7 @@
         {
           "outcome": "grounding_failure",
           "label": "Grounding failure: context, citation or readability",
-          "count": 0
+          "count": 2
         },
         {
           "outcome": "confirmation_failure",
@@ -214,15 +317,21 @@
   },
   "run_evidence": {
     "status": "incomplete",
-    "packet_id": "43e1a6d42d0dea0014659acf49a4f8413466fa682843ec1a0708bfd0f1061380",
+    "packet_id": "d6bcd9ecf9a90cd145c6cd048da330c01581c7eb0e421a92476fb19d94cc0747",
     "packet": {
       "sources": {},
       "paper_claims": [
         {
-          "claim_id": "claim-8",
+          "claim_id": "claim-10",
           "result_id": "",
           "citation": "paper:chars/23044-23103",
           "quote": "Table 7: Random sample unlearning on Cifar10 (100 samples)."
+        },
+        {
+          "claim_id": "claim-7",
+          "result_id": "",
+          "citation": "paper:chars/12946-12991",
+          "quote": "In practice, this is similar in compute time."
         }
       ],
       "source_settings": [],
@@ -237,43 +346,7 @@
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         },
         {
-          "claim_id": "claim-2",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-4",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-8",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-7",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-3",
+          "claim_id": "claim-9",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -291,6 +364,24 @@
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         },
         {
+          "claim_id": "claim-7",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-4",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
           "claim_id": "claim-5",
           "result_id": "",
           "run_id": null,
@@ -300,7 +391,7 @@
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         },
         {
-          "claim_id": "claim-6",
+          "claim_id": "claim-8",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -309,7 +400,7 @@
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         },
         {
-          "claim_id": "claim-9",
+          "claim_id": "claim-6",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -331,14 +422,11 @@
     "observations": [],
     "limitations": [
       "Claim claim-1: paper premise unselected or ambiguous.",
-      "Claim claim-2: paper premise unselected or ambiguous.",
-      "Claim claim-4: paper premise unselected or ambiguous.",
-      "Claim claim-7: paper premise unselected or ambiguous.",
-      "Claim claim-3: paper premise unselected or ambiguous.",
-      "Claim claim-10: paper premise unselected or ambiguous.",
-      "Claim claim-5: paper premise unselected or ambiguous.",
-      "Claim claim-6: paper premise unselected or ambiguous.",
       "Claim claim-9: paper premise unselected or ambiguous.",
+      "Claim claim-4: paper premise unselected or ambiguous.",
+      "Claim claim-5: paper premise unselected or ambiguous.",
+      "Claim claim-8: paper premise unselected or ambiguous.",
+      "Claim claim-6: paper premise unselected or ambiguous.",
       "Claim claim-11: paper premise unselected or ambiguous.",
       "Advisory code/run reasoning was not performed."
     ],

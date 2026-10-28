@@ -1,15 +1,21 @@
 {
   "_generated": "reference-reviewer",
   "status": "incomplete",
-  "packet_id": "43e1a6d42d0dea0014659acf49a4f8413466fa682843ec1a0708bfd0f1061380",
+  "packet_id": "d6bcd9ecf9a90cd145c6cd048da330c01581c7eb0e421a92476fb19d94cc0747",
   "packet": {
     "sources": {},
     "paper_claims": [
       {
-        "claim_id": "claim-8",
+        "claim_id": "claim-10",
         "result_id": "",
         "citation": "paper:chars/23044-23103",
         "quote": "Table 7: Random sample unlearning on Cifar10 (100 samples)."
+      },
+      {
+        "claim_id": "claim-7",
+        "result_id": "",
+        "citation": "paper:chars/12946-12991",
+        "quote": "In practice, this is similar in compute time."
       }
     ],
     "source_settings": [],
@@ -24,43 +30,7 @@
         "reason": "Run ID and result digest binding are producer assertions, not execution proof."
       },
       {
-        "claim_id": "claim-2",
-        "result_id": "",
-        "run_id": null,
-        "result_sha256": null,
-        "events": [],
-        "status": "unresolved",
-        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-      },
-      {
-        "claim_id": "claim-4",
-        "result_id": "",
-        "run_id": null,
-        "result_sha256": null,
-        "events": [],
-        "status": "unresolved",
-        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-      },
-      {
-        "claim_id": "claim-8",
-        "result_id": "",
-        "run_id": null,
-        "result_sha256": null,
-        "events": [],
-        "status": "unresolved",
-        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-      },
-      {
-        "claim_id": "claim-7",
-        "result_id": "",
-        "run_id": null,
-        "result_sha256": null,
-        "events": [],
-        "status": "unresolved",
-        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-      },
-      {
-        "claim_id": "claim-3",
+        "claim_id": "claim-9",
         "result_id": "",
         "run_id": null,
         "result_sha256": null,
@@ -78,6 +48,24 @@
         "reason": "Run ID and result digest binding are producer assertions, not execution proof."
       },
       {
+        "claim_id": "claim-7",
+        "result_id": "",
+        "run_id": null,
+        "result_sha256": null,
+        "events": [],
+        "status": "unresolved",
+        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+      },
+      {
+        "claim_id": "claim-4",
+        "result_id": "",
+        "run_id": null,
+        "result_sha256": null,
+        "events": [],
+        "status": "unresolved",
+        "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+      },
+      {
         "claim_id": "claim-5",
         "result_id": "",
         "run_id": null,
@@ -87,7 +75,7 @@
         "reason": "Run ID and result digest binding are producer assertions, not execution proof."
       },
       {
-        "claim_id": "claim-6",
+        "claim_id": "claim-8",
         "result_id": "",
         "run_id": null,
         "result_sha256": null,
@@ -96,7 +84,7 @@
         "reason": "Run ID and result digest binding are producer assertions, not execution proof."
       },
       {
-        "claim_id": "claim-9",
+        "claim_id": "claim-6",
         "result_id": "",
         "run_id": null,
         "result_sha256": null,
@@ -118,14 +106,11 @@
   "observations": [],
   "limitations": [
     "Claim claim-1: paper premise unselected or ambiguous.",
-    "Claim claim-2: paper premise unselected or ambiguous.",
-    "Claim claim-4: paper premise unselected or ambiguous.",
-    "Claim claim-7: paper premise unselected or ambiguous.",
-    "Claim claim-3: paper premise unselected or ambiguous.",
-    "Claim claim-10: paper premise unselected or ambiguous.",
-    "Claim claim-5: paper premise unselected or ambiguous.",
-    "Claim claim-6: paper premise unselected or ambiguous.",
     "Claim claim-9: paper premise unselected or ambiguous.",
+    "Claim claim-4: paper premise unselected or ambiguous.",
+    "Claim claim-5: paper premise unselected or ambiguous.",
+    "Claim claim-8: paper premise unselected or ambiguous.",
+    "Claim claim-6: paper premise unselected or ambiguous.",
     "Claim claim-11: paper premise unselected or ambiguous.",
     "Advisory code/run reasoning was not performed."
   ],

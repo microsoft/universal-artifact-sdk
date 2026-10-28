@@ -8,9 +8,8 @@ contributions:
   supporting_claims: []
   inferred_supporting_claims: &id001
   - claim-1
-  - claim-2
-  - claim-4
-  - claim-8
+  - claim-9
+  - claim-10
   - claim-7
   paper_ref:
     char_start: 294
@@ -37,8 +36,8 @@ contributions:
   supporting_claims: []
   inferred_supporting_claims: &id002
   - claim-1
-  - claim-4
-  - claim-8
+  - claim-9
+  - claim-10
   - claim-7
   paper_ref:
     char_start: 767
@@ -74,9 +73,8 @@ contributions:
   supporting_claims: []
   inferred_supporting_claims: &id003
   - claim-1
-  - claim-2
-  - claim-4
-  - claim-8
+  - claim-9
+  - claim-10
   - claim-7
   paper_ref:
     char_start: 2764

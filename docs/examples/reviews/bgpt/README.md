@@ -27,7 +27,7 @@ assessment by the SDK maintainers.
   `999e3d81d95ab455856fdbf602d48a8f6433568e19413dae1589b372f83d7b81` (spec §8.7 conformance paper `bgpt`).
 - Path: the paper adapter (spec §3) converted the PDF to an attested, paper-only evaluable
   artifact ([`artifact/`](artifact/)); the judge (§4) and the reviewer (§5) then ran in the
-  `artifact-informed` scope with an LLM provider. Run `20261027T212706.923Z-179e`.
+  `artifact-informed` scope with an LLM provider. Run `20261028T213946.517Z-1083`.
 
 ## Where to start
 
@@ -70,7 +70,7 @@ The spec (§5.12) requires two renderings of the same findings:
 | [`artifact-visual-coverage.json`](artifact-visual-coverage.json) | Which artifact figures were inspected (§5.10.3) |
 | [`run-evidence.json`](run-evidence.json) | Evidence from the artifact's own run records, if any (§5.10.4) |
 | [`run.json`](run.json) | Run record: stages, configuration, human-owned fields (§6.5) |
-| [`visual/`](visual/) | The 15 page images the review cites as `review-output:visual/…` |
+| [`visual/`](visual/) | The 14 page images the review cites as `review-output:visual/…` |
 | [`artifact/`](artifact/) | The adapter's output: `manifest.yml`, `claims.yml`, `results.yml`, `contributions.yml`, `paper_references.yml` |
 
 ## Changes made for publication
