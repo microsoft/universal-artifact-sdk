@@ -85,7 +85,7 @@
   "identity": { "…": "§3.3" },
   "counts": { "claims": 18, "contributions": 6, "results": 80, "experiments": 0, "exhibits": 0,
               "datasets": 0, "traces": 0, "assessments": 0, "references": 0,
-              "journal": 0, "figures": 0 },
+              "journal": 0, "figures": 0, "related_work": 0 },
   "evidence_inventory": { "…": "copied verbatim from the manifest (SDK §5.1), or null" },
   "environment": { "…": "copied verbatim (SDK §2.5), or null" },
   "research_agent": { "…": "§3.13, or null" },
@@ -102,6 +102,8 @@
   "journal": [ "§3.9" ],
   "paper": { "…": "§3.10, or null" },
   "figures": [ "§3.11" ],
+  "related_work": [ "§3.14" ],
+  "reference_check": "§4.9, or null",
   "readme": "asset reference or null (§3.13)",
   "reflection": "asset reference or null (§3.13)",
   "evaluation": { "…": "§4, or null in mode A" },
@@ -115,6 +117,12 @@ records the explorer could not read); the site labels the inventory "as declared
 manifest" and never reconciles the two. `generated_at` is the only value allowed to
 differ between two builds of the same inputs (I5). An explorer SHOULD let the caller fix it (for
 example from a `SOURCE_DATE_EPOCH`-style environment value) so that builds can be byte-identical.
+
+**Keys added within v1.** `related_work`, `counts.related_work`, `reference_check` (§4.9),
+`evaluation.paper_pages` (§4.6.2), `evaluation.approval` (§4.8), and `evaluation.review.visual`
+(§4.3) were added as optional keys within v1 (§1.5). A builder that implements them writes them
+as every other key (always present, `null` or `[]` when empty); a viewer MUST treat a missing one
+as `null` or `[]`, so documents from earlier v1 builders still render.
 
 ## 3.3 `identity`
 
@@ -191,6 +199,13 @@ a `contribution_rank`, or a links-provenance object in the claims index) are not
 or JR contracts. Claim fields are carried in the claim's `extra`; claims-index keys other than `claims` are
 ignored. Neither may create, remove, or re-attribute a link: the contribution record is the
 single source of truth for which claims it is linked to and who linked them.
+
+A viewer MAY show the values of a claim's `extra` (for example a producer's `role`,
+`contribution_rank`, or per-claim `contributions` list) as **producer metadata**: each value
+labeled with its key, under a heading that names it as recorded by the producer, never as a link
+or as the authors' statement. Such values MUST NOT reorder claims away from declaration order,
+and never create, remove, or re-attribute a link; a contribution named in a claim's `extra`
+is shown as text, not as a contribution link.
 
 ## 3.6 `results`
 
@@ -283,10 +298,25 @@ labeled as such in the site; they are never shown as the authors' links. `claim_
 - **references**: the references export (JR §2.3.1), every record kept in file order (no
   de-duplication): `id`, `raw`, `doi`, `arxiv`, `isbn`, `url`, `cited_for` copied, every other key
   (for example `authors`, `title`, `year`) in `extra`, plus `check`: with a judge overlay (§4.2), the matching JR §6.6.2 verdict (by `id`)
-  `{status, matched_title, matched_id, reason}`, else `null`. No reference lookup happens at build time (§6.3).
+  `{status, matched_title, matched_id, reason}`; else, with an accepted separate result (§4.9),
+  the verdict at the same position, in the same shape; else `null`. No reference lookup happens at build time (§6.3).
 
 ## 3.13 `readme`, `reflection`, `research_agent`
 
 `readme` and `reflection` are asset references (§2.6). `research_agent` is the manifest's
 `research_agent` object copied, with `path_asset` added for its `path`; the explorer never runs or
 contacts the agent.
+
+## 3.14 `related_work`
+
+Read only when the manifest declares `paths.paper_related_work` (the paper adapter's related-work
+export, JR §3.6.3, top-level key `related_work`). The file is read like every other index (§2.3,
+§2.5); a declared file that is missing or unreadable gives `[]` and a warning. Each element of
+the list that is a mapping is copied verbatim, in file order (for example `id`, `statement`,
+`refs`, `relation`, `distinction`, `comparative`, `superiority`, `primacy`); other elements are
+skipped with a warning. Nothing is resolved or classified at build time: the citation markers in
+`refs` stay strings, and `relation` and the three flags are the producer's labels.
+
+The export's statements are the paper's own sentences; its `relation` labels and flags are
+heuristic. The site shows them as such (§5.4.4) and never as an assessment of the related work.
+No other related-work file name or manifest key is read.

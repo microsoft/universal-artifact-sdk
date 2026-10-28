@@ -31,7 +31,9 @@ except for the cross-reference lists that §4.4 fills on claims and results (`ju
   },
   "judge": { "…": "§4.2, or null" },
   "review": { "…": "§4.3, or null" },
-  "citation_assets": { "review-output:visuals/page-001.png": "<asset reference or null>" }
+  "citation_assets": { "review-output:visuals/page-001.png": "<asset reference or null>" },
+  "paper_pages": [0, 4120, 9377],
+  "approval": { "…": "§4.8, or null" }
 }
 ```
 
@@ -88,6 +90,22 @@ gives `null` or `[]`.
 | `paper_contribution_review` | `run.json.paper_contribution_review`, verbatim, or `null` |
 | `reconciliation` | `artifact-reconciliation.json.records`, verbatim, or `[]` (JR §5.10.2) |
 | `warnings` | `run.json.warnings` |
+| `visual` | `{paper, artifact}`: `paper` from `visual-coverage.json` (JR §5.9), `artifact` from `artifact-visual-coverage.json` (JR §5.10.3), each `null` when the file is absent from `outputs` or holds no `observations` list; otherwise the object below |
+
+**Visual records.** Each non-`null` member of `visual` is `{status, outcome_summary,
+limitations, deferred, observations}`: `status`, `outcome_summary`, and `limitations` copied
+verbatim from the file (`null` when absent), `deferred` copied from `target_selection.deferred`
+(`[]` when absent), and `observations` the file's `observations` list in order, each record
+copied verbatim plus `image_path_asset`: the asset reference (under `run/`) of its `image_path`
+when that path is a key of `outputs` (or, in mode C, resolves inside the outputs directory under
+§2.5), else `null`. Record *i* of `paper.observations` is the target of
+`review-record:visual/<i>`; record *i* of `artifact.observations` is the target of
+`review-record:artifact-visual/<i>` (JR §5.3.2). The outcome counts are the run's own
+(`outcome_summary`, JR §5.9 step 6); the explorer copies them and never recounts or reclassifies
+a record (I2). A record's `region` (four numbers in `[0, 1]`: left, top, right, bottom, as
+fractions of the image) is a model-reported location: the site MAY outline it on the image and,
+if it does, labels it with the record's `region_status` verbatim, or "location reported by the
+model (not verified)" when `region_status` is absent.
 
 If `contributions.json` and `run.json.contribution_review` differ, the explorer uses
 `contributions.json` and adds a warning (JR §6.8 SHOULD).
@@ -211,7 +229,11 @@ key of the manifest's `outputs` (or `inputs`, for the snapshot paper):
 - every file that a Markdown link or image in a copied run Markdown file resolves to (§2.5,
   Markdown targets, with the run directory as root), when it is a key of `outputs`; any other
   target is `null` in that file's `embedded` map;
-- in paper-only scope, the snapshot paper (`manifest.paper`).
+- in paper-only scope, the snapshot paper (`manifest.paper`);
+- the `image_path` of every visual record (§4.3) that is a key of `outputs`.
+
+`evidence-packet.json` is **read** (and re-hashed) for §4.6.2 when it is a key of `outputs`; it
+is never copied.
 
 The explorer re-hashes **every** file it reads or copies from the run as it does so — run outputs
 against `outputs`, snapshot files (including every artifact asset taken from
@@ -236,11 +258,13 @@ Each citation of JR §5.3.2, at any citation site, renders as:
 | Citation | Rendered as |
 |----------|-------------|
 | `claim:<id>`, `result:<id>`, `reference:<id>`, `contribution:<id>`, `judge:<id>` | a link to that record's route (§5.3); unresolved → the citation text, marked unresolved |
-| `paper:p.<n>` | a link to the paper PDF opened at page *n* when a PDF asset exists, else text |
-| `paper:document`, `paper:section/<name>`, `paper:chars/<a>-<b>` | the citation text, with the finding's `evidence_quotes` shown beside it; the explorer does not re-extract paper text |
+| `paper:p.<n>` | "Paper, p. *n*": a link to the in-site paper page route `#/paper/page/<n>` (§5.3) when a PDF asset exists, else text |
+| `paper:chars/<a>-<b>` | each of the finding's `evidence_quotes` whose `citation` is this string, as a quotation, with "p. *n*" when §4.6.2 gives a page for offset *a* (linked as `paper:p.<n>` is) and "page not recorded" otherwise; with no such quote, the citation text with the same page note. The explorer does not re-extract paper text |
+| `paper:document`, `paper:section/<name>` | "Paper (whole document)", "Paper, section *name*"; the finding's `evidence_quotes` shown beside it |
 | `artifact:<path>[#<fragment>]` | a link to its `citation_assets` URL; the file is copied like any artifact asset (§3.1) when it resolves under §2.5, else the citation text is shown |
 | `review-record:comparison/<i>` | a link to reconciliation record *i* (route `#/evaluation/reconciliation/<i>`, §5.2) |
-| other `review-record:` forms | the citation text (the explorer does not copy visual or run-evidence records in v1) |
+| `review-record:visual/<i>`, `review-record:artifact-visual/<i>` | a link to visual record *i* (routes `#/evaluation/visual/<i>`, `#/evaluation/artifact-visual/<i>`, §5.3) when `evaluation.review.visual` holds it; else the citation text, marked unresolved |
+| other `review-record:` forms | the citation text (the explorer does not copy run-evidence records in v1) |
 | `review-output:<path>` | a link to its `citation_assets` URL under `run/` when copied (images inline), else the citation text |
 | anything else | the citation text, verbatim |
 
@@ -248,11 +272,34 @@ Judge finding `evidence` entries are artifact paths with optional anchors (JR §
 §5.3.2 citations. An entry that produced a join (§4.4) renders as a link to the joined record's
 route, with the entry text visible; every other entry renders as its text, verbatim.
 
+The raw citation string MUST remain available beside, or on, every rendered citation (for
+example as the link's title or a secondary line).
+
+### 4.6.2 Page offsets
+
+`evaluation.paper_pages` lets the site give a page for a character-range citation. It is a list
+of the start offsets of the pages of the run's extracted paper text (JR §2.7): page *n* starts
+at `paper_pages[n−1]`, so the page of offset *a* is the largest *n* with `paper_pages[n−1] ≤ a`.
+It is derived only from the run's `evidence-packet.json` (JR §5.3.3), when that file is a run
+output (mode B) or present (mode C):
+
+1. Take the packet's top-level `excerpts` whose `citation` is `paper:chars/<a>-<b>` and whose
+   `text` is a string of length *b − a*. Sort them by *a*.
+2. If they cover `[0, N)` contiguously (the first starts at 0, each next starts where the
+   previous ends) and, when the packet records `total_chars`, *N* equals it, join their texts.
+3. `paper_pages` is `[0]` followed by *i* + 1 for every form feed (U+000C) at offset *i* of the
+   joined text, in order (JR §2.2: pages are joined with one form feed each).
+
+In every other case (no packet, overlapping or missing ranges, a length mismatch, a parse error)
+`paper_pages` is `null` and the site shows "page not recorded" for character-range citations.
+The explorer copies no paper text from the packet into `data.json`.
+
 ## 4.7 Unsealed preview (mode C)
 
 In mode C the overlay is built from the files of §2.7 by the same rules, with these differences:
-run files are copied only from the list in §2.7 and from `review-output:` citations that resolve
-inside the outputs directory under §2.5 (with the outputs directory as root); no hash check is
+run files are copied only from the list in §2.7, from `review-output:` citations, and from
+visual-record `image_path` values (§4.3) that resolve inside the outputs directory under §2.5
+(with the outputs directory as root); no hash check is
 possible; and the banner of §5.5 is mandatory. `evaluation.run` is filled per key:
 
 | Key | Mode C source |
@@ -268,3 +315,46 @@ possible; and the banner of §5.5 is mandatory. `evaluation.run` is filled per k
 | `files` | `draft` / `paper_review`: asset references of `review-draft.md` / `paper-review.md` when present in the outputs directory, else `null` |
 
 Without `run.json`, every key above except `sealed`, `judge_only` (`false`), and `files` is `null`.
+
+## 4.8 Publication approval (OPTIONAL)
+
+A human may approve a run's review draft for publication. That approval is a human-owned record
+kept **outside** the sealed run (JR §6.7: a completed run never changes). An explorer MAY show it,
+read-only, when the caller names the record explicitly (never discovered, §2.1). The record is a
+YAML or JSON mapping with at least:
+
+| Key | Meaning |
+|-----|---------|
+| `approved` | `true` when the draft is approved |
+| `run_id` | the run the approval is for |
+| `review_draft_sha256` | SHA-256 of the approved `review-draft.md` |
+| `approved_by`, `approved_at` | who approved it and when, as recorded |
+
+The explorer accepts the record only when `approved` is `true`, `run_id` equals
+`evaluation.run.run_id`, and `review_draft_sha256` equals the SHA-256 of the run's
+`review-draft.md` as copied into the site. Then `evaluation.approval` is
+`{approved_by, approved_at, run_id, review_draft_sha256}` copied from it (timestamps in the
+timestamp form of §3.1); otherwise `evaluation.approval` is `null` and, when a record was given, a
+warning says why it was not shown. The site shows an accepted approval on Overview, Review, and
+Evaluation as "Publication approved by *approved_by* (*approved_at*)", labeled as a human record
+supplied outside the analysis. An approval is not part of the analysis: it does not change the
+human-owned assessment lines of §5.4.6, any status, or any finding, and an explorer that does not
+implement this section shows no approval.
+
+## 4.9 Separate reference check (OPTIONAL)
+
+When the run supplies no reference check (§4.2), or in mode A, an explorer MAY accept a
+reference-check result produced apart from the run, when the caller names the file explicitly.
+The file is a JSON object in the JR §6.6.2 shape: `available`, `resolver` (a `backend` key is
+read as `resolver`), `counts`, `verdicts`, and any `warnings`. The explorer accepts it only when
+`verdicts` holds exactly one verdict per record of `references`, in the same order, with equal
+`id` and `raw`, and every `status` is one of `verified`, `unverified`, `error`, `unchecked`;
+otherwise the file is ignored with a warning and the build continues.
+
+When accepted, the top-level `reference_check` (§3.2) is `{source: "separate", available,
+resolver, counts, warnings}` copied from the file, and each `references[i].check` is filled from
+verdict *i* as §3.12 describes. When the run has its own reference check, the run's is used, the
+separate file is ignored, and a warning says so. Without a separate file, `reference_check` is
+`null`. The site labels a separate result "Reference check (separate pass, not part of the
+analysis run)" wherever it shows the counts or a status. Nothing is looked up at build or view
+time (§6.3).
