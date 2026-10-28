@@ -44,6 +44,10 @@ questions that cite the paper. A human reviewer makes every decision; the review
 score or verdict.
 
 - **Spec:** [`docs/judge-reviewer-spec/`](docs/judge-reviewer-spec/README.md)
+- **Explorer spec:** [`docs/artifact-explorer-spec/`](docs/artifact-explorer-spec/README.md), a
+  static, read-only site that links each claim to its evidence, the judge's verdict, and the
+  review findings that cite it. It is optional and reads the judge and reviewer outputs without
+  changing that spec.
 - **Example output:** [two AI-generated reviews of public papers](docs/examples/reviews/README.md)
 - **Overview:** [slides](docs/presentations/overview/slides.pdf)
 
