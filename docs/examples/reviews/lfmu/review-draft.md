@@ -23,14 +23,16 @@ These belong to the human reviewer; the tool never sets them. Venue scales: scor
 
 ## Contribution summary
 
-The paper proposes LFSSD, a variant of Selective Synaptic Dampening (SSD) that replaces the diagonal of the Fisher information matrix with the gradient of the squared l2 norm of the model output, a sensitivity estimate taken from Aljundi et al. (2018). SSD's parameter-selection and dampening rule is otherwise kept. As a result, unlearning needs neither retraining nor labels, only the unlabelled forget samples. Experiments cover full-class, subclass, random-sample and face unlearning on ResNet and ViT models, with comparisons to SSD, retraining and other baselines.
+The paper proposes Label-Free Selective Synaptic Dampening (LFSSD), an extension of the authors' Selective Synaptic Dampening (SSD) method for retraining-free machine unlearning. LFSSD replaces SSD's Fisher-information-diagonal parameter importance with the output-sensitivity estimate from Aljundi et al. (2018), the gradient of the squared l2 norm of the model output. Because this estimate needs no labels or loss, only unlabelled forget samples are needed at forgetting time, given importance over the full training data computed once beforehand. The method is evaluated against SSD and a retrain reference on class, subclass, and random-sample unlearning with ResNet and ViT models on CIFAR benchmarks.
 
 ## Contributions
 
-1. **Loss-Free Selective Synaptic Dampening (LFSSD) unlearning method.** An extension of Selective Synaptic Dampening that replaces Fisher-information parameter importance with the gradient of the squared l2 norm of the model output, so unlearning needs neither the loss nor ground-truth labels.
+1. **Loss-Free Selective Synaptic Dampening (LFSSD) unlearning method.** An extension of Selective Synaptic Dampening that needs no loss or ground-truth labels, yielding a machine unlearning approach that requires neither retraining nor labels.
    *Claim support (inferred links): contested · Significance: supported · Originality: unresolved*
-2. **First retraining-free unlearning requiring only unlabelled forget samples.** A machine unlearning approach that needs no retraining and no labels, using only unlabelled forget-set inputs at forgetting time and no long-term storage of the retain set.
-   *Claim support (inferred links): contested · Significance: unassessed · Originality: unresolved*
+2. **Output-norm gradient sensitivity replacing Fisher information for importance.** Parameter importance for dampening is estimated from the gradient of the squared l2 norm of the model output instead of the diagonal of the Fisher information matrix, so it needs no labels.
+   *Claim support (inferred links): unassessed · Significance: unassessed · Originality: unresolved*
+3. **Empirical evaluation across class, subclass and random forgetting.** The paper benchmarks LFSSD on ResNet18 and Vision Transformer across full-class, subclass, random-sample and face unlearning tasks, comparing it against retraining, finetuning, teacher, amnesiac and SSD baselines.
+   *Claim support (inferred links): supported · Significance: unassessed · Originality: unresolved*
 
 Advisory assessments; the human reviewer decides whether each contribution qualifies.
 
@@ -38,54 +40,70 @@ Advisory assessments; the human reviewer decides whether each contribution quali
 
 **Claim support (inferred links): contested**
 - Linked claims:
-  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): LFSSD's label-free method is competitive with state-of-the-art approaches such as SSD, producing scores similar to a model retrained on only Dr.
-  - claim-4 (inferred by the paper adapter's extractor, not declared by the authors): On Cifar100 lamp full-class unlearning, LFSSD reduces Df accuracy to 0 while retaining Dr accuracy (ResNet18 76.36, ViT 89.03), whereas SSD leaves ViT Df at…
-  - claim-8 (inferred by the paper adapter's extractor, not declared by the authors): Random sample unlearning on Cifar10 with LFSSD closely matches retrain.
-  - claim-7 (inferred by the paper adapter's extractor, not declared by the authors): Face unlearning results comparing LFSSD with baselines on PINS.
-  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): Output-norm sensitivity-based importance is as effective as Fisher information for dampening, without labels.
-  - claim-6 (inferred by the reviewer, not declared by the authors): LFSSD performance drops for too aggressive or conservative alpha but has a wide plateau of good performance.
-- The claim that LFSSD scores are similar to retraining is overstated for subclass unlearning. In several cells LFSSD departs substantially from the retrained model, which is the authors' own target.
-- On full-class unlearning, the results support the claim that LFSSD is comparable to SSD. In one case (ViT lamp) LFSSD forgets where SSD leaves residual accuracy.
-- The tables support the claim that LFSSD is competitive with SSD on class unlearning. The introduction's 'equally effective' framing is stronger than some subclass rows show.
-- Sources: paper:chars/4392-6820, paper:chars/7514-23701, paper:chars/1165-4392
+  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): LFSSD is competitive with state-of-the-art approaches such as SSD while producing scores similar to a model retrained on only Dr.
+  - claim-9 (inferred by the paper adapter's extractor, not declared by the authors): Face unlearning on PINS: LFSSD achieves 0% Df accuracy with Dr 98.15 and MIA 0.38.
+  - claim-10 (inferred by the paper adapter's extractor, not declared by the authors): Random sample unlearning on Cifar10: LFSSD remains close to retrain model.
+  - claim-7 (inferred by the paper adapter's extractor, not declared by the authors): LFSSD has the same complexity as SSD and similar compute time in practice, far below retraining methods.
+  - claim-4 (inferred by the reviewer, not declared by the authors): LFSSD is the first retraining-free unlearning method requiring only unlabelled forget samples.
+  - claim-5 (inferred by the reviewer, not declared by the authors): LFSSD is lightweight, robust and more practically useful than predecessors.
+- The results broadly support competitiveness with SSD, but the claim of being 'similar to retrain' is uneven, notably on ViT subclass unlearning.
+- Sources: paper:chars/7514-23701, paper:chars/1165-4392
 
 **Significance: supported**
-- Removing the label requirement while keeping SSD's one-time computation over D gives a cheap, simple baseline. Researchers working on post-hoc unlearning are likely to adopt it.
-- Sources: paper:chars/284-1165, paper:chars/4392-6820
+- The paper targets a practically relevant setting: unlearning without stored retain data or labels, such as copyright catalogues or semi-supervised models.
+- Sources: paper:chars/7514-23701
 
 **Originality: unresolved**
-- The method makes one targeted substitution: it replaces SSD's Fisher-based importance with the output-norm sensitivity estimate from Aljundi et al. (2018). The authors frame this as an extension and credit the source of the importance measure.
-- The authors present the novelty as transferring an existing importance estimator into unlearning, not as a new estimator. This transfer framing is consistent with the methods section. The originality is therefore incremental: a recombination of SSD with the estimator of Aljundi et al.
+- LFSSD's novelty is a targeted transfer: it swaps SSD's Fisher-based importance for the MAS output-sensitivity estimate (Aljundi et al., 2018). The authors frame it as an extension, not a new paradigm.
+- The paper claims to be the 'first' method with no labels and no retraining, but positions itself only against FisherForgetting, SSD and retraining-based methods.
 - Basis: the authors' own statements; cited works were not read.
-- Sources: paper:chars/1165-4392, paper:chars/4392-6820
+- Sources: paper:chars/1165-4392, paper:chars/4392-6820, paper:chars/6820-7514
 
-Paper’s wording: “Thus, we present an extension to the Selective Synaptic Dampening algorithm, substituting the diagonal of the Fisher information matrix for the gradient of the l2 norm of the model output to approximate sensitivity.”
+Paper’s wording: “Therefore, we propose a novel extension of SSD that does not require access to the loss or ground truth labels, which we refer to as Loss-Free Selective Synaptic Dampening (LFSSD).”
 
-### Contribution 2: First retraining-free unlearning requiring only unlabelled forget samples
+### Contribution 2: Output-norm gradient sensitivity replacing Fisher information for importance
 
-**Claim support (inferred links): contested**
+**Claim support (inferred links): unassessed**
 - Linked claims:
-  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): LFSSD's label-free method is competitive with state-of-the-art approaches such as SSD, producing scores similar to a model retrained on only Dr.
-  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): Output-norm sensitivity-based importance is as effective as Fisher information for dampening, without labels.
-  - claim-4 (inferred by the paper adapter's extractor, not declared by the authors): On Cifar100 lamp full-class unlearning, LFSSD reduces Df accuracy to 0 while retaining Dr accuracy (ResNet18 76.36, ViT 89.03), whereas SSD leaves ViT Df at…
-  - claim-8 (inferred by the paper adapter's extractor, not declared by the authors): Random sample unlearning on Cifar10 with LFSSD closely matches retrain.
-  - claim-7 (inferred by the paper adapter's extractor, not declared by the authors): Face unlearning results comparing LFSSD with baselines on PINS.
-  - claim-3 (inferred by the reviewer, not declared by the authors): LFSSD is the first retraining-free unlearning method requiring only unlabelled forget samples.
-  - claim-5 (inferred by the reviewer, not declared by the authors): LFSSD has the same complexity as SSD and similar compute time, much lower than retraining-based methods.
-  - claim-10 (inferred by the reviewer, not declared by the authors): LFSSD is lightweight, robust and more practical than predecessors.
-- The practicality claims ('robust, more practically useful') rest on argument. The label-free scenarios the paper describes are not evaluated.
-- The retraining-free, label-free property follows directly from the method's construction and is supported. The 'robust' part of the conclusion relies on limited hyperparameter evidence.
-- Sources: paper:chars/6820-7514, paper:chars/7514-23701, paper:chars/4392-6820
+  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): LFSSD is competitive with state-of-the-art approaches such as SSD while producing scores similar to a model retrained on only Dr.
+  - claim-9 (inferred by the paper adapter's extractor, not declared by the authors): Face unlearning on PINS: LFSSD achieves 0% Df accuracy with Dr 98.15 and MIA 0.38.
+  - claim-10 (inferred by the paper adapter's extractor, not declared by the authors): Random sample unlearning on Cifar10: LFSSD remains close to retrain model.
+  - claim-7 (inferred by the paper adapter's extractor, not declared by the authors): LFSSD has the same complexity as SSD and similar compute time in practice, far below retraining methods.
+- No grounded finding addressed this.
 
 **Significance: unassessed**
 - No grounded finding addressed this.
 
 **Originality: unresolved**
-- The primacy claim is hedged in the introduction but stated without the hedge in the conclusion. The paper does not distinguish its label requirements from those of cited zero-shot unlearning work.
+- The authors present the novelty as transferring an existing continual-learning importance estimator into unlearning, not as a new estimator. This candid positioning makes the claimed advance narrow but clearly bounded.
+- The swap of Fisher information for the gradient of the l2 output norm is the core technical change. The paper credits Aljundi et al. (2018) for this estimator, so the novelty lies only in applying it to SSD.
 - Basis: the authors' own statements; cited works were not read.
-- Sources: paper:chars/6820-7514, paper:chars/1165-4392, paper:chars/7514-23701
+- Sources: paper:chars/1165-4392, paper:chars/284-1165, paper:chars/4392-6820
 
-Paper’s wording: “To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only the unlabelled forget samples at forgetting time.”
+Paper’s wording: “substituting the diagonal of the Fisher information matrix for the gradient of the l2 norm of the model output to approximate sensitivity”
+
+### Contribution 3: Empirical evaluation across class, subclass and random forgetting
+
+**Claim support (inferred links): supported**
+- Linked claims:
+  - claim-1 (inferred by the reviewer, not declared by the authors): LFSSD is competitive with state-of-the-art approaches such as SSD while producing scores similar to a model retrained on only Dr.
+  - claim-9 (inferred by the reviewer, not declared by the authors): Face unlearning on PINS: LFSSD achieves 0% Df accuracy with Dr 98.15 and MIA 0.38.
+  - claim-10 (inferred by the reviewer, not declared by the authors): Random sample unlearning on Cifar10: LFSSD remains close to retrain model.
+  - claim-8 (inferred by the reviewer, not declared by the authors): Alpha sensitivity: performance drops for too aggressive/conservative alpha but there is a wide plateau of good performance.
+  - claim-11 (inferred by the reviewer, not declared by the authors): Evaluation uses ResNet18 and ViT on full class, subclass and random forgetting with 10 repeated runs.
+- Class and face unlearning results support competitiveness with SSD. LFSSD reaches 0% Df accuracy with Dr close to SSD, and sometimes beats SSD, e.g. on ViT lamp.
+- The tables support the empirical-evaluation contribution across class, subclass, random and face unlearning with multiple baselines.
+- Sources: paper:chars/1165-4392, paper:chars/7514-23701
+
+**Significance: unassessed**
+- No grounded finding addressed this.
+
+**Originality: unresolved**
+- The evaluation protocol reuses prior work's setup, so it is a benchmark application rather than a novel contribution.
+- Basis: the authors' own statements; cited works were not read.
+- Sources: paper:chars/7514-23701
+
+Paper’s wording: “The results show that LFSSD produces scores similar to that of a model trained on only Dr, and is competitive with state-of-the-art methods such as SSD, while being the first method to require no labelled data and no retraining.”
 
 <details><summary>What the authors say is original (6 statements)</summary>
 
@@ -104,143 +122,137 @@ Authors' stated position:
 
 ## Reasons to accept
 
-1. **LFSSD is positioned as an extension of SSD that swaps the Fisher-diagonal importance for the output-norm sensitivity of Aljundi et al. (2018). Both components are prior work, so the novelty lies in combining them and in the label-free setting it enables.**
-   The paper attributes the estimator to prior work rather than claiming it as new. This is consistent with an 'extension' framing. Whether the estimator has truly not been used in unlearning before is author-reported and not verified here.
+1. **The authors present LFSSD as an extension of their prior SSD method. The only change is that the Fisher-diagonal importance term is replaced with the Memory Aware Synapses output-sensitivity estimate from Aljundi et al. (2018). The novelty is therefore a component substitution, and the authors describe it as such.**
+   This is an incremental but clearly positioned change that fits a tiny-paper format.
    Evidence status: inference.
-   Reasoning: The authors say the importance estimator comes from Aljundi et al. They also say the SSD selection rule (Eq. 1) is reused. The original element is therefore the transfer of this estimator into unlearning, which removes the need for labels. This is a modest but clearly stated delta, appropriate to a tiny-paper scope.
+   Reasoning: Both components are attributed to prior work: SSD to Foster et al. and the sensitivity estimator to Aljundi et al. The contribution is their combination and the label-free property it yields. The paper frames this honestly as an extension. The cited works' content is author-reported here and was not independently verified.
+   Source `paper:chars/284-1165`: we present an extension to the Selective Synaptic Dampening algorithm,
+substituting the diagonal of the Fisher information matrix for the gradient of the
+l2 norm of the model output to approximate sensitivity.
+   Source `paper:chars/4392-6820`: We replace
+the Fisher information with the sensitivity estimation from Aljundi et al. (2018)
+
+2. **The authors frame LFSSD as an extension that combines SSD with the MAS sensitivity estimate (Aljundi et al.). By their own account, the originality lies in this combination and in removing the need for labels, not in a new importance measure.**
+   The contribution is incremental but useful. Its value depends on the label-free setting being practically relevant.
+   Evidence status: inference.
+   Reasoning: Both components are cited prior work. The novelty is transferring the MAS estimate into SSD to make unlearning label-free. Whether MAS-style importance has truly never been used in unlearning is author-reported and was not verified here.
    Source `paper:chars/1165-4392`: Such importance estimation has been shown to be effective in continual learning (Aljundi et al.,
 2018), yet it has not been applied in unlearning.
    Source `paper:chars/4392-6820`: We replace
 the Fisher information with the sensitivity estimation from Aljundi et al. (2018)
 
-2. **The authors present LFSSD as an extension of their own SSD that borrows MAS-style sensitivity from continual learning. The novelty claimed is the transfer to unlearning and the label-free setting, not a new importance estimator.**
-   The novelty is incremental but clearly positioned. The 'first' claim is hedged by 'to the best of our knowledge'.
-   Evidence status: inference.
-   Reasoning: The first quote concedes that the estimator comes from prior work, so the originality lies in combining it with SSD and in the resulting label-free capability. That framing is consistent across the paper. Whether no prior retraining-free label-free method exists (e.g., relative to the authors' account of zero-shot unlearning, Chundawat et al. 2023b) is author-reported and was not verified here.
-   Source `paper:chars/1165-4392`: Such importance estimation has been shown to be effective in continual learning (Aljundi et al.,
-2018), yet it has not been applied in unlearning.
-   Source `paper:chars/1165-4392`: To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only
-the unlabelled forget samples at forgetting time.
-
-3. **The paper proposes LFSSD, a variant of Selective Synaptic Dampening (SSD) that replaces Fisher-information importance with the gradient of the squared l2 norm of the model output. This makes unlearning both retraining-free and label-free.**
-   This is a simple, practically motivated tiny-paper contribution. It addresses settings where labels are unavailable, such as copyrighted-data catalogues and semi-supervised models.
+3. **LFSSD replaces the Fisher-based importance in Selective Synaptic Dampening with the gradient of the squared l2 norm of the model output. This makes retraining-free unlearning label-free.**
+   The paper is a simple, clearly scoped modification that fits the tiny-paper format.
    Evidence status: observation.
-   Reasoning: The abstract and introduction state the substitution directly. They also state the practical benefit: only unlabelled forget samples are needed at forgetting time.
+   Reasoning: The quotes state the single methodological change directly.
    Source `paper:chars/284-1165`: substituting the diagonal of the Fisher information matrix for the gradient of the
 l2 norm of the model output to approximate sensitivity
-   Source `paper:chars/1165-4392`: To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only
-the unlabelled forget samples at forgetting time.
+   Source `paper:chars/4392-6820`: the gradient can be calculated over the squared l2 norm of
+the output
 
-4. **Tiny paper proposing LFSSD: SSD with Fisher-diagonal importance replaced by the gradient magnitude of the squared l2 norm of the model output, so unlearning needs neither retraining nor labels.**
-   The contribution is a targeted, simple substitution within an existing algorithm, appropriate to the tiny-paper format.
+4. **The paper proposes LFSSD, which modifies Selective Synaptic Dampening by replacing Fisher-based importance with gradients of the squared l2 norm of the model output. This makes retraining-free unlearning label-free.**
+   This is a small, clearly scoped modification suited to the Tiny Paper format.
    Evidence status: observation.
-   Reasoning: The quotes state the single method change and its source.
+   Reasoning: The abstract states the method directly.
    Source `paper:chars/284-1165`: substituting the diagonal of the Fisher information matrix for the gradient of the
 l2 norm of the model output to approximate sensitivity
-   Source `paper:chars/4392-6820`: We replace
-the Fisher information with the sensitivity estimation from Aljundi et al. (2018)
 
 ## Originality
 
-The originality is incremental but clearly positioned. The authors credit the importance estimator to prior continual-learning work (Aljundi et al., 2018) and reuse the SSD selection rule. The new element is moving this estimator into unlearning and the label-free capability that follows. This is a modest, honestly attributed change that suits a tiny-paper scope. The claim to be the first retraining-free, label-free method is hedged in the introduction ('to the best of our knowledge') but stated without the hedge in the conclusion. The paper also cites zero-shot machine unlearning (Chundawat et al., 2023b) only within a list of retraining-based methods and never says how its label or data requirements differ. The primacy claim therefore cannot yet be checked against the paper's own citations. This review has not verified that cited work.
+The contribution is incremental and the paper positions it honestly. It is a component substitution that brings a continual-learning importance estimator (Aljundi et al., 2018) into the SSD framework (Foster et al.), and both components are attributed to prior work. The originality lies in this combination and in the label-free property at forgetting time, not in a new importance measure. Two originality claims are not established by the paper itself. First, the statement that output-sensitivity importance 'has not been applied in unlearning' is an absence claim with no supporting survey, and we could not assess it. Second, the claim that LFSSD is the 'first retraining-free unlearning method to require only the unlabelled forget samples at forgetting time' is hedged with 'to the best of our knowledge'. It rests on a brief related-work discussion confined to the introduction, and it does not engage label- or data-light alternatives such as zero-shot unlearning, which is cited only in passing. The scope of 'first' should be stated precisely: the label-free property holds at forgetting time, while computing importance over D still requires the full training data, as SSD also does. If prior unlearning work has already used MAS-style importance, the novelty of the substitution would shrink further.
 
 ## Likely impact
 
-Practitioners who must remove data whose labels are unavailable could benefit, for example in copyrighted-data catalogues or semi-supervised models. The method is simple, lightweight and easy to adopt for anyone already using SSD. Several factors may limit its influence. The method is a small change to an existing algorithm. Its results are competitive rather than uniformly equal to SSD. Most importantly, it is unclear how α would be chosen in a truly label-free deployment, since the per-task tuning described appears to depend on accuracy on Dr and a retrained reference. If those require labels, the practical label-free benefit is qualified, although the importance estimate itself remains label-free.
+Practitioners who must honour forget requests without ground-truth labels could benefit from a simple, retraining-free option. The paper's motivating examples are unlabelled catalogues and models trained with semi-supervised learning, where pseudo labels may be unreliable. Its simplicity suits the tiny-paper format and makes it easy to adopt within SSD-style pipelines. Several factors may limit its influence. The motivating label-free scenarios are not evaluated, and all experiments use labelled datasets. Selecting the dampening hyperparameter α appears to require measuring retain and forget accuracy, which needs labels, and this partly undercuts the label-free motivation in deployment. Finally, effectiveness relative to the retrain reference is uneven on subclass forgetting.
 
 ## Decision-critical concerns
 
-1. **The appendix tables broadly support the claim that LFSSD is competitive with SSD and the other baselines. However, LFSSD's forget-set (Df) accuracy sometimes diverges substantially from the retrained model in both directions.**
-   The headline claim that LFSSD is 'equally effective as Fisher information' holds on average but not uniformly across settings.
+1. **The claim that LFSSD is 'equally effective' as Fisher information is overstated. On subclass forgetting, LFSSD often deviates strongly from the retrain reference, and the hyperparameters differ between methods.**
+   No aggregate metric of distance to retrain is reported, and no matched-hyperparameter comparison is given.
    Evidence status: inference.
-   Reasoning: The authors set similarity to the retrained model as the success criterion. In ViT subclass 'sea', LFSSD's Df accuracy is 20.83 versus 95.12 for the retrained model, which is over-forgetting by that criterion. In ViT subclass 'baby', MIA is 1.6 for LFSSD versus 77.37 for retraining.
-   Source `paper:chars/4392-6820`: Similarity to the retrained model is necessary, as ”over-forgetting” can
-lead to the Streisand effect
-   Source `paper:chars/7514-23701`: Df 96.44±0.00 93.23±1.09 85.45±4.47 46.66±17.88 38.76±7.36 94.10±0.00 86.81±0.00
-   Source `paper:chars/7514-23701`: Df 99.22±0.00 95.12±0.81 89.17±4.17 25.97±14.01 21.42±8.5 97.05±0.00 20.83±0.00
-   - **Why this affects the decision:** The claim of matching SSD/Fisher effectiveness is central to the contribution.
-   - **Actionable revision:** Report an aggregate distance-to-retrain metric across tasks for both SSD and LFSSD. Discuss the over-forgetting cases explicitly.
-   - **What would resolve it:** A summary showing LFSSD's gap to retrain is comparable to SSD's, or a scoped claim.
-
-2. **The primacy claim is hedged in the introduction but stated unhedged in the results and conclusion. It also sits beside a citation of 'Zero-shot machine unlearning' (Chundawat 2023b) that is never contrasted.**
-   I have not inspected the cited work; any difference from it is unresolved.
-   Evidence status: inference.
-   Reasoning: The introduction qualifies the claim with 'To the best of our knowledge', but the conclusion drops that hedge. The paper cites a zero-shot unlearning method only within a group of retraining-based approaches. It never says how that method's data requirements differ, for example whether it needs class labels. Without that comparison, the primacy claim cannot be checked against the paper's own citations.
-   Source `paper:chars/1165-4392`: To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only
-the unlabelled forget samples at forgetting time.
-   Source `paper:chars/6820-7514`: is the first retraining free
-machine unlearning method to require only the unlabelled input samples for the forget set
-   Source `paper:chars/7514-23701`: Zero-shot machine
-unlearning. IEEE Transactions on Information Forensics and Security, 2023b.
-   - **Why this affects the decision:** Primacy is the paper's headline originality claim.
-   - **Actionable revision:** Add one sentence explaining what Chundawat 2023b and FisherForgetting require (labels, retain data, retraining). Restore the hedge in the conclusion.
-   - **What would resolve it:** An explicit comparison showing that the prior zero-shot method needs labels or retraining.
-
-3. **Within the reported benchmarks, LFSSD is broadly comparable to SSD and the other baselines, supporting 'competitive'. However, 'equally effective as Fisher information' and 'robust' overstate mixed results.**
-   The wording of the central empirical claim is stronger than the tables show.
-   Evidence status: inference.
-   Reasoning: In the ViT MR subclass row, LFSSD's Df is 31.42 versus SSD's 6.68. In the ViT Rkt class row, LFSSD's MIA is 10.60 versus SSD's 1.80. LFSSD wins in some other cells (e.g. ViT sea subclass), so the results are mixed rather than equivalent. No aggregate or statistical comparison is given, and per-task alpha was tuned.
-   Source `paper:chars/1165-4392`: is equally effective as Fisher information, without relying on labelled data
-   Source `paper:chars/7514-23701`: Df 97.05±0.00 26.57±6.41 15.71±12.13 13.01±9.11 0.20±0.36 6.68±0.00 31.42±0.00
-   Source `paper:chars/7514-23701`: MIA 94.40±0.00 3.23±0.00 19.00±0.09 0.03±0.00 1.00±0.01 1.80±0.00 10.60±0.00
-   Source `paper:chars/6820-7514`: LFSSD is lightweight, robust and more practically useful than its predecessors
-   - **Why this affects the decision:** The paper's value rests on matching SSD without labels, so this claim needs calibration.
-   - **Actionable revision:** Report averaged Dr, Df, and MIA gaps (or |metric − retrain|) for LFSSD versus SSD per setting. Soften 'equally effective'/'robust' to 'competitive, with case-dependent differences', and discuss the ViT failure cases.
-   - **What would resolve it:** An aggregate table showing small mean gaps, or revised wording that matches the results.
-
-4. **Some results depart from the retrain reference, so the claim that LFSSD's scores are 'similar to that of a model trained on only Dr' needs qualifying. In subclass unlearning LFSSD sometimes over-forgets (RN sea Df 18.06 vs retrain 91.47). LFSSD's α is also tuned per task while SSD's values are reused from prior work.**
-   The overall 'similar to retrain' framing should be scoped to the settings where it holds.
-   Evidence status: inference.
-   Reasoning: Where the retrain reference retains the subclass, driving Df to 18% is over-forgetting, which the paper itself says risks the Streisand effect. Separately, tuning α only for LFSSD may favor it in the SSD comparison.
+   Reasoning: The paper says similarity to retrain is the objective. In the RN sea subclass case, LFSSD drives Df to 18.06 while retrain stays at 91.47, i.e. over-forgetting. In the ViT MR case, LFSSD leaves Df at 31.42 against 26.57 for retrain. SSD's alpha came from an Optuna search, while LFSSD used a separate grid. As a result, any differences mix the effect of the importance measure with the effect of tuning.
    Source `paper:chars/7514-23701`: Df 96.27±0.00 91.47±1.92 82.69±7.17 75.13±4.12 46.78±8.55 75.35±0.00 18.06±0.00
-   Source `paper:chars/4392-6820`: The results show that LFSSD produces scores similar to that of a model trained
-on only Dr
+   Source `paper:chars/7514-23701`: Df 97.05±0.00 26.57±6.41 15.71±12.13 13.01±9.11 0.20±0.36 6.68±0.00 31.42±0.00
    Source `paper:chars/7514-23701`: For LFSSD we performed a simplified
 hyperparameter search keeping lambda fixed at 1 and alpha values [1, 50].
-   - **Why this affects the decision:** These gaps affect how strongly the competitiveness claim is supported.
-   - **Actionable revision:** Qualify the 'similar to retrain' claim for subclass settings, and report SSD under the same α search used for LFSSD.
-   - **What would resolve it:** Revised wording plus a table comparing SSD and LFSSD under matched tuning.
+   Source `paper:chars/1165-4392`: Here, we show this new approach to dampening
+important parameters is equally effective as Fisher information
+   - **Why this affects the decision:** The headline equivalence claim depends on this comparison.
+   - **Actionable revision:** Report a summary of |Df − retrain Df| and |MIA − retrain MIA| per task for SSD and LFSSD. Also run SSD under the same alpha grid with lambda=1, or soften the 'equally effective' wording.
+   - **What would resolve it:** A matched-tuning comparison showing comparable distance to retrain, or a revised claim.
+
+2. **The claim that the method is 'equally effective as Fisher information' is broadly supported for class unlearning. In subclass unlearning, however, LFSSD's forget-set accuracy is far from the retrain reference in several cases, so the paper does not show equal effectiveness there.**
+   Results are mixed relative to SSD across subclass tasks.
+   Evidence status: inference.
+   Reasoning: For ViT 'sea' subclass, the retrain model keeps 95.12% forget-set accuracy, while LFSSD drops it to 20.83%. That is over-forgetting, which the paper itself warns about. For ViT 'MR', LFSSD and SSD differ in opposite directions from the retrain model.
+   Source `paper:chars/1165-4392`: Here, we show this new approach to dampening
+important parameters is equally effective as Fisher information
+   Source `paper:chars/7514-23701`: Df 99.22±0.00 95.12±0.81 89.17±4.17 25.97±14.01 21.42±8.5 97.05±0.00 20.83±0.00
+   Source `paper:chars/7514-23701`: Df 97.05±0.00 26.57±6.41 15.71±12.13 13.01±9.11 0.20±0.36 6.68±0.00 31.42±0.00
+   - **Why this affects the decision:** The 'equally effective' framing may overstate what the evidence supports.
+   - **Actionable revision:** Qualify the claim by task type and discuss the subclass cases where LFSSD diverges from the retrain model, such as over-forgetting on 'sea'.
+   - **What would resolve it:** Revised claim text plus an aggregate gap-to-retrain metric for each task.
+
+3. **The primacy claim ('first retraining-free method requiring only unlabelled forget samples') is hedged with 'to the best of our knowledge'. However, the related-work coverage behind it is very brief and does not address label-free or zero-shot unlearning work beyond what is cited.**
+   The claim also appears in the abstract framing and in the conclusion.
+   Evidence status: inference.
+   Reasoning: The related-work discussion is confined to a single combined introduction section. Without a broader survey of label-free or source-free unlearning, the 'first' claim cannot be checked from the paper alone.
+   Source `paper:chars/1165-4392`: To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only
+the unlabelled forget samples at forgetting time.
+   - **Why this affects the decision:** An overstated primacy claim weakens the originality case.
+   - **Actionable revision:** Add a short survey of label-free, unsupervised and zero-shot unlearning methods. Either explicitly scope the claim (retraining-free + label-free + no retain data) or soften it.
+   - **What would resolve it:** Citations to the nearest label-free unlearning works, with a stated difference from each.
+
+4. **The claim of being 'equally effective as Fisher information' is not uniform: ViT subclass results show sizable deviations from retrain on Df.**
+   Over-forgetting is flagged by the paper itself as risking the Streisand effect.
+   Evidence status: inference.
+   Reasoning: In the ViT subclass 'sea' row, retrain gives Df 95.12 but LFSSD gives 20.83. Since the paper itself treats closeness to retrain as the target, this indicates over-forgetting relative to SSD (97.05).
+   Source `paper:chars/1165-4392`: Here, we show this new approach to dampening
+important parameters is equally effective as Fisher information
+   Source `paper:chars/7514-23701`: Df 96.44±0.00 93.23±1.09 85.45±4.47 46.66±17.88 38.76±7.36 94.10±0.00 86.81±0.00
+   Source `paper:chars/7514-23701`: Df 99.22±0.00 95.12±0.81 89.17±4.17 25.97±14.01 21.42±8.5 97.05±0.00 20.83±0.00
+   - **Why this affects the decision:** It qualifies the headline equivalence claim.
+   - **Actionable revision:** Scope the claim and discuss the subclass cases where LFSSD diverges from retrain.
+   - **What would resolve it:** Revised claim wording plus a discussion of these cases.
 
 ## Questions for the authors
 
-1. **Hyperparameters were chosen per unlearning task, and the alpha sensitivity is sharp at its extremes. Setting alpha without labels or a retrained reference is unaddressed.**
-   Question: in a truly label-free deployment, how would alpha be selected?
+1. **The α hyperparameter is tuned with retained or full data, and Table 2 shows sharp failures at extreme values. It is unclear how α would be chosen in a truly label-free deployment.**
+   The authors acknowledge the limitation, but its interaction with the label-free claim is not discussed.
    Evidence status: inference.
-   Reasoning: Alpha differs by task (10, 5, 3.5), and alpha=1 collapses Dr accuracy to 16.87%. Tuning against Dr accuracy and a retrain reference needs labelled data, which may conflict with the label-free motivation.
-   Source `paper:chars/7514-23701`: We pick one value per
-unlearning task (e.g. full class, sub-class, random)
+   Reasoning: Choosing α requires measuring Dr and Df accuracy, and measuring accuracy requires labels. This partly undercuts the label-free motivation.
    Source `paper:chars/7514-23701`: 1 16.87% 0.00% 26.60
+   Source `paper:chars/7514-23701`: 50 76.32% 71.88% 29.40
    Source `paper:chars/4392-6820`: A shared limitation with SSD is the reliance
 on choosing α and λ values that balance forgetting and model performance.
-   - **Why the answer matters:** If alpha selection requires labelled validation data, the practical label-free claim weakens. A label-free selection heuristic would strengthen it.
-   - **Requested response:** Describe a label-free alpha selection procedure, or acknowledge that labelled validation is needed for tuning.
-   - **Answer that would resolve it:** A procedure that uses no labels, or an explicit scope statement.
+   - **Why the answer matters:** It affects how practical the core claim is.
+   - **Requested response:** Explain how α would be selected without labels, or show that a single default α transfers across datasets and models.
+   - **Answer that would resolve it:** Results using a fixed α across all settings, or a label-free selection procedure.
 
-2. **SSD and LFSSD are reported with ±0.00 in Tables 5 and 6, while other unlearning methods show non-zero spread. The reported variance therefore does not reflect the same randomness for all methods.**
-   The ±0.00 values suggest variance was computed only over stochastic components that SSD and LFSSD do not have.
+2. **The 'first' claim depends on storing a precomputed importance over D. The label-free requirement applies only at forgetting time, since computing the D importance needs access to the full data.**
+   The scope of 'first' needs to be stated precisely.
    Evidence status: inference.
-   Reasoning: In record 31 (Table 6, ViT lamp Df), SSD is 14.58±0.00 and LFSSD is 24.05±0.00, but the other methods have spreads of ±8.62, ±10.4 and ±7.05. Record 47 shows the same pattern for Table 5 ViT ED Df: SSD 53.53±0.00 and LFSSD 0.68±0.00, against ±0.22, ±3.75 and ±0.08 for the others. Zero spread suggests SSD and LFSSD were run deterministically on one fixed trained model, while the baselines varied across runs. If so, the error bars are not comparable. They also do not show how sensitive LFSSD is to the choice of original model, which matters when the margins are close.
-   Source `review-record:visual/31`: In Table 6, ViT lamp Df shows SSD 14.58±0.00 and LFSSD 24.05±0.00. RN lamp Dr shows SSD 79.58 and LFSSD 81.54.
-   Source `review-record:visual/47`: The rendered values match the extracted text. For example, the RN ED row reads 82.56±0.00 ... 83.19±0.00, and the ViT ED SSD Df value is 53.53±0.00.
-   Source `paper:chars/22176-22253`: Df 89.58±0.00 34.55±8.62 16.90±10.4 8.23±7.05 0.59±1.45 14.58±0.00 24.05±0.00
-   Source `paper:chars/19321-19395`: Df 95.03±0.00 0.00±0.00 0.28±0.22 4.14±3.75 0.03±0.08 53.53±0.00 0.68±0.00
-   - **Why the answer matters:** Comparisons and significance against baselines depend on whether variance across trained models is captured.
-   - **Requested response:** State what the ± values are computed over. Report SSD and LFSSD across several independently trained original models or seeds.
-   - **Answer that would resolve it:** Per-seed results, or a clear statement of the protocol, with non-degenerate spread for SSD and LFSSD.
+   Reasoning: SSD also precomputes over D, so storage of D is not the difference. The difference is the label requirement. The paper does not discuss zero-shot unlearning (Chundawat 2023b, cited only in passing) as a label- or data-light alternative.
+   Source `paper:chars/1165-4392`: To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only
+the unlabelled forget samples at forgetting time.
+   Source `paper:chars/4392-6820`: Fisher information is calculated over D not Dr,
+meaning this is only calculated once
+   - **Why the answer matters:** If a prior method already meets the condition, the novelty framing must change.
+   - **Requested response:** Clarify how the 'first' claim relates to zero-shot unlearning and other label-free methods.
+   - **Answer that would resolve it:** An explicit comparison with the cited zero-shot work.
 
-3. **Hyperparameters were chosen differently for the two methods. SSD's values come from prior Optuna tuning, while LFSSD's alpha comes from a separate per-task search, and the paper does not say which data split guided that search.**
-   Table 2 shows strong sensitivity at the extremes of the alpha range (alpha=1 and alpha=50).
-   Evidence status: observation.
-   Reasoning: If alpha was selected using the test-time Df/Dr metrics, the comparison with SSD may be biased in LFSSD's favour.
-   Source `paper:chars/7514-23701`: For LFSSD we performed a simplified
-hyperparameter search keeping lambda fixed at 1 and alpha values [1, 50].
-   - **Why the answer matters:** Selecting alpha on test metrics would weaken the competitiveness claim.
-   - **Requested response:** State which data and which criterion were used to select alpha per task.
-   - **Answer that would resolve it:** A description of the selection protocol showing it used held-out data.
+3. **The claim that output-sensitivity importance 'has not been applied in unlearning' is an absence claim. The paper gives no survey to support it.**
+   If prior unlearning work already used MAS-style importance, the originality of the substitution itself would shrink.
+   Evidence status: unassessed.
+   Reasoning: This is an absence assertion, and I cannot verify it from the paper alone.
+   Source `paper:chars/1165-4392`: yet it has not been applied in unlearning.
+   - **Why the answer matters:** Determines whether the substitution is itself novel.
+   - **Requested response:** State what search supports this claim, or cite the closest unlearning work that uses MAS-style importance.
+   - **Answer that would resolve it:** A literature check showing no prior use, or a stated distinction from any prior use found.
 
 ## Decision synthesis
 
-In favour: the contribution is simple, clearly motivated and honestly attributed. Across the appendix tables, LFSSD is broadly comparable to SSD and the other baselines on full-class, subclass, random and face tasks, which supports the claim that it is competitive. Against: several pieces of evidence matter most. (1) The wording of the central claims, 'equally effective as Fisher information', 'robust' and 'similar to a model trained on only Dr', goes beyond mixed per-setting results. In some subclass cells LFSSD over-forgets relative to the retrained model, which the paper itself treats as a Streisand-effect risk (e.g., ViT 'sea' Df 20.83 vs 95.12 retrained; RN 'sea' 18.06 vs 91.47). In other cells it forgets less than SSD (e.g., ViT mushroom Df 31.42 vs 6.68). (2) The two methods were tuned differently. SSD reuses α values from prior tuning, while LFSSD's α was chosen per task (10, 5, 3.5) through a simplified search whose guiding data split is not stated. Performance is sharply sensitive at the ends of the α range (α=1 drops Dr accuracy to 16.87%). (3) SSD and LFSSD are reported with ±0.00 while the other baselines show non-zero spread. This suggests, though it is not confirmed, that the two were run deterministically on one fixed model. If so, the error bars are not comparable and do not show sensitivity to the original model. Score-changing questions for the authors: how would α be selected without labels or a retrained reference? Which data guided the α search? What variance across trained models do SSD and LFSSD have? How does LFSSD differ from zero-shot unlearning (Chundawat et al., 2023b) in its requirements? Non-blocking improvements: restore the hedge on the primacy claim in the conclusion, soften the 'equally effective' and 'robust' wording, and limit the 'similar to retrain' framing to the settings where it holds.
+On the positive side, the method is a clearly scoped, cleanly motivated modification. The label-free property holds by construction, since the importance estimate uses no labels and the training set can be discarded after a one-time importance computation. The comparison with SSD broadly supports comparable behaviour on class unlearning. On the negative side, the evidence that matters most concerns the central claim that the new importance estimate is 'equally effective as Fisher information'. In subclass unlearning, LFSSD's forget-set accuracy departs substantially from the retrain reference in several cases. For ViT 'sea', retrain keeps about 95% forget accuracy while LFSSD drops it to about 21%. For ResNet 'sea', the figures are about 91% for retrain versus about 18% for LFSSD. This is the over-forgetting the paper itself warns about. For ViT 'mushroom', LFSSD and SSD deviate from retrain in opposite directions. No aggregate distance-to-retrain metric is reported. SSD and LFSSD were also tuned with different procedures and different per-setting α values (for example α = 10, 5, and 3.5 for LFSSD across settings). The sensitivity analysis covers only CIFAR100 rocket-class unlearning, so differences may mix the effect of the importance measure with the effect of tuning. Score-changing questions for the authors: (1) How were α values chosen for each setting, and would a single α (e.g., 10) work across all benchmarks? (2) Can the comparison be repeated under matched hyperparameter tuning, with a summary metric of distance to retrain? (3) How should α be chosen in a genuinely label-free deployment? (4) Can the 'first' and 'not applied in unlearning' claims be scoped precisely and supported with broader related work, including zero-shot and data-free unlearning? Non-blocking improvements: evaluate a scenario with noisy or pseudo labels to support the practical motivation, and restate the effectiveness claim to distinguish class from subclass results.
 
 This section identifies the evidence that appears most important; it intentionally does not provide a recommendation or score.
 
@@ -250,132 +262,180 @@ Advisory assessment of whether the paper is written for a human reader (legibili
 
 **What reads well**
 
-- The abstract states the problem, the mechanism, and the practical motivation in plain, compact prose.
+- The abstract is compact and clear about the problem, the specific change to SSD, and why it matters, which suits a short-format paper.
 
 **Writing-quality issues**
 
-1. **The abstract's central result is vague: 'competitive with existing state-of-the-art approaches' gives no shape of the outcome or trade-off.**
-   Readers cannot tell from the abstract whether the method matches SSD on retained accuracy, on forgetting, or on both.
-   - **Suggested revision:** State the central result in one plain sentence in the abstract. For example, say that retained accuracy and attack scores match or approach SSD across the tasks, and name any task where they do not.
+1. **The central result is stated only as 'competitive'. Neither the abstract nor the main text gives one plain sentence on how LFSSD compares with SSD, including where it does better or worse.**
+   The tables show a mixed pattern that a reader would benefit from seeing summarised in words.
+   - **Suggested revision:** Add one plain sentence to the abstract or results stating where LFSSD matches, exceeds, or falls short of SSD, for example full-class versus subclass forgetting.
 
-2. **The conclusion asserts qualities ('robust', 'more practically useful') rather than showing them, and the main-text results paragraph is similarly evaluative.**
-   Linking 'robust' to the alpha plateau in the sensitivity analysis would let the evidence carry the claim.
-   - **Suggested revision:** Tie 'robust' to the sensitivity analysis explicitly (stable over a range of alpha values), or drop it. Qualify 'more practically useful' with the specific scenario, such as a label-free forget set.
+2. **Key notation and terms in Table 1 (Dr, Df, MIA, Cifar20 subclass) are defined only later in Section 2 or the appendix. Figure 1 is never referenced in the text.**
+   The order of definitions forces readers to jump ahead to interpret the main table.
+   - **Suggested revision:** Define Dr, Df, and MIA, and explain what a good value looks like, in the Table 1 caption. Also reference Figure 1 from the Methods section.
 
-3. **Table 1 uses abbreviations (Dr, Df, MIA) before or without a nearby definition, and does not tell readers which direction is better.**
-   A one-line caption note would make Table 1 self-contained.
-   - **Suggested revision:** Add to the Table 1 caption that Dr should be high and that Df and MIA should resemble the retrain column.
+3. **The conclusion describes the method as 'robust and more practically useful' without pointing to the evidence for robustness. The paper itself reports that performance depends on choosing alpha.**
+   The appendix sensitivity analysis could support the robustness claim if it were linked to it.
+   - **Suggested revision:** Point the robustness claim to the sensitivity analysis in Table 2. Specify robust to what, for example a wide range of alpha values, and keep the hyperparameter limitation alongside it.
+
+4. **The practical scenarios that motivate label-free unlearning appear only in the appendix. The introduction motivates the problem only abstractly, with labels that 'may not always be available'.**
+   Readers of the main text alone get little guidance on when to use this method.
+   - **Suggested revision:** Add one sentence to the introduction naming the main label-free scenarios.
 
 ## Additional improvements (non-blocking)
 
-1. **The 'competitive with SOTA' claim is broadly supported across full-class, subclass, random and face tasks. However, ViT subclass forgetting is mixed, and the 'equally effective as Fisher' wording overstates this.**
-   LFSSD's alpha was tuned per task with a simplified search, which may also affect the comparison.
-   Evidence status: inference.
-   Reasoning: Across most rows, LFSSD's Dr and Df scores are close to SSD's. In some subclass cases, though, LFSSD leaves Df higher than SSD (ViT mushroom: 31.42 vs 6.68). This means LFSSD is competitive overall but not uniformly equal to SSD.
-   Source `paper:chars/1165-4392`: Df 72.66±0.00 22.95±4.72 7.29 0.00 89.58±0.00 34.55±8.62 24.05 14.58
-   Source `paper:chars/7514-23701`: Df 97.05±0.00 26.57±6.41 15.71±12.13 13.01±9.11 0.20±0.36 6.68±0.00 31.42±0.00
-   - **Suggested revision:** Soften 'equally effective' to 'competitive' and discuss the ViT subclass gaps.
-
-2. **The output-norm sensitivity measure is explicitly taken from Aljundi et al. (2018); the new element is its use as a replacement for the FIM in SSD.**
-   Attribution is appropriate and the candidate is not overstated.
+1. **The paper calls LFSSD 'a novel extension of SSD', which matches its stated positioning as a modification of SSD.**
+   The framing is consistent with the abstract and conclusion.
    Evidence status: observation.
-   Reasoning: The authors credit the estimator to prior work, so this candidate's novelty is limited to applying it in SSD.
-   Source `paper:chars/4392-6820`: We replace
-the Fisher information with the sensitivity estimation from Aljundi et al. (2018), which we now
-introduce.
+   Reasoning: The claim is scoped as an extension of SSD, so it does not overclaim.
+   Source `paper:chars/1165-4392`: Therefore, we propose a novel extension of SSD that does not require access to the loss
+or ground truth labels
    - **Suggested revision:** None.
 
-3. **The output-norm sensitivity substitution is explicitly borrowed from continual learning. Its originality is limited to applying it in the unlearning setting.**
-   This contribution should not be credited as a new estimator. The authors do not claim it is one.
+2. **The 'first label-free' contribution has no linked supporting claims. The paper does substantiate that the method needs only unlabelled forget inputs at forgetting time, by noting that importance over D is computed once beforehand.**
+   The mechanism is supported. Primacy remains unverified.
    Evidence status: observation.
-   Reasoning: The authors directly attribute Eq. 3 to Aljundi et al.
-   Source `paper:chars/4392-6820`: We replace
-the Fisher information with the sensitivity estimation from Aljundi et al. (2018), which we now
-introduce.
+   Reasoning: Because importance over D is computed once and the train set can then be discarded, only unlabelled Df inputs are needed at forgetting time. This supports the mechanism part of the claim, but not the primacy part.
+   Source `paper:chars/4392-6820`: meaning this is only calculated once, and then the train-set may be discarded after.
    - **Suggested revision:** None.
 
-4. **LFSSD's α settings differ across experiments (α=10 for Cifar20 subclass, α=3.5 for Cifar10 random-sample). The paper describes only a simplified search with α in [1, 50] and λ=1 on CIFAR100 rocket. It is unclear how the per-task α was chosen without labels.**
-   Table 6 uses LFSSD α=10, λ=1. Table 7 uses LFSSD α=3.5, λ=1. The documented sensitivity search covers α in [1, 50] with λ=1 on CIFAR100 rocket only.
-   Evidence status: inference.
-   Reasoning: Record 25 states that the LFSSD search kept λ=1 and varied α over [1, 50], reported for CIFAR100 rocket unlearning. Records 28 and 29 show LFSSD using α=10 in Table 6 and α=3.5 in Table 7. The deployed α therefore varies by task. The records do not show how 3.5 and 10 were picked for tasks other than the one in the sensitivity study. If the choice relied on labeled validation or comparison with a retrained model, the practical label-free setting is qualified, although the importance estimate itself remains loss-free.
-   Source `review-record:visual/25`: The sensitivity analysis text says lambda is fixed at 1 with alpha values [1, 50], and refers to Table 2 on CIFAR100 rocket class unlearning.
-   Source `review-record:visual/28`: Table 6 caption shows SSD: α_RN = 10, α_ViT = 25, λ = 1; LFSSD: α = 10, λ = 1, with MR defined as mushroom and Rkt as Rocket.
-   Source `review-record:visual/29`: Table 7 caption shows SSD: α = 10, λ = 1; LFSSD: α = 3.5, λ = 1.
-   Source `paper:chars/13295-13404`: For LFSSD we performed a simplified
-hyperparameter search keeping lambda fixed at 1 and alpha values [1, 50].
-   Source `paper:chars/20462-20585`: Table 6: Subclass unlearning on Cifar20. SSD: αRN = 10, αV iT = 25, λ = 1; LFSSD: α = 10,
-λ = 1. MR: mushroom, Rkt: Rocket.
-   Source `paper:chars/23104-23147`: SSD: α = 10 , λ = 1 ; LFSSD:
-α = 3.5, λ = 1
-   - **Suggested revision:** State the selection procedure and the signals used to choose α for each benchmark, and whether any labeled data or retrained-model reference was needed. Optionally, report results with a single fixed α across all tasks.
-
-5. **The 'first label-free, retraining-free' claim is hedged in the introduction but stated unhedged in the conclusion. The paper also cites zero-shot unlearning without explaining how it differs in data or label requirements.**
-   I have not inspected the cited work, so the actual difference is unverified.
-   Evidence status: inference.
-   Reasoning: The introduction says 'to the best of our knowledge', but the conclusion drops that hedge. Chundawat et al. 2023b (zero-shot unlearning) is grouped with retraining-based methods, but its label and data requirements are not discussed.
-   Source `paper:chars/6820-7514`: is the first retraining free
-machine unlearning method to require only the unlabelled input samples for the forget set
-   Source `paper:chars/1165-4392`: (Chundawat et al.,
-2023a;b; Graves et al., 2021; Tarun et al., 2023; Kurmanji et al., 2023)
-   - **Suggested revision:** Add one sentence distinguishing LFSSD's requirements from zero-shot unlearning (Chundawat 2023b), and keep the hedge in the conclusion.
-
-6. **Hyperparameters change across tables: α_ViT is 25 in Table 6 but 10 in Tables 4 and 5, and LFSSD α is 5 in Table 5 but 10 in Table 4. This suggests the settings were tuned per experiment.**
-   Per-setting α choices are visible in the captions, but the selection procedure is not stated alongside them.
+3. **The label-free claim is substantiated by construction, since Eq. 3 uses no labels. However, all experiments use labelled datasets, and the motivating label-free scenarios (catalogues, semi-supervised models) are not evaluated.**
+   Testing a scenario where labels are noisy or pseudo labels would strengthen the practical-impact claim.
    Evidence status: observation.
-   Reasoning: Record 35 gives 'α_ViT = 25' for Table 6. Records 42 and 43 give α_ViT = 10, and LFSSD α of 10 in Table 4 versus 5 in Table 5. Setting-specific α values raise the question of how they were chosen. It is also unclear whether the baselines received a comparable tuning budget, and whether α was selected using forget or test metrics.
-   Source `review-record:visual/35`: The captions render α and λ with subscripts (α_RN, α_ViT). The tables render calligraphic D_r and D_f.
-   Source `review-record:visual/42`: Subscripts render properly: α_RN, α_ViT, and calligraphic D_r and D_f.
-   Source `review-record:visual/43`: Caption reads: 'Table 5: Class unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.' The table rows use the classes ED, NS, people, veg and Veh2 for both RN and ViT.
-   Source `paper:chars/20503-20535`: SSD: αRN = 10, αV iT = 25, λ = 1
-   Source `paper:chars/15258-15313`: SSD: αRN = 10, αV iT = 10, λ = 1; LFSSD: α = 10,
+   Reasoning: The motivating scenario is described but not tested.
+   Source `paper:chars/7514-23701`: Second, models that were trained with semi-supervised learning
+could benefit from our method when we do not want to rely on the accuracy of pseudo labels.
+   - **Suggested revision:** Add a pseudo-label comparison, e.g. SSD with noisy labels versus LFSSD.
+
+4. **The plateau evidence comes from one setting, yet LFSSD uses α=10 on CIFAR100 and α=5 on CIFAR20.**
+   The question is whether one α (e.g., 10) would work across all settings without per-dataset selection.
+   Evidence status: inference.
+   Reasoning: The Table 4 caption sets LFSSD α=10 and the Table 5 caption sets α=5. Both values fall inside the Table 2 plateau. Still, choosing different values per dataset suggests α was selected per setting. Readers cannot tell whether the plateau generalizes beyond the CIFAR100 rocket class.
+   Source `review-record:visual/41`: At α=10, Table 2 shows Dr 75.67%, Df 0.00% and MIA 0.00. In Table 4, the RN Rkt LFSSD entries are 75.67±0.00, 0.00±0.00 and 0.00±0.00.
+   Source `review-record:visual/43`: The Table 4 caption renders 'SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 10, λ = 1' with proper subscripts. The metric labels render as calligraphic D_r and D_f.
+   Source `review-record:visual/45`: Caption reads 'Table 5: Class unlearning on Cifar20. SSD: αRN = 10, αViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.' Rows list RN and ViT with classes ED, NS, people, veg, Veh2.
+   Source `paper:chars/13643-13892`: A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there
+is a significant drop off in performance when picking an alpha that is too aggressive or conservative
+but the method has a wide plateau in which it performs well.
+   Source `paper:chars/15219-15313`: Table 4: Class unlearning on Cifar100. SSD: αRN = 10, αV iT = 10, λ = 1; LFSSD: α = 10,
 λ = 1.
    Source `paper:chars/17822-17991`: Table 5: Class unlearning on Cifar20. SSD: αRN = 10, αV iT = 10, λ = 1; LFSSD: α = 5, λ = 1.
 ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.
-   - **Suggested revision:** Describe the α selection procedure and the tuning budget for baselines. Optionally add an α-sensitivity plot for LFSSD.
+   - **Suggested revision:** State how α was chosen per dataset. Alternatively, report CIFAR20 and ViT results at a single shared α, or a brief sweep on at least one more setting.
 
-7. **The conclusion calls LFSSD 'robust', but robustness is only discussed for alpha. Privacy guarantees rest on a single entropy-based logistic-regression membership inference attack.**
-   This matters most because the paper motivates the method with legal and privacy needs.
+5. **LFSSD's α changes across settings (α = 10 for Cifar20 subclass, α = 3.5 for Cifar10 random-sample), but the stated sensitivity search is described only for CIFAR100 rocket-class unlearning. The paper should say how α was chosen for each setting.**
+   The per-setting hyperparameters are stated, but their selection protocol is not visible beyond the single-class sensitivity search.
    Evidence status: inference.
-   Reasoning: Robustness and practical usefulness are asserted rather than tested. A single weak attack does not establish forgetting in regulatory contexts.
+   Reasoning: Record visual/19 shows the sensitivity paragraph fixing λ = 1 and searching α over [1, 50], and it references CIFAR100 rocket-class unlearning. Records visual/29 and visual/30 show the Table 6 and Table 7 captions reporting different LFSSD α values (10 and 3.5). The SSD α values also differ by architecture in Table 6 (α_RN = 10, α_ViT = 25). The visible text does not say whether the per-setting α values came from the rocket-class search or from separate tuning on each benchmark. That affects how fairly the LFSSD and SSD comparisons were tuned. Matching captions confirm only what the pages state, not how the values were selected.
+   Source `review-record:visual/19`: The sensitivity analysis paragraph states that lambda was fixed at 1 and alpha values [1, 50] were searched, and it references Table 2 on CIFAR100 rocket class unlearning.
+   Source `review-record:visual/29`: Caption reads 'Table 6: Subclass unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 25, λ = 1; LFSSD: α = 10, λ = 1. MR: mushroom, Rkt: Rocket.'
+   Source `review-record:visual/30`: Caption reads 'Random sample unlearning on Cifar10 (100 samples). SSD: α = 10, λ = 1; LFSSD: α = 3.5, λ = 1'.
+   Source `paper:chars/13353-13403`: keeping lambda fixed at 1 and alpha values [1, 50]
+   Source `paper:chars/20462-20585`: Table 6: Subclass unlearning on Cifar20. SSD: αRN = 10, αV iT = 25, λ = 1; LFSSD: α = 10,
+λ = 1. MR: mushroom, Rkt: Rocket.
+   Source `paper:chars/23044-23147`: Table 7: Random sample unlearning on Cifar10 (100 samples). SSD: α = 10 , λ = 1 ; LFSSD:
+α = 3.5, λ = 1
+   - **Suggested revision:** State the α selection procedure for each benchmark and architecture, including the data used for selection and whether SSD received equal tuning effort. Optionally, report sensitivity curves for the subclass and random-sample settings.
+
+6. **The ±0.00 spreads in Table 4 raise the question of how many runs were aggregated for class unlearning.**
+   If the ± reflects only a deterministic method on one model, it does not capture variance across seeds or trained models.
+   Evidence status: inference.
+   Reasoning: The Table 4 RN rocket LFSSD entries read 75.67±0.00, 0.00±0.00 and 0.00±0.00. These are identical to the single Table 2 α=10 values. A zero spread on Dr fits either a single run or a fully deterministic, retraining-free procedure applied to one fixed checkpoint. The supplied records state the number of repeats only for Table 3 (5 face IDs).
+   Source `review-record:visual/41`: At α=10, Table 2 shows Dr 75.67%, Df 0.00% and MIA 0.00. In Table 4, the RN Rkt LFSSD entries are 75.67±0.00, 0.00±0.00 and 0.00±0.00.
+   Source `paper:chars/13643-13892`: A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there
+is a significant drop off in performance when picking an alpha that is too aggressive or conservative
+but the method has a wide plateau in which it performs well.
+   - **Suggested revision:** State the number of runs and the source of variance (seeds, models, forget sets) behind the ± values in Tables 4 and 5.
+
+7. **The alpha sensitivity analysis is useful but shows sharp failure at the extremes. In addition, the alpha value changes per task (3.5, 5, 10).**
+   The authors acknowledge this as a shared limitation with SSD.
+   Evidence status: observation.
+   Reasoning: With alpha=1, Dr accuracy collapses to 16.87%. Choosing alpha without access to retrain references is not discussed.
+   Source `paper:chars/7514-23701`: 1 16.87% 0.00% 26.60
+   - **Suggested revision:** Discuss how to choose alpha without a retrained reference model.
+
+8. **Computing importance over D still requires the training inputs once, which tempers the 'only unlabelled forget samples' framing.**
+   The stored importances must be retained.
+   Evidence status: observation.
+   Reasoning: The claim is valid at forgetting time only. Precomputation over D is still required.
+   Source `paper:chars/4392-6820`: Fisher information is calculated over D not Dr,
+meaning this is only calculated once, and then the train-set may be discarded after.
+   - **Suggested revision:** State explicitly that importances over D are precomputed and stored.
+
+9. **The conclusion calls LFSSD 'robust and more practically useful than its predecessors'. The supplied excerpts give no evidence for robustness beyond the α plateau, and the MIA evaluation is a simple entropy-based attack.**
+   This is a wording and scope issue.
+   Evidence status: inference.
+   Reasoning: Strong privacy-related claims would need stronger attacks or more careful wording.
    Source `paper:chars/6820-7514`: LFSSD is lightweight, robust and more practically useful than its predecessors.
    Source `paper:chars/7514-23701`: logistic regression is used to classify samples as seen or unseen for a
-given model, based the entropy of the model outputs for that sample.
-   - **Suggested revision:** Soften 'robust' or define it, and add a limitations sentence on the MIA's strength.
-
-8. **Only one weak MIA is used (logistic regression on output entropy), and all tasks are small-scale, so the evidence of forgetting is limited.**
-   This setup follows prior SSD evaluation, so it is consistent but limited.
-   Evidence status: observation.
-   Reasoning: The described MIA is simple, and stronger attacks could reveal residual information.
-   Source `paper:chars/7514-23701`: logistic regression is used to classify samples as seen or unseen for a
 given model, based the entropy of the model outputs for that sample
-   - **Suggested revision:** Note the limitation, or add a stronger attack such as LiRA.
+   - **Suggested revision:** Soften the 'robust' claim and note that the MIA is weak.
 
-9. **The importance estimator itself is credited to Aljundi et al. (2018), so it is not novel. The novelty is its application within SSD for unlearning.**
-   Reviewers should credit the transfer to unlearning, not the estimator itself.
+10. **The claim that output-sensitivity importance has not been applied in unlearning is author-asserted only.**
+   The claim is plausible but unverified.
    Evidence status: observation.
-   Reasoning: The authors attribute the estimator to Aljundi et al. (2018), whose content is reported by the authors rather than verified here.
-   Source `paper:chars/4392-6820`: We replace
-the Fisher information with the sensitivity estimation from Aljundi et al. (2018)
-   - **Suggested revision:** None.
+   Reasoning: No supporting survey is given for this claim.
+   Source `paper:chars/1165-4392`: yet it has not been applied in unlearning
+   - **Suggested revision:** Soften the wording or cite a supporting survey.
 
 ## Evidence to examine (advisory)
+
+### Rendered formulas: Introduction renders calligraphic set notation: 'D_r = D \ D_f' with subscripts r and f, and D_f, D_r used consistently in the paragraph.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered set-difference definition matches the extracted text. Lost subscripts and calligraphic font in the extraction are extraction noise.
+
+- Source: `review-record:visual/0`
+- Source: `paper:chars/1398-1497`
+- Source: `paper:p.1`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
+
+### Rendered formulas: Abstract renders 'gradient of the l_2 norm of the model output' with a subscript 2 on l.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered l_2 matches the extracted 'l2'. The extraction only flattens the subscript.
+
+- Source: `review-record:visual/1`
+- Source: `paper:chars/844-982`
+- Source: `paper:p.1`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
+
+### Reviewer coverage limitation: rendered formulas (paper:p.2)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/7`
+- Source: `paper:chars/4788-4931`
+- Source: `paper:p.2`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
+
+### Reviewer coverage limitation: rendered formulas (paper:p.2)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/8`
+- Source: `paper:chars/5951-6043`
+- Source: `paper:p.2`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
+
+### Reviewer coverage limitation: rendered formulas (paper:p.2)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/9`
+- Source: `paper:chars/844-982`
+- Source: `paper:p.2`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Reviewer coverage limitation: captions (paper:p.2)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/0`
-- Source: `paper:chars/15647-15731`
-- Source: `paper:p.2`
-- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
-
-### Reviewer coverage limitation: budgets (paper:p.2)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/1`
+- Source: `review-record:visual/10`
 - Source: `paper:chars/20462-20558`
 - Source: `paper:p.2`
 - Source: [`review-output:visual/page-2.png`](visual/page-2.png)
@@ -385,168 +445,128 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/2`
-- Source: `paper:chars/20894-20978`
-- Source: `paper:p.2`
-- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
-
-### Reviewer coverage limitation: rendered formulas (paper:p.2)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/3`
-- Source: `paper:chars/4788-4890`
-- Source: `paper:p.2`
-- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
-
-### Rendered formulas: Equation 2 renders as f(x;θ+δ) − f(x;θ) ≈ Σ_i ∂f(x;θ)/∂θ_i δ_i. Equation 3 renders as Ω_i = (1/N) Σ_{k=1}^{N} ‖∂[l_2^2(f(x_k;θ))]/∂θ_i‖.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Equation 3 uses the gradient magnitude of the squared l2 norm of the output, averaged over N samples. This matches the accompanying text.
-
-- Source: `review-record:visual/4`
-- Source: `paper:chars/5750-5819`
+- Source: `review-record:visual/11`
+- Source: `paper:chars/15647-15731`
 - Source: `paper:p.2`
 - Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
 ### Reviewer coverage limitation: units (paper:p.2)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/5`
+- Source: `review-record:visual/12`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.2`
 - Source: [`review-output:visual/page-2.png`](visual/page-2.png)
 
-### Reviewer coverage limitation: rendered formulas (paper:p.1)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/8`
-- Source: `paper:chars/1466-1497`
-- Source: `paper:p.1`
-- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
-
-### Reviewer coverage limitation: rendered formulas (paper:p.1)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/9`
-- Source: `paper:chars/927-981`
-- Source: `paper:p.1`
-- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
-
-### Sample counts: Appendix Benchmarks paragraph reads 'Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables.'
+### Captions: Figure 1 has two left-to-right stages labeled 'Loss-free importance estimation' and 'Selective Synaptic Dampening'. The dampening stage contains 'Protect generalization', 'Target forget set importance', 'Synapse selection (α)' and 'Synaptic dampening (λ)' boxes, and the pipeline ends at 'Unlearned model'.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered repeat count of 10 matches the extracted text.
-
-- Source: `review-record:visual/15`
-- Source: `paper:chars/10633-10734`
-- Source: `paper:p.3`
-- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
-
-### Units: Rendered text states 'D_r and D_f in the tables denote the accuracy on the respective subset of data in percent.'
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The unit (percent) for the Dr/Df accuracies is rendered consistently with the text.
+The caption's description of loss-free importance estimation feeding into SSD to produce LFSSD matches the depicted pipeline.
 
 - Source: `review-record:visual/16`
-- Source: `paper:chars/10735-10823`
-- Source: `paper:p.3`
-- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
-
-### Budgets: Rendered text reads 'a model finetuned for 2 epochs on 𝒟_r'.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The finetuning budget of 2 epochs matches the extracted text.
-
-- Source: `review-record:visual/17`
-- Source: `paper:chars/9926-9962`
-- Source: `paper:p.3`
-- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
-
-### Rendered formulas: Retain-set symbols render as calligraphic 𝒟_r with a subscript r. Later in the paragraph, D_r and D_f render as italic D with subscripts.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The symbols render legibly. The calligraphic 𝒟 versus italic D styling difference is minor notation and does not change meaning.
-
-- Source: `review-record:visual/18`
-- Source: `paper:chars/9914-9962`
-- Source: `paper:p.3`
-- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
-
-### Captions: Figure 1 shows a 'Loss-free importance estimation' panel (surface plot, 'Approximate parameter importances label-free via output gradients') feeding a 'Selective Synaptic Dampening' panel (Protect generalization, Target forget set importance, Synapse selection (α), Synaptic dampening (λ)) and an 'Unlearned model' panel. Caption: 'Loss-free parameter importance estimation as a replacement for the label-dependent parameter importance estimation of SSD resulting in the LFSSD method.'
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The diagram's two stages match the caption and the method text: SSD uses α for selection and λ for dampening (Eq. 1).
-
-- Source: `review-record:visual/21`
 - Source: `paper:chars/11866-12030`
 - Source: `paper:p.4`
 - Source: [`review-output:visual/page-4.png`](visual/page-4.png)
 
-### Rendered formulas: The rendered formulas are O(b_full·p), O(b_forget·p), O(b_retain·p), b_retain ≈ b_full >> b_forget, and O(N·b_retain·p). The subscripts render correctly.
+### Rendered formulas: The Resources paragraph renders O(b_full · p), O(b_forget · p), O(b_retain · p), and b_retain ≈ b_full >> b_forget, with subscripts displayed correctly.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered notation is consistent with the text. The broken spacing in the extracted subscripts is extraction noise.
+The rendered complexity expressions match the extracted text. The spacing in the extracted text, such as 'bf ull', is extraction noise and not an authoring defect.
+
+- Source: `review-record:visual/17`
+- Source: `paper:chars/12582-12620`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Rendered formulas: The text renders O(N · b_retain · p) for retraining-based methods.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered expression agrees with the paper text.
+
+- Source: `review-record:visual/18`
+- Source: `paper:chars/13066-13133`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Budgets: The sensitivity analysis paragraph states that lambda was fixed at 1 and alpha values [1, 50] were searched, and it references Table 2 on CIFAR100 rocket class unlearning.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The stated search range matches Table 2, which lists α values from 1 to 50 with λ = 1.
+
+- Source: `review-record:visual/19`
+- Source: `paper:chars/13353-13403`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Sample counts: Appendix Benchmarks paragraph reads: "Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables."
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered repeat count of 10 runs matches the supplied text.
 
 - Source: `review-record:visual/23`
-- Source: `paper:chars/12474-12620`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+- Source: `paper:chars/10633-10734`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Budgets: The text states that SSD computes gradients for D once and then performs one Df computation per forget request. LFSSD has the same complexity, and retraining methods scale as O(N·b_retain·p).
+### Budgets: Rendered text: "a model finetuned for 2 epochs on D_r" with calligraphic D and subscript r.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The compute budget statements on this page are internally consistent with Section 2: D is computed once and the train set is discarded afterwards.
+The finetuning budget of 2 epochs matches. The extracted 'Dr' corresponds to the rendered calligraphic D with subscript r.
 
 - Source: `review-record:visual/24`
-- Source: `paper:chars/12817-12945`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+- Source: `paper:chars/9926-9962`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Sample counts: The sensitivity analysis text says lambda is fixed at 1 with alpha values [1, 50], and refers to Table 2 on CIFAR100 rocket class unlearning.
+### Units: Rendered text: "D_r and D_f in the tables denote the accuracy on the respective subset of data in percent."
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-This matches the Table 2 caption (λ = 1, CIFAR100 rocket) and its α rows, which range from 1 to 50.
+The page states accuracy units as percent, consistent with the supplied text.
 
 - Source: `review-record:visual/25`
-- Source: `paper:chars/13295-13404`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+- Source: `paper:chars/10735-10823`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Sample counts: Table 7 caption reads 'Random sample unlearning on Cifar10 (100 samples).'
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered sample count matches the extracted caption.
-
-- Source: `review-record:visual/27`
-- Source: `paper:chars/23044-23103`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Captions: Table 6 caption shows SSD: α_RN = 10, α_ViT = 25, λ = 1; LFSSD: α = 10, λ = 1, with MR defined as mushroom and Rkt as Rocket.
+### Rendered formulas: Inline math renders as calligraphic \mathcal{D}_r in the Benchmarks sentences, and as italic D_r and D_f in the 'in the tables' sentence. No broken glyphs are visible.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The hyperparameters and abbreviations agree. The split 'V iT' is extraction noise.
+The symbols render legibly and correspond to the extracted Dr/Df. The calligraphic-versus-italic difference is typographic only.
 
-- Source: `review-record:visual/28`
+- Source: `review-record:visual/26`
+- Source: `paper:chars/10735-10803`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
+
+### Captions: Caption reads 'Table 6: Subclass unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 25, λ = 1; LFSSD: α = 10, λ = 1. MR: mushroom, Rkt: Rocket.'
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+Rendered caption matches the extracted text; subscripts render correctly.
+
+- Source: `review-record:visual/29`
 - Source: `paper:chars/20462-20585`
 - Source: `paper:p.7`
 - Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
-### Captions: Table 7 caption shows SSD: α = 10, λ = 1; LFSSD: α = 3.5, λ = 1.
+### Sample counts: Caption reads 'Random sample unlearning on Cifar10 (100 samples). SSD: α = 10, λ = 1; LFSSD: α = 3.5, λ = 1'.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered hyperparameters match the paper text.
+Sample count of 100 and hyperparameters match the text.
 
-- Source: `review-record:visual/29`
-- Source: `paper:chars/23104-23147`
+- Source: `review-record:visual/30`
+- Source: `paper:chars/23044-23147`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Reviewer coverage limitation: budgets (paper:p.7)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/31`
+- Source: `paper:chars/13295-13404`
 - Source: `paper:p.7`
 - Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
@@ -555,18 +575,28 @@ The rendered hyperparameters match the paper text.
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/30`
+- Source: `review-record:visual/32`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.7`
 - Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
-### Captions: In Table 6, ViT lamp Df shows SSD 14.58±0.00 and LFSSD 24.05±0.00. RN lamp Dr shows SSD 79.58 and LFSSD 81.54.
+### Reviewer coverage limitation: captions (paper:p.7)
 
-Scope: paper-only; analysis: visual; evidence status: inference.
-These rendered values match the extracted table and are consistent with the Cifar20 rows of Table 1.
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/31`
-- Source: `paper:chars/22176-22253`
+- Source: `review-record:visual/33`
+- Source: `paper:chars/10824-10904`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Reviewer coverage limitation: captions (paper:p.7)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/34`
+- Source: `paper:chars/10824-10991`
 - Source: `paper:p.7`
 - Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
@@ -575,88 +605,98 @@ These rendered values match the extracted table and are consistent with the Cifa
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/32`
-- Source: `paper:chars/10824-10956`
+- Source: `review-record:visual/35`
+- Source: `paper:chars/10633-10734`
 - Source: `paper:p.7`
 - Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
-### Rendered formulas: The captions render α and λ with subscripts (α_RN, α_ViT). The tables render calligraphic D_r and D_f.
+### Rendered formulas: The metric column renders calligraphic D with subscripts r and f.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered symbols are consistent with the notation used in the text.
+The symbols render properly and are consistent with the notation defined in the text.
 
-- Source: `review-record:visual/35`
-- Source: `paper:chars/20503-20535`
+- Source: `review-record:visual/37`
+- Source: `paper:chars/10735-10823`
 - Source: `paper:p.7`
 - Source: [`review-output:visual/page-7.png`](visual/page-7.png)
 
-### Sample counts: Table 3 caption states one face unlearned per experiment, IDs [1,10,20,30,40], with results aggregated over 5 experiments. Five IDs are listed.
+### Sample counts: Table 3 caption reads 'One face unlearned per experiment [ID 1,10,20,30,40] and results aggregated for 5 experiments'. Five IDs are listed.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
 The five listed IDs match the stated count of 5 experiments.
 
-- Source: `review-record:visual/36`
+- Source: `review-record:visual/38`
 - Source: `paper:chars/14760-14881`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Reviewer coverage limitation: units (paper:p.5)
+### Budgets: Table 2 lists α values 1, 5, 10, 25, 50 with λ = 1 in the caption.
 
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Scope: paper-only; analysis: visual; evidence status: inference.
+The tested α values lie within [1, 50], and λ is fixed at 1, as stated.
 
-- Source: `review-record:visual/37`
+- Source: `review-record:visual/39`
+- Source: `paper:chars/13295-13404`
+- Source: `paper:p.5`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
+
+### Units: The Dr and Df accuracy columns are shown with % signs. The MIA column has no unit.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The percent units match the paper text.
+
+- Source: `review-record:visual/40`
 - Source: `paper:chars/10735-10823`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Reviewer coverage limitation: captions (paper:p.5)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/38`
-- Source: `paper:chars/13353-13403`
-- Source: `paper:p.5`
-- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
-
-### Reviewer coverage limitation: captions (paper:p.5)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/39`
-- Source: `paper:chars/3674-3795`
-- Source: `paper:p.5`
-- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
-
-### Rendered formulas: Subscripts render properly: α_RN, α_ViT, and calligraphic D_r and D_f.
+### Captions: At α=10, Table 2 shows Dr 75.67%, Df 0.00% and MIA 0.00. In Table 4, the RN Rkt LFSSD entries are 75.67±0.00, 0.00±0.00 and 0.00±0.00.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The rendering matches the text. The "V iT" spacing in the paper quote is extraction noise, not an authoring defect.
+The values are consistent across tables. The table shows drops at α=1 and α=50 and a plateau between them, matching the text.
+
+- Source: `review-record:visual/41`
+- Source: `paper:chars/13643-13892`
+- Source: `paper:p.5`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
+
+### Reviewer coverage limitation: captions (paper:p.5)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
 - Source: `review-record:visual/42`
-- Source: `paper:chars/15258-15313`
+- Source: `paper:chars/3966-4111`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Captions: Caption reads: 'Table 5: Class unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.' The table rows use the classes ED, NS, people, veg and Veh2 for both RN and ViT.
+### Rendered formulas: The Table 4 caption renders 'SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 10, λ = 1' with proper subscripts. The metric labels render as calligraphic D_r and D_f.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered caption matches the extracted text. Every abbreviation used in the class column is defined in the caption, except 'people', which is self-explanatory.
+The rendering matches the extracted text. The 'αV iT' spacing in the paper text is extraction noise.
 
 - Source: `review-record:visual/43`
+- Source: `paper:chars/15219-15313`
+- Source: `paper:p.5`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
+
+### Captions: Caption reads 'Table 5: Class unlearning on Cifar20. SSD: αRN = 10, αViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.' Rows list RN and ViT with classes ED, NS, people, veg, Veh2.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered caption and its abbreviations match the extracted text and the row labels in the table.
+
+- Source: `review-record:visual/45`
 - Source: `paper:chars/17822-17991`
 - Source: `paper:p.6`
 - Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
-### Reviewer coverage limitation: rendered formulas (paper:p.6)
+### Reviewer coverage limitation: budgets (paper:p.6)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/44`
-- Source: `paper:chars/10735-10823`
+- Source: `review-record:visual/46`
+- Source: `paper:chars/13405-13513`
 - Source: `paper:p.6`
 - Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
@@ -665,28 +705,27 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/45`
-- Source: `paper:chars/10735-10823`
+- Source: `review-record:visual/47`
+- Source: `paper:chars/10735-10904`
+- Source: `paper:p.6`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
+
+### Reviewer coverage limitation: rendered formulas (paper:p.6)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Grounding failure: context, citation or readability. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/48`
 - Source: `paper:p.6`
 - Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: sample counts (paper:p.6)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/46`
-- Source: `paper:chars/10633-10734`
-- Source: `paper:p.6`
-- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
-
-### Captions: The rendered values match the extracted text. For example, the RN ED row reads 82.56±0.00 ... 83.19±0.00, and the ViT ED SSD Df value is 53.53±0.00.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The values I spot-checked in the rendered table match the extracted text.
-
-- Source: `review-record:visual/47`
-- Source: `paper:chars/19321-19395`
+- Source: `review-record:visual/49`
+- Source: `paper:chars/10633-10675`
 - Source: `paper:p.6`
 - Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
@@ -697,26 +736,19 @@ No declared result edge resolves.
 
 - Source: `review-record:comparison/0`
 
-### claim-2: comparison unresolved
+### claim-9: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/1`
 
-### claim-4: comparison unresolved
+### claim-10: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/2`
-
-### claim-8: comparison unresolved
-
-Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
-No declared result edge resolves.
-
-- Source: `review-record:comparison/3`
 - Source: `paper:chars/23044-23103`
 
 ### claim-7: comparison unresolved
@@ -724,101 +756,120 @@ No declared result edge resolves.
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
+- Source: `review-record:comparison/3`
+- Source: `paper:chars/12946-12991`
+
+### claim-4: comparison unresolved
+
+Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
+No declared result edge resolves.
+
 - Source: `review-record:comparison/4`
-
-### claim-3: comparison unresolved
-
-Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
-No declared result edge resolves.
-
-- Source: `review-record:comparison/5`
-
-### claim-10: comparison unresolved
-
-Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
-No declared result edge resolves.
-
-- Source: `review-record:comparison/6`
 
 ### claim-5: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
-- Source: `review-record:comparison/7`
+- Source: `review-record:comparison/5`
+
+### claim-8: comparison unresolved
+
+Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
+No declared result edge resolves.
+
+- Source: `review-record:comparison/6`
 
 ### claim-6: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
-- Source: `review-record:comparison/8`
-
-### claim-9: comparison unresolved
-
-Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
-No declared result edge resolves.
-
-- Source: `review-record:comparison/9`
+- Source: `review-record:comparison/7`
 
 ### claim-11: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
-- Source: `review-record:comparison/10`
+- Source: `review-record:comparison/8`
+
+### Reviewer coverage limitation: budgets (artifact:figures/figure-1.png)
+
+Scope: artifact-informed; analysis: visual; evidence status: unassessed.
+Grounding failure: context, citation or readability. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:artifact-visual/0`
+- Source: `paper:chars/12946-12991`
+- Source: `artifact:figures/figure-1.png`
+- Source: `review-output:visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png`
+
+### Reviewer coverage limitation: captions (artifact:figures/figure-1.png)
+
+Scope: artifact-informed; analysis: visual; evidence status: unassessed.
+Grounding failure: context, citation or readability. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:artifact-visual/1`
+- Source: `paper:chars/11866-12030`
+- Source: `artifact:figures/figure-1.png`
+- Source: `review-output:visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png`
 
 ## Direct visual evidence (advisory)
 
-- **agreement**, rendered page 2, rendered formulas: Equation 2 renders as f(x;θ+δ) − f(x;θ) ≈ Σ_i ∂f(x;θ)/∂θ_i δ_i. Equation 3 renders as Ω_i = (1/N) Σ_{k=1}^{N} ‖∂[l_2^2(f(x_k;θ))]/∂θ_i‖.
-  Paper quote: the gradient can be calculated over the squared l2 norm of
-the output. Equation 3 uses the gradient magnitude of the squared l2 norm of the output, averaged over N samples. This matches the accompanying text.
-- **agreement**, rendered page 3, sample counts: Appendix Benchmarks paragraph reads 'Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables.'
-  Paper quote: Runs are repeated 10 times for each method, with the mean and standard
-deviation shown in the tables.. The rendered repeat count of 10 matches the extracted text.
-- **agreement**, rendered page 3, units: Rendered text states 'D_r and D_f in the tables denote the accuracy on the respective subset of data in percent.'
-  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
-of data in percent.. The unit (percent) for the Dr/Df accuracies is rendered consistently with the text.
-- **agreement**, rendered page 3, budgets: Rendered text reads 'a model finetuned for 2 epochs on 𝒟_r'.
-  Paper quote: a model finetuned for 2 epochs on Dr. The finetuning budget of 2 epochs matches the extracted text.
-- **agreement**, rendered page 3, rendered formulas: Retain-set symbols render as calligraphic 𝒟_r with a subscript r. Later in the paragraph, D_r and D_f render as italic D with subscripts.
-  Paper quote: on only Dr, a model finetuned for 2 epochs on Dr. The symbols render legibly. The calligraphic 𝒟 versus italic D styling difference is minor notation and does not change meaning.
-- **agreement**, rendered page 4, captions: Figure 1 shows a 'Loss-free importance estimation' panel (surface plot, 'Approximate parameter importances label-free via output gradients') feeding a 'Selective Synaptic Dampening' panel (Protect generalization, Target forget set importance, Synapse selection (α), Synaptic dampening (λ)) and an 'Unlearned model' panel. Caption: 'Loss-free parameter importance estimation as a replacement for the label-dependent parameter importance estimation of SSD resulting in the LFSSD method.'
+- **agreement**, rendered page 1, rendered formulas: Introduction renders calligraphic set notation: 'D_r = D \ D_f' with subscripts r and f, and D_f, D_r used consistently in the paragraph.
+  Paper quote: dataset D into a subset of data that needs to be forgotten Df , and the retained data Dr = D \ Df .. The rendered set-difference definition matches the extracted text. Lost subscripts and calligraphic font in the extraction are extraction noise.
+- **agreement**, rendered page 1, rendered formulas: Abstract renders 'gradient of the l_2 norm of the model output' with a subscript 2 on l.
+  Paper quote: substituting the diagonal of the Fisher information matrix for the gradient of the
+l2 norm of the model output to approximate sensitivity.. The rendered l_2 matches the extracted 'l2'. The extraction only flattens the subscript.
+- **agreement**, rendered page 4, captions: Figure 1 has two left-to-right stages labeled 'Loss-free importance estimation' and 'Selective Synaptic Dampening'. The dampening stage contains 'Protect generalization', 'Target forget set importance', 'Synapse selection (α)' and 'Synaptic dampening (λ)' boxes, and the pipeline ends at 'Unlearned model'.
   Paper quote: Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-
-rameter importance estimation of SSD resulting in the LFSSD method.. The diagram's two stages match the caption and the method text: SSD uses α for selection and λ for dampening (Eq. 1).
-- **agreement**, rendered page 4, rendered formulas: The rendered formulas are O(b_full·p), O(b_forget·p), O(b_retain·p), b_retain ≈ b_full >> b_forget, and O(N·b_retain·p). The subscripts render correctly.
-  Paper quote: Similarly, the complexity
-for the forget and retain set is O(bf orget· p) and O(bretain · p), respectively. Note that bretain ≈
-bf ull>> bf orget.. The rendered notation is consistent with the text. The broken spacing in the extracted subscripts is extraction noise.
-- **agreement**, rendered page 4, budgets: The text states that SSD computes gradients for D once and then performs one Df computation per forget request. LFSSD has the same complexity, and retraining methods scale as O(N·b_retain·p).
-  Paper quote: LFSSD has the same complexity as SSD with the difference being that LFSSD calculates the norm
-of the output instead of the loss.. The compute budget statements on this page are internally consistent with Section 2: D is computed once and the train set is discarded afterwards.
-- **agreement**, rendered page 4, sample counts: The sensitivity analysis text says lambda is fixed at 1 with alpha values [1, 50], and refers to Table 2 on CIFAR100 rocket class unlearning.
-  Paper quote: For LFSSD we performed a simplified
-hyperparameter search keeping lambda fixed at 1 and alpha values [1, 50].. This matches the Table 2 caption (λ = 1, CIFAR100 rocket) and its α rows, which range from 1 to 50.
-- **agreement**, rendered page 7, sample counts: Table 7 caption reads 'Random sample unlearning on Cifar10 (100 samples).'
-  Paper quote: Table 7: Random sample unlearning on Cifar10 (100 samples).. The rendered sample count matches the extracted caption.
-- **agreement**, rendered page 7, captions: Table 6 caption shows SSD: α_RN = 10, α_ViT = 25, λ = 1; LFSSD: α = 10, λ = 1, with MR defined as mushroom and Rkt as Rocket.
+rameter importance estimation of SSD resulting in the LFSSD method.. The caption's description of loss-free importance estimation feeding into SSD to produce LFSSD matches the depicted pipeline.
+- **agreement**, rendered page 4, rendered formulas: The Resources paragraph renders O(b_full · p), O(b_forget · p), O(b_retain · p), and b_retain ≈ b_full >> b_forget, with subscripts displayed correctly.
+  Paper quote: Note that bretain ≈
+bf ull>> bf orget.. The rendered complexity expressions match the extracted text. The spacing in the extracted text, such as 'bf ull', is extraction noise and not an authoring defect.
+- **agreement**, rendered page 4, rendered formulas: The text renders O(N · b_retain · p) for retraining-based methods.
+  Paper quote: generally on the order
+of O(N · bretain · p), which is much larger.. The rendered expression agrees with the paper text.
+- **agreement**, rendered page 4, budgets: The sensitivity analysis paragraph states that lambda was fixed at 1 and alpha values [1, 50] were searched, and it references Table 2 on CIFAR100 rocket class unlearning.
+  Paper quote: keeping lambda fixed at 1 and alpha values [1, 50]. The stated search range matches Table 2, which lists α values from 1 to 50 with λ = 1.
+- **agreement**, rendered page 3, sample counts: Appendix Benchmarks paragraph reads: "Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables."
+  Paper quote: Runs are repeated 10 times for each method, with the mean and standard
+deviation shown in the tables.. The rendered repeat count of 10 runs matches the supplied text.
+- **agreement**, rendered page 3, budgets: Rendered text: "a model finetuned for 2 epochs on D_r" with calligraphic D and subscript r.
+  Paper quote: a model finetuned for 2 epochs on Dr. The finetuning budget of 2 epochs matches. The extracted 'Dr' corresponds to the rendered calligraphic D with subscript r.
+- **agreement**, rendered page 3, units: Rendered text: "D_r and D_f in the tables denote the accuracy on the respective subset of data in percent."
+  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
+of data in percent.. The page states accuracy units as percent, consistent with the supplied text.
+- **agreement**, rendered page 3, rendered formulas: Inline math renders as calligraphic \mathcal{D}_r in the Benchmarks sentences, and as italic D_r and D_f in the 'in the tables' sentence. No broken glyphs are visible.
+  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset. The symbols render legibly and correspond to the extracted Dr/Df. The calligraphic-versus-italic difference is typographic only.
+- **agreement**, rendered page 7, captions: Caption reads 'Table 6: Subclass unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 25, λ = 1; LFSSD: α = 10, λ = 1. MR: mushroom, Rkt: Rocket.'
   Paper quote: Table 6: Subclass unlearning on Cifar20. SSD: αRN = 10, αV iT = 25, λ = 1; LFSSD: α = 10,
-λ = 1. MR: mushroom, Rkt: Rocket.. The hyperparameters and abbreviations agree. The split 'V iT' is extraction noise.
-- **agreement**, rendered page 7, captions: Table 7 caption shows SSD: α = 10, λ = 1; LFSSD: α = 3.5, λ = 1.
-  Paper quote: SSD: α = 10 , λ = 1 ; LFSSD:
-α = 3.5, λ = 1. The rendered hyperparameters match the paper text.
-- **agreement**, rendered page 7, captions: In Table 6, ViT lamp Df shows SSD 14.58±0.00 and LFSSD 24.05±0.00. RN lamp Dr shows SSD 79.58 and LFSSD 81.54.
-  Paper quote: Df 89.58±0.00 34.55±8.62 16.90±10.4 8.23±7.05 0.59±1.45 14.58±0.00 24.05±0.00. These rendered values match the extracted table and are consistent with the Cifar20 rows of Table 1.
-- **agreement**, rendered page 7, rendered formulas: The captions render α and λ with subscripts (α_RN, α_ViT). The tables render calligraphic D_r and D_f.
-  Paper quote: SSD: αRN = 10, αV iT = 25, λ = 1. The rendered symbols are consistent with the notation used in the text.
-- **agreement**, rendered page 5, sample counts: Table 3 caption states one face unlearned per experiment, IDs [1,10,20,30,40], with results aggregated over 5 experiments. Five IDs are listed.
+λ = 1. MR: mushroom, Rkt: Rocket.. Rendered caption matches the extracted text; subscripts render correctly.
+- **agreement**, rendered page 7, sample counts: Caption reads 'Random sample unlearning on Cifar10 (100 samples). SSD: α = 10, λ = 1; LFSSD: α = 3.5, λ = 1'.
+  Paper quote: Table 7: Random sample unlearning on Cifar10 (100 samples). SSD: α = 10 , λ = 1 ; LFSSD:
+α = 3.5, λ = 1. Sample count of 100 and hyperparameters match the text.
+- **agreement**, rendered page 7, rendered formulas: The metric column renders calligraphic D with subscripts r and f.
+  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
+of data in percent.. The symbols render properly and are consistent with the notation defined in the text.
+- **agreement**, rendered page 5, sample counts: Table 3 caption reads 'One face unlearned per experiment [ID 1,10,20,30,40] and results aggregated for 5 experiments'. Five IDs are listed.
   Paper quote: One face unlearned per experiment [ID 1,10,20,30,40]
 and results aggregated for 5 experiments as in Foster et al. (2023).. The five listed IDs match the stated count of 5 experiments.
-- **agreement**, rendered page 5, rendered formulas: Subscripts render properly: α_RN, α_ViT, and calligraphic D_r and D_f.
-  Paper quote: SSD: αRN = 10, αV iT = 10, λ = 1; LFSSD: α = 10,
-λ = 1.. The rendering matches the text. The "V iT" spacing in the paper quote is extraction noise, not an authoring defect.
-- **agreement**, rendered page 6, captions: Caption reads: 'Table 5: Class unlearning on Cifar20. SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.' The table rows use the classes ED, NS, people, veg and Veh2 for both RN and ViT.
+- **agreement**, rendered page 5, budgets: Table 2 lists α values 1, 5, 10, 25, 50 with λ = 1 in the caption.
+  Paper quote: For LFSSD we performed a simplified
+hyperparameter search keeping lambda fixed at 1 and alpha values [1, 50].. The tested α values lie within [1, 50], and λ is fixed at 1, as stated.
+- **agreement**, rendered page 5, units: The Dr and Df accuracy columns are shown with % signs. The MIA column has no unit.
+  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
+of data in percent.. The percent units match the paper text.
+- **agreement**, rendered page 5, captions: At α=10, Table 2 shows Dr 75.67%, Df 0.00% and MIA 0.00. In Table 4, the RN Rkt LFSSD entries are 75.67±0.00, 0.00±0.00 and 0.00±0.00.
+  Paper quote: A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there
+is a significant drop off in performance when picking an alpha that is too aggressive or conservative
+but the method has a wide plateau in which it performs well.. The values are consistent across tables. The table shows drops at α=1 and α=50 and a plateau between them, matching the text.
+- **agreement**, rendered page 5, rendered formulas: The Table 4 caption renders 'SSD: α_RN = 10, α_ViT = 10, λ = 1; LFSSD: α = 10, λ = 1' with proper subscripts. The metric labels render as calligraphic D_r and D_f.
+  Paper quote: Table 4: Class unlearning on Cifar100. SSD: αRN = 10, αV iT = 10, λ = 1; LFSSD: α = 10,
+λ = 1.. The rendering matches the extracted text. The 'αV iT' spacing in the paper text is extraction noise.
+- **agreement**, rendered page 6, captions: Caption reads 'Table 5: Class unlearning on Cifar20. SSD: αRN = 10, αViT = 10, λ = 1; LFSSD: α = 5, λ = 1. ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.' Rows list RN and ViT with classes ED, NS, people, veg, Veh2.
   Paper quote: Table 5: Class unlearning on Cifar20. SSD: αRN = 10, αV iT = 10, λ = 1; LFSSD: α = 5, λ = 1.
-ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.. The rendered caption matches the extracted text. Every abbreviation used in the class column is defined in the caption, except 'people', which is self-explanatory.
-- **agreement**, rendered page 6, captions: The rendered values match the extracted text. For example, the RN ED row reads 82.56±0.00 ... 83.19±0.00, and the ViT ED SSD Df value is 53.53±0.00.
-  Paper quote: Df 95.03±0.00 0.00±0.00 0.28±0.22 4.14±3.75 0.03±0.08 53.53±0.00 0.68±0.00. The values I spot-checked in the rendered table match the extracted text.
+ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2.. The rendered caption and its abbreviations match the extracted text and the row labels in the table.
 
 Visual interpretation requires human confirmation.
 
@@ -826,13 +877,13 @@ Visual interpretation requires human confirmation.
 
 | Outcome | Records |
 |---|---:|
-| Confirmed text-image agreement | 18 |
+| Confirmed text-image agreement | 19 |
 | Confirmed text-image mismatch (advisory) | 0 |
-| Not applicable | 17 |
-| Grounding failure: context, citation or readability | 0 |
-| Missing or invalid confirmation | 2 |
+| Not applicable | 16 |
+| Grounding failure: context, citation or readability | 1 |
+| Missing or invalid confirmation | 0 |
 | Conflicting assessments | 11 |
-| Substantive uncertainty | 2 |
+| Substantive uncertainty | 4 |
 | Unresolved reason not recorded | 0 |
 
 Counts are observations, not distinct figures or validated scientific claims. Not-applicable checks are not failed inspections. Grounding/confirmation failures are reviewer limitations, not paper defects. Legacy untyped reasons remain unspecified.
@@ -841,103 +892,116 @@ Counts are observations, not distinct figures or validated scientific claims. No
 
 Conflicting assessments and substantive uncertainties are unconfirmed, not author-facing findings. Confirmed mismatches are advisory, not scientific proof.
 
-- **Conflicting assessments**: `paper:p.2`, captions (visual audit observation index 0).
-  Observation: For Cifar100, ResNet18 rows show Dr = 76.39±0.00, 72.89±0.34, 76.36, and 76.08; Df = 70.49, 0.00, 0.00, and 0.00; and MIA = 92.40, 0.32, 0.00, and 0.20. Vision Transformer rows show Dr = 88.84, 90.10±0.19, 89.03, and 89.06; Df = 97.22, 0.00, 0.00, and 36.89; and MIA = 95.60, 2.27, 2.20, and 0.40.
-  Paper quote: lamp Dr 76.39±0.00 72.89±0.34 64.01±0.63 74.76±0.19 73.52±0.48 76.08±0.00 76.36±0.00.
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered values match the lamp rows for ResNet18 and ViT in appendix Table 4. Table 4 also lists α=10 and λ=1 for both SSD and LFSSD, which matches the Table 1 caption.
-  First assessment: agreement. The rendered values match the lamp rows for ResNet18 and ViT in appendix Table 4. Table 4 also lists α=10 and λ=1 for both SSD and LFSSD, which matches the Table 1 caption.
-  Second assessment: unresolved. The quoted seven-column row comes from Table 4 in the appendix, which is not on this page. Some values overlap with Table 1, but this page has no matching row to check.
-
-- **Conflicting assessments**: `paper:p.2`, budgets (visual audit observation index 1).
-  Observation: The caption reads 'unlearning with α =10, λ =1 on Cifar100/20.' The Cifar20 ViT SSD values are 95.54, 14.58, and 3.2.
-  Paper quote: Table 6: Subclass unlearning on Cifar20. SSD: αRN = 10, αV iT = 25, λ = 1; LFSSD: α = 10,
-λ = 1..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The Cifar20 ViT SSD values (95.54/14.58/3.2) are identical to the ViT lamp SSD row in Table 6. Table 6 states that SSD used α=25 for ViT, which conflicts with the α=10 stated in the Table 1 caption for that column.
-  First assessment: mismatch. The Cifar20 ViT SSD values (95.54/14.58/3.2) are identical to the ViT lamp SSD row in Table 6. Table 6 states that SSD used α=25 for ViT, which conflicts with the α=10 stated in the Table 1 caption for that column.
-  Second assessment: unresolved. Table 6 is not on this page, so its hyperparameter caption cannot be compared here.
-
-- **Conflicting assessments**: `paper:p.2`, captions (visual audit observation index 2).
-  Observation: For Cifar20, ResNet18 rows show Dr = 82.61, 81.81±0.19, 81.54, and 79.58; Df = 72.66, 22.95±4.72, 7.29, and 0.00; and MIA = 83.40, 4.29, 3.40, and 2.00. LFSSD and SSD entries have no ± values.
-  Paper quote: lamp Dr 82.61±0.00 81.81±0.19 72.46±0.95 81.51±0.19 81.36±0.36 79.58±0.00 81.54±0.00.
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The ResNet18 values match the subclass lamp rows in Table 6. The missing ± values for LFSSD and SSD are consistent with the caption statement that '±0.0' was omitted because the methods are deterministic.
-  First assessment: agreement. The ResNet18 values match the subclass lamp rows in Table 6. The missing ± values for LFSSD and SSD are consistent with the caption statement that '±0.0' was omitted because the methods are deterministic.
-  Second assessment: unresolved. The quoted row is from Table 6, which is not on this page. Only the overlapping subset appears in Table 1.
-
-- **Substantive uncertainty**: `paper:p.2`, rendered_formulas (visual audit observation index 3).
-  Observation: Equation 1 and the following prose show literal empty brackets used as the importance symbol: '[]_{D_f,i} > α[]_{D,i}'. The prose also contains '[]_{D_i}' and 'in place of [] and []_f'.
+- **Substantive uncertainty**: `paper:p.2`, rendered_formulas (visual audit observation index 7).
+  Observation: Eq. 1 renders empty bracket glyphs '[]' with subscripts D_f,i and D,i where the importance quantity should appear. β = min(λ[]_{D,i}/[]_{D_f,i}, 1) is also shown with these placeholders.
   Paper quote: Here, α and λ are hyper-parameters, and []Df,i and []Di are the ith element of the diagonal of
-the FIM.
+the FIM, calculated over Df and D, respectively..
   Reason: Rendered formula requires human confirmation; an extraction difference alone is not an authoring defect.
 
-- **Substantive uncertainty**: `paper:p.2`, units (visual audit observation index 5).
-  Observation: Neither the Table 1 caption nor its column headers state units for Dr, Df, or MIA.
+- **Substantive uncertainty**: `paper:p.2`, rendered_formulas (visual audit observation index 8).
+  Observation: The sentence after Eq. 3 reads 'in place of [] and []_f'. These are empty bracket glyphs, not named symbols.
+  Paper quote: Which we can calculate over D and Df and substitute into equation 1 in place of [] and []f ..
+  Reason: Rendered formula requires human confirmation; an extraction difference alone is not an authoring defect.
+
+- **Substantive uncertainty**: `paper:p.2`, rendered_formulas (visual audit observation index 9).
+  Observation: Eq. 3 shows Ω_i = (1/N) Σ_{k=1}^{N} ‖∂[l_2^2(f(x_k;θ))]/∂θ_i‖. The l_2 term has a superscript 2, meaning a squared norm.
+  Paper quote: substituting the diagonal of the Fisher information matrix for the gradient of the
+l2 norm of the model output to approximate sensitivity..
+  Reason: Rendered formula requires human confirmation; an extraction difference alone is not an authoring defect.
+
+- **Conflicting assessments**: `paper:p.2`, captions (visual audit observation index 10).
+  Observation: The Table 1 caption states α = 10, λ = 1 for the full table. The Cifar20 ViT SSD values are visible: Dr 95.54, Df 14.58, MIA 3.2.
+  Paper quote: Table 6: Subclass unlearning on Cifar20. SSD: αRN = 10, αV iT = 25, λ = 1; LFSSD: α = 10,
+λ = 1..
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): These ViT SSD numbers match Table 6, where SSD for ViT uses α = 25, not α = 10. The caption's single α = 10 is therefore inaccurate for that column.
+  First assessment: mismatch. These ViT SSD numbers match Table 6, where SSD for ViT uses α = 25, not α = 10. The caption's single α = 10 is therefore inaccurate for that column.
+  Second assessment: unresolved. Table 6 is in the appendix on a different page, so this page has no element that can confirm or contradict its caption.
+
+- **Conflicting assessments**: `paper:p.2`, captions (visual audit observation index 11).
+  Observation: Cifar100 RN: LFSSD 76.36/0.00/0.00 and SSD 76.08/0.00/0.20. ViT: LFSSD 89.03/0.00/2.20 and SSD 89.06/36.89/0.40. Cifar20 RN LFSSD values are 81.54/7.29/3.40. The (LF)SSD columns show no ±.
+  Paper quote: lamp Dr 76.39±0.00 72.89±0.34 64.01±0.63 74.76±0.19 73.52±0.48 76.08±0.00 76.36±0.00.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered values match the lamp rows in Tables 4 and 6. Omitting ±0.0 is consistent with the caption's statement that (LF)SSD is deterministic.
+  First assessment: agreement. The rendered values match the lamp rows in Tables 4 and 6. Omitting ±0.0 is consistent with the caption's statement that (LF)SSD is deterministic.
+  Second assessment: unresolved. The quoted seven-column row comes from Table 4 in the appendix, which is not on this page. The overlapping Table 1 values are consistent with the quote, but this page cannot verify the full row.
+
+- **Conflicting assessments**: `paper:p.2`, units (visual audit observation index 12).
+  Observation: The Dr, Df and MIA values are shown on a 0–100 scale with no unit labels.
   Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
 of data in percent..
-  Reason: The appendix defines Dr and Df as percentages, which is consistent with the values. No unit for MIA is stated anywhere in the paper.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The values fall within percentage ranges, which is consistent with the appendix definition.
+  First assessment: agreement. The values fall within percentage ranges, which is consistent with the appendix definition.
+  Second assessment: unresolved. The units statement is in the appendix on another page. This page neither states nor contradicts that the values are percentages.
 
-- **Conflicting assessments**: `paper:p.7`, units (visual audit observation index 30).
-  Observation: Dr and Df values range from 0 to 100 and have no % sign. MIA values are shown on the same scale.
+- **Conflicting assessments**: `paper:p.7`, budgets (visual audit observation index 31).
+  Observation: LFSSD uses α = 3.5 in Table 7; Table 6 uses α = 10.
+  Paper quote: For LFSSD we performed a simplified
+hyperparameter search keeping lambda fixed at 1 and alpha values [1, 50]..
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Both rendered α values (3.5 and 10) lie within [1, 50], and λ = 1 throughout, consistent with the stated search.
+  First assessment: agreement. Both rendered α values (3.5 and 10) lie within [1, 50], and λ = 1 throughout, consistent with the stated search.
+  Second assessment: unresolved. There is no relevant element on this page to compare against the quoted search range.
+
+- **Conflicting assessments**: `paper:p.7`, units (visual audit observation index 32).
+  Observation: D_r and D_f values range from 0 to 100 and have no % sign, for example 82.45±0.00 and 100.00±0.00.
   Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
 of data in percent..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The values are consistent with percent accuracy as defined in the appendix.
-  First assessment: agreement. The values are consistent with percent accuracy as defined in the appendix.
-  Second assessment: unresolved. The statement appears on page 3, not this page, so it cannot be checked here.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The value ranges are consistent with percentage accuracies.
+  First assessment: agreement. The value ranges are consistent with percentage accuracies.
+  Second assessment: unresolved. The 0–100 range is consistent with percent, but the page does not state units. Correspondence therefore cannot be confirmed.
 
-- **Conflicting assessments**: `paper:p.7`, sample_counts (visual audit observation index 32).
-  Observation: In Table 7, SSD and LFSSD show nonzero standard deviations, such as 88.68±3.36 and 89.82±2.30.
+- **Conflicting assessments**: `paper:p.7`, captions (visual audit observation index 33).
+  Observation: Both RN and ViT blocks list the classes baby, lamp, MR, Rkt and sea, each with D_r, D_f and MIA rows. Every SSD and LFSSD cell shows ±0.00.
+  Paper quote: Since SSD (and therefore LFSSD) is deterministic, there is no standard deviation.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The deterministic ±0.00 values for SSD and LFSSD match the text, and the class abbreviations match the caption.
+  First assessment: agreement. The deterministic ±0.00 values for SSD and LFSSD match the text, and the class abbreviations match the caption.
+  Second assessment: mismatch. Table 7 on this page reports nonzero standard deviations for SSD and LFSSD, which contradicts the claim that there is no standard deviation. Table 6 is consistent with the claim.
+
+- **Conflicting assessments**: `paper:p.7`, captions (visual audit observation index 34).
+  Observation: In Table 7, the SSD and LFSSD columns show nonzero standard deviations, for example 88.68±3.36 and 89.82±2.30.
   Paper quote: Since SSD (and therefore LFSSD) is deterministic, there is no standard deviation
 
-3Accepted as a Tiny Paper at ICLR 2024 (Preprint).
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The paper says SSD and LFSSD have no standard deviation across repeated runs, yet the rendered Table 7 reports nonzero ± values for them. The cause may be random forget-set selection, but the text does not state this.
-  First assessment: mismatch. The paper says SSD and LFSSD have no standard deviation across repeated runs, yet the rendered Table 7 reports nonzero ± values for them. The cause may be random forget-set selection, but the text does not state this.
-  Second assessment: unresolved. The quoted text is not on this page, so it cannot be compared here.
+3Accepted as a Tiny Paper at ICLR 2024 (Preprint)
 
-- **Conflicting assessments**: `paper:p.5`, units (visual audit observation index 37).
-  Observation: In Table 2, the Dr and Df Accuracy columns show % signs (e.g., 16.87%, 71.88%). The MIA column shows bare numbers (26.60, 0.00, 29.40).
-  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
-of data in percent..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The percent units on the accuracy columns match the appendix definition.
-  First assessment: agreement. The percent units on the accuracy columns match the appendix definition.
-  Second assessment: unresolved. The quoted sentence appears on a different page (page 3), so this page cannot confirm it. Table 2's % values are consistent with it, but they are only partial evidence.
+Approximate parameter importances.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The appendix says SSD and LFSSD have no standard deviation across runs, but Table 7 reports nonzero ones. One possible reason is that random forget sets vary between runs, but the paper does not state this.
+  First assessment: mismatch. The appendix says SSD and LFSSD have no standard deviation across runs, but Table 7 reports nonzero ones. One possible reason is that random forget sets vary between runs, but the paper does not state this.
+  Second assessment: unresolved. The quote spans an extraction page break and Figure 1 text from other pages. This page cannot ground the composite quote.
 
-- **Conflicting assessments**: `paper:p.5`, captions (visual audit observation index 38).
-  Observation: The caption says λ = 1, CIFAR100 rocket, and no ± reported. The table has no ± values. The α rows are 1, 5, 10, 25, 50, and the α=10 row reads Dr 75.67%.
-  Paper quote: keeping lambda fixed at 1 and alpha values [1, 50].
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The α values fall in the stated [1, 50] search range. The α=10 Dr value of 75.67 matches the LFSSD RN Rkt Dr of 75.67±0.00 in Table 4.
-  First assessment: agreement. The α values fall in the stated [1, 50] search range. The α=10 Dr value of 75.67 matches the LFSSD RN Rkt Dr of 75.67±0.00 in Table 4.
-  Second assessment: unresolved. The quote comes from page 4 body text. Table 2's settings are consistent with it, but the quoted text itself is not on this page.
-
-- **Conflicting assessments**: `paper:p.5`, captions (visual audit observation index 39).
-  Observation: The Table 4 caption gives LFSSD α = 10, λ = 1. The RN lamp row shows Dr 76.36, Df 0.00, MIA 0.00 for LFSSD and 76.08, 0.00, 0.20 for SSD. The ViT lamp Df row shows SSD 36.89 and LFSSD 0.00.
-  Paper quote: Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices) unlearning with α =10,
-λ =1 on Cifar100/20..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered lamp values match the Cifar100 rows of Table 1, and the stated hyperparameters are consistent.
-  First assessment: agreement. The rendered lamp values match the Cifar100 rows of Table 1, and the stated hyperparameters are consistent.
-  Second assessment: unresolved. Table 1 is on page 2, so it cannot be checked against this page.
-
-- **Conflicting assessments**: `paper:p.6`, rendered_formulas (visual audit observation index 44).
-  Observation: The caption renders α_RN and α_ViT as subscripted Greek alpha, and λ correctly. The metric column renders calligraphic D_r and D_f.
-  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
-of data in percent..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The symbols render properly and are consistent with the notation defined in the appendix. The 'αV iT' spacing in the text comes from extraction.
-  First assessment: agreement. The symbols render properly and are consistent with the notation defined in the appendix. The 'αV iT' spacing in the text comes from extraction.
-  Second assessment: unresolved. The quoted sentence is from the appendix text on page 3, which is not shown. The table renders D_r and D_f symbols, but the sentence itself cannot be checked on this page.
-
-- **Conflicting assessments**: `paper:p.6`, units (visual audit observation index 45).
-  Observation: All values are in the range 0–100 with ± standard deviations. No unit symbols appear in the table.
-  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
-of data in percent..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The appendix defines the units as percent. The value ranges are consistent with percentages, and the MIA values are on the same 0–100 scale.
-  First assessment: agreement. The appendix defines the units as percent. The value ranges are consistent with percentages, and the MIA values are on the same 0–100 scale.
-  Second assessment: unresolved. The values are consistent with percentages. However, this page has no unit annotation, so it neither confirms nor contradicts the claim of percent.
-
-- **Conflicting assessments**: `paper:p.6`, sample_counts (visual audit observation index 46).
-  Observation: Every SSD and LFSSD entry shows ±0.00. Other methods show nonzero standard deviations, for example the people finetune Dr value of 80.18±19.88.
+- **Conflicting assessments**: `paper:p.7`, sample_counts (visual audit observation index 35).
+  Observation: Non-deterministic methods show nonzero ± values, for example retrain 81.45±0.3.
   Paper quote: Runs are repeated 10 times for each method, with the mean and standard
 deviation shown in the tables..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The ±0.00 entries for SSD and LFSSD are consistent with the statement that these methods are deterministic. The text states that 10 runs were used, but the page itself does not display the run count.
-  First assessment: agreement. The ±0.00 entries for SSD and LFSSD are consistent with the statement that these methods are deterministic. The text states that 10 runs were used, but the page itself does not display the run count.
-  Second assessment: unresolved. The mean±std format is visible, but the count of 10 runs is not shown on this page and cannot be verified from it.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The presence of standard deviations is consistent with the repeated runs described; the run count itself is not visible on the page.
+  First assessment: agreement. The presence of standard deviations is consistent with the repeated runs described; the run count itself is not visible on the page.
+  Second assessment: unresolved. The mean±std format is consistent with the quote, but the repeat count of 10 is not visible on this page.
+
+- **Conflicting assessments**: `paper:p.5`, captions (visual audit observation index 42).
+  Observation: For the lamp rows, Table 4 shows RN LFSSD values 76.36, 0.00 and 0.00, and SSD values 76.08, 0.00 and 0.20. For ViT lamp, LFSSD is 89.03, 0.00 and 2.20, and SSD is 89.06, 36.89 and 0.40.
+  Paper quote: Cifar100 Dr 76.39±0.00 72.89±0.34 76.36 76.08 88.84±0.00 90.10±0.19 89.03 89.06
+Df 70.49±0.00 0.00±0.00 0.00 0.00 97.22±0.00 0.00±0.00 0.00 36.89.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered Table 4 lamp values match the Cifar100 rows of Table 1.
+  First assessment: agreement. The rendered Table 4 lamp values match the Cifar100 rows of Table 1.
+  Second assessment: unresolved. Table 1 does not appear on this page, so its rendering cannot be checked here. The corresponding Table 4 values are consistent with the quote, but that is not a direct check of Table 1.
+
+- **Conflicting assessments**: `paper:p.6`, budgets (visual audit observation index 46).
+  Observation: Caption states LFSSD uses α = 5, λ = 1 for Cifar20 class unlearning.
+  Paper quote: We pick one value per
+unlearning task (e.g. full class, sub-class, random) to show robustness across classes.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Table 4 states LFSSD α = 10 for Cifar100 class unlearning, while Table 5 uses α = 5 for Cifar20 class unlearning. Both are full-class tasks, so this appears to conflict with choosing one α per unlearning task. It may instead be one α per task and dataset; the paper does not make this explicit.
+  First assessment: mismatch. Table 4 states LFSSD α = 10 for Cifar100 class unlearning, while Table 5 uses α = 5 for Cifar20 class unlearning. Both are full-class tasks, so this appears to conflict with choosing one α per unlearning task. It may instead be one α per task and dataset; the paper does not make this explicit.
+  Second assessment: unresolved. The quoted methodology statement is not on this page. The caption's single LFSSD α for all classes is consistent with it, but this page alone cannot verify the per-task choice across tasks.
+
+- **Conflicting assessments**: `paper:p.6`, units (visual audit observation index 47).
+  Observation: Dr and Df values are in the range 0–100 with ± values and no unit symbol. Every SSD and LFSSD cell shows ±0.00.
+  Paper quote: Dr and Df in the tables denote the accuracy on the respective subset
+of data in percent. Since SSD (and therefore LFSSD) is deterministic, there is no standard deviation.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The values are consistent with percentages, and the ±0.00 entries for the deterministic methods are consistent with the text.
+  First assessment: agreement. The values are consistent with percentages, and the ±0.00 entries for the deterministic methods are consistent with the text.
+  Second assessment: unresolved. Values are consistent with percent accuracy and SSD/LFSSD show zero deviation (±0.00 rather than omitted). The units claim itself is not stated on this page, so it cannot be confirmed from the image alone.
+
+- **Substantive uncertainty**: `paper:p.6`, sample_counts (visual audit observation index 49).
+  Observation: No run count or sample count is printed on the page. The ± values are shown for the non-deterministic methods.
+  Paper quote: Runs are repeated 10 times for each method.
+  Reason: The page does not state the number of runs or samples, so it cannot be confirmed from the rendered page alone that Table 5 used 10 runs.
 
 
 
@@ -947,23 +1011,19 @@ Literal checks of explicitly linked shipped evidence, not scientific validation.
 
 - **unresolved**: claim-1 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-2 / . No declared result edge resolves.
-  Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-4 / . No declared result edge resolves.
-  Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-8 / . No declared result edge resolves.
-  Paper: `paper:chars/23044-23103`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-7 / . No declared result edge resolves.
-  Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-3 / . No declared result edge resolves.
+- **unresolved**: claim-9 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-10 / . No declared result edge resolves.
+  Paper: `paper:chars/23044-23103`; artifact: `unresolved`; locator: `{}`.
+- **unresolved**: claim-7 / . No declared result edge resolves.
+  Paper: `paper:chars/12946-12991`; artifact: `unresolved`; locator: `{}`.
+- **unresolved**: claim-4 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-5 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-6 / . No declared result edge resolves.
+- **unresolved**: claim-8 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-9 / . No declared result edge resolves.
+- **unresolved**: claim-6 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-11 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
@@ -985,7 +1045,7 @@ LLM provider: redacted-provider; model: redacted-model.
 - reproduction: not-requested
 - artifact reconciliation: incomplete
 - run evidence: incomplete
-- artifact visual inspection: unavailable
+- artifact visual inspection: incomplete
 - artifact checks: completed
 - reference lookup: not-requested
 - contribution review: completed

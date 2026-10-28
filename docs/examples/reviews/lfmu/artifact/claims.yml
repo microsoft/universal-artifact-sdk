@@ -6,19 +6,21 @@ verifier_model: redacted-verifier-model
 substantiator_model: redacted-model
 completeness:
   assessed: true
-  complete: true
-  missing: []
-  note: The main novelty, first-method claim, competitiveness result, resource advantage,
-    and conclusion are represented.
+  complete: false
+  missing:
+  - LFSSD replaces Fisher-information importance with gradients of the squared L2
+    norm of model outputs to provide label-free sensitivity estimates.
+  note: The central methodological contribution highlighted in the abstract and introduction
+    is missing.
   model: redacted-verifier-model
 contribution_links:
-  provenance: reviewer-inference
+  provenance: extractor-inference
   method: llm-extractor/v1
   model: redacted-model
 claims:
 - id: claim-1
-  statement: LFSSD's label-free method is competitive with state-of-the-art approaches
-    such as SSD, producing scores similar to a model retrained on only Dr.
+  statement: LFSSD is competitive with state-of-the-art approaches such as SSD while
+    producing scores similar to a model retrained on only Dr.
   quote: The results show that LFSSD produces scores similar to that of a model trained
     on only Dr, and is competitive with state-of-the-art methods such as SSD, while
     being the first method to require no labelled data and no retraining.
@@ -28,14 +30,13 @@ claims:
     trained o
   measurability: unbound
   kind: empirical
-  metric: Dr/Df accuracy and MIA
+  metric: Dr accuracy, Df accuracy, MIA
   value: null
   comparison: vs SSD and retrain
   experiment: null
   priority: 1.0
   evidence_refs:
   - Table 1
-  - Table 3
   - Table 4
   - Table 5
   - Table 6
@@ -43,12 +44,15 @@ claims:
   evidence_values:
   - '76.36'
   - '76.08'
-  - '72.89'
-  - '0.00'
   - '89.03'
   - '89.06'
-  - '90.10'
+  - '0.00'
   - '36.89'
+  - '81.54'
+  - '79.58'
+  - '7.29'
+  - '24.05'
+  - '14.58'
   role: load-bearing
   contributions:
   - contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea
@@ -61,7 +65,7 @@ claims:
   verification:
     status: confirmed
     quote_found: true
-    note: Exact quote appears and supports the comparison.
+    note: The quote appears verbatim and supports both comparisons.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -83,131 +87,72 @@ claims:
     checks: provenance
     inputs:
     - R1
-    - R2
-    - R4
     - R6
     - R28
     - R42
     - R51
     - R58
     - R65
-    - R66
     - R70
     - R71
-    - R79
-    - R90
-    - R102
-    - R121
-    - R129
     - R133
     - R134
     - R138
-    - R146
-    - R162
     - R192
-    - R337
+    - R232
+    - R359
+    - R361
+    - R362
     - R368
-    - R533
+    - R369
+    - R379
+    - R395
+    - R397
+    - R398
+    - R465
+    - R466
   extractor_priority: 1.0
   tier: load-bearing
   at_risk: []
-- id: claim-2
-  statement: Output-norm sensitivity-based importance is as effective as Fisher information
-    for dampening, without labels.
-  quote: Here, we show this new approach to dampening important parameters is equally
-    effective as Fisher information, without relying on labelled data.
-  page: 1
-  section: introduction
-  locator: Here, we show this new approach to dampening important parameters is equally
-    eff
+- id: claim-9
+  statement: 'Face unlearning on PINS: LFSSD achieves 0% Df accuracy with Dr 98.15
+    and MIA 0.38.'
+  quote: 'Table 3: Face unlearning (class unlearning): One face unlearned per experiment
+    [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et al.
+    (2023).'
+  page: 5
+  section: body
+  locator: 'Table 3: Face unlearning (class unlearning): One face unlearned per experiment
+    ['
   measurability: unbound
   kind: empirical
-  metric: null
-  value: null
-  comparison: vs Fisher-based SSD
+  metric: Dr, Df, MIA
+  value: 98.15/0.00/0.38
+  comparison: vs SSD 98.42/0.00/1.11
   experiment: null
   priority: 1.0
   evidence_refs:
-  - Table 1
-  evidence_values: []
-  role: load-bearing
-  contributions:
-  - contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea
-  - contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157
-  contribution_rank:
-    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 2
-    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 2
-  verification:
-    status: confirmed
-    quote_found: true
-    note: Exact quote appears and supports equal effectiveness without labels.
-    model: redacted-verifier-model
-  substantiation:
-    status: unchecked
-    evidence: []
-    rationale: ''
-    model: ''
-    coverage: {}
-  paper_ref:
-    quote: Here, we show this new approach to dampening important parameters is equally
-      effective as Fisher information, without relying on labelled data.
-    page: 1
-    section: introduction
-    locator: Here, we show this new approach to dampening important parameters is
-      equally eff
-  validators:
-  - id: v1
-    kind: attest
-    checks: provenance
-    inputs: []
-  extractor_priority: 0.9
-  tier: load-bearing
-  at_risk:
-  - no evidence linked
-- id: claim-4
-  statement: On Cifar100 lamp full-class unlearning, LFSSD reduces Df accuracy to
-    0 while retaining Dr accuracy (ResNet18 76.36, ViT 89.03), whereas SSD leaves
-    ViT Df at 36.89.
-  quote: 'Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices)
-    unlearning with α =10, λ =1 on Cifar100/20.'
-  page: 2
-  section: evaluation
-  locator: 'Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices)
-    un'
-  measurability: unbound
-  kind: empirical
-  metric: Df/Dr accuracy, MIA
-  value: '0.00'
-  comparison: vs SSD, retrain
-  experiment: null
-  priority: 1.0
-  evidence_refs:
-  - Table 1
+  - Table 3
   evidence_values:
-  - '76.36'
+  - '98.15'
   - '0.00'
-  - '89.03'
-  - '2.20'
-  - '81.54'
-  - '7.29'
-  - '3.40'
-  - '95.68'
-  - '24.05'
-  - '5.80'
+  - '0.38'
+  - '98.42'
+  - '1.11'
   role: load-bearing
   contributions:
   - contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea
   - contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4
   - contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157
   contribution_rank:
-    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 3
+    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 2
     contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4: 2
-    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 3
+    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 2
   verification:
     status: disputed
     quote_found: true
-    note: The caption quote does not support the numerical results, although they
-      appear in Table 1.
+    note: The quote is only the table caption and contains none of the claimed values,
+      although those values do appear in the table.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -216,71 +161,45 @@ claims:
     model: ''
     coverage: {}
   paper_ref:
-    quote: 'Table 1: Full- (class lamp) and subclass (lamp is part of electrical devices)
-      unlearning with α =10, λ =1 on Cifar100/20.'
-    page: 2
-    section: evaluation
-    locator: 'Table 1: Full- (class lamp) and subclass (lamp is part of electrical
-      devices) un'
+    quote: 'Table 3: Face unlearning (class unlearning): One face unlearned per experiment
+      [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et
+      al. (2023).'
+    page: 5
+    section: body
+    locator: 'Table 3: Face unlearning (class unlearning): One face unlearned per
+      experiment ['
   validators:
   - id: v1
     kind: attest
     checks: provenance
     inputs:
-    - R1
     - R6
-    - R10
-    - R14
     - R28
+    - R39
+    - R40
     - R42
-    - R51
+    - R49
+    - R50
     - R58
-    - R65
-    - R71
-    - R100
-    - R133
-    - R134
-    - R139
     - R192
-    - R232
-    - R258
-    - R278
-    - R313
-    - R318
-    - R359
-    - R362
     - R368
-    - R369
-    - R375
-    - R379
-    - R395
-    - R397
-    - R398
-    - R432
-    - R433
-    - R454
-    - R459
-    - R466
-    - R473
-    - R479
-    - R493
-    - R511
-  extractor_priority: 0.8
+  extractor_priority: 0.4
   tier: load-bearing
   at_risk: []
-- id: claim-8
-  statement: Random sample unlearning on Cifar10 with LFSSD closely matches retrain.
+- id: claim-10
+  statement: 'Random sample unlearning on Cifar10: LFSSD remains close to retrain
+    model.'
   quote: 'Table 7: Random sample unlearning on Cifar10 (100 samples).'
   page: 7
-  section: evaluation
+  section: body
   locator: 'Table 7: Random sample unlearning on Cifar10 (100 samples).'
   measurability: unbound
   kind: empirical
-  metric: Dr/Df accuracy, MIA
+  metric: Dr, Df, MIA
   value: null
   comparison: vs retrain
   experiment: null
-  priority: 0.98
+  priority: 0.975
   evidence_refs:
   - Table 7
   evidence_values:
@@ -296,14 +215,14 @@ claims:
   - contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4
   - contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157
   contribution_rank:
-    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 4
+    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 3
     contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4: 3
-    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 4
+    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 3
   verification:
     status: disputed
     quote_found: true
-    note: The caption identifies the experiment but does not support the claim that
-      LFSSD closely matches retraining.
+    note: The quote is only the table caption and does not state that LFSSD remains
+      close to the retrained model.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -314,7 +233,7 @@ claims:
   paper_ref:
     quote: 'Table 7: Random sample unlearning on Cifar10 (100 samples).'
     page: 7
-    section: evaluation
+    section: body
     locator: 'Table 7: Random sample unlearning on Cifar10 (100 samples).'
   validators:
   - id: v1
@@ -338,44 +257,39 @@ claims:
     - R551
     - R556
     - R563
-  extractor_priority: 0.4
+  extractor_priority: 0.3
   tier: load-bearing
   at_risk: []
 - id: claim-7
-  statement: Face unlearning results comparing LFSSD with baselines on PINS.
-  quote: 'Table 3: Face unlearning (class unlearning): One face unlearned per experiment
-    [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et al.
-    (2023).'
-  page: 5
-  section: evaluation
-  locator: 'Table 3: Face unlearning (class unlearning): One face unlearned per experiment
-    ['
-  measurability: unbound
+  statement: LFSSD has the same complexity as SSD and similar compute time in practice,
+    far below retraining methods.
+  quote: In practice, this is similar in compute time.
+  page: 4
+  section: body
+  locator: In practice, this is similar in compute time.
+  measurability: non_measurable
   kind: empirical
-  metric: Dr/Df accuracy, MIA
-  value: '98.15'
-  comparison: vs SSD 98.42
+  metric: compute time
+  value: null
+  comparison: vs SSD
   experiment: null
-  priority: 0.96
-  evidence_refs:
-  - Table 3
-  evidence_values:
-  - '98.15'
-  - '0.00'
-  - '0.38'
+  priority: 0.965
+  evidence_refs: []
+  evidence_values: []
   role: load-bearing
   contributions:
   - contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea
   - contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4
   - contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157
   contribution_rank:
-    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 5
+    contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea: 4
     contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4: 4
-    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 5
+    contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157: 4
   verification:
-    status: confirmed
+    status: disputed
     quote_found: true
-    note: The quoted Table 3 caption describes the stated PINS face-unlearning comparison.
+    note: The quoted sentence supports only similar practical compute time; it does
+      not establish equal complexity or the comparison with retraining methods.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -384,30 +298,19 @@ claims:
     model: ''
     coverage: {}
   paper_ref:
-    quote: 'Table 3: Face unlearning (class unlearning): One face unlearned per experiment
-      [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et
-      al. (2023).'
-    page: 5
-    section: evaluation
-    locator: 'Table 3: Face unlearning (class unlearning): One face unlearned per
-      experiment ['
+    quote: In practice, this is similar in compute time.
+    page: 4
+    section: body
+    locator: In practice, this is similar in compute time.
   validators:
   - id: v1
     kind: attest
     checks: provenance
-    inputs:
-    - R6
-    - R28
-    - R40
-    - R42
-    - R50
-    - R58
-    - R192
-    - R368
-  extractor_priority: 0.4
+    inputs: []
+  extractor_priority: 0.5
   tier: load-bearing
   at_risk: []
-- id: claim-3
+- id: claim-4
   statement: LFSSD is the first retraining-free unlearning method requiring only unlabelled
     forget samples.
   quote: To the best of our knowledge, LFSSD is the first retraining-free unlearning
@@ -431,7 +334,7 @@ claims:
   verification:
     status: confirmed
     quote_found: true
-    note: Exact first-method claim appears with the stated qualification.
+    note: The quote appears verbatim and supports the first-of-its-kind claim.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -454,8 +357,8 @@ claims:
   extractor_priority: 0.9
   tier: headline
   at_risk: []
-- id: claim-10
-  statement: LFSSD is lightweight, robust and more practical than predecessors.
+- id: claim-5
+  statement: LFSSD is lightweight, robust and more practically useful than predecessors.
   quote: By not requiring the long-term storage of the retain dataset, a labelled
     forget set, or the loss over the forget set, LFSSD is lightweight, robust and
     more practically useful than its predecessors.
@@ -467,9 +370,9 @@ claims:
   kind: empirical
   metric: null
   value: null
-  comparison: null
+  comparison: vs predecessors
   experiment: null
-  priority: 0.635
+  priority: 0.64
   evidence_refs: []
   evidence_values: []
   role: headline
@@ -478,7 +381,7 @@ claims:
   verification:
     status: confirmed
     quote_found: true
-    note: Exact conclusion appears.
+    note: The conclusion contains the quoted statement verbatim.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -499,62 +402,12 @@ claims:
     kind: attest
     checks: provenance
     inputs: []
-  extractor_priority: 0.7
+  extractor_priority: 0.8
   tier: headline
   at_risk: []
-- id: claim-5
-  statement: LFSSD has the same complexity as SSD and similar compute time, much lower
-    than retraining-based methods.
-  quote: LFSSD has the same complexity as SSD with the difference being that LFSSD
-    calculates the norm of the output instead of the loss. In practice, this is similar
-    in compute time.
-  page: 4
-  section: body
-  locator: LFSSD has the same complexity as SSD with the difference being that LFSSD
-    calcul
-  measurability: non_measurable
-  kind: empirical
-  metric: compute time
-  value: null
-  comparison: vs SSD
-  experiment: null
-  priority: 0.325
-  evidence_refs: []
-  evidence_values: []
-  role: supporting
-  contributions: []
-  contribution_rank: {}
-  verification:
-    status: disputed
-    quote_found: true
-    note: The quote supports equal complexity and similar compute time, but not the
-      added comparison with retraining-based methods.
-    model: redacted-verifier-model
-  substantiation:
-    status: unchecked
-    evidence: []
-    rationale: ''
-    model: ''
-    coverage: {}
-  paper_ref:
-    quote: LFSSD has the same complexity as SSD with the difference being that LFSSD
-      calculates the norm of the output instead of the loss. In practice, this is
-      similar in compute time.
-    page: 4
-    section: body
-    locator: LFSSD has the same complexity as SSD with the difference being that LFSSD
-      calcul
-  validators:
-  - id: v1
-    kind: attest
-    checks: provenance
-    inputs: []
-  extractor_priority: 0.5
-  tier: supporting
-  at_risk: []
-- id: claim-6
-  statement: LFSSD performance drops for too aggressive or conservative alpha but
-    has a wide plateau of good performance.
+- id: claim-8
+  statement: 'Alpha sensitivity: performance drops for too aggressive/conservative
+    alpha but there is a wide plateau of good performance.'
   quote: A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows
     that there is a significant drop off in performance when picking an alpha that
     is too aggressive or conservative but the method has a wide plateau in which it
@@ -574,21 +427,22 @@ claims:
   - Table 2
   evidence_values:
   - '16.87'
-  - '0.00'
-  - '26.60'
   - '74.72'
   - '75.67'
   - '76.10'
   - '76.32'
   - '71.88'
+  - '26.60'
   - '29.40'
+  - '0.00'
   role: supporting
   contributions: []
   contribution_rank: {}
   verification:
     status: confirmed
     quote_found: true
-    note: Exact sensitivity-analysis conclusion appears.
+    note: The sensitivity-analysis text states both the drop-offs and wide performance
+      plateau.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -623,8 +477,9 @@ claims:
   extractor_priority: 0.5
   tier: supporting
   at_risk: []
-- id: claim-9
-  statement: LFSSD shares SSD's limitation of needing to choose alpha and lambda.
+- id: claim-6
+  statement: LFSSD shares SSD's limitation of needing alpha and lambda tuned to balance
+    forgetting and performance.
   quote: A shared limitation with SSD is the reliance on choosing α and λ values that
     balance forgetting and model performance.
   page: 2
@@ -637,7 +492,7 @@ claims:
   value: null
   comparison: null
   experiment: null
-  priority: 0.315
+  priority: 0.32
   evidence_refs: []
   evidence_values: []
   role: supporting
@@ -646,7 +501,7 @@ claims:
   verification:
     status: confirmed
     quote_found: true
-    note: Exact limitation appears.
+    note: The quote appears verbatim and states the shared hyperparameter limitation.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -666,11 +521,12 @@ claims:
     kind: attest
     checks: provenance
     inputs: []
-  extractor_priority: 0.3
+  extractor_priority: 0.4
   tier: supporting
   at_risk: []
 - id: claim-11
-  statement: Evaluation uses ResNet18 and ViT on Cifar and PINS, 10 runs each.
+  statement: Evaluation uses ResNet18 and ViT on full class, subclass and random forgetting
+    with 10 repeated runs.
   quote: Runs are repeated 10 times for each method, with the mean and standard deviation
     shown in the tables.
   page: 3
@@ -683,7 +539,7 @@ claims:
   value: null
   comparison: null
   experiment: null
-  priority: 0.115
+  priority: 0.11
   evidence_refs: []
   evidence_values: []
   role: setup
@@ -692,7 +548,8 @@ claims:
   verification:
     status: disputed
     quote_found: true
-    note: The quote supports 10 repeated runs, but not the stated models and datasets.
+    note: The quote supports 10 repeated runs only, not the architectures or three
+      forgetting tasks.
     model: redacted-verifier-model
   substantiation:
     status: unchecked
@@ -712,7 +569,17 @@ claims:
     kind: attest
     checks: provenance
     inputs: []
-  extractor_priority: 0.3
+  extractor_priority: 0.2
   tier: setup
   at_risk: []
-gaps: []
+gaps:
+- quote: Results show our label-free method is competitive with existing state-of-the-art
+    approaches.
+  page: 0
+  section: abstract
+  reason: 'dropped: same finding as claim-1 (merged)'
+- quote: Here, we show this new approach to dampening important parameters is equally
+    effective as Fisher information, without relying on labelled data.
+  page: 0
+  section: introduction
+  reason: 'dropped: same finding as claim-1 (merged)'

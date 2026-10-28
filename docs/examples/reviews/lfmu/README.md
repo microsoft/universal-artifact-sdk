@@ -27,7 +27,7 @@ assessment by the SDK maintainers.
   `005179f8c64043b9c7e0b5f3d3b642d4c6a482806328554a153659434b50ce50` (spec §8.7 conformance paper `lfmu`).
 - Path: the paper adapter (spec §3) converted the PDF to an attested, paper-only evaluable
   artifact ([`artifact/`](artifact/)); the judge (§4) and the reviewer (§5) then ran in the
-  `artifact-informed` scope with an LLM provider. Run `20261027T212642.530Z-3a86`.
+  `artifact-informed` scope with an LLM provider. Run `20261028T213907.918Z-9102`.
 
 ## Where to start
 

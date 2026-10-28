@@ -11,8 +11,8 @@ contributions:
   - claim-1
   - claim-2
   - claim-3
-  - claim-4
   - claim-5
+  - claim-4
   paper_ref:
     char_start: 361
     char_end: 529
@@ -54,8 +54,8 @@ contributions:
   - claim-1
   - claim-2
   - claim-3
-  - claim-4
   - claim-5
+  - claim-4
   paper_ref:
     char_start: 3380
     char_end: 3510
@@ -88,9 +88,9 @@ contributions:
   inferred_supporting_claims: &id003
   - claim-1
   - claim-2
-  - claim-4
+  - claim-3
   - claim-5
-  - claim-6
+  - claim-4
   paper_ref:
     char_start: 10495
     char_end: 10594
@@ -139,8 +139,8 @@ contributions:
   supporting_claims: []
   inferred_supporting_claims: &id004
   - claim-2
-  - claim-15
-  - claim-16
+  - claim-17
+  - claim-18
   paper_ref:
     char_start: 20705
     char_end: 20895
@@ -178,8 +178,8 @@ contributions:
   - claim-1
   - claim-2
   - claim-3
-  - claim-4
   - claim-5
+  - claim-4
   paper_ref:
     char_start: 36764
     char_end: 36918
