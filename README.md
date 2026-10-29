@@ -49,6 +49,8 @@ score or verdict.
   review findings that cite it. It is optional and reads the judge and reviewer outputs without
   changing that spec.
 - **Example output:** [two AI-generated reviews of public papers](docs/examples/reviews/README.md)
+- **Browse the examples:** [explorer views of both reviews](https://microsoft.github.io/universal-artifact-sdk/)
+  (AI-generated, no human judgement)
 - **Overview:** [slides](docs/presentations/overview/slides.pdf)
 
 ## Install
