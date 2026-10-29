@@ -281,7 +281,8 @@ Figures come from exactly one source, chosen by what the manifest **declares**:
    otherwise never be shown.
 3. OPTIONALLY, only when `paths.figures` is not declared and item 2 produced no figure, the image
    files that §2.6 probes, at any depth, skipping hidden directories and `node_modules`,
-   `__pycache__`, `assets`, and `_app`, sorted by path (byte order of the UTF-8 path).
+   `__pycache__`, `assets`, and `_app`, and a top-level `evaluation/` (an evaluator's output
+   written into the artifact), sorted by path (byte order of the UTF-8 path).
    Byte-identical copies (a report re-embedding an experiment's plot) appear once: under the copy
    inside a probe directory, else the shallowest path, else the first by path; the links of
    every copy are kept. An explorer that does not scan simply has no figures in this case. A
