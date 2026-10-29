@@ -137,7 +137,7 @@ conforming explorers find the same files.
 | Paper source | `paper.source` (SDK §2.6) | `paper.tex`, `paper.md`, `main.tex`, `main.md` |
 | README | — (the SDK declares none) | `README.md`, `README.txt`, `readme.md` |
 | Reflection | fixed name `reflection.md` (SDK §5) | — |
-| Figure directories (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | `figures/`, `figure/`, `fig/`, `plots/`, `images/` (only when neither index is declared) |
+| Figure images (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | image files at any depth that sit under a directory named `figures`, `figure`, `fig`, `plots`, or `images`, or under a declared experiment `directory`, or whose file name starts with `fig`/`figure` followed by a digit or separator (only when no figures index is declared and no exhibits index lists a figure; §3.11 item 3) |
 
 A declared path that does not resolve is **not** replaced by a probe: the declaration wins and is
 shown as unresolved (§2.5), so a broken declaration stays visible.

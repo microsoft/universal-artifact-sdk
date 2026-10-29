@@ -274,24 +274,33 @@ Figures come from exactly one source, chosen by what the manifest **declares**:
    record. If the declared file is missing or unreadable, `figures` is `[]` and a warning is
    recorded; the explorer does not fall back to exhibits or probing.
 2. otherwise, when an exhibits index is **in use** — declared by `paths.exhibits`, or present at
-   its default name `exhibits.yml` (§2.3) — one entry per exhibit of type `figure` (an empty list
-   when there are none). A declared exhibits index that is missing gives `[]` and the warning of
-   §2.3, with no probing.
-3. OPTIONALLY, only when `paths.figures` is not declared and no exhibits index is in use, image
-   files under the probe directories of §2.6, sorted by path (byte order of the UTF-8 path). An
-   explorer that does not scan simply has no figures in this case. A probed figure's `id` is its
-   artifact-relative path; `number`, `caption`, and `page` are `null`.
+   its default name `exhibits.yml` (§2.3) — one entry per exhibit of type `figure`. A declared
+   exhibits index that is missing gives `[]` and the warning of §2.3, with no probing. An index
+   that is in use but lists no exhibit of type `figure` falls through to item 3: exhibits
+   indexes that record only tables and reports are common, and the artifact's plots would
+   otherwise never be shown.
+3. OPTIONALLY, only when `paths.figures` is not declared and item 2 produced no figure, the image
+   files that §2.6 probes, at any depth, skipping hidden directories and `node_modules`,
+   `__pycache__`, `assets`, and `_app`, sorted by path (byte order of the UTF-8 path).
+   Byte-identical copies (a report re-embedding an experiment's plot) appear once: under the copy
+   inside a probe directory, else the shallowest path, else the first by path; the links of
+   every copy are kept. An explorer that does not scan simply has no figures in this case. A
+   probed figure's `id` is its artifact-relative path; `number`, `caption`, and `page` are
+   `null`.
 
 Each entry: `{id, number, caption, page, path, path_asset, claim_links: [{claim_id, method}]}`;
 `path` is the declared or probed path string and `path_asset` its asset reference; `page`
 follows the page-unknown rule of §3.4. `method`
 records how the link was made and is shown with it: `declared` (exhibit `validates` or a result's
 evidence), `adapter-suggested` (a figures-index `claims` entry, which JR §3.6.1 calls advisory),
-or `filename-heuristic` (a probe-directory image whose name matches a claim or experiment;
-*the matching rule is a reference value (non-normative)*). Heuristic and suggested links MUST be
+`experiment-provenance` (a probed image, or one of its byte-identical copies, inside the declared
+`directory` of an experiment in the claim's `tested_by`), or `filename-heuristic` (a probed image
+whose name matches a claim or experiment; *the matching rule is a reference value
+(non-normative)*). Heuristic and suggested links MUST be
 labeled as such in the site; they are never shown as the authors' links. `claim_links` lists
 `declared` links first (exhibit `validates` in order, then results in results order), then
-`adapter-suggested`, then `filename-heuristic`; a `(claim_id, method)` pair appears once.
+`adapter-suggested`, then `experiment-provenance` (claims order), then `filename-heuristic`; a
+`(claim_id, method)` pair appears once.
 
 ## 3.12 `references`
 

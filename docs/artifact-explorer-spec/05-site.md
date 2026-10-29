@@ -42,19 +42,20 @@ The viewer is a single page with hash routes, so links survive static hosting:
 | `#/evaluation/reconciliation/<i>` | Evaluation | reconciliation record *i* (0-based position in `evaluation.review.reconciliation`), the target of `review-record:comparison/<i>` citations |
 | `#/evaluation/visual/<i>`, `#/evaluation/artifact-visual/<i>` | Evaluation | visual record *i* of `evaluation.review.visual.paper` / `.artifact` (§4.3): page, check, the record's classification and reason verbatim, observation, paper quote, explanation, and its image with any region (§4.3) |
 | `#/contributions`, `#/contributions/<id>` | Contributions | §5.4.2 |
-| `#/claims`, `#/claims/<id>` | Claims | §5.4.1 |
-| `#/paper`, `#/paper/references/<id>` | Paper | the paper PDF and/or source, title, authors, abstract, references with any check status, related work (§5.4.4); the second form scrolls to and highlights reference `<id>` (the target of `reference:<id>` citations) |
+| `#/claims`, `#/claims/<id>` | Claims & Evidence | §5.4.1 |
+| `#/paper`, `#/paper/references/<id>` | Paper | the paper PDF and/or source, title, authors, abstract, references with any check status, related work (§5.4.4), and the author reflection; the second form scrolls to and highlights reference `<id>` (the target of `reference:<id>` citations) |
 | `#/paper/page/<n>` | Paper | page *n* (a positive integer) of the paper PDF in the site's own viewer (the copied PDF opened at `#page=<n>`), with a link that opens the file in a new tab; without a PDF asset, the text "p. *n*" and the notice "The paper PDF is not part of this site." This is the target of `paper:p.<n>` citations and of known pages in paper locations |
-| `#/materials`, `#/materials/<kind>/<id>` | Materials | results, experiments, exhibits, figures, datasets, traces, assessments (`<kind>` is the collection name) |
-| `#/provenance` | Provenance | identity, `producer`, `origin`, environment, research agent, journal, README, reflection, and the run record (§4.1) |
+| `#/materials`, `#/materials/<kind>/<id>` | Materials | results, experiments, exhibits, figures, datasets, traces, assessments (`<kind>` is the collection name), and the README as documentation |
+| `#/provenance` | Provenance | identity, `producer`, `origin`, environment, research agent, journal, and the run record (§4.1) |
 | `#/findings/<id>` | — | one judge or reviewer finding (full ID), with its source label, links, and its `target`: a reference (§4.4 target grammar, cases 2 and 4) as a link, unresolved ones marked; free text as plain text after "About:"; nothing for no target or a malformed reference beyond the verbatim text |
 
 `<id>` is the record's full ID, percent-encoded as a URI component (contribution IDs contain `/`
 and are never truncated). An unknown route, ID, bucket, record index, or page number shows a
 "not found" notice with a link to the overview; it never shows a blank page.
 
-Navigation order (*reference value (non-normative)*): Overview, Review, Contributions, Claims,
-Paper, Evaluation, Materials, Provenance.
+Navigation order (*reference value (non-normative)*): Overview, Review, Contributions, Claims &
+Evidence, Paper, Evaluation, Materials, Provenance. The reference viewer shows it as a left
+sidebar with the title, format, and per-section counts.
 
 **Additional content.** A section MAY show content beyond what §5.4 lists, provided it is derived
 only from `data.json` and the copied files, every item §5.4 requires is present, and every label
@@ -156,7 +157,8 @@ fair is a human judgment." Without it: nothing, or "No related-work export was p
 
 Shows identity, `display_title` with its `display_title_source`, `title` (when they differ), `format_version`, `sdk_version`,
 `producer` and `origin` as formatted data, environment (image reference and digest as declared),
-the research agent's declared metadata, the journal, README, and reflection. With a run, also the
+the research agent's declared metadata, and the journal (the README is shown under Materials and
+the reflection under Paper, §5.3). With a run, also the
 full run record of §4.1 (run ID, scope, sealed state, `input_digest`, configuration, provider and
 model identifiers or "none", every stage status) and, when a judge result is present, the judge's
 own run ID (`evaluation.judge.run_id`, §4.2) labeled as such beside the run's.
@@ -290,7 +292,8 @@ authors"; `paper-extraction` → "extracted from the paper by the paper adapter"
 "source not recorded".
 
 **Figure links** (§3.11): `declared` → no qualifier; `adapter-suggested` → "suggested by the
-paper adapter"; `filename-heuristic` → "matched by file name (heuristic)".
+paper adapter"; `filename-heuristic` → "matched by file name (heuristic)"; `experiment-provenance` → "related via
+a declared experiment".
 
 **Findings**: "Judge (deterministic)" or "Reviewer (advisory)" (§4.5 item 8).
 
@@ -306,7 +309,8 @@ paper adapter"; `filename-heuristic` → "matched by file name (heuristic)".
 | Visual record *i* | "Visual record *i*" with its page when known |
 
 *title* is the record's `display.title` when present, else the text before the first sentence
-end of its `statement` (or the text after a leading "Title:"), shortened with an ellipsis when
+end of its `statement` (or the text after a leading "Title:", else a short leading phrase of 3–90
+characters before a colon), shortened with an ellipsis when
 long. Claims and results keep their IDs as labels when the ID is **readable**. An ID is
 **opaque** when it is longer than 40 characters, or is a prefix and `/` followed by at least 16
 hexadecimal digits; an opaque ID is never used as a heading or link text, but its record's own
