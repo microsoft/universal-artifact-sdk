@@ -85,7 +85,7 @@
   "identity": { "…": "§3.3" },
   "counts": { "claims": 18, "contributions": 6, "results": 80, "experiments": 0, "exhibits": 0,
               "datasets": 0, "traces": 0, "assessments": 0, "references": 0,
-              "journal": 0, "figures": 0 },
+              "journal": 0, "figures": 0, "related_work": 0 },
   "evidence_inventory": { "…": "copied verbatim from the manifest (SDK §5.1), or null" },
   "environment": { "…": "copied verbatim (SDK §2.5), or null" },
   "research_agent": { "…": "§3.13, or null" },
@@ -102,6 +102,8 @@
   "journal": [ "§3.9" ],
   "paper": { "…": "§3.10, or null" },
   "figures": [ "§3.11" ],
+  "related_work": [ "§3.14" ],
+  "reference_check": "§4.9, or null",
   "readme": "asset reference or null (§3.13)",
   "reflection": "asset reference or null (§3.13)",
   "evaluation": { "…": "§4, or null in mode A" },
@@ -115,6 +117,12 @@ records the explorer could not read); the site labels the inventory "as declared
 manifest" and never reconciles the two. `generated_at` is the only value allowed to
 differ between two builds of the same inputs (I5). An explorer SHOULD let the caller fix it (for
 example from a `SOURCE_DATE_EPOCH`-style environment value) so that builds can be byte-identical.
+
+**Keys added within v1.** `related_work`, `counts.related_work`, `reference_check` (§4.9),
+`evaluation.paper_pages` (§4.6.2), `evaluation.approval` (§4.8), and `evaluation.review.visual`
+(§4.3) were added as optional keys within v1 (§1.5). A builder that implements them writes them
+as every other key (always present, `null` or `[]` when empty); a viewer MUST treat a missing one
+as `null` or `[]`, so documents from earlier v1 builders still render.
 
 ## 3.3 `identity`
 
@@ -192,6 +200,13 @@ or JR contracts. Claim fields are carried in the claim's `extra`; claims-index k
 ignored. Neither may create, remove, or re-attribute a link: the contribution record is the
 single source of truth for which claims it is linked to and who linked them.
 
+A viewer MAY show the values of a claim's `extra` (for example a producer's `role`,
+`contribution_rank`, or per-claim `contributions` list) as **producer metadata**: each value
+labeled with its key, under a heading that names it as recorded by the producer, never as a link
+or as the authors' statement. Such values MUST NOT reorder claims away from declaration order,
+and never create, remove, or re-attribute a link; a contribution named in a claim's `extra`
+is shown as text, not as a contribution link.
+
 ## 3.6 `results`
 
 One entry per result (SDK §2.3): `id`, `produced_by`, `validates`, `kind`, `validation_mode`,
@@ -259,34 +274,59 @@ Figures come from exactly one source, chosen by what the manifest **declares**:
    record. If the declared file is missing or unreadable, `figures` is `[]` and a warning is
    recorded; the explorer does not fall back to exhibits or probing.
 2. otherwise, when an exhibits index is **in use** — declared by `paths.exhibits`, or present at
-   its default name `exhibits.yml` (§2.3) — one entry per exhibit of type `figure` (an empty list
-   when there are none). A declared exhibits index that is missing gives `[]` and the warning of
-   §2.3, with no probing.
-3. OPTIONALLY, only when `paths.figures` is not declared and no exhibits index is in use, image
-   files under the probe directories of §2.6, sorted by path (byte order of the UTF-8 path). An
-   explorer that does not scan simply has no figures in this case. A probed figure's `id` is its
-   artifact-relative path; `number`, `caption`, and `page` are `null`.
+   its default name `exhibits.yml` (§2.3) — one entry per exhibit of type `figure`. A declared
+   exhibits index that is missing gives `[]` and the warning of §2.3, with no probing. An index
+   that is in use but lists no exhibit of type `figure` falls through to item 3: exhibits
+   indexes that record only tables and reports are common, and the artifact's plots would
+   otherwise never be shown.
+3. OPTIONALLY, only when `paths.figures` is not declared and item 2 produced no figure, the image
+   files that §2.6 probes, at any depth, skipping hidden directories and `node_modules`,
+   `__pycache__`, `assets`, and `_app`, and a top-level `evaluation/` (an evaluator's output
+   written into the artifact), sorted by path (byte order of the UTF-8 path).
+   Byte-identical copies (a report re-embedding an experiment's plot) appear once: under the copy
+   inside a probe directory, else the shallowest path, else the first by path; the links of
+   every copy are kept. An explorer that does not scan simply has no figures in this case. A
+   probed figure's `id` is its artifact-relative path; `number`, `caption`, and `page` are
+   `null`.
 
 Each entry: `{id, number, caption, page, path, path_asset, claim_links: [{claim_id, method}]}`;
 `path` is the declared or probed path string and `path_asset` its asset reference; `page`
 follows the page-unknown rule of §3.4. `method`
 records how the link was made and is shown with it: `declared` (exhibit `validates` or a result's
 evidence), `adapter-suggested` (a figures-index `claims` entry, which JR §3.6.1 calls advisory),
-or `filename-heuristic` (a probe-directory image whose name matches a claim or experiment;
-*the matching rule is a reference value (non-normative)*). Heuristic and suggested links MUST be
+`experiment-provenance` (a probed image, or one of its byte-identical copies, inside the declared
+`directory` of an experiment in the claim's `tested_by`), or `filename-heuristic` (a probed image
+whose name matches a claim or experiment; *the matching rule is a reference value
+(non-normative)*). Heuristic and suggested links MUST be
 labeled as such in the site; they are never shown as the authors' links. `claim_links` lists
 `declared` links first (exhibit `validates` in order, then results in results order), then
-`adapter-suggested`, then `filename-heuristic`; a `(claim_id, method)` pair appears once.
+`adapter-suggested`, then `experiment-provenance` (claims order), then `filename-heuristic`; a
+`(claim_id, method)` pair appears once.
 
 ## 3.12 `references`
 
 - **references**: the references export (JR §2.3.1), every record kept in file order (no
   de-duplication): `id`, `raw`, `doi`, `arxiv`, `isbn`, `url`, `cited_for` copied, every other key
   (for example `authors`, `title`, `year`) in `extra`, plus `check`: with a judge overlay (§4.2), the matching JR §6.6.2 verdict (by `id`)
-  `{status, matched_title, matched_id, reason}`, else `null`. No reference lookup happens at build time (§6.3).
+  `{status, matched_title, matched_id, reason}`; else, with an accepted separate result (§4.9),
+  the verdict at the same position, in the same shape; else `null`. No reference lookup happens at build time (§6.3).
 
 ## 3.13 `readme`, `reflection`, `research_agent`
 
 `readme` and `reflection` are asset references (§2.6). `research_agent` is the manifest's
 `research_agent` object copied, with `path_asset` added for its `path`; the explorer never runs or
 contacts the agent.
+
+## 3.14 `related_work`
+
+Read only when the manifest declares `paths.paper_related_work` (the paper adapter's related-work
+export, JR §3.6.3, top-level key `related_work`). The file is read like every other index (§2.3,
+§2.5); a declared file that is missing or unreadable gives `[]` and a warning. Each element of
+the list that is a mapping is copied verbatim, in file order (for example `id`, `statement`,
+`refs`, `relation`, `distinction`, `comparative`, `superiority`, `primacy`); other elements are
+skipped with a warning. Nothing is resolved or classified at build time: the citation markers in
+`refs` stay strings, and `relation` and the three flags are the producer's labels.
+
+The export's statements are the paper's own sentences; its `relation` labels and flags are
+heuristic. The site shows them as such (§5.4.4) and never as an assessment of the related work.
+No other related-work file name or manifest key is read.

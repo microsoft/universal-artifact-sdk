@@ -41,12 +41,13 @@ where this document needs a field, it cites the section that defines it.
 
 - **Human-in-the-loop** review, annotation, scoring, and approval. An implementation MAY offer
   them as a separate component, but that component is not part of a conforming static build and
-  MUST NOT change what the static site shows (§1.4, I6).
+  MUST NOT change what the static site shows (§1.4, I6). A static site MAY show an existing,
+  explicitly supplied publication approval, read-only (§4.8, OPTIONAL).
 - **Serving, jobs, and workspaces**: running the judge or reviewer, hosting several artifacts, or
   any server-side behavior.
-- **Related-work and other non-SDK indexes.** v1 reads only the SDK contract, the figures index
-  of JR §3.6.1, and one run (sealed, or an unsealed preview). A related-work index (the paper's positioning against prior
-  work) is a possible future extension once such an index is defined by the SDK.
+- **Non-SDK indexes.** v1 reads only the SDK contract, the figures index of JR §3.6.1, the
+  related-work export of JR §3.6.3 (§3.14), one run (sealed, or an unsealed preview), and the
+  two OPTIONAL explicitly named files of §4.8 and §4.9.
 
 ## Reading order
 

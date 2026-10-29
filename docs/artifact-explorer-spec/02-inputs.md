@@ -11,6 +11,8 @@
 | Artifact directory | Mode A, C | An `evaluable-artifact/v3` or `/v2` directory in the on-disk shape of JR §2.3.1 |
 | Sealed run directory | Mode B | A run directory `<base>/runs/<run-id>/` as defined in JR §6.1–§6.3 |
 | Unsealed outputs directory | Mode C only | §2.7 |
+| Publication-approval record | no (OPTIONAL feature, §4.8) | a file, named explicitly; modes B and C only |
+| Separate reference-check result | no (OPTIONAL feature, §4.9) | a file, named explicitly |
 | Output directory | always | Where the site is written (§5.2) |
 
 The explorer MUST be given every input path explicitly. It MUST NOT discover "the latest run", a
@@ -135,7 +137,7 @@ conforming explorers find the same files.
 | Paper source | `paper.source` (SDK §2.6) | `paper.tex`, `paper.md`, `main.tex`, `main.md` |
 | README | — (the SDK declares none) | `README.md`, `README.txt`, `readme.md` |
 | Reflection | fixed name `reflection.md` (SDK §5) | — |
-| Figure directories (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | `figures/`, `figure/`, `fig/`, `plots/`, `images/` (only when neither index is declared) |
+| Figure images (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | image files at any depth that sit under a directory named `figures`, `figure`, `fig`, `plots`, or `images`, or under a declared experiment `directory`, or whose file name starts with `fig`/`figure` followed by a digit or separator (only when no figures index is declared and no exhibits index lists a figure; §3.11 item 3) |
 
 A declared path that does not resolve is **not** replaced by a probe: the declaration wins and is
 shown as unresolved (§2.5), so a broken declaration stays visible.
@@ -149,11 +151,13 @@ the caller passes an explicit opt-in flag naming the outputs directory. Then:
 1. The artifact directory is gated as in mode A.
 2. The explorer reads only these files from the outputs directory, each optional:
    `run.json`, `judge.json`, `findings.json`, `contributions.json`,
-   `artifact-reconciliation.json`, `review-draft.md`, `paper-review.md`, `reference-check.json`.
+   `artifact-reconciliation.json`, `review-draft.md`, `paper-review.md`, `reference-check.json`,
+   `evidence-packet.json` (read for §4.6.2 only), `visual-coverage.json`, and
+   `artifact-visual-coverage.json` (§4.3).
    Each is parsed as JR §6 defines it; a file that does not parse is skipped with a warning.
    This list is closed: no other file in the outputs directory is parsed. The only other files
-   mode C touches are those named by `review-output:` citations, which are copied (never parsed)
-   under the rule of §4.7.
+   mode C touches are those named by `review-output:` citations and by visual-record
+   `image_path` values, which are copied (never parsed) under the rule of §4.7.
 3. `evaluation.run.sealed` is `false`, `manifest`-derived fields are `null`, and stage statuses
    are taken from `run.json.input_provenance.stages` when present, else unknown.
 4. Every page of the site shows the banner of §5.5: the analysis is unsealed and could have been
