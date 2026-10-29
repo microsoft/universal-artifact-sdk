@@ -8,37 +8,15 @@
       "image_path": "visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
       "scope": "artifact-informed",
       "claim_ids": [
-        "claim-7"
+        "claim-9"
       ],
       "check": "budgets",
       "classification": "unresolved",
       "resolution_reason": "grounding_failure",
-      "visual_observation": "The attached image is entirely black. No figure content, axes, labels, text, or data marks can be seen.",
+      "visual_observation": "The attached image (f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png) renders as a uniformly black square. No text, axes, data marks, legends, or labels are visible.",
       "paper_quote": "In practice, this is similar in compute time.",
-      "explanation": "The claim says LFSSD and SSD have similar compute time. The rendered image has no readable content, so I could not check it against the figure. The comparison record also reports that no declared result edge resolves. Its citation (paper:chars/12946-12991) is not in allowed_citations, although the quoted text does appear in the appendix 'Resources' paragraph.",
+      "explanation": "The claim compares LFSSD and SSD compute time. The figure is unreadable, so it cannot be checked against this claim. The cited span paper:chars/12946-12991 is not among the selected excerpt citations, and the comparison packet reports that no declared result edge resolves.",
       "paper_citation": "paper:chars/12946-12991",
-      "epistemic_status": "unassessed",
-      "region": null,
-      "region_status": "page-only",
-      "figure": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
-      "evidence_packet_id": "f146ec38a9f83c08ac9ba7a28b69fa9357c8be0207b2b14666a827341307c16d",
-      "quote_repair": null
-    },
-    {
-      "visual_citation": "artifact:figures/figure-1.png",
-      "image_sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
-      "image_path": "visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
-      "scope": "artifact-informed",
-      "claim_ids": [
-        "claim-7"
-      ],
-      "check": "captions",
-      "classification": "unresolved",
-      "resolution_reason": "grounding_failure",
-      "visual_observation": "The image is fully black and shows no caption or diagram elements.",
-      "paper_quote": "Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\nrameter importance estimation of SSD resulting in the LFSSD method.",
-      "explanation": "The paper's Figure 1 diagram has labeled components such as 'Synapse selection (\u03b1)', 'Synaptic dampening (\u03bb)', and 'Unlearned model'. I could not confirm any of them because the image is unreadable.",
-      "paper_citation": "paper:chars/11866-12030",
       "epistemic_status": "unassessed",
       "region": null,
       "region_status": "page-only",
@@ -52,7 +30,7 @@
       "path": "figures/figure-1.png",
       "status": "incomplete",
       "claim_ids": [
-        "claim-7"
+        "claim-9"
       ],
       "sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
       "evidence_packet": {
@@ -125,7 +103,7 @@
       },
       "attempts": [
         {
-          "response": "{\"observations\": [{\"check\": \"budgets\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The attached image is entirely black. No figure content, axes, labels, text, or data marks can be seen.\", \"paper_quote\": \"In practice, this is similar in compute time.\", \"explanation\": \"The claim says LFSSD and SSD have similar compute time. The rendered image has no readable content, so I could not check it against the figure. The comparison record also reports that no declared result edge resolves. Its citation (paper:chars/12946-12991) is not in allowed_citations, although the quoted text does appear in the appendix 'Resources' paragraph.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}, {\"check\": \"captions\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The image is fully black and shows no caption or diagram elements.\", \"paper_quote\": \"Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\\nrameter importance estimation of SSD resulting in the LFSSD method.\", \"explanation\": \"The paper's Figure 1 diagram has labeled components such as 'Synapse selection (\u03b1)', 'Synaptic dampening (\u03bb)', and 'Unlearned model'. I could not confirm any of them because the image is unreadable.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}]}",
+          "response": "{\"observations\": [{\"check\": \"budgets\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The attached image (f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png) renders as a uniformly black square. No text, axes, data marks, legends, or labels are visible.\", \"paper_quote\": \"In practice, this is similar in compute time.\", \"explanation\": \"The claim compares LFSSD and SSD compute time. The figure is unreadable, so it cannot be checked against this claim. The cited span paper:chars/12946-12991 is not among the selected excerpt citations, and the comparison packet reports that no declared result edge resolves.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}]}",
           "errors": []
         }
       ],
@@ -158,7 +136,7 @@
       {
         "outcome": "grounding_failure",
         "label": "Grounding failure: context, citation or readability",
-        "count": 2
+        "count": 1
       },
       {
         "outcome": "confirmation_failure",

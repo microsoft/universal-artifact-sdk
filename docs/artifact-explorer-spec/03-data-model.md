@@ -135,8 +135,8 @@ as `null` or `[]`, so documents from earlier v1 builders still render.
 | `producer` | manifest `producer`, verbatim, or `null` |
 | `extra` | every other manifest root key not read elsewhere in this chapter and other than `_generated` (which describes the manifest file itself), verbatim, keys sorted; for example a producer's `warnings` or `identity` object |
 
-`display_title` exists because paper-origin artifacts may carry a placeholder `title` (lfmu's
-manifest title is `paper`); the site header uses `display_title`, and the Provenance section
+`display_title` exists because paper-origin artifacts may carry a placeholder `title` (an adapter that
+detects no title writes the file stem, such as `paper`); the site header uses `display_title`, and the Provenance section
 shows both. A PDF metadata title is often wrong (a template name, a file name); it is used only
 when the paper source yields no title, and the site labels it (§5.4.5). A metadata title that is
 empty after trimming is not used.

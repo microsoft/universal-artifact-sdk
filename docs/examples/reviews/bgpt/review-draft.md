@@ -23,83 +23,83 @@ These belong to the human reviewer; the tool never sets them. Venue scales: scor
 
 ## Contribution summary
 
-The paper presents bGPT, a hierarchical Transformer trained with next-byte prediction, and applies it both to conventional media (text, images, audio) and to native binary tasks framed as digital-world simulation: ABC-to-MIDI data conversion (algorithm simulation) and CPU state modelling (hardware simulation). It reports classification and bits-per-byte results against modality-specific baselines, cross-modal pre-training comparisons, and near-perfect results on the conversion and CPU tasks. The authors describe the architecture as adapted from prior hierarchical work and position the contribution around native binary data.
+The paper presents bGPT, a byte-level model trained with next-byte prediction and built on a hierarchical, patch-based Transformer adapted from prior work. It evaluates the model on media classification and generation for text, audio and images. It also evaluates the model on binary-native tasks that the authors describe as underexplored: ABC↔MIDI data conversion, framed as algorithm simulation, and CPU state modelling, framed as hardware simulation. For the latter, the authors introduce a CPU States dataset of 2.1 million instances, which they describe as a simplified representation of CPU behaviour.
 
 ## Contributions
 
-1. **bGPT: next byte prediction model for digital world simulation.** Introduces bGPT, a model trained via next byte prediction on native binary data to process digital media and simulate digital systems, treating all data types as byte sequences in a single framework.
+1. **bGPT: next-byte-prediction model for digital world simulation.** Introduces bGPT, a generative model trained via next byte prediction on native binary data to model digital media and simulate algorithms and hardware, treating all data types as byte sequences in a unified framework.
    *Claim support (inferred links): unassessed · Significance: unassessed · Originality: contested*
-2. **Hierarchical patch-based byte Transformer with generative and classification objectives.** bGPT segments byte sequences into fixed-size patches, using a linear projection, patch-level decoder and byte-level decoder, trained with next byte prediction and then adapted to classification via pooled features.
-   *Claim support (inferred links): unassessed · Significance: unassessed · Originality: contested*
-3. **Byte-level digital media modelling with cross-modal knowledge transfer.** bGPT performs generative modelling and classification on text, audio and images at the byte level without modality-specific design, approaching specialized models and showing modality-agnostic knowledge transfer.
+2. **Hierarchical patch-based Transformer with generative and classification objectives.** bGPT segments byte sequences into fixed-size patches processed by a patch-level decoder and a byte-level decoder, trained with next-byte generative loss and then adapted to classification via pooled features.
+   *Claim support (inferred links): unassessed · Significance: unassessed · Originality: unresolved*
+3. **Modality-agnostic digital media modelling and cross-modal transfer.** bGPT performs byte-level generation and classification on text, audio and images comparably to specialized models without modality-specific design, and exhibits cross-modal knowledge transfer between pre-training and fine-tuning modalities.
    *Claim support (inferred links): contested · Significance: unassessed · Originality: unassessed*
-4. **Algorithm simulation via ABC-MIDI symbolic music conversion.** bGPT learns to simulate and reverse-engineer conversion between text-based ABC notation and binary MIDI files, reaching 0.0011 bits per byte for ABC-to-MIDI conversion.
-   *Claim support (inferred links): unassessed · Significance: unassessed · Originality: unassessed*
-5. **CPU States dataset for hardware behaviour modelling.** Introduces a 2.1-million-instance dataset pairing machine-instruction memory blocks with sequences of 16-byte CPU register states for a simplified CPU.
-   *Claim support (inferred links): unassessed · Significance: supported · Originality: unassessed*
-6. **Near-perfect CPU state simulation with scaling and emergence.** bGPT predicts CPU register state updates from machine instructions with over 99.99% accuracy, showing strong data scalability and signs of emergent ability.
+4. **Algorithm simulation via ABC–MIDI data conversion.** bGPT learns to simulate and reverse a symbolic music conversion algorithm between text ABC notation and binary MIDI, achieving 0.0011 bits per byte for ABC-to-MIDI conversion.
+   *Claim support (inferred links): contested · Significance: supported · Originality: unassessed*
+5. **CPU States dataset for hardware behaviour modelling.** Introduces a 2.1-million-instance synthetic dataset of machine-instruction memory blocks paired with sequences of 16-byte CPU register states for evaluating CPU behaviour simulation.
+   *Claim support (inferred links): contested · Significance: unassessed · Originality: unresolved*
+6. **Near-perfect CPU state simulation with emergent scaling behaviour.** bGPT predicts CPU register state updates from machine instructions with over 99.99% accuracy, showing strong data scalability and an emergent jump in capability.
    *Claim support (inferred links): contested · Significance: supported · Originality: unassessed*
 
 Advisory assessments; the human reviewer decides whether each contribution qualifies.
 
-### Contribution 1: bGPT: next byte prediction model for digital world simulation
+### Contribution 1: bGPT: next-byte-prediction model for digital world simulation
 
 **Claim support (inferred links): unassessed**
 - Linked claims:
-  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI, near-perfect and orders of magnitude better than bGPT3.
-  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 and bGPT6 achieve near-perfect CPU state modelling accuracy of 99.97% and 99.99%.
+  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI with 10^5 training examples, orders of magnitude better than bGPT3.
+  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 and bGPT6 reach near-perfect CPU state modelling accuracy.
   - claim-3 (inferred by the paper adapter's extractor, not declared by the authors): bGPT matches specialized models across text, audio and images.
-  - claim-5 (inferred by the paper adapter's extractor, not declared by the authors): bGPTlibri reaches 96.03% on Speech Commands v2, close to AST's 98.11%.
+  - claim-5 (inferred by the paper adapter's extractor, not declared by the authors): bGPTlibri reaches 96.03% on Speech Commands v2 vs AST 98.11%.
   - claim-4 (inferred by the paper adapter's extractor, not declared by the authors): bGPTwiki gets 1.0639 BPB and 92.49% on AG News vs GPT2-small 0.9237 BPB and 94.50%.
+  - claim-15 (inferred by the paper adapter's extractor, not declared by the authors): BPB for both conversion directions decreases significantly with data scale.
 - No grounded finding addressed this.
 
 **Significance: unassessed**
 - No grounded finding addressed this.
 
 **Originality: contested**
-- Authors position bGPT as next-byte prediction for native binary data, but their own background concedes prior byte models (ByteFormer, MegaByte, MambaByte) already model bytes across modalities; the architectural difference from MegaByte is not stated.
+- Authors position bGPT as extending byte modelling to native binary data and digital-system simulation, while acknowledging ByteFormer, MegaByte and MambaByte already model bytes across modalities and that the architecture is inspired by prior hierarchical work.
 - Basis: the authors' own statements; cited works were not read.
 - Sources: paper:chars/7775-10479, paper:chars/10851-15278
 
 Paper’s wording: “In this paper, we introduce bGPT, a model designed for binary data processing and digital world modelling by next byte prediction.”
 
-### Contribution 2: Hierarchical patch-based byte Transformer with generative and classification objectives
+### Contribution 2: Hierarchical patch-based Transformer with generative and classification objectives
 
 **Claim support (inferred links): unassessed**
 - Linked claims:
-  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI, near-perfect and orders of magnitude better than bGPT3.
-  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 and bGPT6 achieve near-perfect CPU state modelling accuracy of 99.97% and 99.99%.
+  - claim-1 (inferred by the paper adapter's extractor, not declared by the authors): bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI with 10^5 training examples, orders of magnitude better than bGPT3.
+  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 and bGPT6 reach near-perfect CPU state modelling accuracy.
   - claim-3 (inferred by the paper adapter's extractor, not declared by the authors): bGPT matches specialized models across text, audio and images.
-  - claim-5 (inferred by the paper adapter's extractor, not declared by the authors): bGPTlibri reaches 96.03% on Speech Commands v2, close to AST's 98.11%.
+  - claim-5 (inferred by the paper adapter's extractor, not declared by the authors): bGPTlibri reaches 96.03% on Speech Commands v2 vs AST 98.11%.
   - claim-4 (inferred by the paper adapter's extractor, not declared by the authors): bGPTwiki gets 1.0639 BPB and 92.49% on AG News vs GPT2-small 0.9237 BPB and 94.50%.
 - No grounded finding addressed this.
 
 **Significance: unassessed**
 - No grounded finding addressed this.
 
-**Originality: contested**
-- By the authors' own account, the architecture is adapted from prior work. The originality therefore lies in applying byte models to native binary simulation tasks.
-- The hierarchical patch architecture is explicitly derived from prior work; it is not an original component.
+**Originality: unresolved**
+- How does bGPT's hierarchical patch architecture differ from MegaByte? The authors say the architecture is inspired by prior work and place their novelty in applying byte models to native binary data and simulation tasks, but they do not state the architectural difference.
 - Basis: the authors' own statements; cited works were not read.
 - Sources: paper:chars/10851-15278, paper:chars/7775-10479
 
-Paper’s wording: “We start by present- ing its hierarchical Transformer framework, which segments byte sequences into patches to manage computational effi- ciency. Subsequently, we present the training objectives of bGPT, including generative modelling and classification.”
+Paper’s wording: “We start by present- ing its hierarchical Transformer framework, which segments byte sequences into patches to manage computational effi- ciency. Subsequently, we present the training objectives of bGPT, including generative modelling and classification”
 
-### Contribution 3: Byte-level digital media modelling with cross-modal knowledge transfer
+### Contribution 3: Modality-agnostic digital media modelling and cross-modal transfer
 
 **Claim support (inferred links): contested**
 - Linked claims:
   - claim-3 (inferred by the reviewer, not declared by the authors): bGPT matches specialized models across text, audio and images.
   - claim-4 (inferred by the reviewer, not declared by the authors): bGPTwiki gets 1.0639 BPB and 92.49% on AG News vs GPT2-small 0.9237 BPB and 94.50%.
-  - claim-5 (inferred by the reviewer, not declared by the authors): bGPTlibri reaches 96.03% on Speech Commands v2, close to AST's 98.11%.
-  - claim-13 (inferred by the reviewer, not declared by the authors): bGPT shows modality-agnostic knowledge transfer in digital media modelling.
-  - claim-7 (inferred by the reviewer, not declared by the authors): Pre-training strongly influences performance; matching pre-training and fine-tuning domains gives better results.
-  - claim-10 (inferred by the reviewer, not declared by the authors): Cross-modal fine-tuning shows positive transfer between audio and images but negative transfer between text and other modalities.
-  - claim-12 (inferred by the reviewer, not declared by the authors): bGPTlibri achieves higher accuracy than bGPTimage on spectrograms, indicating content alignment matters over format.
-  - claim-8 (inferred by the reviewer, not declared by the authors): Mixed-modality pre-trained models perform roughly at the average of single-modality models; bGPTmix on AG News 1.0935 BPB, 91.75%.
-- Media results are competitive but below specialized baselines, so 'matches specialized models' overstates Table 3.
-- The abstract's claim that bGPT 'matches specialized models' overstates Table 3, where CIFAR-10 shows a gap of about 9.4 points.
-- Sources: paper:chars/172-1238, paper:chars/25015-30472
+  - claim-5 (inferred by the reviewer, not declared by the authors): bGPTlibri reaches 96.03% on Speech Commands v2 vs AST 98.11%.
+  - claim-6 (inferred by the reviewer, not declared by the authors): bGPTimage lags ViT on CIFAR-10 (88.69% vs 98.13%).
+  - claim-7 (inferred by the reviewer, not declared by the authors): Pre-training dataset matching the downstream task improves performance.
+  - claim-8 (inferred by the reviewer, not declared by the authors): Mixed-modality pre-training yields performance near the average of single-modality models; bGPTmix gets 1.0935 BPB / 91.75% on AG News, below bGPTwiki.
+  - claim-10 (inferred by the reviewer, not declared by the authors): Cross-modal fine-tuning shows positive transfer between audio and images over random init.
+  - claim-13 (inferred by the reviewer, not declared by the authors): bGPTlibri achieves higher spectrogram accuracy than bGPTimage, showing content-aligned cross-modal transfer.
+- The abstract says bGPT "matches" specialized models, but Table 3 shows clear gaps on every task, notably CIFAR-10 at 88.69% vs 98.13%.
+- 'Matches specialized models' in the abstract is stronger than Table 3, which shows a ~9.4-point CIFAR-10 gap.
+- Sources: paper:chars/172-1238, paper:chars/25015-30472, paper:chars/23408-25015
 
 **Significance: unassessed**
 - No grounded finding addressed this.
@@ -109,17 +109,19 @@ Paper’s wording: “We start by present- ing its hierarchical Transformer fram
 
 Paper’s wording: “Our experiments demonstrate the effectiveness of bGPT in modelling digital media data, which showcases modality-agnostic knowledge transfer.”
 
-### Contribution 4: Algorithm simulation via ABC-MIDI symbolic music conversion
+### Contribution 4: Algorithm simulation via ABC–MIDI data conversion
 
-**Claim support (inferred links): unassessed**
+**Claim support (inferred links): contested**
 - Linked claims:
-  - claim-1 (inferred by the reviewer, not declared by the authors): bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI, near-perfect and orders of magnitude better than bGPT3.
+  - claim-1 (inferred by the reviewer, not declared by the authors): bGPT achieves 0.0011 BPB on MIDI when converting ABC notation to MIDI with 10^5 training examples, orders of magnitude better than bGPT3.
   - claim-14 (inferred by the reviewer, not declared by the authors): Larger data scale gives lower starting loss and faster convergence in data conversion.
-  - claim-15 (inferred by the reviewer, not declared by the authors): BPB for both conversion directions decreases significantly as data scale increases.
-- No grounded finding addressed this.
+  - claim-15 (inferred by the reviewer, not declared by the authors): BPB for both conversion directions decreases significantly with data scale.
+- The ABC→MIDI result of 0.0011 BPB is supported by Table 5. The "almost flawlessly replicated" wording rests on BPB alone; the paper reports no exact-match conversion rate.
+- Sources: paper:chars/31335-34448, paper:chars/172-1238
 
-**Significance: unassessed**
-- No grounded finding addressed this.
+**Significance: supported**
+- The algorithm and hardware simulation tasks are the most distinctive and potentially impactful part of the paper. They show near-perfect learned simulation of a format converter and of a toy CPU directly from bytes.
+- Sources: paper:chars/31335-34448, paper:chars/34448-36748
 
 **Originality: unassessed**
 - No grounded finding addressed this.
@@ -128,42 +130,40 @@ Paper’s wording: “It has almost flawlessly replicated the process of convert
 
 ### Contribution 5: CPU States dataset for hardware behaviour modelling
 
-**Claim support (inferred links): unassessed**
+**Claim support (inferred links): contested**
 - Linked claims:
-  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 and bGPT6 achieve near-perfect CPU state modelling accuracy of 99.97% and 99.99%.
-  - claim-17 (inferred by the paper adapter's extractor, not declared by the authors): CPU state modelling BPB drops sharply from bGPT4 to bGPT5 with diminishing returns beyond.
-  - claim-18 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 shows a sudden improvement around epoch 11, indicating an emergent ability in CPU state modelling.
-  - claim-20 (inferred by the reviewer, not declared by the authors): CPU States dataset has 2.1 million instances.
+  - claim-2 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 and bGPT6 reach near-perfect CPU state modelling accuracy.
+  - claim-18 (inferred by the paper adapter's extractor, not declared by the authors): bGPT5 shows a sudden improvement around epoch 11, an emergent ability in CPU state modelling.
+- The 'emergent ability' and 'beyond memorization' claims for CPU modelling rest on a simplified, jump-free synthetic CPU without baselines.
+- Sources: paper:chars/34448-36748, paper:chars/30472-31335
+
+**Significance: unassessed**
 - No grounded finding addressed this.
 
-**Significance: supported**
-- Applying a byte model to algorithm (ABC→MIDI) and simulated-CPU state prediction is a distinctive, likely-influential framing with a new dataset others can build on.
-- Sources: paper:chars/18456-21674, paper:chars/34448-36748
+**Originality: unresolved**
+- The CPU States dataset is a new and openly specified resource. The authors acknowledge it is a simplified CPU without jumps.
+- Basis: the authors' own statements; cited works were not read.
+- Sources: paper:chars/18456-21674, paper:chars/36748-38535
 
-**Originality: unassessed**
-- No grounded finding addressed this.
+Paper’s wording: “For CPU state modelling, we introduce the CPU States dataset (with 2.1 million instances), offering a simplified representation of CPU behaviour for ease of data collec- tion and evaluation”
 
-Paper’s wording: “For CPU state modelling, we introduce the CPU States dataset (with 2.1 million instances), offering a simplified representation of CPU behaviour for ease of data collec- tion and evaluation.”
-
-### Contribution 6: Near-perfect CPU state simulation with scaling and emergence
+### Contribution 6: Near-perfect CPU state simulation with emergent scaling behaviour
 
 **Claim support (inferred links): contested**
 - Linked claims:
-  - claim-2 (inferred by the reviewer, not declared by the authors): bGPT5 and bGPT6 achieve near-perfect CPU state modelling accuracy of 99.97% and 99.99%.
-  - claim-17 (inferred by the reviewer, not declared by the authors): CPU state modelling BPB drops sharply from bGPT4 to bGPT5 with diminishing returns beyond.
-  - claim-18 (inferred by the reviewer, not declared by the authors): bGPT5 shows a sudden improvement around epoch 11, indicating an emergent ability in CPU state modelling.
-- The CPU-simulation claim lacks simple baselines, and byte-wise accuracy may be inflated by bytes that are easy to predict.
-- CPU and conversion results lack any baseline; 'beyond memorization' and 'emergent ability' are not tested.
-- Sources: paper:chars/34448-36748, paper:chars/30472-31335, paper:chars/36748-38535
+  - claim-2 (inferred by the reviewer, not declared by the authors): bGPT5 and bGPT6 reach near-perfect CPU state modelling accuracy.
+  - claim-18 (inferred by the reviewer, not declared by the authors): bGPT5 shows a sudden improvement around epoch 11, an emergent ability in CPU state modelling.
+- The CPU accuracy is byte-wise and teacher-forced, and both the emergence and the generalization arguments are weakly supported. bGPT5 and bGPT6 also have identical BPB, which complicates the "strong scalability" claim.
+- Sources: paper:chars/34448-36748, paper:chars/31335-34448
 
 **Significance: supported**
-- Simulating CPU state updates and ABC→MIDI conversion with a single byte model is a fresh and potentially impactful demonstration.
-- Sources: paper:chars/31335-34448
+- Framing binary-format conversion and CPU-state prediction as byte-level simulation tasks is a distinctive agenda likely to interest byte-model, program-analysis and security researchers.
+- Sources: paper:chars/1238-5446, paper:chars/31335-34448, paper:chars/34448-36748
 
 **Originality: unassessed**
 - No grounded finding addressed this.
 
-Paper’s wording: “In addition, bGPT demonstrates exceptional capabilities in simulating CPU be- haviour, with an accuracy exceeding 99.99% in executing various operations.”
+Paper’s wording: “We observe a strong scalability of bGPT in mod- elling native binary data and even signs of emergent abilities”
 
 <details><summary>What the authors say is original (3 statements)</summary>
 
@@ -180,30 +180,18 @@ Authors' stated position:
 
 ## Reasons to accept
 
-1. **Framing byte-level next-token prediction as simulation of algorithms and hardware (ABC→MIDI conversion, CPU state modelling) is an interesting, underexplored task direction.**
-   Value lies in the task framing and testbeds rather than architecture.
+1. **Framing algorithm and hardware simulation (ABC→MIDI conversion, CPU state prediction) as next-byte prediction is a distinctive task framing. It could attract follow-up work on byte models, binary analysis and learned emulation.**
+   Likely users include researchers working on byte models, security analysis and learned emulators.
    Evidence status: inference.
-   Reasoning: The paper positions these as underexplored binary-native tasks; framing them as generative byte modelling gives a concrete testbed beyond media data, which is the main source of likely impact.
-   Source `paper:chars/1238-5446`: underexplored tasks intrinsic to binary-native operations,
-including data conversion and CPU state modelling, which
-represent algorithm and hardware simulation, respectively.
-   Source `paper:chars/18456-21674`: This necessitates the ability to simulate and
-reverse-engineer the conversion algorithm1
-
-2. **Framing algorithm and hardware simulation (ABC→MIDI conversion, CPU state prediction) as byte-level generative tasks is the paper's most distinctive contribution relative to the byte models it cites. Those works are described as targeting language, media or malware.**
-   This framing could seed a research line on learned emulators and format converters. Researchers in program analysis, reverse engineering and learned simulators are likely to build on it.
-   Evidence status: inference.
-   Reasoning: The related-work section attributes language, media or security tasks to prior byte models. It then presents conversion and CPU simulation as new evaluation targets. This makes the task framing the clearest original element on the authors' own account. Novelty is judged relative to author-reported prior work only.
-   Source `paper:chars/7775-10479`: current research often neglects native bi-
-nary data, focusing on narrow tasks and overlooking the
-broader potential of byte models in digital world simulation.
+   Reasoning: The authors state that these tasks lack baselines and datasets. Within the paper's positioning, that makes the task framing the most original element and a plausible seed for new benchmarks.
    Source `paper:chars/18456-21674`: This necessitates the ability to simulate and
 reverse-engineer the conversion algorithm
+   Source `paper:chars/30472-31335`: Due to the lack of baseline models and widely used datasets,
 
-3. **The most distinctive contribution is framing algorithm and hardware simulation as byte-level generative modelling. The reported results are strong: BPBmidi of 0.0011 for ABC→MIDI and 99.99% CPU-state accuracy.**
-   These results could plausibly influence work on learned emulators and reverse engineering.
+2. **The strongest reason to publish is the reframing of byte models as simulators of algorithms and hardware. Near-zero BPB on ABC→MIDI and >99.9% CPU-state accuracy make this an evocative demonstration.**
+   This framing could open a line of work on learned emulation and reverse engineering, which is also discussed in the Impact section.
    Evidence status: inference.
-   Reasoning: Near-zero error on deterministic transforms indicates that the model learned the underlying procedures. This opens a less-studied application area for byte models, though only on narrow tasks.
+   Reasoning: Learning a deterministic conversion program and an instruction-level state machine purely from bytes is a qualitatively different use of byte models from the media tasks emphasized in the related work. The scaling results suggest the capability is learnable.
    Source `paper:chars/31335-34448`: The bGPT5 model achieves an impressively low BPBmidi
 
 of 0.0011 in ABC to MIDI conversion
@@ -211,59 +199,84 @@ of 0.0011 in ABC to MIDI conversion
 bGPT5 and bGPT6 achieved near-perfect accuracies
 (99.97% and 99.99%)
 
-4. **The authors acknowledge byte-level multimodal models, citing ByteFormer and MegaByte, and say their architecture adapts prior hierarchical designs. bGPT's novelty therefore lies in its application scope (native binary data and simulation), not in the model.**
-   Phrasing such as 'paradigm shift' and 'transcends traditional deep learning boundaries' exceeds what the background section concedes.
+3. **The paper's scope is distinctive: it extends byte-level modelling from media files to algorithm and hardware simulation tasks.**
+   One model is used for media classification and generation, ABC↔MIDI conversion, and CPU state prediction.
    Evidence status: inference.
-   Reasoning: The authors place their difference in task scope. That differentiation is stated clearly, but it is author-reported and was not independently verified against the cited works.
-   Source `paper:chars/7775-10479`: Despite progress, current research often neglects native bi-
-nary data, focusing on narrow tasks and overlooking the
-broader potential of byte models in digital world simulation.
-   Source `paper:chars/10851-15278`: inspired by previous
-work (Wu et al., 2023b; Yu et al., 2023; Wu et al., 2023a;
-Yang et al., 2023), bGPT adapts a hierarchical Trans-
-former architecture
+   Reasoning: The authors evaluate the same byte model on binary-native simulation tasks, which they describe as underexplored. That scope makes the work a potentially impactful direction rather than only another media benchmark result.
+   Source `paper:chars/1238-5446`: underexplored tasks intrinsic to binary-native operations,
+including data conversion and CPU state modelling, which
+represent algorithm and hardware simulation, respectively.
+
+4. **The paper frames byte-level modelling of native binary data, including algorithm and hardware simulation, as an underexplored and potentially impactful direction. It provides concrete testbeds for this direction.**
+   The likely impact rests on reframing byte models as simulators of algorithms and hardware, not only as media encoders.
+   Evidence status: inference.
+   Reasoning: The paper identifies a neglected data class. It then provides a new dataset and tasks (conversion, CPU simulation) that make that class studyable. This could seed follow-up work.
+   Source `paper:chars/1238-5446`: These deep learning models, however, predominantly op-
+erate within the realm of media data, overlooking the om-
+nipresent native binary data in the digital world.
+   Source `paper:chars/18456-21674`: For CPU state modelling, we introduce the CPU States
+dataset (with 2.1 million instances)
 
 ## Originality
 
-On the authors' own account, the originality lies in task framing and evaluation scope, not in the model or objective. The background credits ByteFormer with processing raw image and audio bytes and MegaByte with modelling long byte sequences across modalities. It also states that bGPT adapts a hierarchical architecture from cited work. Framing ABC-to-MIDI conversion and CPU state prediction as byte-level generative simulation tasks is the most distinctive element relative to these works, which the paper describes as targeting language, media or narrower tasks. This differentiation is author-reported and has not been verified against the cited papers. The paper does not say concretely how bGPT's architecture differs from MegaByte, and phrasing such as 'we introduce bGPT', 'paradigm shift' and 'transcends traditional deep learning boundaries' goes beyond what the background concedes. The cross-modal transfer analysis is a useful empirical contribution, but it is novel mainly as analysis.
+By the paper's own related-work section, byte-level modelling across modalities is not new. MegaByte is described as handling long byte sequences across modalities, ByteFormer as handling raw image and audio bytes, and bGPT's hierarchy as adapted from earlier work that includes Yu et al. (2023). The originality therefore appears to lie mainly in the task framing: algorithm and hardware simulation treated as next-byte prediction over native binary data, together with the accompanying CPU States dataset. The abstract presents bGPT as an introduced model, which reads broader than these concessions support. The architectural difference from MegaByte is not stated. The novelty of the CPU States dataset relative to prior work on learning program execution is not positioned, so its primacy cannot be judged from the paper. This assessment relies on the paper's own description of the cited works, which were not inspected independently.
 
 ## Likely impact
 
-The simulation testbeds could seed work on learned emulators, format converters and reverse engineering. Researchers in program analysis and learned simulators may build on the task framing. Several factors limit likely influence. The CPU is a simplified synthetic ISA that deliberately excludes jump instructions. Neither simulation task has a baseline. On the media benchmarks, bGPT trails the specialised models, by about 9.4 points on CIFAR-10 and about 2 points on text and audio. Mixed-modality pre-training slightly underperformed text-only pre-training on AG News, and transfer between text and other modalities was negative. Impact is therefore most plausible as a task and benchmark direction rather than as evidence that one byte model can replace specialised ones.
+Researchers working on byte models, binary and security analysis, and learned emulation are the most likely to benefit. The paper supplies concrete testbeds in a space it says lacks baselines and datasets. Two results are evocative: near-zero BPB (0.0011) on ABC→MIDI conversion and above 99.9% byte-wise CPU-state accuracy. Together they suggest that deterministic conversion programs and simple state machines may be learnable from bytes, which could seed follow-up benchmarks. Several factors may limit this influence. The CPU task is simplified and appears to exclude control flow. The reported metrics (teacher-forced BPB and per-byte accuracy) may overstate functional correctness. No baselines are provided for the simulation tasks. On the media tasks, bGPT trails modality-specific models, so impact there is likely to be modest.
 
 ## Decision-critical concerns
 
-1. **The abstract says bGPT 'matches specialized models', but Table 3 shows a gap of roughly 10 points to ViT on CIFAR-10. The baseline numbers are also taken from studies with different pre-training.**
-   GPT2-small was retrained under matched settings, but ViT and AST were not.
+1. **The abstract's claim that bGPT "matches specialized models" is overstated, given the paper's own CIFAR-10 gap (88.69% vs 98.13%).**
+   Text and audio results come close to the baselines; image results do not.
    Evidence status: inference.
-   Reasoning: A gap of 9.4 points on CIFAR-10 contradicts 'matches'. Because the ViT and AST numbers are copied from other studies, the comparison mixes training regimes and model resolutions.
+   Reasoning: The abstract claims parity across text, audio, and images, but the reported image result trails the baseline by a large margin. The ViT and AST numbers are copied from other studies, so the comparison is not controlled.
    Source `paper:chars/172-1238`: bGPT matches specialized models in
-performance across various modalities
-   Source `paper:chars/25015-30472`: with an accuracy of
+performance across various modalities, including
+text, audio, and images
+   Source `paper:chars/25015-30472`: bGPTimage lagging ViT, with an accuracy of
 88.69% against 98.13%
-   Source `paper:chars/23408-25015`: their
-results were taken from the original studies
-   - **Why this affects the decision:** The headline claim of the paper is overstated.
-   - **Actionable revision:** Either retrain ViT and AST under matched settings on 32x32 and 8kHz inputs, or rescope the abstract and conclusions to say 'competitive on text/audio, lagging on images'.
-   - **What would resolve it:** A matched-setting baseline table, or revised claim wording.
+   Source `paper:chars/23408-25015`: ViT and AST
+were pre-trained on ImageNet (Deng et al., 2009), and their
+results were taken from the original studies.
+   - **Why this affects the decision:** This is the headline modality-agnostic claim.
+   - **Actionable revision:** Soften the abstract and conclusion wording, or report matched-setting image and audio baselines.
+   - **What would resolve it:** Either revised claims or matched-setting baselines that show parity.
 
-2. **CPU 99.99% accuracy is byte-wise over states on a simplified, jump-free synthetic ISA with no simple baseline; 'beyond memorization' and 'real comprehension' are not established.**
-   Abstract 'executing various operations' depends on this metric.
+2. **The abstract's claim that bGPT "matches specialized models" is stronger than the results. The CIFAR-10 accuracy gap is large, and the image and audio baselines are taken from original studies rather than trained under matched conditions.**
+   Results on text and audio are close to the baselines. Results on images are clearly worse.
    Evidence status: inference.
-   Reasoning: Byte-wise accuracy over 16-byte states, many unchanged between steps (e.g., PC increments, untouched registers), can be high even with errors; without a copy-previous-state baseline or per-sequence exact-match, 99.99% does not show execution fidelity.
+   Reasoning: A gap of nearly 10 points on CIFAR-10 contradicts "matches." Baselines copied from the original studies may differ in input resolution and pretraining. The comparison is therefore not controlled.
+   Source `paper:chars/172-1238`: bGPT matches specialized models in
+performance across various modalities, including
+text, audio, and images
+   Source `paper:chars/25015-30472`: bGPTimage lagging ViT, with an accuracy of
+88.69% against 98.13%
+   Source `paper:chars/23408-25015`: ViT and AST
+were pre-trained on ImageNet (Deng et al., 2009), and their
+results were taken from the original studies.
+   - **Why this affects the decision:** The headline claim in the abstract is overstated relative to Table 3.
+   - **Actionable revision:** Revise the abstract and conclusion to say "competitive on text/audio, lagging on images". Report or justify the input conditions of the ViT/AST baselines.
+   - **What would resolve it:** Either revised wording, or baselines evaluated at 32×32 inputs with comparable pretraining.
+
+3. **C2 (>99.99% CPU accuracy) is reported, but the task excludes control flow. The per-byte metric may also be dominated by bytes that are trivially predictable.**
+   The paper itself notes there are no baselines: 'Due to the lack of baseline models'.
+   Evidence status: inference.
+   Reasoning: The accuracy is computed per byte. Without jumps, PC increments deterministically, and IR is copied from the instruction memory. Most register bytes are also unchanged at each step. A copy-previous-state-plus-increment-PC baseline could therefore score very high. The 99.99% figure does not by itself show arithmetic simulation.
    Source `paper:chars/34448-36748`: The accuracy was
 assessed through byte-wise comparisons with actual states.
-   Source `paper:chars/34448-36748`: suggesting an efficiency beyond sim-
-ple memorization
-   Source `paper:chars/40096-79998`: complex instructions like jump commands were deliberately excluded
-   - **Why this affects the decision:** Headline claim C2 and the hardware-simulation contribution rest on it.
-   - **Actionable revision:** Report a copy-previous-state baseline, accuracy on changed bytes only, full-state and full-program exact match, and per-instruction-type accuracy.
-   - **What would resolve it:** Large margin over trivial baseline on changed bytes and high program-level exact match.
+   Source `paper:chars/18456-21674`: Within each state, 1
+byte each is allocated for the Program Counter (PC) and
+Accumulator (ACC), 4 bytes are allocated for the Instruc-
+tion Register (IR)
+   - **Why this affects the decision:** The paper's headline hardware-simulation claim depends on the metric reflecting non-trivial state updates.
+   - **Actionable revision:** Report a trivial copy/increment baseline. Also report accuracy restricted to changed bytes (ACC and destination registers) and per-instruction-type accuracy, plus whole-state or whole-program exact match.
+   - **What would resolve it:** A clear margin over the trivial baseline on changed bytes and on full-sequence exact match.
 
-3. **The authors frame bGPT as an introduction of next-byte prediction for digital-world simulation, yet their own background credits ByteFormer, MegaByte and MambaByte with byte-level modelling across modalities and states that the architecture is inspired by prior hierarchical work. On the paper's own account, the novelty lies in task framing and evaluation scope, not in the model.**
-   The paper should state explicitly how bGPT's architecture differs from MegaByte, as the authors themselves describe MegaByte. It should also position the contribution as framing, tasks and evaluation rather than as a new model. These author-reported descriptions of prior work were not independently verified.
+4. **The paper's related-work section credits ByteFormer and MegaByte with byte-level, cross-modality modelling. bGPT's originality therefore appears to lie in its native-binary-simulation framing and tasks, not in byte modelling or the patch architecture.**
+   The abstract's framing of bGPT as an introduced model reads broader than the related-work concessions support.
    Evidence status: inference.
-   Reasoning: The paper reports that MegaByte already performs multimodal byte-sequence modelling and that ByteFormer already processes raw image and audio bytes. It also says bGPT adapts a hierarchical architecture from cited work. Together, these statements indicate that the model and objective are not new according to the authors themselves. The abstract and introduction do not state this disclaimer. The claimed differentiation is limited to the 'native binary data' framing and the simulation tasks.
+   Reasoning: The authors report that MegaByte already models long byte sequences across modalities and that ByteFormer handles image and audio bytes. They also say bGPT's hierarchy is adapted from prior work, including Yu et al. 2023. On their own positioning, the differentiator is native binary data and simulation tasks. The abstract nonetheless introduces bGPT as the model. The architectural difference from MegaByte is never stated. This review has not inspected the cited works.
    Source `paper:chars/7775-10479`: MegaByte (Yu et al., 2023), on the other hand,
 has been tested and proven to excel in modelling long byte
 sequences across various modalities.
@@ -274,90 +287,77 @@ from images and audio
 work (Wu et al., 2023b; Yu et al., 2023; Wu et al., 2023a;
 Yang et al., 2023), bGPT adapts a hierarchical Trans-
 former architecture
+   Source `paper:chars/7775-10479`: Despite progress, current research often neglects native bi-
+nary data, focusing on narrow tasks
    Source `paper:chars/172-1238`: we introduce bGPT, a model
 with next byte prediction to simulate the digi-
 tal world.
-   - **Why this affects the decision:** Originality credit depends on whether any architectural novelty is claimed. Without a stated delta, the contribution reduces to an empirical study.
-   - **Actionable revision:** Add an explicit comparison (text or table) of bGPT against MegaByte, ByteFormer and MambaByte covering architecture, objective and tasks. Revise the abstract and introduction to state what is new.
-   - **What would resolve it:** A stated architectural or training difference from MegaByte, or an explicit scope statement that the novelty lies in the task suite and analysis.
-
-4. **The headline simulation claims (C1, C2) are reported numerically, but the absence of baselines and the very simple CPU make the 'emergent' and 'digital world simulator' framing stronger than the evidence.**
-   The paper should report a trivial baseline that copies the previous state, which tests whether most bytes are unchanged between steps. It should also report per-state exact-match accuracy alongside byte-wise accuracy.
-   Evidence status: inference.
-   Reasoning: The accuracy figures are reported, but there is no comparison point. Without one, readers cannot tell whether 99.99% reflects difficulty or task simplicity. A plain byte Transformer or a copy-previous-state baseline would answer this. The conclusion acknowledges that the CPU is simplified. Byte-wise accuracy over largely unchanged register states may also be inflated.
-   Source `paper:chars/30472-31335`: Due to the lack of baseline models and widely used datasets,
-we investigated its performance across different data scales
-   Source `paper:chars/34448-36748`: Both
-bGPT5 and bGPT6 achieved near-perfect accuracies
-(99.97% and 99.99%)
-   Source `paper:chars/36748-38535`: our
-CPU state modelling experiments focused solely on simpli-
-fied CPUs, omitting the use of real modern CPUs
-   Source `paper:chars/34448-36748`: indicating
-an emergent ability in CPU state modelling
-   - **Why this affects the decision:** Without these measures, the significance of the near-perfect simulation result is uncertain.
-   - **Actionable revision:** Report a copy-previous-state baseline, per-state or per-program exact-match accuracy, and a standard non-hierarchical byte Transformer baseline.
-   - **What would resolve it:** Exact-match accuracy that remains high and is well above the copy baseline.
+   - **Why this affects the decision:** Originality credit depends on whether bGPT differs architecturally from MegaByte or only in the tasks it is applied to.
+   - **Actionable revision:** Add an explicit comparison with MegaByte and ByteFormer covering architecture, objectives and tasks. State that the patch hierarchy is adopted from prior work.
+   - **What would resolve it:** Either a stated technical difference from MegaByte, or an explicit scoping of the novelty to the binary-simulation tasks and the evaluation.
 
 ## Questions for the authors
 
-1. **The 'emergent abilities' summary (C1, C2) rests on a loss jump around epoch 11 at a single data scale, which does not establish emergence with scale.**
-   The authors should clarify whether the jump is reproducible across random seeds. If it is not, 'emergent' should be removed from the abstract and conclusion.
+1. **CPU-state accuracy jumps from 27.24% (10^4) to 99.97% (10^5). The definition of accuracy and the train/test separation for randomly generated programs need clarification.**
+   Near-perfect CPU simulation is a central claim. Its strength depends on the metric granularity and on held-out novelty.
    Evidence status: inference.
-   Reasoning: The evidence is a training-dynamics jump within one run. The paper does not show a scale-dependent capability threshold, which is what the emergence framing implies.
+   Reasoning: Table 6 shows bGPT4 at 0.6924/27.2404 and bGPT5/bGPT6 both at BPB 0.0969 with 99.97 and 99.99 accuracy. Instances are random programs of 1–256 instructions. A near-step change, followed by an identical BPB from 10^5 to 10^6, makes it important to know two things: what counts as a correct prediction (full state, per byte, or per register), and whether test programs or prefixes could overlap with training programs.
+   Source `review-record:visual/44`: Table 6 shows bGPT4 0.6924/27.2404, bGPT5 0.0969/99.9702 and bGPT6 0.0969/99.9961.
+   Source `review-record:visual/72`: Random instruction sequences 'varying in length from 1 to 256'; 'over 516 million potential scenarios'.
+   Source `paper:chars/35044-35117`: Both
+bGPT5 and bGPT6 achieved near-perfect accuracies
+(99.97% and 99.99%)
+   Source `paper:chars/21430-21510`: Instances are generated by execut-
+ing random sequences of 1 to 256 instructions
+   - **Why the answer matters:** If accuracy is measured per byte, or if test programs overlap with training, the claim of learning CPU execution weakens substantially.
+   - **Requested response:** Define the accuracy unit. Report the deduplication or overlap rate between train and test programs. Give accuracy by program length.
+   - **Answer that would resolve it:** A metric definition, an overlap statistic, and a length-stratified accuracy table.
+
+2. **Table 5 supports C1 (0.0011 BPB on ABC→MIDI). However, 'almost flawlessly replicated' rests on a teacher-forced likelihood, not on the correctness of generated conversions.**
+   If exact matches are rare, the 'flawless' framing should be softened.
+   Evidence status: inference.
+   Reasoning: A near-zero BPB is consistent with flawless conversion. It does not show that generated MIDI files are byte-exact or valid.
+   Source `paper:chars/31335-34448`: bGPT5 0.7362 0.0011 0.1341 0.0789
+   Source `paper:chars/31335-34448`: While
+BPBmidi evaluates data conversion, considering the com-
+plete ABC byte sequence is given.
+   - **Why the answer matters:** The answer determines whether the algorithm-simulation claim is substantiated beyond likelihood.
+   - **Requested response:** Report the exact-match rate and validity rate of generated MIDI files on the test set.
+   - **Answer that would resolve it:** A high rate of byte-exact generated MIDI files.
+
+3. **The emergence claim rests on a training-curve jump around epoch 11. Is this robust across seeds, and could it reflect an optimization plateau rather than a scale-driven ability?**
+   If the jump is seed-dependent, the emergence framing should be dropped.
+   Evidence status: inference.
+   Reasoning: A single run's loss jump within training is a different phenomenon from emergence with scale.
    Source `paper:chars/34448-36748`: A significant improvement in the performance of bGPT5
-occurred around epoch 11
-   - **Why the answer matters:** If the jump does not replicate across seeds, the emergence claim should be dropped from the contribution.
-   - **Requested response:** Report multiple seeds and the epoch at which the jump occurs for each data scale.
-   - **Answer that would resolve it:** A consistent jump across seeds, and its absence at smaller scales.
-
-2. **How is the MIDI to ABC result scored given that the conversion is lossy? Is the 0.0011 BPB on ABC to MIDI driven by deterministic header bytes, and how robust is it on held-out tunes?**
-   Claim C1 depends on this.
-   Evidence status: inference.
-   Reasoning: BPB averages over all bytes, so a near-zero value may hide errors in note events. Exact-match or validity rates for the generated MIDI would show whether the conversion is actually 'near flawless'.
-   Source `paper:chars/31335-34448`: The bGPT5 model achieves an impressively low BPBmidi
-
-of 0.0011 in ABC to MIDI conversion
-   - **Why the answer matters:** If the exact-match rate for generated MIDI files is high, claim C1 holds.
-   - **Requested response:** Report the rate of exactly correct MIDI files under greedy decoding.
-   - **Answer that would resolve it:** File-level exact-match percentage on the evaluation split.
-
-3. **Are CPU test programs disjoint from training, and is variance across seeds known for small accuracy differences (e.g., 85.26 vs 84.66 in Table 4)?**
-   If differences fall within seed variance, cross-modal transfer claims weaken.
-   Evidence status: inference.
-   Reasoning: The 'content alignment over format' conclusion relies on a 0.6-point single-run difference.
-   Source `paper:chars/25015-30472`: bGPTimage 0.3899 84.66
-bGPTlibri 0.3900 85.26
-   Source `paper:chars/21690-22666`: we avoided hyper-
-parameter tuning and data augmentation in all evaluations.
-   - **Why the answer matters:** Could change support for transfer claim.
-   - **Requested response:** Report multi-seed means/std.
-   - **Answer that would resolve it:** Std smaller than gaps.
+occurred around epoch 11, as shown in Fig. 3b, indicating
+an emergent ability in CPU state modelling.
+   - **Why the answer matters:** Multi-seed evidence would support the scalability and emergence claims made in the conclusion.
+   - **Requested response:** Report multiple seeds and the timing of the jump.
+   - **Answer that would resolve it:** A consistent jump across seeds, and an absent jump at the smaller data scale.
 
 ## Decision synthesis
 
-In favour: the paper opens an underexplored direction by treating algorithm and hardware simulation as byte-level generative modelling, and it reports striking numbers on these tasks (0.0011 BPB for ABC-to-MIDI; 99.97% and 99.99% CPU-state accuracy). Read cautiously, near-zero error on deterministic transforms suggests the model may have learned the underlying procedures. The media and transfer experiments are reported candidly, including negative results.
+On the positive side, the most important evidence is the reframing of byte models as simulators of algorithms and hardware. One model covers media and binary-native tasks, and the scaling results suggest that the simulation tasks are learnable. This framing, the new dataset and the testbeds are the paper's main contribution.
 
-The most important concerns are about whether the evidence supports the headline claims.
+On the negative side, three issues matter most.
 
-1. **CPU accuracy.** The 99.99% figure is byte-wise over 16-byte states, many of which may be unchanged between steps. There is no copy-previous-state baseline and no per-state exact-match accuracy, so the number may not show execution fidelity. Claims of going 'beyond memorization' are not established.
-2. **ABC-to-MIDI scoring.** BPB averages over all bytes and could be dominated by deterministic header bytes. Exact-match or validity rates on held-out tunes would show whether the conversion is truly near-flawless.
-3. **Emergence.** The 'emergent ability' claim rests on a loss jump around epoch 11 within a single run at one data scale. That is not a scale-dependent threshold.
-4. **'Matches specialized models'.** The abstract's claim conflicts with Table 3, which shows bGPT trailing on all three benchmarks. The ViT and AST numbers are also taken from original studies with different training regimes; only GPT2-small was retrained under matched settings.
-5. **Novelty positioning.** The abstract and introduction do not acknowledge that, by the authors' own description, the model and objective have precedents.
+First, the abstract states that bGPT "matches specialized models" across text, audio and images. The paper's own Table 3 shows bGPT trailing on every task: about 2 points on text, about 2.1 points on audio and about 9.4 points on CIFAR-10 (88.69% vs 98.13%). The mixed model is lower still. In addition, the ViT and AST numbers are taken from the original studies rather than trained under matched conditions.
 
-Score-changing questions for the authors:
-- Are the CPU test programs disjoint from the training programs?
-- How is the lossy MIDI-to-ABC direction scored?
-- Is the epoch-11 jump reproducible across random seeds?
-- Do small differences such as 85.26 vs 84.66 in Table 4 exceed seed variance? The 'content alignment over format' conclusion relies on this single-run gap.
+Second, the headline CPU result may be weaker than it appears. Accuracy is computed byte-wise, and the task lacks jumps. As a result, the PC likely increments deterministically, the IR is copied from instruction memory and most register bytes are unchanged at each step. A trivial copy-previous-state-plus-increment-PC baseline might therefore score highly, and such a baseline is not reported.
+
+Third, the novelty is narrower than the abstract implies, given the paper's own account of MegaByte and ByteFormer.
+
+Score-changing questions:
+(a) How exactly is CPU-state accuracy defined (full state, per register or per byte)? How are train and test programs separated? The jump from 27.24% at 10^4 to 99.97% at 10^5, followed by identical BPB at 10^6, makes this important.
+(b) Are generated MIDI outputs byte-exact or valid? 'Almost flawlessly replicated' currently rests on teacher-forced likelihood.
+(c) Is the epoch-11 jump in bGPT5 robust across seeds? A jump within a single run's training is distinct from emergence with scale.
 
 Non-blocking improvements:
-- Temper the abstract wording.
-- State the architectural differences from MegaByte and ByteFormer.
-- Analyse whether the bGPT_mix shortfall on AG News reflects a smaller share of text data or interference between modalities.
-
-The weight a reviewer gives these points depends mainly on whether baselines and exact-match metrics for the simulation tasks can be supplied.
+- Scope the competitiveness claims to the reported gaps.
+- Support 'beyond memorization' with a measured overlap analysis rather than combinatorial-space size alone.
+- Position the CPU States dataset against prior execution-modelling work.
+- Clarify whether the 16-byte patch size intentionally aligns with the 16-byte register state, and whether the CPU results depend on that alignment. This remains an open question, not an established defect.
 
 This section identifies the evidence that appears most important; it intentionally does not provide a recommendation or score.
 
@@ -367,231 +367,219 @@ Advisory assessment of whether the paper is written for a human reader (legibili
 
 **What reads well**
 
-- The abstract states its headline results concretely and gives a reader the core idea in plain terms.
+- The abstract states two concrete headline results in plain terms, which makes the central claim easy to locate.
 
 **Writing-quality issues**
 
-1. **The abstract's CPU accuracy and conversion figures are not given the scope a reader needs: the CPU is a simplified synthetic one and 0.0011 BPB is a per-byte loss, not an 'error rate'.**
-   The body is candid about simplification; the abstract should match it.
-   - **Suggested revision:** In the abstract, describe 0.0011 as bits-per-byte loss (not error rate), state that CPU accuracy is per-byte on a simplified synthetic CPU, and if available add a whole-sequence exact-match rate.
+1. **The abstract's media claim says bGPT 'matches' specialized models. Section 5.2.2 reports a clear gap on CIFAR-10, so the plain-language headline overstates what the paper's own results show.**
+   The image-classification shortfall is a legitimate partial result and should stay. It belongs in the headline sentence.
+   - **Suggested revision:** Rephrase the abstract to say bGPT approaches specialized models on text and audio, and trails them on images (88.69% vs 98.13% on CIFAR-10).
 
-2. **Rigor is sometimes asserted with adjectives rather than shown, notably 'emergent ability' and 'real comprehension' claims.**
-   Similar intensifiers ('exceptional', 'impressively low', 'potent') appear in reported results.
-   - **Suggested revision:** Replace 'real comprehension' with a description of what was measured, or add a breakdown (e.g., accuracy by instruction type or program length) that demonstrates it.
+2. **The abstract calls 0.0011 bits per byte an 'error rate'. Bits per byte is not introduced until Section 5.1 and is a likelihood measure, not an error rate, so non-specialists cannot interpret the headline number.**
+   A plain gloss would make the strongest result legible.
+   - **Suggested revision:** In the abstract, briefly explain BPB (e.g., average uncertainty per predicted byte, where 0 means perfect prediction) or report an interpretable conversion accuracy instead.
 
-3. **Numbers are reported to four decimal places, and the main media takeaway (byte models trail specialists, especially on images) is softened as 'on par'.**
-   The image-gap disclosure is valuable and should be kept, stated plainly in the summary.
-   - **Suggested revision:** Round table values to meaningful precision and state a one-sentence practitioner takeaway: competitive on text/audio, notably behind on images.
+3. **The text reports 43 instruction variants, but Table 7 enumerates 44.**
+   Table 7's enumerated address variants sum to 44, while the text states 43 variants across 21 instruction types.
+   - **Suggested revision:** Reconcile the variant count between the text and Table 7. Either correct the number or state the counting convention, for example whether HLT's no-address form is counted.
 
-4. **Table 1 'Total Bytes (GB)' values appear to be binary gibibytes rather than decimal gigabytes.**
-   The values are internally consistent, but the unit label understates the decimal byte count by about 7%. This does not affect the paper's conclusions.
-   - **Suggested revision:** Relabel the column as GiB or convert the values to decimal GB.
+4. **Accuracies are reported with four decimal places, and the text uses evaluative adjectives ('impressively', 'exceptional') that assert strength the reader could see from the numbers alone.**
+   For readability, round to two decimal places and let the comparisons speak.
+   - **Suggested revision:** Round Table 6 to sensible precision and replace evaluative adjectives with a comparison (e.g., 'roughly 200× lower than bGPT3').
+
+5. **The text reports 99.9961% as 99.99%, which truncates rather than rounds the value.**
+   This is a cosmetic inconsistency.
+   - **Suggested revision:** Use a consistent rounding convention, or report the values at the same precision as the table.
 
 ## Additional improvements (non-blocking)
 
-1. **Table 3 values, which match the text, show bGPT trailing the modality-specific baselines on all three benchmarks. The gap is largest on CIFAR-10.**
-   The roughly 9.4-point CIFAR-10 gap is much larger than the gaps on text (about 2 points) and audio (about 2 points).
+1. **Table 3 shows bGPT trailing modality-specific baselines on every task, with the largest gap on CIFAR-10. Claims of competitiveness should be scoped to match.**
+   Gaps: 2.0 points (text), 2.1 points (audio), 9.4 points (image). The mixed model also degrades relative to the specialized model.
    Evidence status: inference.
-   Reasoning: The confirmed record shows the paper's own reported figures: AG News 92.49% vs 94.50% and BPB 1.0639 vs 0.9237, CIFAR-10 88.69% vs 98.13%, and Speech Commands 96.03% vs 98.11%. Because the rendered table agrees with the body text, these numbers are the paper's stated results. They limit how strongly any claim of competitiveness with specialised models can be made, especially for images.
-   Source `review-record:visual/49`: Metrics labeled BPB and Acc (%); values such as 1.0639/92.49, 3.1234/88.69, 1.4818/96.03, baselines 0.9237/94.50, 98.13, 98.11.
+   Reasoning: The rendered Table 3 values are bGPT_wiki 92.49 vs 94.50 (AG News), bGPT_libri 96.03 vs AST 98.11, and bGPT_image 88.69 vs ViT 98.13. bGPT_mix is lower still (1.0935 BPB, 91.75). The text openly states the AG News shortfall. These cells show a gap of roughly 9.4 points on image classification, which limits any claim that byte-level modelling matches native-modality models.
+   Source `review-record:visual/55`: Rendered values include bGPT_wiki at 1.0639 BPB and 92.49%, the AG News baseline at 0.9237 and 94.50, bGPT_libri at 96.03, the AST baseline at 98.11, bGPT_image at 88.69, and the ViT baseline at 98.13. bGPT_mix is shown at 1.0935 and 91.75.
+   Source `review-record:visual/53`: Column headers read 'AG News (4 classes)', 'CIFAR-10 (10 classes)', 'Speech Commands v2 (36 classes)'.
    Source `paper:chars/25826-25993`: bGPTwiki
 achieved a score of 1.0639 BPB and an accuracy of 92.49%
 on AG News, which, while not quite at the level of GPT2-
 small, scored 0.9237 BPB and 94.50% accuracy
-   - **Suggested revision:** Phrase cross-modal performance claims in the abstract and conclusion in proportion to the per-modality gaps in Table 3. Consider discussing why the gap is larger for images.
+   Source `paper:chars/24561-24634`: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes)
+   - **Suggested revision:** State the per-modality gaps explicitly in the abstract or discussion, especially the CIFAR-10 gap. Discuss whether matched model size or compute explains the gaps.
 
-2. **The architecture is explicitly derivative of prior hierarchical/patch work, so novelty rests on the application framing, not on the architecture.**
-   The paper does not state concretely how bGPT differs from MegaByte or ByteFormer beyond the choice of tasks.
-   Evidence status: inference.
-   Reasoning: The authors say they adapt the architecture from prior work. They also report that MegaByte already models bytes across modalities. Architectural originality is therefore limited by their own account, and the remaining difference is the focus on native binary data and simulation. We have not verified MegaByte's content directly.
-   Source `paper:chars/10851-15278`: inspired by previous
-work (Wu et al., 2023b; Yu et al., 2023; Wu et al., 2023a;
-Yang et al., 2023), bGPT adapts a hierarchical Trans-
-former architecture
-   Source `paper:chars/7775-10479`: MegaByte (Yu et al., 2023), on the other hand,
-has been tested and proven to excel in modelling long byte
-sequences across various modalities.
-   - **Suggested revision:** Add an explicit architectural and task-level comparison against MegaByte and ByteFormer.
+2. **The CPU States dataset is proposed as new and is self-described as simplified. Its primacy relative to prior work on learning program execution is not positioned.**
+   Positioning the dataset against prior work would strengthen the dataset claim.
+   Evidence status: observation.
+   Reasoning: The authors explicitly propose this dataset and describe it as simplified. Its originality against execution-modelling literature cannot be judged from the background section.
+   Source `paper:chars/18456-21674`: we introduce the CPU States
+dataset (with 2.1 million instances), offering a simplified
+representation of CPU behaviour
+   - **Suggested revision:** Cite and contrast prior datasets for neural program-execution or CPU simulation.
 
-3. **The modality-agnostic transfer claim is novel mainly as analysis. The authors themselves report that bGPT trails specialized baselines, and that text transfer is negative.**
-   The abstract wording should be tempered to reflect the reported gaps.
-   Evidence status: inference.
-   Reasoning: The abstract's 'matches' wording conflicts with the reported ten-point gap on CIFAR-10 and with the negative transfer from text. The cross-modal analysis is still a useful empirical contribution.
-   Source `paper:chars/25015-30472`: bGPTimage lagging ViT, with an accuracy of
-88.69% against 98.13%
-   Source `paper:chars/25015-30472`: negative trans-
-fer is observed when transitioning between text and other
-modalities
+3. **The abstract says bGPT 'matches specialized models', but the paper's own results show gaps, most notably on CIFAR-10 (88.69% vs 98.13%).**
+   Cross-modal transfer is a useful observation but should be framed alongside these gaps.
+   Evidence status: observation.
+   Reasoning: The paper's own results show bGPT trailing the baseline on CIFAR-10, so 'matches' overstates the outcome.
    Source `paper:chars/172-1238`: bGPT matches specialized models in
 performance across various modalities
-   - **Suggested revision:** Revise the abstract to say 'approaches' and note the image gap.
+   Source `paper:chars/25015-30472`: a noticeable difference
+is seen with bGPTimage lagging ViT, with an accuracy of
+88.69% against 98.13%.
+   - **Suggested revision:** Revise the abstract to 'approaches' and note the per-modality gaps.
 
-4. **The architecture is author-acknowledged as an adaptation of prior hierarchical byte models; originality rests on application scope, not the model.**
-   Contribution framing 'we introduce bGPT' should clarify architectural deltas vs MegaByte/ByteFormer.
-   Evidence status: observation.
-   Reasoning: Authors state the architecture is adapted, and describe MegaByte (author-reported) as already modelling bytes across modalities; the paper does not state how bGPT's architecture differs. Difference not independently verified.
-   Source `paper:chars/10851-15278`: inspired by previous
-work (Wu et al., 2023b; Yu et al., 2023; Wu et al., 2023a;
-Yang et al., 2023), bGPT adapts a hierarchical Trans-
-former architecture
-   Source `paper:chars/7775-10479`: MegaByte (Yu et al., 2023), on the other hand,
-has been tested and proven to excel in modelling long byte
-sequences across various modalities.
-   - **Suggested revision:** State explicitly what (if anything) differs from MegaByte's patch design; otherwise frame as reuse.
-
-5. **Mixed-modality pre-training (bGPT_mix) underperforms text-only bGPT_wiki on AG News. This bears on claims of cross-modal benefit.**
-   The paper reports the gap but does not show whether it reflects a reduced share of text data or genuine interference between modalities.
+4. **The 'beyond simple memorization' claim rests on accuracy plus combinatorial-space size, not on a measured train/test overlap.**
+   The numbers are correctly rendered. The conclusion drawn from them goes further than the evidence supports.
    Evidence status: inference.
-   Reasoning: The confirmed records show that bGPT_mix includes ImageNet, LibriSpeech, and Wikipedia. On AG News it scores 1.0935 BPB and 91.75% accuracy, compared with 1.0639 BPB and 92.49% for bGPT_wiki. Adding modalities therefore did not help, and slightly hurt, in-domain text performance. The paper states this comparison itself.
-   Source `review-record:visual/47`: Caption names GPT2-small on AG News, ViT-B/16 on CIFAR-10, AST on Speech Commands v2; bGPT_signal = ImageNet+LibriSpeech, bGPT_mix = ImageNet, LibriSpeech, Wikipedia.
-   Source `review-record:visual/50`: bGPT_mix row shows 1.0935 BPB and 91.75 Acc on AG News, lower than bGPT_wiki's bold 92.49.
-   Source `paper:chars/23083-23186`: bGPTsignal
-combined the ImageNet and LibriSpeech datasets, while
-bGPTmix integrated all three datasets.
-   Source `paper:chars/26907-27073`: bGPTmix on
-the AG News dataset, with a BPB of 1.0935 and accuracy of
-91.75%, outperforms other variants but falls short of the per-
+   Reasoning: The rendered text supports this inference with three premises: 99.97% and 99.99% accuracy, an average of 128 instructions per test case, and over 516 million possible combinations. A large space of possible combinations does not show that test sequences, or their subsequences, are absent from training. Generalization therefore remains inferred rather than demonstrated.
+   Source `review-record:visual/20`: Text states bGPT^5 and bGPT^6 reach 99.97% and 99.99% accuracy, average of 128 random instructions, over 516 million combinations.
+   Source `paper:chars/35098-35329`: (99.97% and 99.99%), suggesting an efficiency beyond sim-
+ple memorization, given that each test case contained an
+average of 128 random instructions, and the vast potential
+combinations of instruction scenarios (over 516 million).
+   - **Suggested revision:** Report the train/test overlap at the sequence or n-gram level, or evaluate on held-out instruction lengths or compositions.
 
-formance demonstrated by bGPTwiki
-   - **Suggested revision:** Clarify whether the amount of text data or compute was matched between bGPT_mix and bGPT_wiki. If it was not, note this as a confound.
-
-6. **The cross-modal transfer analysis is a modest but informative contribution. However, the 'modality-agnostic' claim is weakened by the negative transfer the authors report from text.**
-   Novelty relative to ByteFormer and MegaByte transfer studies is not discussed.
-   Evidence status: observation.
-   Reasoning: Mixed results, plus a Table 4 BPB difference of 0.0001 between the image and audio models, do not support a general modality-agnostic transfer claim.
-   Source `paper:chars/25015-30472`: negative trans-
-fer is observed when transitioning between text and other
-modalities
-   - **Suggested revision:** Scope the transfer claim and report variance across seeds.
-
-7. **The CPU States dataset is a new synthetic benchmark. It is clearly specified but deliberately simplified, and the authors acknowledge that it excludes jumps and real CPUs.**
-   Evidence status: observation.
-   Reasoning: The authors' candid scoping limits the dataset's impact, but it remains a reusable testbed.
-   Source `paper:chars/36748-38535`: our
-CPU state modelling experiments focused solely on simpli-
-fied CPUs, omitting the use of real modern CPUs
-
-8. **The stated preprocessing specifications in Section 4.1 match the per-file byte sizes reported in Table 1.**
-   The header arithmetic shows the files are uncompressed fixed-length inputs, as described. This does not establish the correctness of any model results. Authors could briefly state the header-inclusive arithmetic in the Table 1 discussion so readers can check it.
+5. **The patch size matches the CPU register-state size (16 bytes). It is unclear whether this alignment is intentional and whether CPU-state results depend on it.**
+   Patch boundaries may coincide with state boundaries in the CPU States data. This could favour patch-level prediction in a way that does not carry over to other byte formats.
    Evidence status: inference.
-   Reasoning: The record quotes WAV at 8000 Hz, mono, 8-bit, trimmed to one second, and BMP at 32×32 RGB, 24-bit. It notes Table 1 mean sizes of about 8044 B for audio and 3126 B for images. The audio payload is 8000 Hz × 1 s × 1 byte = 8000 B, plus a standard 44 B WAV header, giving 8044 B. The image payload is 32 × 32 × 3 B = 3072 B, plus a 54 B BMP header, giving 3126 B. The data description therefore agrees internally with the reported statistics. This resolves one specific question: whether the byte-level input sizes follow from the stated formats.
-   Source `review-record:visual/64`: Text states WAV, 8000 Hz sampling rate, mono, 8-bit depth, one-second lengths; BMP 32×32, RGB, 24-bit depth.
-   Source `paper:chars/18196-18454`: Audio files were converted to WA V
-format, with specifications including an 8000 Hz sampling
-rate, mono channel, and 8-bit depth, each trimmed to one-
-second lengths. Image data were set to BMP format with a
-resolution of 32×32, RGB colour, and 24-bit depth.
+   Reasoning: Record 15 confirms that each CPU register state is 16 bytes (1+1+4+10). Record 14 confirms the patch size is 16. If the program prefix length is a multiple of 16, each patch holds exactly one machine state. That would make CPU modelling structurally easier than byte streams whose semantic units do not align with patches. The records do not show whether the prefix is aligned, so this stays a question.
+   Source `review-record:visual/15`: The text allocates 1 byte for PC, 1 for ACC, 4 for IR, and 10 for general-purpose registers, giving 16-byte register states.
+   Source `review-record:visual/14`: Table 2 shows Patch Size 16, Patch Length 512, Patch-Level Layers 12, Byte-Level Layers 3, Hidden Size 768, Epochs 32, Learning Rate 1e-04/1e-05, and Batch Size 16/1.
+   Source `paper:chars/20994-21048`: followed by a sequence of 16-byte CPU register states.
+   Source `paper:chars/21970-22056`: supporting file sizes up to
+8KB using a patch size of 16 and a sequence length of 512.
+   - **Suggested revision:** State whether the program and state boundaries are aligned to the 16-byte patch grid. If feasible, report CPU-state accuracy with a misaligned offset or a different patch size.
 
-9. **Limitations and dual-use risks (IP, reverse engineering) are acknowledged candidly.**
-   Could link limitations back to softened abstract.
+6. **Table 4 differences between bGPT_image and bGPT_libri are very small (BPB 0.3899 vs 0.3900; Acc 84.66 vs 85.26).**
+   The bolding implies a meaningful ranking that the values alone do not establish.
+   Evidence status: inference.
+   Reasoning: The rendered rows show a 0.0001 BPB gap and a 0.6-point accuracy gap, and bold marks each as best. At this magnitude, run-to-run variance could reverse the ordering. Any cross-modal transfer conclusion drawn from which pretraining set wins is therefore fragile without a variability estimate.
+   Source `review-record:visual/40`: Table 4 lists bGPTrandom 0.4052/80.74, bGPTimage 0.3899/84.66, bGPTlibri 0.3900/85.26; 0.3899 and 85.26 are bold.
+   Source `paper:chars/29311-29356`: bGPTimage 0.3899 84.66
+bGPTlibri 0.3900 85.26
+   - **Suggested revision:** Report seed variance or confidence intervals for Table 4, or soften the ranking language.
+
+7. **Fig. 3a plots loss against epochs, so 'lower starting loss and more rapid convergence' at larger data scale may reflect more optimizer steps per epoch.**
+   The claim is accurately described, but its interpretation as faster convergence is confounded by the epoch-based x-axis.
+   Evidence status: inference.
+   Reasoning: The record confirms that the x-axis is Epoch (0–32) for the bGPT^3, bGPT^4 and bGPT^5 scales. It also confirms that larger-scale curves start lower and flatten sooner. With a fixed epoch count, an epoch at 10^5 samples contains about 100× more updates than an epoch at 10^3. The first plotted point therefore already reflects far more training. The visible ordering supports the textual description, but it does not separate a data-scale effect from a compute or step-count effect.
+   Source `review-record:visual/41`: Panel (a) has an Epoch x-axis from 0 to 32 and a Loss y-axis from 0.2 to 1.2. Its legend lists bGPT3/4/5 Train and Eval. Loss curves start lower for larger scales.
+   Source `paper:chars/33304-33402`: We observe a lower starting loss and a more rapid con-
+vergence in Fig. 3a as the data scale grows
+   - **Suggested revision:** Add a version of Fig. 3a plotted against training steps or tokens seen, or qualify the convergence claim.
+
+8. **The 8KB context limit and the dataset file-size statistics raise the question of how files longer than 8KB are handled.**
+   Table 1 reports means only. The share of files that exceed the context, and how they are treated, is not visible in these records.
+   Evidence status: inference.
+   Reasoning: Record 14 fixes the maximum input at 16×512 = 8192 bytes. Record 13 reports only mean file sizes, such as 2237 bytes for Wikipedia. A mean far below the cap does not rule out a tail of files above 8KB. Truncating or excluding those files would affect how the reported results should be interpreted.
+   Source `review-record:visual/13`: Wikipedia shows 6.28M files, 13.67 GB, and a mean of 2237 bytes. CPU States shows 2.1M files, 6.09 GB, and a mean of 3103 bytes.
+   Source `review-record:visual/14`: Table 2 shows Patch Size 16, Patch Length 512, Patch-Level Layers 12, Byte-Level Layers 3, Hidden Size 768, Epochs 32, Learning Rate 1e-04/1e-05, and Batch Size 16/1.
+   Source `paper:chars/19917-19964`: Wikipedia (Wikimedia, 2022) 6.28 13.67 2237 107
+   Source `paper:chars/21970-22056`: supporting file sizes up to
+8KB using a patch size of 16 and a sequence length of 512.
+   - **Suggested revision:** Report the fraction of files that exceed 8KB in each dataset, and state whether they are truncated, split, or excluded.
+
+9. **The ABC↔MIDI task is positioned as novel because prior music models avoided raw MIDI bytes. This is a plausible, author-reported distinction that this review did not verify.**
    Evidence status: observation.
-   Reasoning: Direct statements of scope and risk.
-   Source `paper:chars/36748-38535`: our
-CPU state modelling experiments focused solely on simpli-
-fied CPUs
-   Source `paper:chars/38535-40096`: it poses a risk to
-intellectual property
-   - **Suggested revision:** Optional.
+   Reasoning: The authors' positioning relative to Huang et al., Zeng et al., and Hsiao et al. is stated but was not independently verified.
+   Source `paper:chars/31335-34448`: While previous
+studies avoided direct MIDI modelling due to its binary
+
+10. **The authors explicitly attribute the hierarchical patch architecture to prior work, so it should not be credited as a novel contribution.**
+   The paper does not state any difference from MegaByte.
+   Evidence status: observation.
+   Reasoning: The authors say bGPT 'adapts' this architecture, which disclaims architectural originality.
+   Source `paper:chars/10851-15278`: bGPT adapts a hierarchical Trans-
+former architecture and segments a sequence of bytes
+   - **Suggested revision:** State which components, if any, differ from the cited hierarchical models.
 
 ## Evidence to examine (advisory)
 
-### Rendered formulas: Eq. (2) renders P_N = [b_{(N−1)S+1}, …, b_T, e, …, e] with an underbrace labelled S−(T mod S).
+### Rendered formulas: Eq. (1) renders as 𝒫 = [P1, P2, ..., PN], followed by N = ⌈T/S⌉ and P_i = [b_{(i−1)S+1}, ..., b_{iS}] for 1 ≤ i ≤ N, with the condition T mod S ≠ 0.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The padding count S−(T mod S) correctly fills the last patch to S bytes when T mod S ≠ 0, which is consistent with the stated condition and definition.
+The rendered patch definition matches the extracted text, apart from extraction noise in subscripts and the ceiling notation.
 
 - Source: `review-record:visual/0`
-- Source: `paper:chars/12937-13031`
+- Source: `paper:chars/11744-11774`
 - Source: `paper:p.3`
 - Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Rendered formulas: Eq. (3) renders E_i = Flatten(P_i) · W_linear, 1 ≤ i ≤ N. Nearby text states that W_linear has shape (S × 257, H).
+### Rendered formulas: P_N = [b_{(N−1)S+1}, ..., b_T, e, ..., e], with an underbrace labelled S−(T mod S).
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-A flattened S×257 one-hot patch multiplied by an (S×257, H) matrix yields an H-dimensional vector. This is consistent with the stated 257D encoding (256 byte values plus <eop>).
+The number of padding tokens, S−(T mod S), fills the last patch to size S. This is consistent with the text.
 
 - Source: `review-record:visual/1`
-- Source: `paper:chars/13936-14031`
+- Source: `paper:chars/12865-12927`
 - Source: `paper:p.3`
 - Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Rendered formulas: The page renders N = ⌈T/S⌉ and P_i = [b_{(i−1)S+1}, …, b_{iS}] for 1 ≤ i ≤ N.
+### Rendered formulas: E_i = Flatten(P_i) · W_linear, 1 ≤ i ≤ N. W_linear has shape (S × 257, H).
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The ceiling function gives the correct number of patches, and the index ranges partition the sequence into S-byte patches.
+A flattened S×257 one-hot patch multiplied by an (S×257, H) matrix produces a hidden-size-H vector. The dimensions are consistent.
 
 - Source: `review-record:visual/2`
-- Source: `paper:chars/11776-11818`
+- Source: `paper:chars/13942-14030`
 - Source: `paper:p.3`
 - Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Captions: Figure 2 is a diagram labelled, from bottom to top: Byte Patches, Linear Projection Layer, Patch Embeds & Position Embeds (0, 1, 2, N), Patch-Level Transformer Decoder, Patch Features & Input Bytes, Byte-Level Transformer Decoder, and Output Bytes. Byte patches contain four bytes each, and <eop> padding is visible.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The diagram matches the caption and the three components described in the text. The illustrative 4-byte patch is a schematic and does not conflict with the patch size of 16 used in the experiments.
-
-- Source: `review-record:visual/3`
-- Source: `paper:chars/12668-12863`
-- Source: `paper:p.3`
-- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
-
-### Units: The text states that each byte is one-hot encoded into a 257D vector covering all 256 byte values and an <eop> token.
+### Units: Each byte is one-hot encoded into a 257D vector covering all 256 byte values plus an <eop> token.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
 256 + 1 = 257, which is internally consistent.
 
-- Source: `review-record:visual/7`
-- Source: `paper:chars/13514-13612`
+- Source: `review-record:visual/3`
+- Source: `paper:chars/13514-13611`
 - Source: `paper:p.3`
 - Source: [`review-output:visual/page-3.png`](visual/page-3.png)
 
-### Sample counts: The CPU States row shows Total Files (Million) = 2.1, Total Bytes (GB) = 6.09, Mean File Size (Byte) = 3103 and GPU hours per Epoch = 36.
+### Rendered formulas: Ê_i = Decoder_patch(ℰ_{<i} ⊕ 𝒳_{<i}).
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The 2.1 million file count in the table matches the 2.1 million instances stated in the text.
+The rendered equation matches the text definitions of ℰ_{<i} and 𝒳_{<i}.
 
-- Source: `review-record:visual/8`
+- Source: `review-record:visual/4`
+- Source: `paper:chars/14439-14473`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
+
+### Captions: The diagram shows Byte Patches, a Linear Projection Layer, Patch Embeds & Position Embeds (0, 1, 2, N), a Patch-Level Transformer Decoder, and a Byte-Level Transformer Decoder producing Output Bytes. Byte patches include <eop> padding.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The caption matches the depicted components.
+
+- Source: `review-record:visual/5`
+- Source: `paper:chars/12668-12863`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
+
+### Reviewer coverage limitation: rendered formulas (paper:p.3)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/6`
+- Source: `paper:chars/21970-22026`
+- Source: `paper:p.3`
+- Source: [`review-output:visual/page-3.png`](visual/page-3.png)
+
+### Sample counts: Table 1 row 'CPU States (proposed)' shows Total Files (Million) = 2.1; body text says 'CPU States dataset (with 2.1 million instances)'.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered table count matches the in-text instance count and the Appendix B training-set size.
+
+- Source: `review-record:visual/10`
 - Source: `paper:chars/20705-20794`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Units: The column headers are 'Total Files (Million)', 'Total Bytes (GB)', 'Mean File Size (Byte)' and 'GPU hours per Epoch'. The caption cites NVIDIA V100 GPU hours.
+### Units: Column headers read 'Total Files (Million)', 'Total Bytes (GB)', 'Mean File Size (Byte)', 'GPU hours per Epoch'; the caption names millions, gigabytes, bytes, and V100 GPU hours.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The units in the column headers match the units described in the caption.
-
-- Source: `review-record:visual/9`
-- Source: `paper:chars/19668-19816`
-- Source: `paper:p.5`
-- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
-
-### Units: Approximate products of Total Files × Mean File Size agree with Total Bytes. Examples: Wikipedia 6.28M × 2237 ≈ 14.0e9; LibriSpeech 3.68M × 8044 ≈ 29.6e9 (27.57 GiB); CPU States 2.1M × 3103 ≈ 6.5e9 (6.09 GiB).
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The values are internally consistent if GB is read as binary gigabytes (GiB), allowing for rounding.
-
-- Source: `review-record:visual/10`
-- Source: `paper:chars/20328-20366`
-- Source: `paper:p.5`
-- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
-
-### Budgets: Table 2 lists Patch Size 16/16, Patch Length 512/512, Patch-Level Layers 12/12, Byte-Level Layers 3/3, Hidden Size 768/768, Epochs 32/32, Learning Rate 1e-04/1e-05 and Batch Size 16/1.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-16 × 512 = 8192 bytes, which equals 8KB. The patch size and length match the text.
+The header units match the caption.
 
 - Source: `review-record:visual/11`
-- Source: `paper:chars/21970-22056`
-- Source: `paper:p.5`
-- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
-
-### Budgets: The largest mean file sizes are 8044 bytes for LibriSpeech and Speech Commands v2.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-8044 bytes is within the 8192-byte context. The audio specification of 8000 Hz, 8-bit, 1 s gives 8000 bytes plus a WAV header, which is consistent with 8044.
-
-- Source: `review-record:visual/12`
-- Source: `paper:chars/21970-22001`
+- Source: `paper:chars/19668-19816`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
@@ -600,97 +588,287 @@ Scope: paper-only; analysis: visual; evidence status: inference.
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/13`
+- Source: `review-record:visual/12`
 - Source: `paper:chars/18363-18454`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Units: The CPU States mean file size is 3103 bytes.
+### Sample counts: Wikipedia shows 6.28M files, 13.67 GB, and a mean of 2237 bytes. CPU States shows 2.1M files, 6.09 GB, and a mean of 3103 bytes.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-1024 bytes plus about 128 states × 16 bytes is roughly 3.1KB, which is consistent with the paper's average of 128 instructions.
+Multiplying file count by mean size gives about 14.0e9 bytes for Wikipedia, or about 13.1 GiB. For CPU States it gives about 6.5e9 bytes, or about 6.07 GiB. Both are roughly consistent with the table totals, assuming GB is close to GiB. The rendered values match the extracted text.
 
-- Source: `review-record:visual/14`
-- Source: `paper:chars/20896-21048`
+- Source: `review-record:visual/13`
+- Source: `paper:chars/19917-19964`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Captions: The caption reads 'Hyperparameter settings for pre-training and fine-tuning.' The columns are Pre-training and Fine-tuning.
+### Budgets: Table 2 shows Patch Size 16, Patch Length 512, Patch-Level Layers 12, Byte-Level Layers 3, Hidden Size 768, Epochs 32, Learning Rate 1e-04/1e-05, and Batch Size 16/1.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+16 × 512 = 8192 bytes, which equals 8KB. This matches the stated maximum file size, and the values match the extracted Table 2.
+
+- Source: `review-record:visual/14`
+- Source: `paper:chars/21970-22056`
+- Source: `paper:p.5`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
+
+### Units: The text allocates 1 byte for PC, 1 for ACC, 4 for IR, and 10 for general-purpose registers, giving 16-byte register states.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+1 + 1 + 4 + 10 = 16 bytes.
+
+- Source: `review-record:visual/15`
+- Source: `paper:chars/20994-21048`
+- Source: `paper:p.5`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
+
+### Captions: The Table 1 caption describes datasets and V100 GPU hours, and the GPU-hours column is present with values ranging from 1.1 to 107.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
 The caption matches the table content.
 
-- Source: `review-record:visual/15`
-- Source: `paper:chars/22396-22462`
+- Source: `review-record:visual/16`
+- Source: `paper:chars/19554-19667`
 - Source: `paper:p.5`
 - Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Reviewer coverage limitation: units (paper:p.1)
+### Rendered formulas: Model names render with subscripts: bGPT_image, bGPT_wiki, bGPT_libri, bGPT_signal, bGPT_mix, bGPT_random.
 
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Scope: paper-only; analysis: visual; evidence status: inference.
+The page renders these names correctly as subscripts. The extracted text flattens them, which is extraction noise.
 
-- Source: `review-record:visual/18`
-- Source: `paper:chars/829-1076`
-- Source: `paper:p.1`
-- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
+- Source: `review-record:visual/17`
+- Source: `paper:chars/22928-23031`
+- Source: `paper:p.5`
+- Source: [`review-output:visual/page-5.png`](visual/page-5.png)
 
-### Reviewer coverage limitation: sample counts (paper:p.8)
+### Rendered formulas: Page renders BPB with subscripts (BPB_abc, BPB_midi) and model names with superscript scale exponents (bGPT^5, bGPT^3); extracted text shows these flattened as 'BPBabc', 'bGPT5'.
 
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Scope: paper-only; analysis: visual; evidence status: inference.
+Flattened sub/superscripts are extraction noise; the rendered notation matches the intended data-scale labels (10^3–10^6) and the Table 5 value 0.0011.
 
-- Source: `review-record:visual/24`
+- Source: `review-record:visual/19`
 - Source: `paper:chars/33656-33745`
 - Source: `paper:p.8`
 - Source: [`review-output:visual/page-8.png`](visual/page-8.png)
 
-### Reviewer coverage limitation: units (paper:p.8)
+### Sample counts: Text states bGPT^5 and bGPT^6 reach 99.97% and 99.99% accuracy, average of 128 random instructions, over 516 million combinations.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+Consistent with Table 6 (99.9702, 99.9961), the 1–256 instruction range (mean ≈128), and Appendix B's 516 million figure.
+
+- Source: `review-record:visual/20`
+- Source: `paper:chars/35098-35329`
+- Source: `paper:p.8`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
+
+### Units: Rendered text says notable BPB drop from bGPT^4 to bGPT^5 with diminishing returns beyond bGPT^5.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+Table 6 lists BPB 0.6924 → 0.0969 → 0.0969, consistent with the description.
+
+- Source: `review-record:visual/21`
+- Source: `paper:chars/34960-35043`
+- Source: `paper:p.8`
+- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
+
+### Reviewer coverage limitation: units (paper:p.1)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
 - Source: `review-record:visual/25`
-- Source: `paper:chars/35098-35117`
-- Source: `paper:p.8`
-- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
+- Source: `paper:chars/33656-33745`
+- Source: `paper:p.1`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
 
-### Reviewer coverage limitation: sample counts (paper:p.8)
+### Reviewer coverage limitation: units (paper:p.1)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
 - Source: `review-record:visual/26`
-- Source: `paper:chars/35174-35329`
-- Source: `paper:p.8`
-- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
+- Source: `paper:chars/35044-35117`
+- Source: `paper:p.1`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
 
-### Reviewer coverage limitation: axes (paper:p.8)
+### Reviewer coverage limitation: captions (paper:p.1)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
 - Source: `review-record:visual/27`
-- Source: `paper:chars/35331-35430`
-- Source: `paper:p.8`
-- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
+- Source: `paper:chars/26238-26302`
+- Source: `paper:p.1`
+- Source: [`review-output:visual/page-1.png`](visual/page-1.png)
 
-### Reviewer coverage limitation: rendered formulas (paper:p.8)
+### Rendered formulas: Rendered: \hat{b}_{i,j} = Decoder_byte(\hat{E}_i, b_{i,<j}), 1 ≤ j ≤ S, labeled (5).
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered equation matches the extracted text, apart from subscript formatting.
+
+- Source: `review-record:visual/32`
+- Source: `paper:chars/15098-15146`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Rendered formulas: Rendered: L_GEN(θ) = −Σ_{i=1}^{T−1} log p(b_{i+1}|b_1,...,b_i; θ), labeled (6).
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The summation limits run from i=1 to T−1, which is consistent with next-byte prediction over a sequence of length T. This matches the text.
+
+- Source: `review-record:visual/33`
+- Source: `paper:chars/15800-15858`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Rendered formulas: Rendered: L_CLF(θ) = −Σ_{k=1}^{K} y_k log p(y_k|B; θ), labeled (7).
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered equation matches the extracted text. K is defined as the total number of categories.
+
+- Source: `review-record:visual/34`
+- Source: `paper:chars/16662-16704`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Units: Text reads: WAV format, 8000 Hz sampling rate, mono channel, 8-bit depth, one-second lengths; BMP images at 32×32 resolution, RGB colour, 24-bit depth.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered units match the text. They are also consistent with Table 1 mean file sizes: 8000 bytes of audio plus a WAV header gives about 8044 bytes, and 32×32×3 bytes plus a BMP header gives 3126 bytes.
+
+- Source: `review-record:visual/35`
+- Source: `paper:chars/18196-18454`
+- Source: `paper:p.4`
+- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
+
+### Sample counts: Table 4 lists bGPTrandom 0.4052/80.74, bGPTimage 0.3899/84.66, bGPTlibri 0.3900/85.26; 0.3899 and 85.26 are bold.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered values match the text. They also support the claims of closely matched BPB and higher accuracy for bGPTlibri.
+
+- Source: `review-record:visual/40`
+- Source: `paper:chars/29311-29356`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Axes: Panel (a) has an Epoch x-axis from 0 to 32 and a Loss y-axis from 0.2 to 1.2. Its legend lists bGPT3/4/5 Train and Eval. Loss curves start lower for larger scales.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The axes and legend match the extracted figure text. The visual curve ordering is consistent with the claim about lower starting loss.
+
+- Source: `review-record:visual/41`
+- Source: `paper:chars/33304-33402`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Axes: Panel (b) has an Epoch x-axis from 0 to 32 and a Loss y-axis from 0.4 to 1.6. Its legend lists bGPT4/5/6. The orange (bGPT5) curve drops sharply between about epochs 10 and 12.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The drop in the orange curve appears near epoch 11, consistent with the text.
+
+- Source: `review-record:visual/42`
+- Source: `paper:chars/35331-35430`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Sample counts: Table 5 shows bGPT5 with BPBmidi 0.0011 for ABC→MIDI. The full rows are 1.4319/0.2381/0.2796/1.1227, 0.9789/0.0202/0.1751/0.1763, and 0.7362/0.0011/0.1341/0.0789.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered values match the extracted table and the textual claim.
+
+- Source: `review-record:visual/43`
+- Source: `paper:chars/33656-33745`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Sample counts: Table 6 shows bGPT4 0.6924/27.2404, bGPT5 0.0969/99.9702 and bGPT6 0.0969/99.9961.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rounded accuracies match the table. The identical BPB values for bGPT5 and bGPT6 are consistent with the text's claim of diminishing returns.
+
+- Source: `review-record:visual/44`
+- Source: `paper:chars/35044-35117`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Rendered formulas: The text renders 10^3 (bGPT^3), 10^4, 10^5 and 10^6 with proper superscripts. The table model labels also use superscripts.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The extracted text loses the superscripts, but the rendered page shows the powers of ten correctly. This is extraction noise, not an authoring defect.
+
+- Source: `review-record:visual/45`
+- Source: `paper:chars/30886-30975`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Captions: The caption reads 'Training and evaluation loss curves for different data scales in bGPT performance across epochs.' The panels show train and eval curves per scale.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The caption is consistent with the panel content.
+
+- Source: `review-record:visual/46`
+- Source: `paper:chars/32225-32331`
+- Source: `paper:p.7`
+- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
+
+### Captions: Diagram shows .wav, .bmp (cat images), .mid (piano roll), .abc, and .bin (CPU chip labeled 0) on the left, all feeding into a central 'bGPT' box. Outputs on the right are an audio waveform, a 'Cat' label, sheet music, and CPU chips labeled 1, 2, 3 … N.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered diagram shows several data types going into one model, including binary CPU states that progress from 0 to N. This matches the caption's description.
+
+- Source: `review-record:visual/47`
+- Source: `paper:chars/4825-5002`
+- Source: `paper:p.2`
+- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
+
+### Sample counts: Column headers read 'AG News (4 classes)', 'CIFAR-10 (10 classes)', 'Speech Commands v2 (36 classes)'.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered class counts match the extracted table header text.
+
+- Source: `review-record:visual/53`
+- Source: `paper:chars/24561-24634`
+- Source: `paper:p.6`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
+
+### Reviewer coverage limitation: captions (paper:p.6)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/28`
-- Source: `paper:chars/33102-33160`
-- Source: `paper:p.8`
-- Source: [`review-output:visual/page-8.png`](visual/page-8.png)
+- Source: `review-record:visual/54`
+- Source: `paper:chars/23083-23186`
+- Source: `paper:p.6`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
+
+### Units: Rendered values include bGPT_wiki at 1.0639 BPB and 92.49%, the AG News baseline at 0.9237 and 94.50, bGPT_libri at 96.03, the AST baseline at 98.11, bGPT_image at 88.69, and the ViT baseline at 98.13. bGPT_mix is shown at 1.0935 and 91.75.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The BPB and Acc (%) values cited in the text match the rendered table cells and their units.
+
+- Source: `review-record:visual/55`
+- Source: `paper:chars/25826-25993`
+- Source: `paper:p.6`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
+
+### Units: The text reads '32×32 BMP spectrograms' and 'converting 8KB audio files to 3KB images'.
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The sizes are consistent with Table 1, which lists mean file sizes of 8044 bytes for Speech Commands v2 and 3126 bytes for CIFAR-10 BMP files.
+
+- Source: `review-record:visual/56`
+- Source: `paper:chars/28540-28633`
+- Source: `paper:p.6`
+- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
 
 ### Reviewer coverage limitation: captions (paper:p.16)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/31`
+- Source: `review-record:visual/66`
 - Source: `paper:chars/67936-68096`
 - Source: `paper:p.16`
 - Source: [`review-output:visual/page-16.png`](visual/page-16.png)
@@ -700,256 +878,67 @@ Conflicting assessments. This is not evidence of a readability or scientific def
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/32`
-- Source: `paper:chars/69753-69985`
+- Source: `review-record:visual/67`
+- Source: `paper:chars/65157-65255`
 - Source: `paper:p.16`
 - Source: [`review-output:visual/page-16.png`](visual/page-16.png)
 
-### Reviewer coverage limitation: units (paper:p.16)
+### Reviewer coverage limitation: rendered formulas (paper:p.16)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Grounding failure: context, citation or readability. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/33`
+- Source: `review-record:visual/68`
+- Source: `paper:chars/69986-70197`
 - Source: `paper:p.16`
 - Source: [`review-output:visual/page-16.png`](visual/page-16.png)
 
-### Reviewer coverage limitation: sample counts (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/38`
-- Source: `paper:chars/30886-30975`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: axes (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/39`
-- Source: `paper:chars/31646-31709`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: axes (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/40`
-- Source: `paper:chars/35331-35430`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: captions (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/41`
-- Source: `paper:chars/33656-33745`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: sample counts (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/42`
-- Source: `paper:chars/35044-35117`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: captions (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/43`
-- Source: `paper:chars/29729-29801`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: rendered formulas (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/44`
-- Source: `paper:chars/31203-31238`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Reviewer coverage limitation: units (paper:p.7)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/45`
-- Source: `paper:chars/32923-33012`
-- Source: `paper:p.7`
-- Source: [`review-output:visual/page-7.png`](visual/page-7.png)
-
-### Captions: Caption names GPT2-small on AG News, ViT-B/16 on CIFAR-10, AST on Speech Commands v2; bGPT_signal = ImageNet+LibriSpeech, bGPT_mix = ImageNet, LibriSpeech, Wikipedia.
+### Units: Page states 1KB memory blocks, 16-byte register state; PC 1 byte, ACC 1 byte, IR 4 bytes, general-purpose 10 bytes (sums to 16).
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-Caption composition of mixed models and baselines matches Sections 5.2 and 5.2.1.
+Rendered byte allocations match Section 4.2 and sum to the stated 16-byte state.
 
-- Source: `review-record:visual/47`
-- Source: `paper:chars/23083-23186`
-- Source: `paper:p.6`
-- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
-
-### Sample counts: Column headers: AG News (4 classes), CIFAR-10 (10 classes), Speech Commands v2 (36 classes).
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Rendered class counts match the extracted table text.
-
-- Source: `review-record:visual/48`
-- Source: `paper:chars/24561-24634`
-- Source: `paper:p.6`
-- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
-
-### Units: Metrics labeled BPB and Acc (%); values such as 1.0639/92.49, 3.1234/88.69, 1.4818/96.03, baselines 0.9237/94.50, 98.13, 98.11.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Values and units in the rendered table agree with the body text, including 88.69% vs 98.13% and 96.03% vs 98.11%.
-
-- Source: `review-record:visual/49`
-- Source: `paper:chars/25826-25993`
-- Source: `paper:p.6`
-- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
-
-### Captions: bGPT_mix row shows 1.0935 BPB and 91.75 Acc on AG News, lower than bGPT_wiki's bold 92.49.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Rendered numbers support the textual comparison.
-
-- Source: `review-record:visual/50`
-- Source: `paper:chars/26907-27073`
-- Source: `paper:p.6`
-- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
-
-### Units: Text reads 'transformed into 32×32 BMP spectrograms... converting 8KB audio files to 3KB images'.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Consistent with Table 1 mean file sizes (8044 bytes audio, 3126 bytes images) and Section 4.1 32×32 resolution.
-
-- Source: `review-record:visual/51`
-- Source: `paper:chars/28540-28633`
-- Source: `paper:p.6`
-- Source: [`review-output:visual/page-6.png`](visual/page-6.png)
-
-### Sample counts: Page 17 states that the dataset comprises 2.1 million entries for the training set and 21,000 entries for the evaluation set.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The 2.1 million training count matches the Section 4.2 description, 'CPU States dataset (with 2.1 million instances)', and Table 1, 'CPU States (proposed) 2.1'.
-
-- Source: `review-record:visual/55`
-- Source: `paper:chars/75331-75450`
+- Source: `review-record:visual/70`
+- Source: `paper:chars/21207-21429`
 - Source: `paper:p.17`
 - Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
-### Units: The page describes 1KB memory blocks paired with 16-byte register-state sequences. It lists PC as 1 byte, ACC as 1 byte, IR as 4 bytes, and general-purpose registers as 10 bytes.
+### Reviewer coverage limitation: sample counts (paper:p.17)
 
-Scope: paper-only; analysis: visual; evidence status: inference.
-The listed register sizes sum to 16 bytes (1+1+4+10). This matches the stated 16-byte state and the Section 4.2 description.
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/56`
-- Source: `paper:chars/72023-72159`
+- Source: `review-record:visual/71`
+- Source: `paper:chars/20705-20794`
 - Source: `paper:p.17`
 - Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
-### Sample counts: The page says that instruction sequences vary 'in length from 1 to 256' and that there are 'over 516 million potential scenarios'.
+### Sample counts: Random instruction sequences 'varying in length from 1 to 256'; 'over 516 million potential scenarios'.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-The 1–256 range matches Section 4.2. The figure of over 516 million scenarios also appears in Section 5.3.2.
+Range matches Section 4.2; 516 million matches Section 5.3.2 ('over 516 million').
 
-- Source: `review-record:visual/57`
+- Source: `review-record:visual/72`
 - Source: `paper:chars/21430-21510`
 - Source: `paper:p.17`
 - Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
-### Units: Each instruction is shown in a four-byte format, OP ADDR1 ADDR2 ADDR3, with 1 byte per field.
+### Sample counts: Text says program executes 10 instructions; listed program contains 10 items ending in 'HLT'; step 0 shows PC: 0, ACC: 146, IR: HLT.
 
 Scope: paper-only; analysis: visual; evidence status: inference.
-Four fields of 1 byte each total 4 bytes, which matches the 4-byte instruction register.
+Ten listed instructions match the stated count and the HLT-termination rule.
 
-- Source: `review-record:visual/58`
-- Source: `paper:chars/21303-21360`
+- Source: `review-record:visual/73`
+- Source: `paper:chars/75731-75868`
 - Source: `paper:p.17`
 - Source: [`review-output:visual/page-17.png`](visual/page-17.png)
 
-### Sample counts: The example program list shows 10 instructions ending with 'HLT', and the text refers to '10 instructions'.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The visible program list contains 10 entries, and the last entry is HLT.
-
-- Source: `review-record:visual/59`
-- Source: `paper:chars/75731-75827`
-- Source: `paper:p.17`
-- Source: [`review-output:visual/page-17.png`](visual/page-17.png)
-
-### Rendered formulas: Eq. (5) renders as \hat b_{i,j} = Decoder_byte(\hat E_i, b_{i,<j}), 1 ≤ j ≤ S, with hats and subscripts intact.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Rendered formula matches the extracted text and the surrounding definition of a per-patch byte decoder.
-
-- Source: `review-record:visual/61`
-- Source: `paper:chars/15098-15146`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
-
-### Rendered formulas: Eq. (6) renders as L_GEN(θ) = −Σ_{i=1}^{T−1} log p(b_{i+1}|b_1,...,b_i;θ).
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Summation limits 1 to T−1 are consistent with predicting b_{i+1} for a length-T sequence; extraction garbling of Σ is noise.
-
-- Source: `review-record:visual/62`
-- Source: `paper:chars/15800-15858`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
-
-### Rendered formulas: Eq. (7) renders as L_CLF(θ) = −Σ_{k=1}^{K} y_k log p(y_k|B;θ).
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Rendered cross-entropy form matches the text; K is defined as total number of categories.
-
-- Source: `review-record:visual/63`
-- Source: `paper:chars/16662-16704`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
-
-### Units: Text states WAV, 8000 Hz sampling rate, mono, 8-bit depth, one-second lengths; BMP 32×32, RGB, 24-bit depth.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Rendered units match extracted text and are consistent with Table 1 mean file sizes (~8044 B audio, 3126 B images).
-
-- Source: `review-record:visual/64`
-- Source: `paper:chars/18196-18454`
-- Source: `paper:p.4`
-- Source: [`review-output:visual/page-4.png`](visual/page-4.png)
-
-### Reviewer coverage limitation: captions (paper:p.2)
+### Reviewer coverage limitation: captions (paper:p.15)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/69`
-- Source: `paper:chars/4825-5002`
-- Source: `paper:p.2`
-- Source: [`review-output:visual/page-2.png`](visual/page-2.png)
-
-### Captions: Caption reads 'Figure 5. Sheet music example corresponding to the MIDI of the same folk tune presented in Fig. 4.' Score shows key signature of two sharps (D major), 3/4 time, tempo marking quarter = 120.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered caption matches the text. The two-sharp key and 3/4 meter are consistent with the ABC header 'M:3/4' and 'K:D'.
-
-- Source: `review-record:visual/81`
+- Source: `review-record:visual/84`
 - Source: `paper:chars/65157-65255`
 - Source: `paper:p.15`
 - Source: [`review-output:visual/page-15.png`](visual/page-15.png)
@@ -957,48 +946,38 @@ The rendered caption matches the text. The two-sharp key and 3/4 meter are consi
 ### Reviewer coverage limitation: sample counts (paper:p.15)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/82`
-- Source: `paper:chars/69986-70197`
-- Source: `paper:p.15`
-- Source: [`review-output:visual/page-15.png`](visual/page-15.png)
-
-### Reviewer coverage limitation: units (paper:p.15)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
-
-- Source: `review-record:visual/83`
-- Source: `paper:p.15`
-- Source: [`review-output:visual/page-15.png`](visual/page-15.png)
-
-### Captions: Sheet music with key signature of two sharps (D major), 3/4 time signature, chord symbols D, A, C, G/B, Bm, F#m, G; caption reads 'Figure 4. Sheet music example corresponding to the ABC notation of a folk tune in D major.'
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-Two-sharp key signature and 3/4 meter match the caption and the ABC header K:D and M:3/4.
-
-- Source: `review-record:visual/111`
-- Source: `paper:chars/62105-62195`
-- Source: `paper:p.14`
-- Source: [`review-output:visual/page-14.png`](visual/page-14.png)
-
-### Reviewer coverage limitation: axes (paper:p.14)
-
-Scope: paper-only; analysis: visual; evidence status: unassessed.
 Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/112`
-- Source: `paper:chars/62883-62949`
+- Source: `review-record:visual/85`
+- Source: `paper:chars/69986-70138`
+- Source: `paper:p.15`
+- Source: [`review-output:visual/page-15.png`](visual/page-15.png)
+
+### Reviewer coverage limitation: rendered formulas (paper:p.15)
+
+Scope: paper-only; analysis: visual; evidence status: unassessed.
+Grounding failure: context, citation or readability. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+
+- Source: `review-record:visual/86`
+- Source: `paper:p.15`
+- Source: [`review-output:visual/page-15.png`](visual/page-15.png)
+
+### Captions: The sheet music has a two-sharp key signature (D major) and a 3/4 time signature. It contains measures numbered 6, 10 and 14, with chord labels D, A, C, G/B, Bm, F#m and G. The caption reads 'Sheet music example corresponding to the ABC notation of a folk tune in D major.'
+
+Scope: paper-only; analysis: visual; evidence status: inference.
+The rendered key signature and the chord symbols match the caption and the ABC header (K:D, M:3/4).
+
+- Source: `review-record:visual/108`
+- Source: `paper:chars/62105-62195`
 - Source: `paper:p.14`
 - Source: [`review-output:visual/page-14.png`](visual/page-14.png)
 
 ### Reviewer coverage limitation: units (paper:p.14)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/113`
+- Source: `review-record:visual/109`
 - Source: `paper:chars/63489-63552`
 - Source: `paper:p.14`
 - Source: [`review-output:visual/page-14.png`](visual/page-14.png)
@@ -1006,60 +985,50 @@ Missing or invalid confirmation. This is not evidence of a readability or scient
 ### Reviewer coverage limitation: sample counts (paper:p.19)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/117`
+- Source: `review-record:visual/114`
 - Source: `paper:chars/21049-21133`
 - Source: `paper:p.19`
 - Source: [`review-output:visual/page-19.png`](visual/page-19.png)
 
-### Reviewer coverage limitation: sample counts (paper:p.19)
+### Sample counts: The Address Variants column shows: HLT has 0. CLR, INC, DEC, SHL, SHR, ROL, ROR, and NOT each have 0, 1. PUSH, POP, and LOADI each have 1. SWAP has 1, 2. ADD, SUB, MUL, DIV, AND, OR, and XOR each have 1, 2, 3. MOV has 2.
 
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Scope: paper-only; analysis: visual; evidence status: inference.
+Summing the listed variants gives 1 + 8×2 + 3×1 + 2 + 7×3 + 1 = 44. The text states 43 variants. The text does not define a counting convention that would exclude one variant.
 
-- Source: `review-record:visual/118`
-- Source: `paper:chars/21049-21133`
+- Source: `review-record:visual/115`
+- Source: `paper:chars/21092-21133`
 - Source: `paper:p.19`
 - Source: [`review-output:visual/page-19.png`](visual/page-19.png)
 
-### Reviewer coverage limitation: captions (paper:p.19)
+### Captions: The caption reads 'Table 7. Defined instruction set and the address variants of different instructions.' The page number is 19.
 
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Missing or invalid confirmation. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Scope: paper-only; analysis: visual; evidence status: inference.
+The caption, table content, and page location all match the in-text reference.
 
-- Source: `review-record:visual/119`
+- Source: `review-record:visual/116`
 - Source: `paper:chars/73809-73956`
 - Source: `paper:p.19`
 - Source: [`review-output:visual/page-19.png`](visual/page-19.png)
 
-### Reviewer coverage limitation: sample counts (paper:p.18)
+### Sample counts: The page shows 'State at step 1' through 'State at step 10'. The IR values are, in order: MUL J A, DIV I, MUL E D, ADD C, LOADI 86, MOV A H, AND D E, POP H, CLR, HLT. Each state lists PC, ACC, IR and ten registers, A through J.
 
-Scope: paper-only; analysis: visual; evidence status: unassessed.
-Conflicting assessments. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
+Scope: paper-only; analysis: visual; evidence status: inference.
+Ten steps are shown, one for each of the ten listed program instructions, and PC runs from 1 to 10. Each state has ten general-purpose registers (A–J), which matches 'An additional 10 bytes are allocated, emulating a range of registers (labelled A-J)'. The rendered values match the extracted text.
 
 - Source: `review-record:visual/121`
 - Source: `paper:chars/75731-75868`
 - Source: `paper:p.18`
 - Source: [`review-output:visual/page-18.png`](visual/page-18.png)
 
-### Rendered formulas: The rendered register and ACC values match the extracted text exactly. Examples: J becomes 38 at step 2, ACC is 1 at step 3, E is 255 at step 4, and ACC is 0 at step 10.
-
-Scope: paper-only; analysis: visual; evidence status: inference.
-The rendered values are consistent with the supplied text. Each state reflects the effect of the previous IR, which is consistent with the shown progression.
-
-- Source: `review-record:visual/122`
-- Source: `paper:chars/77525-77564`
-- Source: `paper:p.18`
-- Source: [`review-output:visual/page-18.png`](visual/page-18.png)
-
-### Reviewer coverage limitation: units (paper:p.18)
+### Reviewer coverage limitation: rendered formulas (paper:p.18)
 
 Scope: paper-only; analysis: visual; evidence status: unassessed.
 Substantive uncertainty. This is not evidence of a readability or scientific defect in the submission. Inspect the original source with adequate resolution and context before drawing conclusions; the raw model output remains in the audit.
 
-- Source: `review-record:visual/123`
-- Source: `paper:chars/72539-72582`
+- Source: `review-record:visual/122`
+- Source: `paper:chars/72539-72627`
 - Source: `paper:p.18`
 - Source: [`review-output:visual/page-18.png`](visual/page-18.png)
 
@@ -1091,7 +1060,7 @@ No declared result edge resolves.
 
 - Source: `review-record:comparison/3`
 
-### claim-17: comparison unresolved
+### claim-18: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
@@ -1105,7 +1074,7 @@ No declared result edge resolves.
 
 - Source: `review-record:comparison/5`
 
-### claim-18: comparison unresolved
+### claim-15: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
@@ -1126,187 +1095,201 @@ No declared result edge resolves.
 
 - Source: `review-record:comparison/8`
 
-### claim-15: comparison unresolved
+### claim-7: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/9`
 
-### claim-7: comparison unresolved
+### claim-8: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/10`
 
-### claim-8: comparison unresolved
+### claim-10: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/11`
 
-### claim-10: comparison unresolved
+### claim-14: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/12`
 
-### claim-12: comparison unresolved
+### claim-11: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/13`
 
-### claim-14: comparison unresolved
+### claim-9: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/14`
 
-### claim-9: comparison unresolved
+### claim-12: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/15`
 
-### claim-11: comparison unresolved
+### claim-16: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/16`
 
-### claim-16: comparison unresolved
+### claim-20: comparison unresolved
 
 Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
 No declared result edge resolves.
 
 - Source: `review-record:comparison/17`
 
-### claim-20: comparison unresolved
-
-Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
-No declared result edge resolves.
-
-- Source: `review-record:comparison/18`
-- Source: `paper:chars/20328-20366`
-
-### claim-21: comparison unresolved
-
-Scope: artifact-informed; analysis: comparison; evidence status: unassessed.
-No declared result edge resolves.
-
-- Source: `review-record:comparison/19`
-
 ## Direct visual evidence (advisory)
 
-- **agreement**, rendered page 3, rendered formulas: Eq. (2) renders P_N = [b_{(N−1)S+1}, …, b_T, e, …, e] with an underbrace labelled S−(T mod S).
-  Paper quote: where e represents the <eop> (end-of-patch) token used to
-pad the last patch PN to the size S.. The padding count S−(T mod S) correctly fills the last patch to S bytes when T mod S ≠ 0, which is consistent with the stated condition and definition.
-- **agreement**, rendered page 3, rendered formulas: Eq. (3) renders E_i = Flatten(P_i) · W_linear, 1 ≤ i ≤ N. Nearby text states that W_linear has shape (S × 257, H).
-  Paper quote: where Wlinear is the weight matrix of the linear projection
-layer with a shape of (S × 257, H).. A flattened S×257 one-hot patch multiplied by an (S×257, H) matrix yields an H-dimensional vector. This is consistent with the stated 257D encoding (256 byte values plus <eop>).
-- **agreement**, rendered page 3, rendered formulas: The page renders N = ⌈T/S⌉ and P_i = [b_{(i−1)S+1}, …, b_{iS}] for 1 ≤ i ≤ N.
-  Paper quote: where N = ⌈ T
-S ⌉ is the number of patches. The ceiling function gives the correct number of patches, and the index ranges partition the sequence into S-byte patches.
-- **agreement**, rendered page 3, captions: Figure 2 is a diagram labelled, from bottom to top: Byte Patches, Linear Projection Layer, Patch Embeds & Position Embeds (0, 1, 2, N), Patch-Level Transformer Decoder, Patch Features & Input Bytes, Byte-Level Transformer Decoder, and Output Bytes. Byte patches contain four bytes each, and <eop> padding is visible.
+- **agreement**, rendered page 3, rendered formulas: Eq. (1) renders as 𝒫 = [P1, P2, ..., PN], followed by N = ⌈T/S⌉ and P_i = [b_{(i−1)S+1}, ..., b_{iS}] for 1 ≤ i ≤ N, with the condition T mod S ≠ 0.
+  Paper quote: P = [P1, P2, . . . , PN ], (1). The rendered patch definition matches the extracted text, apart from extraction noise in subscripts and the ceiling notation.
+- **agreement**, rendered page 3, rendered formulas: P_N = [b_{(N−1)S+1}, ..., b_T, e, ..., e], with an underbrace labelled S−(T mod S).
+  Paper quote: PN = [b(N −1)S+1, . . . , bT , e, . . . , e| {z }
+
+S−(T mod S). The number of padding tokens, S−(T mod S), fills the last patch to size S. This is consistent with the text.
+- **agreement**, rendered page 3, rendered formulas: E_i = Flatten(P_i) · W_linear, 1 ≤ i ≤ N. W_linear has shape (S × 257, H).
+  Paper quote: Wlinear is the weight matrix of the linear projection
+layer with a shape of (S × 257, H). A flattened S×257 one-hot patch multiplied by an (S×257, H) matrix produces a hidden-size-H vector. The dimensions are consistent.
+- **agreement**, rendered page 3, units: Each byte is one-hot encoded into a 257D vector covering all 256 byte values plus an <eop> token.
+  Paper quote: each byte is one-hot encoded into a 257D vector, including
+all 256 byte values and an <eop> token. 256 + 1 = 257, which is internally consistent.
+- **agreement**, rendered page 3, rendered formulas: Ê_i = Decoder_patch(ℰ_{<i} ⊕ 𝒳_{<i}).
+  Paper quote: ˆEi = Decoderpatch(E<i ⊕ X<i), (4). The rendered equation matches the text definitions of ℰ_{<i} and 𝒳_{<i}.
+- **agreement**, rendered page 3, captions: The diagram shows Byte Patches, a Linear Projection Layer, Patch Embeds & Position Embeds (0, 1, 2, N), a Patch-Level Transformer Decoder, and a Byte-Level Transformer Decoder producing Output Bytes. Byte patches include <eop> padding.
   Paper quote: Figure 2. bGPT segments byte sequences into patches, predicts
 next patch features with a patch-level decoder, and reconstructs
-bytes within patches using these features with a byte-level decoder.. The diagram matches the caption and the three components described in the text. The illustrative 4-byte patch is a schematic and does not conflict with the patch size of 16 used in the experiments.
-- **agreement**, rendered page 3, units: The text states that each byte is one-hot encoded into a 257D vector covering all 256 byte values and an <eop> token.
-  Paper quote: each byte is one-hot encoded into a 257D vector, including
-all 256 byte values and an <eop> token.. 256 + 1 = 257, which is internally consistent.
-- **agreement**, rendered page 5, sample counts: The CPU States row shows Total Files (Million) = 2.1, Total Bytes (GB) = 6.09, Mean File Size (Byte) = 3103 and GPU hours per Epoch = 36.
+bytes within patches using these features with a byte-level decoder.. The caption matches the depicted components.
+- **agreement**, rendered page 5, sample counts: Table 1 row 'CPU States (proposed)' shows Total Files (Million) = 2.1; body text says 'CPU States dataset (with 2.1 million instances)'.
   Paper quote: For CPU state modelling, we introduce the CPU States
-dataset (with 2.1 million instances). The 2.1 million file count in the table matches the 2.1 million instances stated in the text.
-- **agreement**, rendered page 5, units: The column headers are 'Total Files (Million)', 'Total Bytes (GB)', 'Mean File Size (Byte)' and 'GPU hours per Epoch'. The caption cites NVIDIA V100 GPU hours.
+dataset (with 2.1 million instances). The rendered table count matches the in-text instance count and the Appendix B training-set size.
+- **agreement**, rendered page 5, units: Column headers read 'Total Files (Million)', 'Total Bytes (GB)', 'Mean File Size (Byte)', 'GPU hours per Epoch'; the caption names millions, gigabytes, bytes, and V100 GPU hours.
   Paper quote: Details include
-file counts in millions, dataset sizes in gigabytes, average file sizes in bytes, and the GPU hours required per epoch for training.. The units in the column headers match the units described in the caption.
-- **agreement**, rendered page 5, units: Approximate products of Total Files × Mean File Size agree with Total Bytes. Examples: Wikipedia 6.28M × 2237 ≈ 14.0e9; LibriSpeech 3.68M × 8044 ≈ 29.6e9 (27.57 GiB); CPU States 2.1M × 3103 ≈ 6.5e9 (6.09 GiB).
-  Paper quote: CPU States (proposed) 2.1 6.09 3103 36. The values are internally consistent if GB is read as binary gigabytes (GiB), allowing for rounding.
-- **agreement**, rendered page 5, budgets: Table 2 lists Patch Size 16/16, Patch Length 512/512, Patch-Level Layers 12/12, Byte-Level Layers 3/3, Hidden Size 768/768, Epochs 32/32, Learning Rate 1e-04/1e-05 and Batch Size 16/1.
+file counts in millions, dataset sizes in gigabytes, average file sizes in bytes, and the GPU hours required per epoch for training.. The header units match the caption.
+- **agreement**, rendered page 5, sample counts: Wikipedia shows 6.28M files, 13.67 GB, and a mean of 2237 bytes. CPU States shows 2.1M files, 6.09 GB, and a mean of 3103 bytes.
+  Paper quote: Wikipedia (Wikimedia, 2022) 6.28 13.67 2237 107. Multiplying file count by mean size gives about 14.0e9 bytes for Wikipedia, or about 13.1 GiB. For CPU States it gives about 6.5e9 bytes, or about 6.07 GiB. Both are roughly consistent with the table totals, assuming GB is close to GiB. The rendered values match the extracted text.
+- **agreement**, rendered page 5, budgets: Table 2 shows Patch Size 16, Patch Length 512, Patch-Level Layers 12, Byte-Level Layers 3, Hidden Size 768, Epochs 32, Learning Rate 1e-04/1e-05, and Batch Size 16/1.
   Paper quote: supporting file sizes up to
-8KB using a patch size of 16 and a sequence length of 512.. 16 × 512 = 8192 bytes, which equals 8KB. The patch size and length match the text.
-- **agreement**, rendered page 5, budgets: The largest mean file sizes are 8044 bytes for LibriSpeech and Speech Commands v2.
-  Paper quote: supporting file sizes up to
-8KB. 8044 bytes is within the 8192-byte context. The audio specification of 8000 Hz, 8-bit, 1 s gives 8000 bytes plus a WAV header, which is consistent with 8044.
-- **agreement**, rendered page 5, units: The CPU States mean file size is 3103 bytes.
-  Paper quote: Each dataset instance contains a 1KB
-memory block with varying numbers of machine instruc-
-tions, followed by a sequence of 16-byte CPU register states.. 1024 bytes plus about 128 states × 16 bytes is roughly 3.1KB, which is consistent with the paper's average of 128 instructions.
-- **agreement**, rendered page 5, captions: The caption reads 'Hyperparameter settings for pre-training and fine-tuning.' The columns are Pre-training and Fine-tuning.
-  Paper quote: Table 2. Hyperparameter settings for pre-training and fine-tuning.. The caption matches the table content.
-- **agreement**, rendered page 6, captions: Caption names GPT2-small on AG News, ViT-B/16 on CIFAR-10, AST on Speech Commands v2; bGPT_signal = ImageNet+LibriSpeech, bGPT_mix = ImageNet, LibriSpeech, Wikipedia.
-  Paper quote: bGPTsignal
-combined the ImageNet and LibriSpeech datasets, while
-bGPTmix integrated all three datasets.. Caption composition of mixed models and baselines matches Sections 5.2 and 5.2.1.
-- **agreement**, rendered page 6, sample counts: Column headers: AG News (4 classes), CIFAR-10 (10 classes), Speech Commands v2 (36 classes).
-  Paper quote: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes). Rendered class counts match the extracted table text.
-- **agreement**, rendered page 6, units: Metrics labeled BPB and Acc (%); values such as 1.0639/92.49, 3.1234/88.69, 1.4818/96.03, baselines 0.9237/94.50, 98.13, 98.11.
-  Paper quote: bGPTwiki
-achieved a score of 1.0639 BPB and an accuracy of 92.49%
-on AG News, which, while not quite at the level of GPT2-
-small, scored 0.9237 BPB and 94.50% accuracy. Values and units in the rendered table agree with the body text, including 88.69% vs 98.13% and 96.03% vs 98.11%.
-- **agreement**, rendered page 6, captions: bGPT_mix row shows 1.0935 BPB and 91.75 Acc on AG News, lower than bGPT_wiki's bold 92.49.
-  Paper quote: bGPTmix on
-the AG News dataset, with a BPB of 1.0935 and accuracy of
-91.75%, outperforms other variants but falls short of the per-
+8KB using a patch size of 16 and a sequence length of 512.. 16 × 512 = 8192 bytes, which equals 8KB. This matches the stated maximum file size, and the values match the extracted Table 2.
+- **agreement**, rendered page 5, units: The text allocates 1 byte for PC, 1 for ACC, 4 for IR, and 10 for general-purpose registers, giving 16-byte register states.
+  Paper quote: followed by a sequence of 16-byte CPU register states.. 1 + 1 + 4 + 10 = 16 bytes.
+- **agreement**, rendered page 5, captions: The Table 1 caption describes datasets and V100 GPU hours, and the GPU-hours column is present with values ranging from 1.1 to 107.
+  Paper quote: Table 1. Overview of datasets for bGPT evaluation, with computational costs benchmarked in NVIDIA V100 GPU hours.. The caption matches the table content.
+- **agreement**, rendered page 5, rendered formulas: Model names render with subscripts: bGPT_image, bGPT_wiki, bGPT_libri, bGPT_signal, bGPT_mix, bGPT_random.
+  Paper quote: bGPT on diverse datasets like ImageNet ( bGPTimage),
+Wikipedia (bGPTwiki), and LibriSpeech (bGPTlibri).. The page renders these names correctly as subscripts. The extracted text flattens them, which is extraction noise.
+- **agreement**, rendered page 8, rendered formulas: Page renders BPB with subscripts (BPB_abc, BPB_midi) and model names with superscript scale exponents (bGPT^5, bGPT^3); extracted text shows these flattened as 'BPBabc', 'bGPT5'.
+  Paper quote: The bGPT5 model achieves an impressively low BPBmidi
 
-formance demonstrated by bGPTwiki. Rendered numbers support the textual comparison.
-- **agreement**, rendered page 6, units: Text reads 'transformed into 32×32 BMP spectrograms... converting 8KB audio files to 3KB images'.
-  Paper quote: This process, converting 8KB audio files to
-3KB images, inevitably leads to information loss.. Consistent with Table 1 mean file sizes (8044 bytes audio, 3126 bytes images) and Section 4.1 32×32 resolution.
-- **agreement**, rendered page 17, sample counts: Page 17 states that the dataset comprises 2.1 million entries for the training set and 21,000 entries for the evaluation set.
-  Paper quote: The dataset thus produced comprises 2.1 million entries for the training set and 21,000 entries for the evaluation set.. The 2.1 million training count matches the Section 4.2 description, 'CPU States dataset (with 2.1 million instances)', and Table 1, 'CPU States (proposed) 2.1'.
-- **agreement**, rendered page 17, units: The page describes 1KB memory blocks paired with 16-byte register-state sequences. It lists PC as 1 byte, ACC as 1 byte, IR as 4 bytes, and general-purpose registers as 10 bytes.
-  Paper quote: The dataset comprises entries of 1KB memory blocks, each paired with a subsequent 16-byte sequence representing the
-CPU register states.. The listed register sizes sum to 16 bytes (1+1+4+10). This matches the stated 16-byte state and the Section 4.2 description.
-- **agreement**, rendered page 17, sample counts: The page says that instruction sequences vary 'in length from 1 to 256' and that there are 'over 516 million potential scenarios'.
-  Paper quote: Instances are generated by execut-
-ing random sequences of 1 to 256 instructions. The 1–256 range matches Section 4.2. The figure of over 516 million scenarios also appears in Section 5.3.2.
-- **agreement**, rendered page 17, units: Each instruction is shown in a four-byte format, OP ADDR1 ADDR2 ADDR3, with 1 byte per field.
-  Paper quote: 4 bytes are allocated for the Instruc-
-tion Register (IR). Four fields of 1 byte each total 4 bytes, which matches the 4-byte instruction register.
-- **agreement**, rendered page 17, sample counts: The example program list shows 10 instructions ending with 'HLT', and the text refers to '10 instructions'.
-  Paper quote: a randomly generated program for executing
-10 instructions along with their corresponding states. The visible program list contains 10 entries, and the last entry is HLT.
-- **agreement**, rendered page 4, rendered formulas: Eq. (5) renders as \hat b_{i,j} = Decoder_byte(\hat E_i, b_{i,<j}), 1 ≤ j ≤ S, with hats and subscripts intact.
-  Paper quote: ˆbi,j = Decoderbyte( ˆEi, bi,<j), 1 ≤ j ≤ S, (5). Rendered formula matches the extracted text and the surrounding definition of a per-patch byte decoder.
-- **agreement**, rendered page 4, rendered formulas: Eq. (6) renders as L_GEN(θ) = −Σ_{i=1}^{T−1} log p(b_{i+1}|b_1,...,b_i;θ).
+of 0.0011 in ABC to MIDI conversion. Flattened sub/superscripts are extraction noise; the rendered notation matches the intended data-scale labels (10^3–10^6) and the Table 5 value 0.0011.
+- **agreement**, rendered page 8, sample counts: Text states bGPT^5 and bGPT^6 reach 99.97% and 99.99% accuracy, average of 128 random instructions, over 516 million combinations.
+  Paper quote: (99.97% and 99.99%), suggesting an efficiency beyond sim-
+ple memorization, given that each test case contained an
+average of 128 random instructions, and the vast potential
+combinations of instruction scenarios (over 516 million).. Consistent with Table 6 (99.9702, 99.9961), the 1–256 instruction range (mean ≈128), and Appendix B's 516 million figure.
+- **agreement**, rendered page 8, units: Rendered text says notable BPB drop from bGPT^4 to bGPT^5 with diminishing returns beyond bGPT^5.
+  Paper quote: with a notable BPB drop from bGPT4 to
+
+bGPT5, but diminishing returns beyond bGPT5.. Table 6 lists BPB 0.6924 → 0.0969 → 0.0969, consistent with the description.
+- **agreement**, rendered page 4, rendered formulas: Rendered: \hat{b}_{i,j} = Decoder_byte(\hat{E}_i, b_{i,<j}), 1 ≤ j ≤ S, labeled (5).
+  Paper quote: ˆbi,j = Decoderbyte( ˆEi, bi,<j), 1 ≤ j ≤ S, (5). The rendered equation matches the extracted text, apart from subscript formatting.
+- **agreement**, rendered page 4, rendered formulas: Rendered: L_GEN(θ) = −Σ_{i=1}^{T−1} log p(b_{i+1}|b_1,...,b_i; θ), labeled (6).
   Paper quote: LGEN(θ) =−
 T −1X
 
 i=1
 
-log p(bi+1|b1, b2, ..., bi; θ), (6). Summation limits 1 to T−1 are consistent with predicting b_{i+1} for a length-T sequence; extraction garbling of Σ is noise.
-- **agreement**, rendered page 4, rendered formulas: Eq. (7) renders as L_CLF(θ) = −Σ_{k=1}^{K} y_k log p(y_k|B;θ).
+log p(bi+1|b1, b2, ..., bi; θ), (6). The summation limits run from i=1 to T−1, which is consistent with next-byte prediction over a sequence of length T. This matches the text.
+- **agreement**, rendered page 4, rendered formulas: Rendered: L_CLF(θ) = −Σ_{k=1}^{K} y_k log p(y_k|B; θ), labeled (7).
   Paper quote: LCLF(θ) =−
 KX
 
 k=1
 
-yk log p(yk|B; θ), (7). Rendered cross-entropy form matches the text; K is defined as total number of categories.
-- **agreement**, rendered page 4, units: Text states WAV, 8000 Hz sampling rate, mono, 8-bit depth, one-second lengths; BMP 32×32, RGB, 24-bit depth.
+yk log p(yk|B; θ), (7). The rendered equation matches the extracted text. K is defined as the total number of categories.
+- **agreement**, rendered page 4, units: Text reads: WAV format, 8000 Hz sampling rate, mono channel, 8-bit depth, one-second lengths; BMP images at 32×32 resolution, RGB colour, 24-bit depth.
   Paper quote: Audio files were converted to WA V
 format, with specifications including an 8000 Hz sampling
 rate, mono channel, and 8-bit depth, each trimmed to one-
 second lengths. Image data were set to BMP format with a
-resolution of 32×32, RGB colour, and 24-bit depth.. Rendered units match extracted text and are consistent with Table 1 mean file sizes (~8044 B audio, 3126 B images).
-- **agreement**, rendered page 15, captions: Caption reads 'Figure 5. Sheet music example corresponding to the MIDI of the same folk tune presented in Fig. 4.' Score shows key signature of two sharps (D major), 3/4 time, tempo marking quarter = 120.
-  Paper quote: Figure 5. Sheet music example corresponding to the MIDI of the same folk tune presented in Fig. 4.. The rendered caption matches the text. The two-sharp key and 3/4 meter are consistent with the ABC header 'M:3/4' and 'K:D'.
-- **agreement**, rendered page 14, captions: Sheet music with key signature of two sharps (D major), 3/4 time signature, chord symbols D, A, C, G/B, Bm, F#m, G; caption reads 'Figure 4. Sheet music example corresponding to the ABC notation of a folk tune in D major.'
-  Paper quote: Figure 4. Sheet music example corresponding to the ABC notation of a folk tune in D major.. Two-sharp key signature and 3/4 meter match the caption and the ABC header K:D and M:3/4.
-- **agreement**, rendered page 18, rendered formulas: The rendered register and ACC values match the extracted text exactly. Examples: J becomes 38 at step 2, ACC is 1 at step 3, E is 255 at step 4, and ACC is 0 at step 10.
-  Paper quote: State at step 10:
-PC: 10
-ACC: 0
-IR: HLT. The rendered values are consistent with the supplied text. Each state reflects the effect of the previous IR, which is consistent with the shown progression.
+resolution of 32×32, RGB colour, and 24-bit depth.. The rendered units match the text. They are also consistent with Table 1 mean file sizes: 8000 bytes of audio plus a WAV header gives about 8044 bytes, and 32×32×3 bytes plus a BMP header gives 3126 bytes.
+- **agreement**, rendered page 7, sample counts: Table 4 lists bGPTrandom 0.4052/80.74, bGPTimage 0.3899/84.66, bGPTlibri 0.3900/85.26; 0.3899 and 85.26 are bold.
+  Paper quote: bGPTimage 0.3899 84.66
+bGPTlibri 0.3900 85.26. The rendered values match the text. They also support the claims of closely matched BPB and higher accuracy for bGPTlibri.
+- **agreement**, rendered page 7, axes: Panel (a) has an Epoch x-axis from 0 to 32 and a Loss y-axis from 0.2 to 1.2. Its legend lists bGPT3/4/5 Train and Eval. Loss curves start lower for larger scales.
+  Paper quote: We observe a lower starting loss and a more rapid con-
+vergence in Fig. 3a as the data scale grows. The axes and legend match the extracted figure text. The visual curve ordering is consistent with the claim about lower starting loss.
+- **agreement**, rendered page 7, axes: Panel (b) has an Epoch x-axis from 0 to 32 and a Loss y-axis from 0.4 to 1.6. Its legend lists bGPT4/5/6. The orange (bGPT5) curve drops sharply between about epochs 10 and 12.
+  Paper quote: A significant improvement in the performance of bGPT5
+occurred around epoch 11, as shown in Fig. 3b. The drop in the orange curve appears near epoch 11, consistent with the text.
+- **agreement**, rendered page 7, sample counts: Table 5 shows bGPT5 with BPBmidi 0.0011 for ABC→MIDI. The full rows are 1.4319/0.2381/0.2796/1.1227, 0.9789/0.0202/0.1751/0.1763, and 0.7362/0.0011/0.1341/0.0789.
+  Paper quote: The bGPT5 model achieves an impressively low BPBmidi
+
+of 0.0011 in ABC to MIDI conversion. The rendered values match the extracted table and the textual claim.
+- **agreement**, rendered page 7, sample counts: Table 6 shows bGPT4 0.6924/27.2404, bGPT5 0.0969/99.9702 and bGPT6 0.0969/99.9961.
+  Paper quote: Both
+bGPT5 and bGPT6 achieved near-perfect accuracies
+(99.97% and 99.99%). The rounded accuracies match the table. The identical BPB values for bGPT5 and bGPT6 are consistent with the text's claim of diminishing returns.
+- **agreement**, rendered page 7, rendered formulas: The text renders 10^3 (bGPT^3), 10^4, 10^5 and 10^6 with proper superscripts. The table model labels also use superscripts.
+  Paper quote: utilizing data scales ranging from 103
+(bGPT3), 104 (bGPT4), 105 (bGPT5), to 106 (bGPT6).. The extracted text loses the superscripts, but the rendered page shows the powers of ten correctly. This is extraction noise, not an authoring defect.
+- **agreement**, rendered page 7, captions: The caption reads 'Training and evaluation loss curves for different data scales in bGPT performance across epochs.' The panels show train and eval curves per scale.
+  Paper quote: Figure 3. Training and evaluation loss curves for different data
+scales in bGPT performance across epochs.. The caption is consistent with the panel content.
+- **agreement**, rendered page 2, captions: Diagram shows .wav, .bmp (cat images), .mid (piano roll), .abc, and .bin (CPU chip labeled 0) on the left, all feeding into a central 'bGPT' box. Outputs on the right are an audio waveform, a 'Cat' label, sheet music, and CPU chips labeled 1, 2, 3 … N.
+  Paper quote: Figure 1. The bGPT framework simulates digital systems through native binary data, and integrates diverse data types into a single model,
+treating everything as a byte sequence.. The rendered diagram shows several data types going into one model, including binary CPU states that progress from 0 to N. This matches the caption's description.
+- **agreement**, rendered page 6, sample counts: Column headers read 'AG News (4 classes)', 'CIFAR-10 (10 classes)', 'Speech Commands v2 (36 classes)'.
+  Paper quote: AG News (4 classes) CIFAR-10 (10 classes) Speech Commands v2 (36 classes). The rendered class counts match the extracted table header text.
+- **agreement**, rendered page 6, units: Rendered values include bGPT_wiki at 1.0639 BPB and 92.49%, the AG News baseline at 0.9237 and 94.50, bGPT_libri at 96.03, the AST baseline at 98.11, bGPT_image at 88.69, and the ViT baseline at 98.13. bGPT_mix is shown at 1.0935 and 91.75.
+  Paper quote: bGPTwiki
+achieved a score of 1.0639 BPB and an accuracy of 92.49%
+on AG News, which, while not quite at the level of GPT2-
+small, scored 0.9237 BPB and 94.50% accuracy. The BPB and Acc (%) values cited in the text match the rendered table cells and their units.
+- **agreement**, rendered page 6, units: The text reads '32×32 BMP spectrograms' and 'converting 8KB audio files to 3KB images'.
+  Paper quote: This process, converting 8KB audio files to
+3KB images, inevitably leads to information loss.. The sizes are consistent with Table 1, which lists mean file sizes of 8044 bytes for Speech Commands v2 and 3126 bytes for CIFAR-10 BMP files.
+- **agreement**, rendered page 17, units: Page states 1KB memory blocks, 16-byte register state; PC 1 byte, ACC 1 byte, IR 4 bytes, general-purpose 10 bytes (sums to 16).
+  Paper quote: Within each state, 1
+byte each is allocated for the Program Counter (PC) and
+Accumulator (ACC), 4 bytes are allocated for the Instruc-
+tion Register (IR), with an additional 10 bytes reserved for
+general-purpose registers.. Rendered byte allocations match Section 4.2 and sum to the stated 16-byte state.
+- **agreement**, rendered page 17, sample counts: Random instruction sequences 'varying in length from 1 to 256'; 'over 516 million potential scenarios'.
+  Paper quote: Instances are generated by execut-
+ing random sequences of 1 to 256 instructions. Range matches Section 4.2; 516 million matches Section 5.3.2 ('over 516 million').
+- **agreement**, rendered page 17, sample counts: Text says program executes 10 instructions; listed program contains 10 items ending in 'HLT'; step 0 shows PC: 0, ACC: 146, IR: HLT.
+  Paper quote: a randomly generated program for executing
+10 instructions along with their corresponding states in human-readable form is provided below. Ten listed instructions match the stated count and the HLT-termination rule.
+- **agreement**, rendered page 14, captions: The sheet music has a two-sharp key signature (D major) and a 3/4 time signature. It contains measures numbered 6, 10 and 14, with chord labels D, A, C, G/B, Bm, F#m and G. The caption reads 'Sheet music example corresponding to the ABC notation of a folk tune in D major.'
+  Paper quote: Figure 4. Sheet music example corresponding to the ABC notation of a folk tune in D major.. The rendered key signature and the chord symbols match the caption and the ABC header (K:D, M:3/4).
+- **mismatch**, rendered page 19, sample counts: The Address Variants column shows: HLT has 0. CLR, INC, DEC, SHL, SHR, ROL, ROR, and NOT each have 0, 1. PUSH, POP, and LOADI each have 1. SWAP has 1, 2. ADD, SUB, MUL, DIV, AND, OR, and XOR each have 1, 2, 3. MOV has 2.
+  Paper quote: totaling 21 unique
+types with 43 variants. Summing the listed variants gives 1 + 8×2 + 3×1 + 2 + 7×3 + 1 = 44. The text states 43 variants. The text does not define a counting convention that would exclude one variant.
+- **agreement**, rendered page 19, captions: The caption reads 'Table 7. Defined instruction set and the address variants of different instructions.' The page number is 19.
+  Paper quote: Table 7 (located on page 19) details the instruction set and the variants each instruction can have, depending on the values in
+the address fields.. The caption, table content, and page location all match the in-text reference.
+- **agreement**, rendered page 18, sample counts: The page shows 'State at step 1' through 'State at step 10'. The IR values are, in order: MUL J A, DIV I, MUL E D, ADD C, LOADI 86, MOV A H, AND D E, POP H, CLR, HLT. Each state lists PC, ACC, IR and ten registers, A through J.
+  Paper quote: a randomly generated program for executing
+10 instructions along with their corresponding states in human-readable form is provided below. Ten steps are shown, one for each of the ten listed program instructions, and PC runs from 1 to 10. Each state has ten general-purpose registers (A–J), which matches 'An additional 10 bytes are allocated, emulating a range of registers (labelled A-J)'. The rendered values match the extracted text.
 
 Visual interpretation requires human confirmation.
 
@@ -1314,12 +1297,12 @@ Visual interpretation requires human confirmation.
 
 | Outcome | Records |
 |---|---:|
-| Confirmed text-image agreement | 29 |
-| Confirmed text-image mismatch (advisory) | 0 |
-| Not applicable | 70 |
+| Confirmed text-image agreement | 37 |
+| Confirmed text-image mismatch (advisory) | 1 |
+| Not applicable | 73 |
 | Grounding failure: context, citation or readability | 1 |
-| Missing or invalid confirmation | 19 |
-| Conflicting assessments | 6 |
+| Missing or invalid confirmation | 3 |
+| Conflicting assessments | 10 |
 | Substantive uncertainty | 2 |
 | Unresolved reason not recorded | 0 |
 
@@ -1329,64 +1312,106 @@ Counts are observations, not distinct figures or validated scientific claims. No
 
 Conflicting assessments and substantive uncertainties are unconfirmed, not author-facing findings. Confirmed mismatches are advisory, not scientific proof.
 
-- **Conflicting assessments**: `paper:p.5`, units (visual audit observation index 13).
-  Observation: ImageNet and CIFAR-10 have a mean file size of 3126 bytes.
+- **Substantive uncertainty**: `paper:p.3`, rendered_formulas (visual audit observation index 6).
+  Observation: The byte patches are drawn with 4 bytes per patch, for example 'f5 6b 85 98'. Some patches are only partially readable at this resolution.
+  Paper quote: supporting file sizes up to
+8KB using a patch size of 16.
+  Reason: The illustration's 4-byte patch size differs from the configured patch size of 16. It is likely schematic, but the figure does not state that, so whether it is an intended simplification is uncertain.
+
+- **Conflicting assessments**: `paper:p.5`, units (visual audit observation index 12).
+  Observation: ImageNet and CIFAR-10 have a mean file size of 3126 bytes. LibriSpeech and Speech Commands v2 have 8044 bytes.
   Paper quote: Image data were set to BMP format with a
 resolution of 32×32, RGB colour, and 24-bit depth..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): 32 × 32 × 3 = 3072 bytes, plus a 54-byte BMP header, gives 3126 bytes.
-  First assessment: agreement. 32 × 32 × 3 = 3072 bytes, plus a 54-byte BMP header, gives 3126 bytes.
-  Second assessment: unresolved. The quote comes from Section 4.1, which is on a different page. This page has no relevant element to compare.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): A 32×32×3-byte image is 3072 bytes, plus a BMP header of 54 bytes, which gives 3126. A one-second WAV at 8000 Hz and 8-bit depth is 8000 bytes plus a header, which gives 8044. Both values are consistent with the stated formats.
+  First assessment: agreement. A 32×32×3-byte image is 3072 bytes, plus a BMP header of 54 bytes, which gives 3126. A one-second WAV at 8000 Hz and 8-bit depth is 8000 bytes plus a header, which gives 8044. Both values are consistent with the stated formats.
+  Second assessment: unresolved. There is no relevant element on this page, so the claim cannot be checked against this image.
 
-- **Conflicting assessments**: `paper:p.8`, axes (visual audit observation index 27).
-  Observation: Text references 'around epoch 11, as shown in Fig. 3b'; the figure itself is not on this page.
-  Paper quote: A significant improvement in the performance of bGPT5
-occurred around epoch 11, as shown in Fig. 3b.
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Fig. 3b caption/axes in text show Epoch axis 0–32 including bGPT5 curves, consistent with the reference; the curve shape itself cannot be verified from this page.
-  First assessment: agreement. Fig. 3b caption/axes in text show Epoch axis 0–32 including bGPT5 curves, consistent with the reference; the curve shape itself cannot be verified from this page.
-  Second assessment: unresolved. Checking the axes requires the figure, which appears on another page. The page shows only the text claim, so the claim cannot be verified against the plot here.
+- **Conflicting assessments**: `paper:p.1`, units (visual audit observation index 25).
+  Observation: Abstract states "achieving a low error rate of 0.0011 bits per byte in converting ABC notation to MIDI format."
+  Paper quote: The bGPT5 model achieves an impressively low BPBmidi
 
-- **Conflicting assessments**: `paper:p.16`, captions (visual audit observation index 31).
-  Observation: The rendered Piano Roll bullet says notes are displayed on a grid "(as shown in Fig. 1)". The page has no figure.
+of 0.0011 in ABC to MIDI conversion.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The abstract's 0.0011 bits per byte matches the BPBmidi value for bGPT5 in ABC→MIDI reported in Section 5.3.1 and Table 5. The unit, bits per byte, is the BPB metric.
+  First assessment: agreement. The abstract's 0.0011 bits per byte matches the BPBmidi value for bGPT5 in ABC→MIDI reported in Section 5.3.1 and Table 5. The unit, bits per byte, is the BPB metric.
+  Second assessment: unresolved. The quoted passage and the Table 5 data are not on this page. The abstract's "0.0011 bits per byte" is consistent with BPB units. However, the page does not show the specific bGPT5/BPBmidi claim, so this comparison cannot be checked here.
+
+- **Conflicting assessments**: `paper:p.1`, units (visual audit observation index 26).
+  Observation: Abstract states that bGPT simulates CPU behaviour "with an accuracy exceeding 99.99% in executing various operations."
+  Paper quote: Both
+bGPT5 and bGPT6 achieved near-perfect accuracies
+(99.97% and 99.99%).
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Table 6 lists bGPT6 at 99.9961%, which exceeds 99.99%. This is consistent with the abstract.
+  First assessment: agreement. Table 6 lists bGPT6 at 99.9961%, which exceeds 99.99%. This is consistent with the abstract.
+  Second assessment: unresolved. The quoted text and Table 6 appear on later pages that are not shown. Page 1 contains only a general 99.99% accuracy claim, not the per-model figures and units being checked.
+
+- **Conflicting assessments**: `paper:p.1`, captions (visual audit observation index 27).
+  Observation: Abstract states that bGPT matches specialized models across text, audio, and images.
+  Paper quote: bGPTimage lagging ViT, with an accuracy of
+88.69% against 98.13%.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The page-1 wording matches the supplied abstract text, so the rendering agrees with the extraction. The CIFAR-10 gap reported later in the paper (88.69% vs 98.13%) qualifies this 'matches' claim. That is a substantive tension in the paper's content, not a rendering discrepancy.
+  First assessment: agreement. The page-1 wording matches the supplied abstract text, so the rendering agrees with the extraction. The CIFAR-10 gap reported later in the paper (88.69% vs 98.13%) qualifies this 'matches' claim. That is a substantive tension in the paper's content, not a rendering discrepancy.
+  Second assessment: unresolved. The relevant Table 3 caption and its results text are on pages 6 and 7, which are not shown. This page has no captioned element that could be compared with the quote.
+
+- **Conflicting assessments**: `paper:p.6`, captions (visual audit observation index 54).
+  Observation: The caption names GPT2-small/AG News, ViT-B/16/CIFAR-10, and AST/Speech Commands v2. It describes bGPT_signal as ImageNet+LibriSpeech and bGPT_mix as ImageNet+LibriSpeech+Wikipedia.
+  Paper quote: bGPTsignal
+combined the ImageNet and LibriSpeech datasets, while
+bGPTmix integrated all three datasets..
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The caption's descriptions of the pre-training mixtures match Section 5.2.
+  First assessment: agreement. The caption's descriptions of the pre-training mixtures match Section 5.2.
+  Second assessment: unresolved. The quoted sentence itself is not on this page, so it cannot be directly checked here. The caption shown is consistent with it, but that is related content, not the quoted text.
+
+- **Conflicting assessments**: `paper:p.16`, captions (visual audit observation index 66).
+  Observation: The Piano Roll bullet says a graphical interface is 'as shown in Fig. 1'.
   Paper quote: Piano Roll: A graphical interface in digital audio workstations (as shown in Fig. 1) where notes are displayed and
 edited on a grid representing pitch and time..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The paper's Figure 1 caption describes the bGPT framework simulating digital systems through binary data. It does not describe a piano-roll interface. The cross-reference therefore points to a figure whose caption does not match the claimed content.
-  First assessment: mismatch. The paper's Figure 1 caption describes the bGPT framework simulating digital systems through binary data. It does not describe a piano-roll interface. The cross-reference therefore points to a figure whose caption does not match the claimed content.
-  Second assessment: unresolved. The quoted text appears verbatim, but that only confirms the text. The caption check needs Fig. 1 and its caption, and neither is on this page. Whether Fig. 1 actually shows a piano roll cannot be judged from this image.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Figure 1's caption in the paper describes the bGPT framework: 'The bGPT framework simulates digital systems through native binary data...' It does not describe a piano-roll interface. The cross-reference therefore does not match that caption. Figure 1 may still contain a small piano-roll icon, but this page alone cannot confirm it.
+  First assessment: mismatch. Figure 1's caption in the paper describes the bGPT framework: 'The bGPT framework simulates digital systems through native binary data...' It does not describe a piano-roll interface. The cross-reference therefore does not match that caption. Figure 1 may still contain a small piano-roll icon, but this page alone cannot confirm it.
+  Second assessment: unresolved. The rendered text matches the quote. Whether Fig. 1 actually depicts a piano roll cannot be judged from this page alone. The paper's extracted Fig. 1 caption describes the bGPT framework, which suggests the cross-reference may be inaccurate, but the figure itself was not inspected here.
 
-- **Conflicting assessments**: `paper:p.16`, captions (visual audit observation index 32).
-  Observation: The page text says the tune is the same one shown in "Fig, 4", now converted from ABC to MIDI and back. It says the sheet music rendered from this ABC sequence is shown in Fig. 5.
-  Paper quote: This is the same tune we have demonstrated in Fig, 4, but it has now been converted from ABC notation to MIDI and
-subsequently back to ABC notation. The corresponding sheet music, rendered from this ABC sequence, is shown in Fig.
-5..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): These references match the paper's captions. Fig. 4 is the ABC folk tune in D major, and Fig. 5 is the MIDI version of the same folk tune. The "Fig," comma is only typographic.
-  First assessment: agreement. These references match the paper's captions. Fig. 4 is the ABC folk tune in D major, and Fig. 5 is the MIDI version of the same folk tune. The "Fig," comma is only typographic.
-  Second assessment: unresolved. The text matches, but the referenced figures and captions are on other pages. This page cannot confirm whether Fig. 4 and Fig. 5 show the same tune or whether Fig. 5 is rendered from this ABC sequence.
+- **Conflicting assessments**: `paper:p.16`, captions (visual audit observation index 67).
+  Observation: The text says the round-tripped tune was 'demonstrated in Fig, 4' and that its sheet music 'is shown in Fig. 5'.
+  Paper quote: Figure 5. Sheet music example corresponding to the MIDI of the same folk tune presented in Fig. 4..
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The page's references to Fig. 4 and Fig. 5 are consistent with the captions of those figures. The 'Fig,' comma is a typographic slip only.
+  First assessment: agreement. The page's references to Fig. 4 and Fig. 5 are consistent with the captions of those figures. The 'Fig,' comma is a typographic slip only.
+  Second assessment: unresolved. The Figure 5 caption is on a different page (page 15 per extraction), so this image cannot confirm or contradict it.
 
-- **Conflicting assessments**: `paper:p.15`, sample_counts (visual audit observation index 82).
-  Observation: The score has six systems with measure numbers 7, 13, 19, 25, and 30. It ends with a final barline around measure 32 and has no repeat signs.
+- **Conflicting assessments**: `paper:p.16`, rendered_formulas (visual audit observation index 68).
+  Observation: The ABC block is rendered with X:1, L:1/8, M:3/4, K:D and tune lines that end with '|]'. The repeated sections are written out explicitly.
   Paper quote: One can observe that the ABC sequence and the musical score appear significantly longer than the original due to
 the elimination of repeat signs in MIDI, requiring repeated sections to be explicitly written out..
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The repeated sections are written out in about 32 bars with no repeat signs, which matches the description. The reconverted ABC also has 32 bars.
-  First assessment: agreement. The repeated sections are written out in about 32 bars with no repeat signs, which matches the description. The reconverted ABC also has 32 bars.
-  Second assessment: unresolved. Figure 5 visibly lacks repeat signs and appears to write sections out, but the length comparison to the original Fig. 4 score and ABC sequence cannot be checked because the original is not visible on this page.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The rendered block contains no repeat signs, such as '::' or ':|', that appear in the original example. Its header matches the original's L:1/8, M:3/4 and K:D.
+  First assessment: agreement. The rendered block contains no repeat signs, such as '::' or ':|', that appear in the original example. Its header matches the original's L:1/8, M:3/4 and K:D.
+  Second assessment: unresolved. The text agrees with the quote, and the visible ABC block is consistent with written-out repeats. However, the comparison of length against the original ABC and the scores cannot be verified from this page alone.
 
-- **Substantive uncertainty**: `paper:p.15`, units (visual audit observation index 83).
-  Observation: The text reads 'Additional symbols are used for sharps ˆ, flats _, and naturals ='. The flat symbol is rendered as a small low underscore-like glyph.
-  Paper quote: Additional symbols are used for sharps ˆ, flats , and naturals = to alter pitch.
-  Reason: The extraction drops the flat glyph, but the rendering appears to show '_'. This is consistent with ABC syntax. The glyph is very small, so its exact identity remains uncertain.
+- **Conflicting assessments**: `paper:p.14`, units (visual audit observation index 109).
+  Observation: The ABC code block shows L:1/8 and M:3/4. The text describes 1/8 as the eighth-note unit length and 3/4 as the meter.
+  Paper quote: In this context, 1/8 indicates that each note is an
+eighth note.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The header values in the rendered code block match the explanatory text.
+  First assessment: agreement. The header values in the rendered code block match the explanatory text.
+  Second assessment: mismatch. L:1/8 sets the default unit length only. The visible ABC durations (3, 4, 2, /) and the varied note values in the rendered score contradict the claim that each note is an eighth note. The page itself also says the duration of notes is modified by numbers.
 
-- **Conflicting assessments**: `paper:p.18`, sample_counts (visual audit observation index 121).
-  Observation: Page shows states at step 1 through step 10, ending with IR: HLT and PC: 10.
-  Paper quote: a randomly generated program for executing
-10 instructions along with their corresponding states in human-readable form is provided below.
-  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): Ten executed instructions are shown as steps 1–10, with step 0 on page 17. The final instruction is HLT, matching the 10-item program list.
-  First assessment: agreement. Ten executed instructions are shown as steps 1–10, with step 0 on page 17. The final instruction is HLT, matching the 10-item program list.
-  Second assessment: unresolved. The quoted sentence and the program listing that would let the instructions be counted are not on this page. The ten visible step states (1–10) are consistent with 10 instructions, but the quoted text itself cannot be verified from this image.
+- **Conflicting assessments**: `paper:p.19`, sample_counts (visual audit observation index 114).
+  Observation: Table 7 lists 21 instruction rows: HLT, CLR, INC, DEC, SHL, SHR, ROL, ROR, NOT, PUSH, POP, LOADI, SWAP, ADD, SUB, MUL, DIV, AND, OR, XOR, and MOV.
+  Paper quote: These states include various instructions, totaling 21 unique
+types with 43 variants.
+  Reason: The image comparison was not consistently supported by the two assessments; human inspection is required. Proposed reasoning (not validated): The 21 rendered instruction types match the stated count of unique types.
+  First assessment: agreement. The 21 rendered instruction types match the stated count of unique types.
+  Second assessment: mismatch. The table matches the claim of 21 unique types. However, summing the listed address variants gives 44, not 43. The variant count therefore conflicts with the visible table.
 
-- **Substantive uncertainty**: `paper:p.18`, units (visual audit observation index 123).
-  Observation: The register values are all within 0–255, which fits 1-byte registers. However, IR is displayed as mnemonic text, not as 4 bytes.
-  Paper quote: Instruction Register (IR): Occupies 4 bytes.
-  Reason: The page uses a human-readable rendering, so the 4-byte encoding cannot be verified visually. That is not an inconsistency, but the unit claim cannot be confirmed from this page.
+- **Confirmed text-image mismatch (advisory)**: `paper:p.19`, sample_counts (visual audit observation index 115).
+  Observation: The Address Variants column shows: HLT has 0. CLR, INC, DEC, SHL, SHR, ROL, ROR, and NOT each have 0, 1. PUSH, POP, and LOADI each have 1. SWAP has 1, 2. ADD, SUB, MUL, DIV, AND, OR, and XOR each have 1, 2, 3. MOV has 2.
+  Paper quote: totaling 21 unique
+types with 43 variants.
+  Reason: Summing the listed variants gives 1 + 8×2 + 3×1 + 2 + 7×3 + 1 = 44. The text states 43 variants. The text does not define a counting convention that would exclude one variant.
+  First assessment: mismatch. Summing the listed variants gives 1 + 8×2 + 3×1 + 2 + 7×3 + 1 = 44. The text states 43 variants. The text does not define a counting convention that would exclude one variant.
+  Second assessment: mismatch. The type count of 21 agrees with the table. The stated 43 variants differs from the 44 variants enumerated in Table 7.
+
+- **Substantive uncertainty**: `paper:p.18`, rendered_formulas (visual audit observation index 122).
+  Observation: Each instruction's effect appears only in the following step's state. At step 1 (IR: MUL J A), J=2; at step 2, J=38 (19×2). At step 2 (IR: DIV I), ACC=146; at step 3, ACC=1. At step 5 (IR: LOADI 86), ACC=246; at step 6, ACC=86. At step 8 (IR: POP H), H=20; at step 9, H=86, although no PUSH appears in the program.
+  Paper quote: Instruction Register (IR): Occupies 4 bytes, storing the currently executed instruction..
+  Reason: The arithmetic is consistent if each state shows the IR before its effect is applied. That reading sits awkwardly with 'the CPU status post-execution of each instruction'. It is also unclear how POP H yields 86 with no prior PUSH; it may be an unstated stack initialization. The trace is readable, but its intended semantics are ambiguous.
 
 
 
@@ -1402,17 +1427,15 @@ Literal checks of explicitly linked shipped evidence, not scientific validation.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-5 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-17 / . No declared result edge resolves.
+- **unresolved**: claim-18 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-4 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-18 / . No declared result edge resolves.
+- **unresolved**: claim-15 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-13 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-6 / . No declared result edge resolves.
-  Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-15 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-7 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
@@ -1420,19 +1443,17 @@ Literal checks of explicitly linked shipped evidence, not scientific validation.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-10 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-12 / . No declared result edge resolves.
-  Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-14 / . No declared result edge resolves.
+  Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
+- **unresolved**: claim-11 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-9 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-11 / . No declared result edge resolves.
+- **unresolved**: claim-12 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-16 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 - **unresolved**: claim-20 / . No declared result edge resolves.
-  Paper: `paper:chars/20328-20366`; artifact: `unresolved`; locator: `{}`.
-- **unresolved**: claim-21 / . No declared result edge resolves.
   Paper: `unresolved`; artifact: `unresolved`; locator: `{}`.
 
 Only uniquely quoted, explicitly linked scalar numeric_close claims are compared.
