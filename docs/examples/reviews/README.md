@@ -18,6 +18,8 @@ links a one-page judge summary (claims, evidence, and verdicts) and gives a sect
 guide to the long review draft. The directories also hold the run's JSON outputs, the page
 images the review cites, and the converted artifact.
 
+Browse them in the artifact explorer: <https://microsoft.github.io/universal-artifact-sdk/> (prebuilt sites in [`../explorer/`](../explorer/); generated files, rebuild rather than edit).
+
 | Example | Paper |
 |---------|-------|
 | [`bgpt/`](bgpt/README.md) | Wu et al., *Beyond Language Models: Byte Models are Digital World Simulators*, [arXiv:2402.19155v1](https://arxiv.org/abs/2402.19155v1) |
