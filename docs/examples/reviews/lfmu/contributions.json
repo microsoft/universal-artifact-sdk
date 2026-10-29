@@ -9,12 +9,10 @@
       "statement": "Therefore, we propose a novel extension of SSD that does not require access to the loss or ground truth labels, which we refer to as Loss-Free Selective Synaptic Dampening (LFSSD).",
       "supporting_claims": [],
       "inferred_supporting_claims": [
-        "claim-1",
-        "claim-9",
-        "claim-10",
-        "claim-7",
-        "claim-4",
-        "claim-5"
+        "claim-2",
+        "claim-3",
+        "claim-11",
+        "claim-9"
       ],
       "paper_ref": {
         "char_start": 2764,
@@ -27,8 +25,8 @@
         "method": "contribution-digest/v1",
         "model": "redacted-model",
         "derived_from": [
-          "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea",
-          "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157"
+          "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157",
+          "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4"
         ],
         "locator": {
           "char_start": 2764,
@@ -41,10 +39,9 @@
             "method": "llm-extractor/v1",
             "model": "redacted-model",
             "claims": [
-              "claim-1",
-              "claim-9",
-              "claim-10",
-              "claim-7"
+              "claim-2",
+              "claim-3",
+              "claim-11"
             ]
           },
           {
@@ -52,10 +49,61 @@
             "method": "llm-extractor/v1",
             "model": "redacted-model",
             "claims": [
-              "claim-1",
-              "claim-9",
-              "claim-10",
-              "claim-7"
+              "claim-2",
+              "claim-3",
+              "claim-11",
+              "claim-9"
+            ]
+          }
+        ]
+      },
+      "display": {
+        "title": "Loss-Free Selective Synaptic Dampening (LFSSD) method",
+        "summary": "An extension of Selective Synaptic Dampening that replaces Fisher-information parameter importance with the gradient of the squared l2 norm of the model output, removing the need for loss or ground-truth labels.",
+        "source": "contribution-digest/v1"
+      }
+    },
+    {
+      "id": "contribution/d662bfa3f13447571be88b0dff318534f2a5a3c1a8ffff81a9165cd5bd7b3f3a",
+      "statement": "To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only the unlabelled forget samples at forgetting time.",
+      "supporting_claims": [],
+      "inferred_supporting_claims": [
+        "claim-2",
+        "claim-3",
+        "claim-11",
+        "claim-8",
+        "claim-4",
+        "claim-5",
+        "claim-10"
+      ],
+      "paper_ref": {
+        "char_start": 3430,
+        "char_end": 3578,
+        "quote": "To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only\nthe unlabelled forget samples at forgetting time."
+      },
+      "provenance": {
+        "kind": "reviewer-inference",
+        "source": "paper:document",
+        "method": "contribution-digest/v1",
+        "model": "redacted-model",
+        "derived_from": [
+          "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea"
+        ],
+        "locator": {
+          "char_start": 3430,
+          "char_end": 3578,
+          "quote": "To the best of our knowledge, LFSSD is the first retraining-free unlearning method to require only\nthe unlabelled forget samples at forgetting time."
+        },
+        "claim_link_sources": [
+          {
+            "kind": "extractor-inference",
+            "method": "llm-extractor/v1",
+            "model": "redacted-model",
+            "claims": [
+              "claim-2",
+              "claim-3",
+              "claim-11",
+              "claim-8"
             ]
           },
           {
@@ -64,80 +112,32 @@
             "model": "redacted-model",
             "claims": [
               "claim-4",
-              "claim-5"
+              "claim-5",
+              "claim-10"
             ]
           }
         ]
       },
       "display": {
-        "title": "Loss-Free Selective Synaptic Dampening (LFSSD) unlearning method",
-        "summary": "An extension of Selective Synaptic Dampening that needs no loss or ground-truth labels, yielding a machine unlearning approach that requires neither retraining nor labels.",
+        "title": "Retraining- and label-free unlearning needing only unlabelled forget samples",
+        "summary": "The first retraining-free unlearning method that requires only unlabelled forget-set inputs at forgetting time, without long-term storage of the retain set, labels, or forget-set loss.",
         "source": "contribution-digest/v1"
       }
     },
     {
-      "id": "contribution/556968ea77907a94ab5b4c69743ad1357edb51b561fe1307c13c923fb82f4111",
-      "statement": "substituting the diagonal of the Fisher information matrix for the gradient of the l2 norm of the model output to approximate sensitivity",
+      "id": "contribution/b7992a0631ed53df2308e040cfb5e7500624b3a4efb456c2709955389f9697ae",
+      "statement": "The results show that LFSSD produces scores similar to that of a model trained on only Dr, and is competitive with state-of-the-art methods such as SSD",
       "supporting_claims": [],
       "inferred_supporting_claims": [
-        "claim-1",
-        "claim-9",
-        "claim-10",
-        "claim-7"
-      ],
-      "paper_ref": {
-        "char_start": 844,
-        "char_end": 981,
-        "quote": "substituting the diagonal of the Fisher information matrix for the gradient of the\nl2 norm of the model output to approximate sensitivity"
-      },
-      "provenance": {
-        "kind": "reviewer-inference",
-        "source": "paper:document",
-        "method": "contribution-digest/v1",
-        "model": "redacted-model",
-        "derived_from": [
-          "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4"
-        ],
-        "locator": {
-          "char_start": 844,
-          "char_end": 981,
-          "quote": "substituting the diagonal of the Fisher information matrix for the gradient of the\nl2 norm of the model output to approximate sensitivity"
-        },
-        "claim_link_sources": [
-          {
-            "kind": "extractor-inference",
-            "method": "llm-extractor/v1",
-            "model": "redacted-model",
-            "claims": [
-              "claim-1",
-              "claim-9",
-              "claim-10",
-              "claim-7"
-            ]
-          }
-        ]
-      },
-      "display": {
-        "title": "Output-norm gradient sensitivity replacing Fisher information for importance",
-        "summary": "Parameter importance for dampening is estimated from the gradient of the squared l2 norm of the model output instead of the diagonal of the Fisher information matrix, so it needs no labels.",
-        "source": "contribution-digest/v1"
-      }
-    },
-    {
-      "id": "contribution/2975df0a0bbf83c322f6945ee75177197ef13cbb428fb27bdfbfd31f451f2ff8",
-      "statement": "The results show that LFSSD produces scores similar to that of a model trained on only Dr, and is competitive with state-of-the-art methods such as SSD, while being the first method to require no labelled data and no retraining.",
-      "supporting_claims": [],
-      "inferred_supporting_claims": [
-        "claim-1",
-        "claim-9",
-        "claim-10",
-        "claim-8",
-        "claim-11"
+        "claim-2",
+        "claim-11",
+        "claim-6",
+        "claim-8"
       ],
       "paper_ref": {
         "char_start": 6471,
-        "char_end": 6699,
-        "quote": "The results show that LFSSD produces scores similar to that of a model trained\non only Dr, and is competitive with state-of-the-art methods such as SSD, while being the first\nmethod to require no labelled data and no retraining."
+        "char_end": 6622,
+        "quote": "The results show that LFSSD produces scores similar to that of a model trained\non only Dr, and is competitive with state-of-the-art methods such as SSD"
       },
       "provenance": {
         "kind": "reviewer-inference",
@@ -147,8 +147,8 @@
         "derived_from": [],
         "locator": {
           "char_start": 6471,
-          "char_end": 6699,
-          "quote": "The results show that LFSSD produces scores similar to that of a model trained\non only Dr, and is competitive with state-of-the-art methods such as SSD, while being the first\nmethod to require no labelled data and no retraining."
+          "char_end": 6622,
+          "quote": "The results show that LFSSD produces scores similar to that of a model trained\non only Dr, and is competitive with state-of-the-art methods such as SSD"
         },
         "claim_link_sources": [
           {
@@ -156,39 +156,39 @@
             "method": "contribution-digest/v1",
             "model": "redacted-model",
             "claims": [
-              "claim-1",
-              "claim-9",
-              "claim-10",
-              "claim-8",
-              "claim-11"
+              "claim-2",
+              "claim-11",
+              "claim-6",
+              "claim-8"
             ]
           }
         ]
       },
       "display": {
-        "title": "Empirical evaluation across class, subclass and random forgetting",
-        "summary": "The paper benchmarks LFSSD on ResNet18 and Vision Transformer across full-class, subclass, random-sample and face unlearning tasks, comparing it against retraining, finetuning, teacher, amnesiac and SSD baselines.",
+        "title": "Empirical evaluation against retraining and SSD baselines",
+        "summary": "Experiments on ResNet18 and Vision Transformer across full-class, subclass, random and face unlearning show LFSSD yields scores similar to a retrained model and competitive with SSD.",
         "source": "contribution-digest/v1"
       }
     }
   ],
   "claims": [
     {
-      "id": "claim-1",
-      "statement": "LFSSD is competitive with state-of-the-art approaches such as SSD while producing scores similar to a model retrained on only Dr.",
+      "id": "claim-2",
+      "statement": "LFSSD produces scores similar to a model retrained on only Dr and is competitive with SSD.",
       "quote": "The results show that LFSSD produces scores similar to that of a model trained on only Dr, and is competitive with state-of-the-art methods such as SSD, while being the first method to require no labelled data and no retraining.",
       "page": 2,
       "section": "evaluation",
       "locator": "The results show that LFSSD produces scores similar to that of a model trained o",
       "measurability": "unbound",
       "kind": "empirical",
-      "metric": "Dr accuracy, Df accuracy, MIA",
+      "metric": "Dr/Df accuracy, MIA",
       "value": null,
-      "comparison": "vs SSD and retrain",
+      "comparison": "vs retrain and SSD",
       "experiment": null,
       "priority": 1.0,
       "evidence_refs": [
         "Table 1",
+        "Table 3",
         "Table 4",
         "Table 5",
         "Table 6",
@@ -197,15 +197,23 @@
       "evidence_values": [
         "76.36",
         "76.08",
+        "72.89",
+        "0.00",
         "89.03",
         "89.06",
-        "0.00",
+        "90.10",
         "36.89",
         "81.54",
         "79.58",
+        "81.81",
         "7.29",
+        "22.95",
+        "95.68",
+        "95.54",
+        "94.69",
         "24.05",
-        "14.58"
+        "14.58",
+        "34.55"
       ],
       "role": "load-bearing",
       "contributions": [
@@ -221,7 +229,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote appears verbatim and supports both comparisons.",
+        "note": "Exact quote appears and supports both comparisons.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -244,30 +252,72 @@
           "checks": "provenance",
           "inputs": [
             "R1",
+            "R2",
+            "R4",
             "R6",
+            "R10",
+            "R13",
+            "R14",
+            "R15",
+            "R17",
+            "R19",
             "R28",
             "R42",
             "R51",
             "R58",
             "R65",
+            "R66",
             "R70",
             "R71",
+            "R79",
+            "R90",
+            "R102",
+            "R121",
+            "R129",
             "R133",
             "R134",
             "R138",
+            "R139",
+            "R146",
+            "R162",
+            "R168",
             "R192",
             "R232",
+            "R258",
+            "R259",
+            "R278",
+            "R295",
+            "R301",
+            "R313",
+            "R318",
+            "R337",
+            "R357",
             "R359",
             "R361",
             "R362",
+            "R364",
             "R368",
             "R369",
             "R379",
             "R395",
             "R397",
             "R398",
+            "R433",
+            "R438",
+            "R454",
+            "R455",
+            "R459",
+            "R461",
             "R465",
-            "R466"
+            "R466",
+            "R474",
+            "R478",
+            "R479",
+            "R493",
+            "R494",
+            "R511",
+            "R516",
+            "R533"
           ]
         }
       ],
@@ -276,19 +326,81 @@
       "at_risk": []
     },
     {
-      "id": "claim-9",
-      "statement": "Face unlearning on PINS: LFSSD achieves 0% Df accuracy with Dr 98.15 and MIA 0.38.",
+      "id": "claim-3",
+      "statement": "Loss-free sensitivity-based parameter dampening is as effective as Fisher information without labelled data.",
+      "quote": "Here, we show this new approach to dampening important parameters is equally effective as Fisher information, without relying on labelled data.",
+      "page": 1,
+      "section": "introduction",
+      "locator": "Here, we show this new approach to dampening important parameters is equally eff",
+      "measurability": "unbound",
+      "kind": "empirical",
+      "metric": null,
+      "value": null,
+      "comparison": "vs Fisher-based SSD",
+      "experiment": null,
+      "priority": 1.0,
+      "evidence_refs": [
+        "Table 1"
+      ],
+      "evidence_values": [],
+      "role": "load-bearing",
+      "contributions": [
+        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea",
+        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4",
+        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157"
+      ],
+      "contribution_rank": {
+        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea": 2,
+        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4": 2,
+        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157": 2
+      },
+      "verification": {
+        "status": "confirmed",
+        "quote_found": true,
+        "note": "Exact quote appears and supports label-free effectiveness comparable to Fisher information.",
+        "model": "redacted-verifier-model"
+      },
+      "substantiation": {
+        "status": "unchecked",
+        "evidence": [],
+        "rationale": "",
+        "model": "",
+        "coverage": {}
+      },
+      "paper_ref": {
+        "quote": "Here, we show this new approach to dampening important parameters is equally effective as Fisher information, without relying on labelled data.",
+        "page": 1,
+        "section": "introduction",
+        "locator": "Here, we show this new approach to dampening important parameters is equally eff"
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": []
+        }
+      ],
+      "extractor_priority": 0.9,
+      "tier": "load-bearing",
+      "at_risk": [
+        "no evidence linked"
+      ]
+    },
+    {
+      "id": "claim-11",
+      "statement": "Face unlearning results on PINS for LFSSD vs baselines.",
       "quote": "Table 3: Face unlearning (class unlearning): One face unlearned per experiment [ID 1,10,20,30,40] and results aggregated for 5 experiments as in Foster et al. (2023).",
       "page": 5,
       "section": "body",
       "locator": "Table 3: Face unlearning (class unlearning): One face unlearned per experiment [",
       "measurability": "unbound",
       "kind": "empirical",
-      "metric": "Dr, Df, MIA",
-      "value": "98.15/0.00/0.38",
-      "comparison": "vs SSD 98.42/0.00/1.11",
+      "metric": "Dr/Df accuracy, MIA",
+      "value": null,
+      "comparison": "vs retrain, SSD",
       "experiment": null,
-      "priority": 1.0,
+      "priority": 0.98,
       "evidence_refs": [
         "Table 3"
       ],
@@ -306,14 +418,14 @@
         "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157"
       ],
       "contribution_rank": {
-        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea": 2,
-        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4": 2,
-        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157": 2
+        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea": 3,
+        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4": 3,
+        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157": 3
       },
       "verification": {
-        "status": "disputed",
+        "status": "confirmed",
         "quote_found": true,
-        "note": "The quote is only the table caption and contains none of the claimed values, although those values do appear in the table.",
+        "note": "The caption appears, and Table 3 reports LFSSD and multiple baselines on PINS face unlearning.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -353,45 +465,43 @@
       "at_risk": []
     },
     {
-      "id": "claim-10",
-      "statement": "Random sample unlearning on Cifar10: LFSSD remains close to retrain model.",
-      "quote": "Table 7: Random sample unlearning on Cifar10 (100 samples).",
-      "page": 7,
+      "id": "claim-8",
+      "statement": "LFSSD performance drops sharply at too aggressive/conservative alpha but has a wide well-performing plateau.",
+      "quote": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there is a significant drop off in performance when picking an alpha that is too aggressive or conservative but the method has a wide plateau in which it performs well.",
+      "page": 4,
       "section": "body",
-      "locator": "Table 7: Random sample unlearning on Cifar10 (100 samples).",
+      "locator": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that",
       "measurability": "unbound",
       "kind": "empirical",
-      "metric": "Dr, Df, MIA",
+      "metric": "Dr/Df accuracy, MIA",
       "value": null,
-      "comparison": "vs retrain",
+      "comparison": "alpha 1..50",
       "experiment": null,
-      "priority": 0.975,
+      "priority": 0.915,
       "evidence_refs": [
-        "Table 7"
+        "Table 2"
       ],
       "evidence_values": [
-        "89.82",
-        "94.94",
-        "73.86",
-        "98.53",
-        "99.52",
-        "90.12"
+        "16.87",
+        "74.72",
+        "75.67",
+        "76.10",
+        "76.32",
+        "71.88",
+        "26.60",
+        "29.40"
       ],
       "role": "load-bearing",
       "contributions": [
-        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea",
-        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4",
-        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157"
+        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea"
       ],
       "contribution_rank": {
-        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea": 3,
-        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4": 3,
-        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157": 3
+        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea": 4
       },
       "verification": {
-        "status": "disputed",
+        "status": "confirmed",
         "quote_found": true,
-        "note": "The quote is only the table caption and does not state that LFSSD remains close to the retrained model.",
+        "note": "Exact quote appears in the sensitivity analysis.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -402,10 +512,10 @@
         "coverage": {}
       },
       "paper_ref": {
-        "quote": "Table 7: Random sample unlearning on Cifar10 (100 samples).",
-        "page": 7,
+        "quote": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there is a significant drop off in performance when picking an alpha that is too aggressive or conservative but the method has a wide plateau in which it performs well.",
+        "page": 4,
         "section": "body",
-        "locator": "Table 7: Random sample unlearning on Cifar10 (100 samples)."
+        "locator": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that"
       },
       "validators": [
         {
@@ -413,33 +523,24 @@
           "kind": "attest",
           "checks": "provenance",
           "inputs": [
-            "R4",
-            "R34",
-            "R121",
-            "R129",
-            "R151",
-            "R162",
-            "R265",
-            "R302",
-            "R329",
-            "R532",
-            "R533",
-            "R535",
-            "R542",
-            "R549",
-            "R551",
-            "R556",
-            "R563"
+            "R26",
+            "R33",
+            "R557",
+            "R558",
+            "R559",
+            "R560",
+            "R561",
+            "R562"
           ]
         }
       ],
-      "extractor_priority": 0.3,
+      "extractor_priority": 0.5,
       "tier": "load-bearing",
       "at_risk": []
     },
     {
-      "id": "claim-7",
-      "statement": "LFSSD has the same complexity as SSD and similar compute time in practice, far below retraining methods.",
+      "id": "claim-9",
+      "statement": "LFSSD has similar compute time to SSD.",
       "quote": "In practice, this is similar in compute time.",
       "page": 4,
       "section": "body",
@@ -450,24 +551,20 @@
       "value": null,
       "comparison": "vs SSD",
       "experiment": null,
-      "priority": 0.965,
+      "priority": 0.91,
       "evidence_refs": [],
       "evidence_values": [],
       "role": "load-bearing",
       "contributions": [
-        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea",
-        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4",
-        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157"
+        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4"
       ],
       "contribution_rank": {
-        "contribution/631dc06762957cd8687c3f367c75b9b2b060133cb5d1f07d7e2f7888c4526dea": 4,
-        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4": 4,
-        "contribution/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157": 4
+        "contribution/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4": 4
       },
       "verification": {
-        "status": "disputed",
+        "status": "confirmed",
         "quote_found": true,
-        "note": "The quoted sentence supports only similar practical compute time; it does not establish equal complexity or the comparison with retraining methods.",
+        "note": "The quote appears immediately after stating LFSSD has SSD's complexity.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -491,7 +588,7 @@
           "inputs": []
         }
       ],
-      "extractor_priority": 0.5,
+      "extractor_priority": 0.4,
       "tier": "load-bearing",
       "at_risk": []
     },
@@ -517,7 +614,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote appears verbatim and supports the first-of-its-kind claim.",
+        "note": "Exact quote appears, qualified as 'to the best of our knowledge.'",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -567,7 +664,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The conclusion contains the quoted statement verbatim.",
+        "note": "Exact quote appears in the conclusion.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -596,81 +693,8 @@
       "at_risk": []
     },
     {
-      "id": "claim-8",
-      "statement": "Alpha sensitivity: performance drops for too aggressive/conservative alpha but there is a wide plateau of good performance.",
-      "quote": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there is a significant drop off in performance when picking an alpha that is too aggressive or conservative but the method has a wide plateau in which it performs well.",
-      "page": 4,
-      "section": "body",
-      "locator": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that",
-      "measurability": "unbound",
-      "kind": "empirical",
-      "metric": "Dr/Df accuracy, MIA",
-      "value": null,
-      "comparison": "across alpha 1-50",
-      "experiment": null,
-      "priority": 0.325,
-      "evidence_refs": [
-        "Table 2"
-      ],
-      "evidence_values": [
-        "16.87",
-        "74.72",
-        "75.67",
-        "76.10",
-        "76.32",
-        "71.88",
-        "26.60",
-        "29.40",
-        "0.00"
-      ],
-      "role": "supporting",
-      "contributions": [],
-      "contribution_rank": {},
-      "verification": {
-        "status": "confirmed",
-        "quote_found": true,
-        "note": "The sensitivity-analysis text states both the drop-offs and wide performance plateau.",
-        "model": "redacted-verifier-model"
-      },
-      "substantiation": {
-        "status": "unchecked",
-        "evidence": [],
-        "rationale": "",
-        "model": "",
-        "coverage": {}
-      },
-      "paper_ref": {
-        "quote": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there is a significant drop off in performance when picking an alpha that is too aggressive or conservative but the method has a wide plateau in which it performs well.",
-        "page": 4,
-        "section": "body",
-        "locator": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that"
-      },
-      "validators": [
-        {
-          "id": "v1",
-          "kind": "attest",
-          "checks": "provenance",
-          "inputs": [
-            "R26",
-            "R28",
-            "R33",
-            "R42",
-            "R557",
-            "R558",
-            "R559",
-            "R560",
-            "R561",
-            "R562"
-          ]
-        }
-      ],
-      "extractor_priority": 0.5,
-      "tier": "supporting",
-      "at_risk": []
-    },
-    {
-      "id": "claim-6",
-      "statement": "LFSSD shares SSD's limitation of needing alpha and lambda tuned to balance forgetting and performance.",
+      "id": "claim-7",
+      "statement": "Like SSD, LFSSD depends on choosing alpha and lambda to balance forgetting and performance.",
       "quote": "A shared limitation with SSD is the reliance on choosing \u03b1 and \u03bb values that balance forgetting and model performance.",
       "page": 2,
       "section": "evaluation",
@@ -690,7 +714,7 @@
       "verification": {
         "status": "confirmed",
         "quote_found": true,
-        "note": "The quote appears verbatim and states the shared hyperparameter limitation.",
+        "note": "Exact quote appears and identifies the shared hyperparameter limitation.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -719,28 +743,28 @@
       "at_risk": []
     },
     {
-      "id": "claim-11",
-      "statement": "Evaluation uses ResNet18 and ViT on full class, subclass and random forgetting with 10 repeated runs.",
-      "quote": "Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables.",
-      "page": 3,
+      "id": "claim-10",
+      "statement": "Retraining-based methods cost O(N\u00b7b_retain\u00b7p), much larger than SSD/LFSSD.",
+      "quote": "Other methods are retraining-based and depend on the number of epochs N, generally on the order of O(N \u00b7 bretain \u00b7 p), which is much larger.",
+      "page": 4,
       "section": "body",
-      "locator": "Runs are repeated 10 times for each method, with the mean and standard deviation",
+      "locator": "Other methods are retraining-based and depend on the number of epochs N, general",
       "measurability": "non_measurable",
       "kind": "empirical",
-      "metric": null,
+      "metric": "complexity",
       "value": null,
-      "comparison": null,
+      "comparison": "vs retraining methods",
       "experiment": null,
-      "priority": 0.11,
+      "priority": 0.315,
       "evidence_refs": [],
       "evidence_values": [],
-      "role": "setup",
+      "role": "supporting",
       "contributions": [],
       "contribution_rank": {},
       "verification": {
-        "status": "disputed",
+        "status": "confirmed",
         "quote_found": true,
-        "note": "The quote supports 10 repeated runs only, not the architectures or three forgetting tasks.",
+        "note": "Exact quote appears in the resource analysis.",
         "model": "redacted-verifier-model"
       },
       "substantiation": {
@@ -751,10 +775,10 @@
         "coverage": {}
       },
       "paper_ref": {
-        "quote": "Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables.",
-        "page": 3,
+        "quote": "Other methods are retraining-based and depend on the number of epochs N, generally on the order of O(N \u00b7 bretain \u00b7 p), which is much larger.",
+        "page": 4,
         "section": "body",
-        "locator": "Runs are repeated 10 times for each method, with the mean and standard deviation"
+        "locator": "Other methods are retraining-based and depend on the number of epochs N, general"
       },
       "validators": [
         {
@@ -764,7 +788,57 @@
           "inputs": []
         }
       ],
-      "extractor_priority": 0.2,
+      "extractor_priority": 0.3,
+      "tier": "supporting",
+      "at_risk": []
+    },
+    {
+      "id": "claim-6",
+      "statement": "Evaluation uses ResNet18 and Vision Transformer.",
+      "quote": "We evaluate our method in a range of experiments using ResNet18 and Vision Transformer.",
+      "page": 1,
+      "section": "abstract",
+      "locator": "We evaluate our method in a range of experiments using ResNet18 and Vision Trans",
+      "measurability": "non_measurable",
+      "kind": "empirical",
+      "metric": null,
+      "value": null,
+      "comparison": null,
+      "experiment": null,
+      "priority": 0.125,
+      "evidence_refs": [],
+      "evidence_values": [],
+      "role": "setup",
+      "contributions": [],
+      "contribution_rank": {},
+      "verification": {
+        "status": "confirmed",
+        "quote_found": true,
+        "note": "Exact quote appears in the abstract.",
+        "model": "redacted-verifier-model"
+      },
+      "substantiation": {
+        "status": "unchecked",
+        "evidence": [],
+        "rationale": "",
+        "model": "",
+        "coverage": {}
+      },
+      "paper_ref": {
+        "quote": "We evaluate our method in a range of experiments using ResNet18 and Vision Transformer.",
+        "page": 1,
+        "section": "abstract",
+        "locator": "We evaluate our method in a range of experiments using ResNet18 and Vision Trans"
+      },
+      "validators": [
+        {
+          "id": "v1",
+          "kind": "attest",
+          "checks": "provenance",
+          "inputs": []
+        }
+      ],
+      "extractor_priority": 0.5,
       "tier": "setup",
       "at_risk": []
     }
@@ -773,7 +847,7 @@
     {
       "id": "R1",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -790,9 +864,28 @@
       }
     },
     {
+      "id": "R2",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 72.89,
+      "locators": {
+        "paper": {
+          "quote": "72.89\u00b10.34",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
       "id": "R4",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -811,8 +904,8 @@
     {
       "id": "R6",
       "validates": [
-        "claim-1",
-        "claim-9"
+        "claim-2",
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -821,6 +914,120 @@
       "locators": {
         "paper": {
           "quote": "0.00\u00b10.00",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
+      "id": "R10",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.6,
+      "locators": {
+        "paper": {
+          "quote": "95.60\u00b10.00",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
+      "id": "R13",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 81.81,
+      "locators": {
+        "paper": {
+          "quote": "81.81\u00b10.19",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
+      "id": "R14",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.77,
+      "locators": {
+        "paper": {
+          "quote": "95.77\u00b10.00",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
+      "id": "R15",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 94.69,
+      "locators": {
+        "paper": {
+          "quote": "94.69\u00b10.13",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
+      "id": "R17",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 22.95,
+      "locators": {
+        "paper": {
+          "quote": "22.95\u00b14.72",
+          "token_class": "pm",
+          "page": 2,
+          "section": "introduction",
+          "context": "ResNet18 Vision Transformer data metric baseline retrain LFSSD SSD baseline retrain LFSSD SSD Cifar100 Dr 76.39\u00b10.00 72.89\u00b10.34 76.36 76.08 88.84\u00b10.00 90.10\u00b10.19 89.03 89.06 Df 70.49\u00b10.00 0.00\u00b10.00 0.00 0.00 97.22\u00b10.00 0.00\u00b10.00 0.00 36.89 "
+        }
+      }
+    },
+    {
+      "id": "R19",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 34.55,
+      "locators": {
+        "paper": {
+          "quote": "34.55\u00b18.62",
           "token_class": "pm",
           "page": 2,
           "section": "introduction",
@@ -850,9 +1057,8 @@
     {
       "id": "R28",
       "validates": [
-        "claim-1",
-        "claim-8",
-        "claim-9"
+        "claim-2",
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -888,28 +1094,9 @@
       }
     },
     {
-      "id": "R34",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 98.52,
-      "locators": {
-        "paper": {
-          "quote": "98.52\u00b10.02",
-          "token_class": "pm",
-          "page": 5,
-          "section": "references",
-          "context": "LFSSD is deterministic, thus no \u00b1 reported. \u03b1 Dr Accuracy Df Accuracy MIA 1 16.87% 0.00% 26.60 5 74.72% 0.00% 0.00 10 75.67% 0.00% 0.00 25 76.10% 0.00% 0.00 50 76.32% 71.88% 29.40 Table 3: Face unlearning (class unlearning): One face unlear"
-        }
-      }
-    },
-    {
       "id": "R39",
       "validates": [
-        "claim-9"
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -928,7 +1115,7 @@
     {
       "id": "R40",
       "validates": [
-        "claim-9"
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -947,9 +1134,8 @@
     {
       "id": "R42",
       "validates": [
-        "claim-1",
-        "claim-8",
-        "claim-9"
+        "claim-2",
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -968,7 +1154,7 @@
     {
       "id": "R49",
       "validates": [
-        "claim-9"
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -987,7 +1173,7 @@
     {
       "id": "R50",
       "validates": [
-        "claim-9"
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1006,7 +1192,7 @@
     {
       "id": "R51",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1025,8 +1211,8 @@
     {
       "id": "R58",
       "validates": [
-        "claim-1",
-        "claim-9"
+        "claim-2",
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1045,7 +1231,7 @@
     {
       "id": "R65",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1062,9 +1248,28 @@
       }
     },
     {
+      "id": "R66",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 72.89,
+      "locators": {
+        "paper": {
+          "quote": "72.89\u00b10.34",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00 Df 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b1"
+        }
+      }
+    },
+    {
       "id": "R70",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1083,7 +1288,7 @@
     {
       "id": "R71",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1100,9 +1305,66 @@
       }
     },
     {
+      "id": "R79",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 72.9,
+      "locators": {
+        "paper": {
+          "quote": "72.90\u00b10.45",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00 Df 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b1"
+        }
+      }
+    },
+    {
+      "id": "R90",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 72.83,
+      "locators": {
+        "paper": {
+          "quote": "72.83\u00b10.42",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00 Df 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b1"
+        }
+      }
+    },
+    {
+      "id": "R102",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 72.83,
+      "locators": {
+        "paper": {
+          "quote": "72.83\u00b10.54",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00 Df 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b1"
+        }
+      }
+    },
+    {
       "id": "R121",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1121,7 +1383,7 @@
     {
       "id": "R129",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1140,7 +1402,7 @@
     {
       "id": "R133",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1159,7 +1421,7 @@
     {
       "id": "R134",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1178,7 +1440,7 @@
     {
       "id": "R138",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1195,17 +1457,36 @@
       }
     },
     {
-      "id": "R151",
+      "id": "R139",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 94.88,
+      "reported_value": 95.6,
       "locators": {
         "paper": {
-          "quote": "94.88\u00b10.00",
+          "quote": "95.60\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00 Df 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b1"
+        }
+      }
+    },
+    {
+      "id": "R146",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 90.02,
+      "locators": {
+        "paper": {
+          "quote": "90.02\u00b10.22",
           "token_class": "pm",
           "page": 5,
           "section": "references",
@@ -1216,7 +1497,7 @@
     {
       "id": "R162",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1233,10 +1514,29 @@
       }
     },
     {
+      "id": "R168",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 94.7,
+      "locators": {
+        "paper": {
+          "quote": "94.70\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 76.38\u00b10.00 73.10\u00b10.55 64.03\u00b10.8 74.71\u00b10.19 73.69\u00b10.27 44.05*\u00b10.00 75.80\u00b10.00 Df 72.48\u00b10.00 0.00\u00b10.00 0.00\u00b10.00 0.08\u00b10.25 0.00\u00b10.00 0.00\u00b1"
+        }
+      }
+    },
+    {
       "id": "R192",
       "validates": [
-        "claim-1",
-        "claim-9"
+        "claim-2",
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1255,7 +1555,7 @@
     {
       "id": "R232",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1272,17 +1572,17 @@
       }
     },
     {
-      "id": "R265",
+      "id": "R258",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 95.03,
+      "reported_value": 95.73,
       "locators": {
         "paper": {
-          "quote": "95.03\u00b10.00",
+          "quote": "95.73\u00b10.00",
           "token_class": "pm",
           "page": 6,
           "section": "references",
@@ -1291,17 +1591,17 @@
       }
     },
     {
-      "id": "R302",
+      "id": "R259",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 98.54,
+      "reported_value": 94.71,
       "locators": {
         "paper": {
-          "quote": "98.54\u00b10.00",
+          "quote": "94.71\u00b10.14",
           "token_class": "pm",
           "page": 6,
           "section": "references",
@@ -1310,28 +1610,142 @@
       }
     },
     {
-      "id": "R329",
+      "id": "R278",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 94.85,
+      "reported_value": 95.71,
       "locators": {
         "paper": {
-          "quote": "94.85\u00b10.13",
+          "quote": "95.71\u00b10.00",
           "token_class": "pm",
           "page": 6,
           "section": "references",
           "context": "ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN ED Dr 82.56\u00b10.00 82.13\u00b10.23 73.19\u00b11.08 82.04\u00b10.29 81.34\u00b10.18 83.15\u00b10.00 83.19\u00b10.00 Df 82.26\u00b10."
+        }
+      }
+    },
+    {
+      "id": "R295",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.54,
+      "locators": {
+        "paper": {
+          "quote": "95.54\u00b10.00",
+          "token_class": "pm",
+          "page": 6,
+          "section": "references",
+          "context": "ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN ED Dr 82.56\u00b10.00 82.13\u00b10.23 73.19\u00b11.08 82.04\u00b10.29 81.34\u00b10.18 83.15\u00b10.00 83.19\u00b10.00 Df 82.26\u00b10."
+        }
+      }
+    },
+    {
+      "id": "R301",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.5,
+      "locators": {
+        "paper": {
+          "quote": "95.50\u00b10.00",
+          "token_class": "pm",
+          "page": 6,
+          "section": "references",
+          "context": "ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN ED Dr 82.56\u00b10.00 82.13\u00b10.23 73.19\u00b11.08 82.04\u00b10.29 81.34\u00b10.18 83.15\u00b10.00 83.19\u00b10.00 Df 82.26\u00b10."
+        }
+      }
+    },
+    {
+      "id": "R313",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.59,
+      "locators": {
+        "paper": {
+          "quote": "95.59\u00b10.00",
+          "token_class": "pm",
+          "page": 6,
+          "section": "references",
+          "context": "ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN ED Dr 82.56\u00b10.00 82.13\u00b10.23 73.19\u00b11.08 82.04\u00b10.29 81.34\u00b10.18 83.15\u00b10.00 83.19\u00b10.00 Df 82.26\u00b10."
+        }
+      }
+    },
+    {
+      "id": "R318",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.64,
+      "locators": {
+        "paper": {
+          "quote": "95.64\u00b10.00",
+          "token_class": "pm",
+          "page": 6,
+          "section": "references",
+          "context": "ED: electrical devices, NS: natural scenes, veg: vegetables, Veh2: vehicle2. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN ED Dr 82.56\u00b10.00 82.13\u00b10.23 73.19\u00b11.08 82.04\u00b10.29 81.34\u00b10.18 83.15\u00b10.00 83.19\u00b10.00 Df 82.26\u00b10."
+        }
+      }
+    },
+    {
+      "id": "R337",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 72.94,
+      "locators": {
+        "paper": {
+          "quote": "72.94\u00b10.82",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R357",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 81.81,
+      "locators": {
+        "paper": {
+          "quote": "81.81\u00b10.19",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
         }
       }
     },
     {
       "id": "R359",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1350,7 +1764,7 @@
     {
       "id": "R361",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1369,7 +1783,7 @@
     {
       "id": "R362",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1386,10 +1800,29 @@
       }
     },
     {
+      "id": "R364",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 22.95,
+      "locators": {
+        "paper": {
+          "quote": "22.95\u00b14.72",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
       "id": "R368",
       "validates": [
-        "claim-1",
-        "claim-9"
+        "claim-2",
+        "claim-11"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1408,7 +1841,7 @@
     {
       "id": "R369",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1427,7 +1860,7 @@
     {
       "id": "R379",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1446,7 +1879,7 @@
     {
       "id": "R395",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1465,7 +1898,7 @@
     {
       "id": "R397",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1484,7 +1917,7 @@
     {
       "id": "R398",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1501,9 +1934,123 @@
       }
     },
     {
+      "id": "R433",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.69,
+      "locators": {
+        "paper": {
+          "quote": "95.69\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R438",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.54,
+      "locators": {
+        "paper": {
+          "quote": "95.54\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R454",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.77,
+      "locators": {
+        "paper": {
+          "quote": "95.77\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R455",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 94.69,
+      "locators": {
+        "paper": {
+          "quote": "94.69\u00b10.13",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R459",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.68,
+      "locators": {
+        "paper": {
+          "quote": "95.68\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R461",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 34.55,
+      "locators": {
+        "paper": {
+          "quote": "34.55\u00b18.62",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
       "id": "R465",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1522,7 +2069,7 @@
     {
       "id": "R466",
       "validates": [
-        "claim-1"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1539,28 +2086,142 @@
       }
     },
     {
-      "id": "R532",
+      "id": "R474",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
       "evidence": "paper.pdf",
-      "reported_value": 90.21,
+      "reported_value": 94.6,
       "locators": {
         "paper": {
-          "quote": "90.21\u00b10.10",
+          "quote": "94.60\u00b10.13",
           "token_class": "pm",
-          "page": 7,
+          "page": 5,
           "section": "references",
-          "context": "SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD: \u03b1 = 3.5, \u03bb = 1 metric baseline retrain finetune teacher amnesiac SSD LFSSD RN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30 Df 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b1"
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R478",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.51,
+      "locators": {
+        "paper": {
+          "quote": "95.51\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R479",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.66,
+      "locators": {
+        "paper": {
+          "quote": "95.66\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R493",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.73,
+      "locators": {
+        "paper": {
+          "quote": "95.73\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R494",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 94.61,
+      "locators": {
+        "paper": {
+          "quote": "94.61\u00b10.13",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R511",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.67,
+      "locators": {
+        "paper": {
+          "quote": "95.67\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
+        }
+      }
+    },
+    {
+      "id": "R516",
+      "validates": [
+        "claim-2"
+      ],
+      "kind": "metrics",
+      "validation_mode": "attest",
+      "evidence": "paper.pdf",
+      "reported_value": 95.57,
+      "locators": {
+        "paper": {
+          "quote": "95.57\u00b10.00",
+          "token_class": "pm",
+          "page": 5,
+          "section": "references",
+          "context": "MR: mushroom, Rkt: Rocket. class metric baseline retrain finetune teacher amnesiac SSD LFSSD RN baby Dr 82.45\u00b10.00 81.45\u00b10.3 72.94\u00b10.82 81.25\u00b10.19 81.02\u00b10.2 79.25\u00b10.00 78.93\u00b10.00 Df 86.98\u00b10.00 80.03\u00b13.4 66.52\u00b16.19 75.17\u00b12.66 37.70\u00b19.59 8.85"
         }
       }
     },
     {
       "id": "R533",
       "validates": [
-        "claim-10"
+        "claim-2"
       ],
       "kind": "metrics",
       "validation_mode": "attest",
@@ -1569,101 +2230,6 @@
       "locators": {
         "paper": {
           "quote": "90.16\u00b10.23",
-          "token_class": "pm",
-          "page": 7,
-          "section": "references",
-          "context": "SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD: \u03b1 = 3.5, \u03bb = 1 metric baseline retrain finetune teacher amnesiac SSD LFSSD RN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30 Df 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b1"
-        }
-      }
-    },
-    {
-      "id": "R535",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 89.82,
-      "locators": {
-        "paper": {
-          "quote": "89.82\u00b12.30",
-          "token_class": "pm",
-          "page": 7,
-          "section": "references",
-          "context": "SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD: \u03b1 = 3.5, \u03bb = 1 metric baseline retrain finetune teacher amnesiac SSD LFSSD RN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30 Df 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b1"
-        }
-      }
-    },
-    {
-      "id": "R542",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 94.94,
-      "locators": {
-        "paper": {
-          "quote": "94.94\u00b12.89",
-          "token_class": "pm",
-          "page": 7,
-          "section": "references",
-          "context": "SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD: \u03b1 = 3.5, \u03bb = 1 metric baseline retrain finetune teacher amnesiac SSD LFSSD RN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30 Df 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b1"
-        }
-      }
-    },
-    {
-      "id": "R549",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 73.86,
-      "locators": {
-        "paper": {
-          "quote": "73.86\u00b16.33",
-          "token_class": "pm",
-          "page": 7,
-          "section": "references",
-          "context": "SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD: \u03b1 = 3.5, \u03bb = 1 metric baseline retrain finetune teacher amnesiac SSD LFSSD RN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30 Df 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b1"
-        }
-      }
-    },
-    {
-      "id": "R551",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 98.61,
-      "locators": {
-        "paper": {
-          "quote": "98.61\u00b10.08",
-          "token_class": "pm",
-          "page": 7,
-          "section": "references",
-          "context": "SSD: \u03b1 = 10 , \u03bb = 1 ; LFSSD: \u03b1 = 3.5, \u03bb = 1 metric baseline retrain finetune teacher amnesiac SSD LFSSD RN Dr 90.71\u00b10.00 91.45\u00b10.11 88.02\u00b10.45 90.21\u00b10.10 90.16\u00b10.23 88.68\u00b13.36 89.82\u00b12.30 Df 95.30\u00b12.08 94.10\u00b12.00 90.00\u00b13.73 90.00\u00b12.73 59.04\u00b1"
-        }
-      }
-    },
-    {
-      "id": "R556",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 98.53,
-      "locators": {
-        "paper": {
-          "quote": "98.53\u00b10.27",
           "token_class": "pm",
           "page": 7,
           "section": "references",
@@ -1796,27 +2362,6 @@
           ]
         }
       }
-    },
-    {
-      "id": "R563",
-      "validates": [
-        "claim-10"
-      ],
-      "kind": "metrics",
-      "validation_mode": "attest",
-      "evidence": "paper.pdf",
-      "reported_value": 99.52,
-      "locators": {
-        "paper": {
-          "quote": "99.52",
-          "page": 7,
-          "section": "body",
-          "context": "Table 7: Random sample unlearning on Cifar10 (100 samples).",
-          "refs": [
-            "Table 7"
-          ]
-        }
-      }
     }
   ],
   "assessments": [
@@ -1826,103 +2371,35 @@
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
         "status": "contested",
-        "reasoning": "In the second quoted row (Cifar100 lamp, ViT), LFSSD reaches 0.00 Df while SSD retains 36.89, which favours LFSSD. In the first row (ViT mushroom subclass), LFSSD's Df of 31.42 is above SSD's 6.68 and close to retrain's 26.57, so it is retrain-like there. Results vary by class. The supporting claims also include a primacy claim and practicality claims that rest on argument rather than measurement.",
+        "reasoning": "In the ViT subclass rows of Table 6, LFSSD's forget-set accuracy diverges from both SSD and the retrained model. On one row it is 31.42 versus SSD's 6.68. On another, its MIA score is 1.60 versus 77.37 for the retrained model. These gaps contradict a blanket equivalence claim. In addition, hyperparameter alpha was chosen per task, with SSD and LFSSD using different values. No timing table appears in the paper. The complexity argument alone supports the claim at the level of asymptotic cost. The compute-time claim is not quantified in the inspected text. In addition, SSD's hyperparameters were tuned with Optuna while LFSSD's were tuned with a simplified search, so the comparison is not controlled.",
         "points": [
-          "The results broadly support competitiveness with SSD, but the claim of being 'similar to retrain' is uneven, notably on ViT subclass unlearning."
+          "Across most tables, LFSSD's results track SSD and the retrained model. However, the claim that it is 'equally effective' is broader than the subclass results support.",
+          "The claim of similar compute time to SSD is asserted, but no timing measurements are reported.",
+          "Both the 'equally effective as Fisher' claim and the 'similar compute time' claim rest on informal assertion. No timing data or controlled head-to-head ablation is reported."
         ],
         "finding_ids": [
-          "contribution-review/paper/152bd6fdbd62533013b6324453486faf9f8fa9742fb4054885063b43ab3e5cea"
+          "contribution-review/paper/436dfd9ea043c6aff9c24d9262f0442d4975927a3e0f1636346e83a2efc75457",
+          "contribution-review/paper/ba72423f9002776b5a6c08ec666ed2dccd451b2018c023e497a4182ebe843ff1",
+          "contribution-review/paper/ed38cf0c65ffde41f2756f6e5be303b0ec64f7a166faaf637b75443561b6d198"
         ],
         "evidence": [
-          "paper:chars/7514-23701",
-          "paper:chars/1165-4392"
-        ],
-        "disagreement": false,
-        "link_basis": "inferred",
-        "declared_claims": [],
-        "inferred_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7",
-          "claim-4",
-          "claim-5"
-        ],
-        "linked_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7",
-          "claim-4",
-          "claim-5"
-        ]
-      },
-      "significance": {
-        "status": "supported",
-        "reasoning": "The authors name concrete deployment scenarios in which labels are unavailable.",
-        "points": [
-          "The paper targets a practically relevant setting: unlearning without stored retain data or labels, such as copyright catalogues or semi-supervised models."
-        ],
-        "finding_ids": [
-          "contribution-review/paper/717994f3696e64ad58d101a07fd8e7ea16c826caa580a32c5574e552be29f455"
-        ],
-        "evidence": [
+          "paper:chars/1165-4392",
           "paper:chars/7514-23701"
         ],
-        "disagreement": false
-      },
-      "originality": {
-        "status": "unresolved",
-        "reasoning": "The authors attribute both building blocks to prior work: the dampening rule comes from SSD and the importance estimator from Aljundi et al. The original element is therefore the combination and its application to unlearning. That combination removes the label requirement, which is a useful and clearly stated difference. Whether the estimator has truly never been used in unlearning is author-reported and was not verified here. The primacy claim is hedged in the introduction but stated unhedged in the conclusion. The related-work discussion covers only a few retraining-free methods.",
-        "points": [
-          "LFSSD's novelty is a targeted transfer: it swaps SSD's Fisher-based importance for the MAS output-sensitivity estimate (Aljundi et al., 2018). The authors frame it as an extension, not a new paradigm.",
-          "The paper claims to be the 'first' method with no labels and no retraining, but positions itself only against FisherForgetting, SSD and retraining-based methods."
-        ],
-        "finding_ids": [
-          "contribution-review/paper/2483ad65a9bda73a1db8aac22a3c009e8e8613db145213cc6e68bcea92cdd205",
-          "contribution-review/paper/d04130523ed01980ade4beca32f97783e123b4c63577bc494d1745cbfef172c9"
-        ],
-        "evidence": [
-          "paper:chars/1165-4392",
-          "paper:chars/4392-6820",
-          "paper:chars/6820-7514"
-        ],
-        "disagreement": false,
-        "basis": "author-statements-only",
-        "author_statement_ids": [
-          "originality/30a44d23fe04989c294c544f49e5fffe9b5494b47a74b38746455a675d3c4bab",
-          "originality/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4",
-          "originality/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157",
-          "originality/59df92272af07394ca89f2b1671ac87ce9baa9b7bee72eb6c6ed0978101bf2bf",
-          "originality/6e8391cd93a64c3472e6bfa1e51ec287fd7df55146d14b38be9813b36e7835f2",
-          "originality/3f7749982cc1f1772fc9e9da54e3e7c391d33f6630c31fd7c37cd895a6e25aed"
-        ]
-      }
-    },
-    {
-      "contribution_id": "contribution/556968ea77907a94ab5b4c69743ad1357edb51b561fe1307c13c923fb82f4111",
-      "human_qualification": null,
-      "attribution": "advisory specialist findings from this review run",
-      "claim_support": {
-        "status": "unassessed",
-        "reasoning": "No grounded, candidate-targeted finding for this axis.",
-        "points": [],
-        "finding_ids": [],
-        "evidence": [],
         "disagreement": false,
         "link_basis": "inferred",
         "declared_claims": [],
         "inferred_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7"
+          "claim-2",
+          "claim-3",
+          "claim-11",
+          "claim-9"
         ],
         "linked_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7"
+          "claim-2",
+          "claim-3",
+          "claim-11",
+          "claim-9"
         ]
       },
       "significance": {
@@ -1935,18 +2412,17 @@
       },
       "originality": {
         "status": "unresolved",
-        "reasoning": "The authors say the estimator comes from prior work (author-reported) and claim novelty only for its application to SSD-style unlearning. Whether it was truly unapplied in unlearning was not independently verified. The estimator itself is attributed to prior work. What is new is using it inside SSD's selection and dampening rule.",
+        "reasoning": "The authors credit both components to prior work. They claim novelty only for the transfer into unlearning, which is a modest but clearly positioned increment. Whether the estimator has truly never been used in unlearning is author-reported and was not verified here. The authors themselves position the work as a combination of two cited components (SSD and the Aljundi et al. estimator). The novelty is therefore the transfer and its label-free consequence. Neither the prior work nor the claim that the estimator has not been applied in unlearning was independently verified.",
         "points": [
-          "The authors present the novelty as transferring an existing continual-learning importance estimator into unlearning, not as a new estimator. This candid positioning makes the claimed advance narrow but clearly bounded.",
-          "The swap of Fisher information for the gradient of the l2 output norm is the core technical change. The paper credits Aljundi et al. (2018) for this estimator, so the novelty lies only in applying it to SSD."
+          "The method combines two existing components: SSD's dampening rule and the Memory Aware Synapses sensitivity estimator. The paper states this provenance openly. The novelty lies in this combination and in applying it to unlearning.",
+          "The authors frame the originality as a transfer: the importance estimator comes from continual learning, and the claimed novelty is applying it to unlearning. They do not claim to have invented the estimator."
         ],
         "finding_ids": [
-          "contribution-review/paper/5f783715769e12464eebbaa2bd6cf17b91eb1f4c20ba37888be269f8607cbd04",
-          "contribution-review/paper/fad0241c5754b7b4bea7174fa8b9cf210125f418f9c626f799f143915f6f33f4"
+          "contribution-review/paper/32d9e49235432236d8c140fc710b6d1fb3e7dbd39eacf64e32d9f70ee7432471",
+          "contribution-review/paper/ef94f49cff8fbd0a6c08280e78af8c8528da36a4188bffc97dca9029a67d5ebc"
         ],
         "evidence": [
           "paper:chars/1165-4392",
-          "paper:chars/284-1165",
           "paper:chars/4392-6820"
         ],
         "disagreement": false,
@@ -1962,40 +2438,109 @@
       }
     },
     {
-      "contribution_id": "contribution/2975df0a0bbf83c322f6945ee75177197ef13cbb428fb27bdfbfd31f451f2ff8",
+      "contribution_id": "contribution/d662bfa3f13447571be88b0dff318534f2a5a3c1a8ffff81a9165cd5bd7b3f3a",
       "human_qualification": null,
       "attribution": "advisory specialist findings from this review run",
       "claim_support": {
+        "status": "unassessed",
+        "reasoning": "No grounded, candidate-targeted finding for this axis.",
+        "points": [],
+        "finding_ids": [],
+        "evidence": [],
+        "disagreement": false,
+        "link_basis": "inferred",
+        "declared_claims": [],
+        "inferred_claims": [
+          "claim-2",
+          "claim-3",
+          "claim-11",
+          "claim-8",
+          "claim-4",
+          "claim-5",
+          "claim-10"
+        ],
+        "linked_claims": [
+          "claim-2",
+          "claim-3",
+          "claim-11",
+          "claim-8",
+          "claim-4",
+          "claim-5",
+          "claim-10"
+        ]
+      },
+      "significance": {
         "status": "supported",
-        "reasoning": "On ViT lamp, SSD leaves 36.89% Df accuracy while LFSSD reaches 0. In face unlearning, LFSSD's MIA (0.38) is lower than SSD's (1.11). The evaluation includes the retrain gold standard and the closest prior method (SSD), which are the comparisons a reader most needs to judge the contribution.",
+        "reasoning": "Unlearning without labels and without retraining widens the range of deployment settings. This makes the work likely useful to practitioners and to researchers building on SSD. However, the impact claims ('more practically useful') rest on argument rather than experiments in these settings. The authors name concrete settings where labels are unavailable, such as a catalogue of copyrighted data or semi-supervised models. In those settings, Fisher-based SSD cannot run.",
         "points": [
-          "Class and face unlearning results support competitiveness with SSD. LFSSD reaches 0% Df accuracy with Dr close to SSD, and sometimes beats SSD, e.g. on ViT lamp.",
-          "The tables support the empirical-evaluation contribution across class, subclass, random and face unlearning with multiple baselines."
+          "Removing the label requirement has plausible practical utility. The paper names copyright catalogues and semi-supervised models as use cases, but neither scenario is evaluated.",
+          "Removing the label requirement extends SSD-style unlearning to practical scenarios that the authors motivate."
         ],
         "finding_ids": [
-          "contribution-review/paper/44529c97286d055f79713c6b56caea61390a7a533c67d0be2d53528c470e5df3",
-          "contribution-review/paper/1c10760b89de538373bf270fa9c46c2ba023d3bdf677a1fb3d8131cf8ad0bfcb"
+          "contribution-review/paper/d985c9c40b8b78e3ff8acb923711685d1883895b8fa2231cb52f8a0cf2af7ea7",
+          "contribution-review/paper/4351d9e9740da074d4f540e9dd447813ea3c0aedd42630c68f9f4702f589dc21"
+        ],
+        "evidence": [
+          "paper:chars/7514-23701"
+        ],
+        "disagreement": false
+      },
+      "originality": {
+        "status": "unresolved",
+        "reasoning": "The method still requires full-dataset importance values, computed once over D. Its 'only' claim therefore holds at forgetting time, not overall. The paper also cites zero-shot unlearning work (Chundawat 2023b) without stating how LFSSD differs from it on data requirements.",
+        "points": [
+          "The primacy claim of being 'first retraining-free method requiring only unlabelled forget samples' is hedged with 'to the best of our knowledge'. However, the related-work discussion in this paper is brief, and the claim needs sharper scoping."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/528f72080a758199c3916d9a56668de8b059ba17add32557eba54bf706a14989"
         ],
         "evidence": [
           "paper:chars/1165-4392",
-          "paper:chars/7514-23701"
+          "paper:chars/4392-6820"
+        ],
+        "disagreement": false,
+        "basis": "author-statements-only",
+        "author_statement_ids": [
+          "originality/30a44d23fe04989c294c544f49e5fffe9b5494b47a74b38746455a675d3c4bab",
+          "originality/aa888dfa6ee6bcf8e13aa4a826ebb3709d782388dfaff058e3926fd5c363a3f4",
+          "originality/13a16eab48a62a5d7cad8a258fd097712e3b4618b4b79f1befe5b5f2eb414157",
+          "originality/59df92272af07394ca89f2b1671ac87ce9baa9b7bee72eb6c6ed0978101bf2bf",
+          "originality/6e8391cd93a64c3472e6bfa1e51ec287fd7df55146d14b38be9813b36e7835f2",
+          "originality/3f7749982cc1f1772fc9e9da54e3e7c391d33f6630c31fd7c37cd895a6e25aed"
+        ]
+      }
+    },
+    {
+      "contribution_id": "contribution/b7992a0631ed53df2308e040cfb5e7500624b3a4efb456c2709955389f9697ae",
+      "human_qualification": null,
+      "attribution": "advisory specialist findings from this review run",
+      "claim_support": {
+        "status": "contested",
+        "reasoning": "In the Table 6 'sea' rows, retrain keeps Df accuracy at about 91-95%, while LFSSD drops it to about 18-21%. The authors themselves flag this kind of over-forgetting as harmful, via the Streisand effect.",
+        "points": [
+          "LFSSD's results are broadly close to SSD and retrain, but it is not uniformly 'similar to retrain'. In several Cifar20 subclass cases, forget accuracy diverges markedly from retrain."
+        ],
+        "finding_ids": [
+          "contribution-review/paper/6bbd89fda68681913137e31461f9eb028bf6de95e1db432731b91f4c4a838a39"
+        ],
+        "evidence": [
+          "paper:chars/7514-23701",
+          "paper:chars/4392-6820"
         ],
         "disagreement": false,
         "link_basis": "inferred",
         "declared_claims": [],
         "inferred_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-8",
-          "claim-11"
+          "claim-2",
+          "claim-11",
+          "claim-6",
+          "claim-8"
         ],
         "linked_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-8",
-          "claim-11"
+          "claim-2",
+          "claim-11",
+          "claim-6",
+          "claim-8"
         ]
       },
       "significance": {
@@ -2008,12 +2553,12 @@
       },
       "originality": {
         "status": "unresolved",
-        "reasoning": "The authors explicitly reuse an existing protocol. This aids comparability with prior results but should not be credited as a novel contribution.",
+        "reasoning": "Reusing established protocols makes the results comparable with prior work, but the evaluation design is not an original contribution.",
         "points": [
-          "The evaluation protocol reuses prior work's setup, so it is a benchmark application rather than a novel contribution."
+          "The empirical-evaluation contribution follows existing benchmark protocols, so it is not novel in itself. It serves as validation of the method."
         ],
         "finding_ids": [
-          "contribution-review/paper/44fdafa6d262e492bacd7b6df4b32c7ceacc788e1da90c87608a496ed25c6cc9"
+          "contribution-review/paper/4e93ea280abb2f068fe2fdee415014ef0dde6b6e6490b00f132ced99c70df562"
         ],
         "evidence": [
           "paper:chars/7514-23701"
@@ -2133,22 +2678,23 @@
   },
   "graph": {
     "contribution_count": 3,
-    "claim_count": 9,
+    "claim_count": 10,
     "support_edge_count": 0,
     "unassigned_claims": [
-      "claim-1",
+      "claim-2",
+      "claim-3",
+      "claim-11",
+      "claim-8",
       "claim-9",
-      "claim-10",
-      "claim-7",
       "claim-4",
       "claim-5",
-      "claim-8",
-      "claim-6",
-      "claim-11"
+      "claim-7",
+      "claim-10",
+      "claim-6"
     ],
     "inferred_edge_count": 15,
     "unlinked_claims": [
-      "claim-6"
+      "claim-7"
     ]
   },
   "digest": {
@@ -2160,10 +2706,10 @@
         "statement": "We present a machine unlearning approach that is both retraining- and label-free.",
         "supporting_claims": [],
         "inferred_supporting_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7"
+          "claim-2",
+          "claim-3",
+          "claim-11",
+          "claim-8"
         ],
         "paper_ref": {
           "char_start": 294,
@@ -2185,10 +2731,10 @@
               "method": "llm-extractor/v1",
               "model": "redacted-model",
               "claims": [
-                "claim-1",
-                "claim-9",
-                "claim-10",
-                "claim-7"
+                "claim-2",
+                "claim-3",
+                "claim-11",
+                "claim-8"
               ]
             }
           ]
@@ -2199,10 +2745,10 @@
         "statement": "Thus, we present an extension to the Selective Synaptic Dampening algorithm, substituting the diagonal of the Fisher information matrix for the gradient of the l2 norm of the model output to approximate sensitivity.",
         "supporting_claims": [],
         "inferred_supporting_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7"
+          "claim-2",
+          "claim-3",
+          "claim-11",
+          "claim-9"
         ],
         "paper_ref": {
           "char_start": 767,
@@ -2224,10 +2770,10 @@
               "method": "llm-extractor/v1",
               "model": "redacted-model",
               "claims": [
-                "claim-1",
-                "claim-9",
-                "claim-10",
-                "claim-7"
+                "claim-2",
+                "claim-3",
+                "claim-11",
+                "claim-9"
               ]
             }
           ]
@@ -2238,10 +2784,9 @@
         "statement": "Therefore, we propose a novel extension of SSD that does not require access to the loss or ground truth labels, which we refer to as Loss-Free Selective Synaptic Dampening (LFSSD).",
         "supporting_claims": [],
         "inferred_supporting_claims": [
-          "claim-1",
-          "claim-9",
-          "claim-10",
-          "claim-7"
+          "claim-2",
+          "claim-3",
+          "claim-11"
         ],
         "paper_ref": {
           "char_start": 2764,
@@ -2263,10 +2808,9 @@
               "method": "llm-extractor/v1",
               "model": "redacted-model",
               "claims": [
-                "claim-1",
-                "claim-9",
-                "claim-10",
-                "claim-7"
+                "claim-2",
+                "claim-3",
+                "claim-11"
               ]
             }
           ]

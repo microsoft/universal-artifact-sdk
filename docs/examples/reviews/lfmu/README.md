@@ -27,7 +27,7 @@ assessment by the SDK maintainers.
   `005179f8c64043b9c7e0b5f3d3b642d4c6a482806328554a153659434b50ce50` (spec §8.7 conformance paper `lfmu`).
 - Path: the paper adapter (spec §3) converted the PDF to an attested, paper-only evaluable
   artifact ([`artifact/`](artifact/)); the judge (§4) and the reviewer (§5) then ran in the
-  `artifact-informed` scope with an LLM provider. Run `20261028T213907.918Z-9102`.
+  `artifact-informed` scope with an LLM provider. Run `20261029T192440.544Z-9de7`.
 
 ## Where to start
 
@@ -69,6 +69,7 @@ The spec (§5.12) requires two renderings of the same findings:
 | [`artifact-reconciliation.json`](artifact-reconciliation.json) | Literal checks of claims against linked artifact evidence (§5.10.2) |
 | [`artifact-visual-coverage.json`](artifact-visual-coverage.json) | Which artifact figures were inspected (§5.10.3) |
 | [`run-evidence.json`](run-evidence.json) | Evidence from the artifact's own run records, if any (§5.10.4) |
+| [`evidence-packet.json`](evidence-packet.json) | The paper text the reviewer read, as page-broken excerpts (§5.3.3); the explorer uses it to give each quote its page |
 | [`run.json`](run.json) | Run record: stages, configuration, human-owned fields (§6.5) |
 | [`visual/`](visual/) | The 7 page images the review cites as `review-output:visual/…` |
 | [`artifact/`](artifact/) | The adapter's output: `manifest.yml`, `claims.yml`, `results.yml`, `contributions.yml`, `paper_references.yml` |
@@ -80,10 +81,11 @@ The spec (§5.12) requires two renderings of the same findings:
 - Citations of the form `review-output:visual/…` in the Markdown files were turned into links
   to the images in `visual/`. Only cited page images are included.
 - The paper PDF and uncited page images are omitted; download the paper from arXiv.
-- Omitted run files: the raw model responses, the evidence packet
-  (`evidence-packet.json`), page-level visual coverage (`visual-coverage.json`), the
-  human-decision file, and the sealed run manifest (`manifest.json`). Because files were edited
-  and omitted, this copy is **not** a sealed run and will not pass §6 seal verification.
+- Omitted run files: the raw model responses, page-level visual coverage
+  (`visual-coverage.json`), the human-decision file, and the sealed run manifest
+  (`manifest.json`). The evidence packet is kept: it holds only text extracted from the paper.
+  Because files were edited and omitted, this copy is **not** a sealed run and will not pass §6
+  seal verification.
 - The LLM provider and model identifiers are replaced with `redacted-provider`,
   `redacted-model`, and `redacted-verifier-model`; tool names are replaced with `reference-reviewer` and `reference-judge`;
   local paths are replaced with relative ones; an internal build hash is removed from version

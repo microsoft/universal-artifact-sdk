@@ -7,10 +7,10 @@ contributions:
     label-free.
   supporting_claims: []
   inferred_supporting_claims: &id001
-  - claim-1
-  - claim-9
-  - claim-10
-  - claim-7
+  - claim-2
+  - claim-3
+  - claim-11
+  - claim-8
   paper_ref:
     char_start: 294
     char_end: 375
@@ -35,10 +35,10 @@ contributions:
     the l2 norm of the model output to approximate sensitivity.
   supporting_claims: []
   inferred_supporting_claims: &id002
-  - claim-1
+  - claim-2
+  - claim-3
+  - claim-11
   - claim-9
-  - claim-10
-  - claim-7
   paper_ref:
     char_start: 767
     char_end: 982
@@ -72,10 +72,9 @@ contributions:
     Synaptic Dampening (LFSSD).
   supporting_claims: []
   inferred_supporting_claims: &id003
-  - claim-1
-  - claim-9
-  - claim-10
-  - claim-7
+  - claim-2
+  - claim-3
+  - claim-11
   paper_ref:
     char_start: 2764
     char_end: 2944

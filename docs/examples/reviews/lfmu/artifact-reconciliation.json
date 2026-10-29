@@ -11,7 +11,7 @@
   "files": {},
   "records": [
     {
-      "claim_id": "claim-1",
+      "claim_id": "claim-2",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -23,7 +23,19 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-9",
+      "claim_id": "claim-3",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "Here, we show this new approach to dampening important parameters is equally effective as Fisher information, without relying on labelled data.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-11",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -35,19 +47,19 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-10",
+      "claim_id": "claim-8",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
-      "paper_citation": "paper:chars/23044-23103",
-      "paper_quote": "Table 7: Random sample unlearning on Cifar10 (100 samples).",
+      "paper_citation": "",
+      "paper_quote": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there is a significant drop off in performance when picking an alpha that is too aggressive or conservative but the method has a wide plateau in which it performs well.",
       "artifact_citation": "",
       "locator": {},
       "observed_value": null,
       "comparison": {}
     },
     {
-      "claim_id": "claim-7",
+      "claim_id": "claim-9",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -83,19 +95,7 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-8",
-      "result_id": "",
-      "classification": "unresolved",
-      "reason": "No declared result edge resolves.",
-      "paper_citation": "",
-      "paper_quote": "A sensitivity analysis in Table 2 on CIFAR100 rocket class unlearning shows that there is a significant drop off in performance when picking an alpha that is too aggressive or conservative but the method has a wide plateau in which it performs well.",
-      "artifact_citation": "",
-      "locator": {},
-      "observed_value": null,
-      "comparison": {}
-    },
-    {
-      "claim_id": "claim-6",
+      "claim_id": "claim-7",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
@@ -107,12 +107,24 @@
       "comparison": {}
     },
     {
-      "claim_id": "claim-11",
+      "claim_id": "claim-10",
       "result_id": "",
       "classification": "unresolved",
       "reason": "No declared result edge resolves.",
       "paper_citation": "",
-      "paper_quote": "Runs are repeated 10 times for each method, with the mean and standard deviation shown in the tables.",
+      "paper_quote": "Other methods are retraining-based and depend on the number of epochs N, generally on the order of O(N \u00b7 bretain \u00b7 p), which is much larger.",
+      "artifact_citation": "",
+      "locator": {},
+      "observed_value": null,
+      "comparison": {}
+    },
+    {
+      "claim_id": "claim-6",
+      "result_id": "",
+      "classification": "unresolved",
+      "reason": "No declared result edge resolves.",
+      "paper_citation": "",
+      "paper_quote": "We evaluate our method in a range of experiments using ResNet18 and Vision Transformer.",
       "artifact_citation": "",
       "locator": {},
       "observed_value": null,
@@ -134,37 +146,15 @@
         "image_path": "visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
         "scope": "artifact-informed",
         "claim_ids": [
-          "claim-7"
+          "claim-9"
         ],
         "check": "budgets",
         "classification": "unresolved",
         "resolution_reason": "grounding_failure",
-        "visual_observation": "The attached image is entirely black. No figure content, axes, labels, text, or data marks can be seen.",
+        "visual_observation": "The attached image (f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png) renders as a uniformly black square. No text, axes, data marks, legends, or labels are visible.",
         "paper_quote": "In practice, this is similar in compute time.",
-        "explanation": "The claim says LFSSD and SSD have similar compute time. The rendered image has no readable content, so I could not check it against the figure. The comparison record also reports that no declared result edge resolves. Its citation (paper:chars/12946-12991) is not in allowed_citations, although the quoted text does appear in the appendix 'Resources' paragraph.",
+        "explanation": "The claim compares LFSSD and SSD compute time. The figure is unreadable, so it cannot be checked against this claim. The cited span paper:chars/12946-12991 is not among the selected excerpt citations, and the comparison packet reports that no declared result edge resolves.",
         "paper_citation": "paper:chars/12946-12991",
-        "epistemic_status": "unassessed",
-        "region": null,
-        "region_status": "page-only",
-        "figure": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
-        "evidence_packet_id": "f146ec38a9f83c08ac9ba7a28b69fa9357c8be0207b2b14666a827341307c16d",
-        "quote_repair": null
-      },
-      {
-        "visual_citation": "artifact:figures/figure-1.png",
-        "image_sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
-        "image_path": "visual-artifact/f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png",
-        "scope": "artifact-informed",
-        "claim_ids": [
-          "claim-7"
-        ],
-        "check": "captions",
-        "classification": "unresolved",
-        "resolution_reason": "grounding_failure",
-        "visual_observation": "The image is fully black and shows no caption or diagram elements.",
-        "paper_quote": "Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\nrameter importance estimation of SSD resulting in the LFSSD method.",
-        "explanation": "The paper's Figure 1 diagram has labeled components such as 'Synapse selection (\u03b1)', 'Synaptic dampening (\u03bb)', and 'Unlearned model'. I could not confirm any of them because the image is unreadable.",
-        "paper_citation": "paper:chars/11866-12030",
         "epistemic_status": "unassessed",
         "region": null,
         "region_status": "page-only",
@@ -178,7 +168,7 @@
         "path": "figures/figure-1.png",
         "status": "incomplete",
         "claim_ids": [
-          "claim-7"
+          "claim-9"
         ],
         "sha256": "f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298",
         "evidence_packet": {
@@ -251,7 +241,7 @@
         },
         "attempts": [
           {
-            "response": "{\"observations\": [{\"check\": \"budgets\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The attached image is entirely black. No figure content, axes, labels, text, or data marks can be seen.\", \"paper_quote\": \"In practice, this is similar in compute time.\", \"explanation\": \"The claim says LFSSD and SSD have similar compute time. The rendered image has no readable content, so I could not check it against the figure. The comparison record also reports that no declared result edge resolves. Its citation (paper:chars/12946-12991) is not in allowed_citations, although the quoted text does appear in the appendix 'Resources' paragraph.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}, {\"check\": \"captions\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The image is fully black and shows no caption or diagram elements.\", \"paper_quote\": \"Figure 1: Loss-free parameter importance estimation as a replacement for the label-dependent pa-\\nrameter importance estimation of SSD resulting in the LFSSD method.\", \"explanation\": \"The paper's Figure 1 diagram has labeled components such as 'Synapse selection (\u03b1)', 'Synaptic dampening (\u03bb)', and 'Unlearned model'. I could not confirm any of them because the image is unreadable.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}]}",
+            "response": "{\"observations\": [{\"check\": \"budgets\", \"classification\": \"unresolved\", \"resolution_reason\": \"grounding_failure\", \"visual_observation\": \"The attached image (f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png) renders as a uniformly black square. No text, axes, data marks, legends, or labels are visible.\", \"paper_quote\": \"In practice, this is similar in compute time.\", \"explanation\": \"The claim compares LFSSD and SSD compute time. The figure is unreadable, so it cannot be checked against this claim. The cited span paper:chars/12946-12991 is not among the selected excerpt citations, and the comparison packet reports that no declared result edge resolves.\", \"figure\": \"f4014155bd7c596b079acdcc9f55d7931f9b1f01fae0663c4c99175e6aa79298.png\", \"region\": null}]}",
             "errors": []
           }
         ],
@@ -284,7 +274,7 @@
         {
           "outcome": "grounding_failure",
           "label": "Grounding failure: context, citation or readability",
-          "count": 2
+          "count": 1
         },
         {
           "outcome": "confirmation_failure",
@@ -317,18 +307,12 @@
   },
   "run_evidence": {
     "status": "incomplete",
-    "packet_id": "d6bcd9ecf9a90cd145c6cd048da330c01581c7eb0e421a92476fb19d94cc0747",
+    "packet_id": "3a1133631bb6d6ebda506ed92b45054672e98e5cf346b54d166d9bcebbbca5c7",
     "packet": {
       "sources": {},
       "paper_claims": [
         {
-          "claim_id": "claim-10",
-          "result_id": "",
-          "citation": "paper:chars/23044-23103",
-          "quote": "Table 7: Random sample unlearning on Cifar10 (100 samples)."
-        },
-        {
-          "claim_id": "claim-7",
+          "claim_id": "claim-9",
           "result_id": "",
           "citation": "paper:chars/12946-12991",
           "quote": "In practice, this is similar in compute time."
@@ -337,7 +321,34 @@
       "source_settings": [],
       "run_bindings": [
         {
-          "claim_id": "claim-1",
+          "claim_id": "claim-2",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-3",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-11",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-8",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -347,24 +358,6 @@
         },
         {
           "claim_id": "claim-9",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-10",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-7",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -391,7 +384,16 @@
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         },
         {
-          "claim_id": "claim-8",
+          "claim_id": "claim-7",
+          "result_id": "",
+          "run_id": null,
+          "result_sha256": null,
+          "events": [],
+          "status": "unresolved",
+          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
+        },
+        {
+          "claim_id": "claim-10",
           "result_id": "",
           "run_id": null,
           "result_sha256": null,
@@ -407,27 +409,20 @@
           "events": [],
           "status": "unresolved",
           "reason": "Run ID and result digest binding are producer assertions, not execution proof."
-        },
-        {
-          "claim_id": "claim-11",
-          "result_id": "",
-          "run_id": null,
-          "result_sha256": null,
-          "events": [],
-          "status": "unresolved",
-          "reason": "Run ID and result digest binding are producer assertions, not execution proof."
         }
       ]
     },
     "observations": [],
     "limitations": [
-      "Claim claim-1: paper premise unselected or ambiguous.",
-      "Claim claim-9: paper premise unselected or ambiguous.",
+      "Claim claim-2: paper premise unselected or ambiguous.",
+      "Claim claim-3: paper premise unselected or ambiguous.",
+      "Claim claim-11: paper premise unselected or ambiguous.",
+      "Claim claim-8: paper premise unselected or ambiguous.",
       "Claim claim-4: paper premise unselected or ambiguous.",
       "Claim claim-5: paper premise unselected or ambiguous.",
-      "Claim claim-8: paper premise unselected or ambiguous.",
+      "Claim claim-7: paper premise unselected or ambiguous.",
+      "Claim claim-10: paper premise unselected or ambiguous.",
       "Claim claim-6: paper premise unselected or ambiguous.",
-      "Claim claim-11: paper premise unselected or ambiguous.",
       "Advisory code/run reasoning was not performed."
     ],
     "activity": "read-only-source-inspection"

@@ -4,11 +4,11 @@ _generated: DO NOT EDIT — produced by `paper-to-artifact` from paper.pdf. Ever
 format_version: evaluable-artifact/v3
 sdk_version: artifact-sdk/v1
 id: 005179f8c640
-title: paper
+title: Loss-Free Machine Unlearning
 source_format: paper/v1
 identity:
   id: 005179f8c640
-  title: paper
+  title: Loss-Free Machine Unlearning
   author_name: null
 origin:
   kind: paper

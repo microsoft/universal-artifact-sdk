@@ -55,7 +55,7 @@ contributions:
   - claim-2
   - claim-3
   - claim-5
-  - claim-4
+  - claim-15
   paper_ref:
     char_start: 3380
     char_end: 3510
@@ -139,7 +139,6 @@ contributions:
   supporting_claims: []
   inferred_supporting_claims: &id004
   - claim-2
-  - claim-17
   - claim-18
   paper_ref:
     char_start: 20705
