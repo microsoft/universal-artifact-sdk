@@ -46,6 +46,7 @@ the judge or reviewer.
   run-evidence.json                # artifact-informed: §5.10.4
   reference-check.json             # if reference lookup ran: §6.6.2
   extracted-claims.json/.md        # if the judge's LLM extraction ran: §4.10
+  self-consistency.json            # if the judge's LLM self-consistency check ran: §4.10
   reproduction/<slug>/…            # if a reproduction provider ran: §4.9
 ```
 
