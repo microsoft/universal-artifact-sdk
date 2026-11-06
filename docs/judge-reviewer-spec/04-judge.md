@@ -514,6 +514,42 @@ all `unchecked` plus a warning.
 5. Output: `extracted-claims.json` and `extracted-claims.md` in the run directory, each marked
    generated and labeled advisory.
 
+**LLM self-consistency check** (optional; requires an LLM provider, §7.1). It looks for places
+where the paper disagrees with itself: one sentence gives 12.1% and another 21.1% for the same
+quantity, or a sentence says *slower* next to a table that shows the method is faster. It runs
+in three stages, cheapest first:
+
+1. **Find pairs (no model).** Split the paper text into sentences, excluding the bibliography.
+   Every sentence under 600 characters that holds a number or a comparison word (*faster*,
+   *more*, *outperforms*, …) is a claim. For each claim, retrieve the 4 most similar other
+   sentences by a lexical ranking (reference: BM25).
+2. **Scan and verify (a model that MAY be small and local).** *Scan*: one call per claim with
+   only the claim and its passages: does any passage contradict the claim about the same thing
+   (another value for the same quantity, the opposite direction, an incompatible statement)?
+   Answer `agree`, `disagree` or `unclear`, and name the passage. *Verify*: one call per
+   `disagree`: state the topic, what each side says, whether both describe the same setting,
+   and whether both can hold. A pair whose two sides cannot both hold becomes a **lead**.
+3. **Confirm (a strong model).** One call per paper with the full paper text and all of its
+   leads, numbered. For each lead: a real error or inconsistency, or a misreading (different
+   settings, metrics or baselines; text-extraction noise; a matter of opinion), with a
+   one-sentence reason. Only confirmed leads are kept. If no confirm model is configured, the
+   stage 2 model confirms one lead per call with the full paper.
+
+Rules: model answers use temperature 0 where the provider supports it; an unusable answer is
+recorded as `invalid` and never counts as a verdict; both quotes of every kept lead MUST be
+located in the paper text with the *squash* procedure (§2.8), or the lead is dropped. Output:
+`self-consistency.json` in the run directory, marked generated and labeled advisory, listing
+each kept lead with both quotes, the topic, the confirm reason, and the model used at each
+stage, plus counts per stage. The reviewer MAY pass kept leads to its specialists as hints; a
+specialist MUST confirm a lead against the paper before reporting it, and its finding cites the
+paper, never the overlay.
+
+*Why three stages:* on a reference benchmark of 10 recent papers with 20 planted errors, stages
+1–2 with a 26B open-weight model found 12 of the 20, but also raised 53 leads on the unmodified
+papers, nearly all comparing statements about different experiments. Telling those apart needs
+the whole paper. Adding the stage 3 confirm, one call per paper, kept 11 of 20 and left 2 leads on the
+unmodified papers, using 27 strong-model calls for the 30 inputs.
+
 ## 4.11 Judge result
 
 Written to `<run>/judge.json` (schema in §6.6). Exit statuses: §6.8.

@@ -66,7 +66,8 @@ is reserved for implementations that add one.
 - Credentials are read from the environment or a secret store and are never written to the run.
   Only the provider ID and model ID are recorded.
 - Model selection can be per role (extractor, verifier, substantiator, specialist, critic,
-  synthesizer, contribution digest, visual). Precedence: explicit per-role option, then a general option, then the
+  synthesizer, contribution digest, visual, self-consistency scan/verify, self-consistency
+  confirm). Precedence: explicit per-role option, then a general option, then the
   provider default.
 - Every prompt MUST demand JSON-only output, and every parser MUST be defensive (§5.5). Model
   text is untrusted (I11).
