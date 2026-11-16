@@ -70,9 +70,10 @@ exception, and the research-agent metadata rule. It reads these files beyond the
 | Exhibits index | `paths.exhibits`, else `exhibits.yml` | SDK §2.3.1 | §3.8 |
 | README | probe (§2.6) | Markdown or text | §3.13 |
 
-**Malformed content is reported, not fatal.** When an index (other than `manifest.yml`) is
-declared but missing, fails path safety (§2.5), does not parse, or lacks its top-level list, the
-explorer uses an empty list and adds a build warning (§3.2) naming the file. An index that is
+**Malformed content is reported, not fatal.** When an index other than `manifest.yml` is
+declared but missing, or is read (because it is declared or exists at its default file name)
+and fails path safety (§2.5), does not parse, or lacks its top-level list, the explorer uses an
+empty list and adds a build warning (§3.2) naming the file. An index that is
 **not declared** and absent at its default file name is simply empty, with no warning: absence
 is not a defect (I3). A list element that is not a
 mapping is skipped with a warning. Contribution loading additionally produces the contribution
