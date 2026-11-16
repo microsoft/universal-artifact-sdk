@@ -1047,6 +1047,9 @@ why defeats the point.
   idempotency survives across sessions.
 - Every machine-generated file carries a generated marker naming the SDK
   (repo convention; e.g. `_generated:` / `> **Auto-generated**`).
+- **YAML encoding and schema.** Every YAML file is UTF-8 and is read under the YAML 1.2 core
+  schema, as both SDK bindings read it: `yes`/`no`/`on`/`off`, dates, and timestamps are strings,
+  never booleans or date values. A mapping that repeats a key is malformed.
 - **New index files are omitted when empty.** `contributions.yml` / `exhibits.yml` / `traces.yml` / `assessments.yml` /
   `journal.yml` / `paper_references.yml` appear only if the producer declared the corresponding
   content — their absence is the on-disk form of "this evidence was not provided" (see §5.1).

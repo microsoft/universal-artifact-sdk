@@ -305,6 +305,11 @@ re-evaluating the artifact.
    `activity`/`submission_executed` are `inspection`/`false`, or `reproduction`/`true` only if
    the `reproduction` stage is `completed` or `incomplete`. Paper-only: `judge` is `null`.
 
+Consumer validation does not check the stage names of §6.4: the rule that every stage name
+appears in `stages` is a writer obligation. A consumer MUST accept a run whose `stages` lacks a
+stage, or has an extra one, and treats a missing stage as "not recorded" (never as
+`not-requested` or as a failure).
+
 ## 6.8 Consumer obligations and exit statuses
 
 Consumers:

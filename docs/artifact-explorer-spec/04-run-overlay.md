@@ -5,8 +5,10 @@
 # 4. Run overlay
 
 The overlay is optional and additive. The core document (§3) is the same with and without it,
-except for the cross-reference lists that §4.4 fills on claims and results (`judge_finding_ids`,
-`review_finding_ids`) and the reference `check` values (§3.12). Everything in the overlay is
+except for these run-derived keys: the cross-reference lists that §4.4 fills on claims and
+results (`judge_finding_ids`, `review_finding_ids`) and on contributions (`review_finding_ids`);
+the reference `check` values (§3.12) and the top-level `reference_check` (§4.9); and
+`contribution_diagnostics`, which is the judge's when a judge result is present (§3.5). Everything in the overlay is
 **read** from the run as JR §6 defines it; the explorer evaluates nothing (I2).
 
 ## 4.1 `evaluation` skeleton
@@ -47,7 +49,8 @@ read; in mode C it is derived the same way from the stages available, and is `fa
 
 ## 4.2 `evaluation.judge`
 
-Present when the run has a judge result (`manifest.judge.path`, JR §6.6.1); else `null`.
+Present when the run has a judge result — in mode B, `manifest.judge.path` (JR §6.6.1); in
+mode C, a `judge.json` in the outputs directory that parses (§4.7) — else `null`.
 
 | Key | Source |
 |-----|--------|
@@ -165,8 +168,10 @@ nothing.
    `contribution_review.declarations`, `paper_contribution_review.declarations`, the artifact's
    contributions, judge findings. One resolved `target` join of the first matching kind. (A
    converted judge finding's `target` is the full judge finding ID, JR §5.10.1, and joins this way.)
+   Results are not in this list: a bare result ID is free text (case 5), so a target that names
+   a result must use `result:<id>`.
 5. **Free text**: anything else. No join and **no warning**; the site shows it as plain text
-   ("About: …", §5.4.6). Prose is not an identifier, so it is never reported as unresolved.
+   ("About: …", on the finding's route `#/findings/<id>`, §5.3). Prose is not an identifier, so it is never reported as unresolved.
 
 **Direct references only.** A finding is joined to a claim, result, or contribution only when
 that finding itself names it by one of the rules above. Joins are never transitive: a review
@@ -238,7 +243,8 @@ is never copied.
 The explorer re-hashes **every** file it reads or copies from the run as it does so — run outputs
 against `outputs`, snapshot files (including every artifact asset taken from
 `snapshot/artifact/`) against `inputs`. A hash that differs from the manifest means the run
-changed after validation, and the build stops with exit `2` without leaving a partial site.
+changed after validation, and the build stops with exit `2`, leaving the output directory as it
+was before the build (§2.1).
 Snapshot artifact files are copied under `assets/` like any artifact file (§3.1), since in mode B
 the snapshot **is** the artifact.
 
@@ -262,7 +268,7 @@ Each citation of JR §5.3.2, at any citation site, renders as:
 | `paper:chars/<a>-<b>` | each of the finding's `evidence_quotes` whose `citation` is this string, as a quotation, with "p. *n*" when §4.6.2 gives a page for offset *a* (linked as `paper:p.<n>` is) and "page not recorded" otherwise; with no such quote, the citation text with the same page note. The explorer does not re-extract paper text |
 | `paper:document`, `paper:section/<name>` | "Paper (whole document)", "Paper, section *name*"; the finding's `evidence_quotes` shown beside it |
 | `artifact:<path>[#<fragment>]` | a link to its `citation_assets` URL; the file is copied like any artifact asset (§3.1) when it resolves under §2.5, else the citation text is shown |
-| `review-record:comparison/<i>` | a link to reconciliation record *i* (route `#/evaluation/reconciliation/<i>`, §5.2) |
+| `review-record:comparison/<i>` | a link to reconciliation record *i* (route `#/evaluation/reconciliation/<i>`, §5.3) |
 | `review-record:visual/<i>`, `review-record:artifact-visual/<i>` | a link to visual record *i* (routes `#/evaluation/visual/<i>`, `#/evaluation/artifact-visual/<i>`, §5.3) when `evaluation.review.visual` holds it; else the citation text, marked unresolved |
 | other `review-record:` forms | the citation text (the explorer does not copy run-evidence records in v1) |
 | `review-output:<path>` | a link to its `citation_assets` URL under `run/` when copied (images inline), else the citation text |
@@ -333,8 +339,8 @@ YAML or JSON mapping with at least:
 The explorer accepts the record only when `approved` is `true`, `run_id` equals
 `evaluation.run.run_id`, and `review_draft_sha256` equals the SHA-256 of the run's
 `review-draft.md` as copied into the site. Then `evaluation.approval` is
-`{approved_by, approved_at, run_id, review_draft_sha256}` copied from it (timestamps in the
-timestamp form of §3.1); otherwise `evaluation.approval` is `null` and, when a record was given, a
+`{approved_by, approved_at, run_id, review_draft_sha256}` copied from it verbatim (a timestamp
+is kept as the string the record gives, §3.1); otherwise `evaluation.approval` is `null` and, when a record was given, a
 warning says why it was not shown. The site shows an accepted approval on Overview, Review, and
 Evaluation as "Publication approved by *approved_by* (*approved_at*)", labeled as a human record
 supplied outside the analysis. An approval is not part of the analysis: it does not change the

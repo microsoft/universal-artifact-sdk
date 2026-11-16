@@ -26,9 +26,10 @@
   <application files>  # scripts, styles, fonts; names are implementation-defined
 ```
 
-Only referenced files are copied: the site is not a mirror of the artifact. Markdown files that
-are copied also bring the images they reference, when those resolve under §2.5. No other file is
-written.
+Only referenced files are copied: the site is not a mirror of the artifact. A copied Markdown
+file also brings every target in its `embedded` map that resolves (§3.1: link and image
+targets alike), and a copied Markdown target brings its own targets in turn; each file is copied
+once. No other file is written.
 
 ## 5.3 Sections and routes
 
@@ -36,7 +37,7 @@ The viewer is a single page with hash routes, so links survive static hosting:
 
 | Route | Section | Shows |
 |-------|---------|-------|
-| `#/overview` (default) | Overview | `display_title`, origin notice (§5.5), counts, evidence inventory (labeled "as declared in the manifest", §3.2), and, with a run, the run summary of §5.4.6 |
+| `#/overview` (default) | Overview | `display_title`, origin notice (§5.5), counts, evidence inventory (labeled "as declared in the manifest", §3.2), and, with a run, the run summary (§5.4.6) |
 | `#/review`, `#/review/<bucket>` | Review | §5.4.7, shown in the navigation when `evaluation.review` is non-`null`; the second form opens bucket `<bucket>` (slugs in §5.4.7). With no run: "No analysis run was supplied."; in a judge-only run: the judge-only notice of §5.5 |
 | `#/evaluation` | Evaluation | §5.4.6; with no run: "No analysis run was supplied." |
 | `#/evaluation/reconciliation/<i>` | Evaluation | reconciliation record *i* (0-based position in `evaluation.review.reconciliation`), the target of `review-record:comparison/<i>` citations |
@@ -44,13 +45,13 @@ The viewer is a single page with hash routes, so links survive static hosting:
 | `#/contributions`, `#/contributions/<id>` | Contributions | §5.4.2 |
 | `#/claims`, `#/claims/<id>` | Claims & Evidence | §5.4.1 |
 | `#/paper`, `#/paper/references/<id>` | Paper | the paper PDF and/or source, title, authors, abstract, references with any check status, related work (§5.4.4), and the author reflection; the second form scrolls to and highlights reference `<id>` (the target of `reference:<id>` citations) |
-| `#/paper/page/<n>` | Paper | page *n* (a positive integer) of the paper PDF in the site's own viewer (the copied PDF opened at `#page=<n>`), with a link that opens the file in a new tab; without a PDF asset, the text "p. *n*" and the notice "The paper PDF is not part of this site." This is the target of `paper:p.<n>` citations and of known pages in paper locations |
+| `#/paper/page/<n>` | Paper | page *n* (any positive integer; the page count is not recorded, so the viewer does not check *n* against it) of the paper PDF in the site's own viewer (the copied PDF opened at `#page=<n>`), with a link that opens the file in a new tab; without a PDF asset, the text "p. *n*" and the notice "The paper PDF is not part of this site." This is the target of `paper:p.<n>` citations and of known pages in paper locations |
 | `#/materials`, `#/materials/<kind>/<id>` | Materials | results, experiments, exhibits, figures, datasets, traces, assessments (`<kind>` is the collection name), and the README as documentation |
 | `#/provenance` | Provenance | identity, `producer`, `origin`, environment, research agent, journal, and the run record (§4.1) |
 | `#/findings/<id>` | — | one judge or reviewer finding (full ID), with its source label, links, and its `target`: a reference (§4.4 target grammar, cases 2 and 4) as a link, unresolved ones marked; free text as plain text after "About:"; nothing for no target or a malformed reference beyond the verbatim text |
 
 `<id>` is the record's full ID, percent-encoded as a URI component (contribution IDs contain `/`
-and are never truncated). An unknown route, ID, bucket, record index, or page number shows a
+and are never truncated). An unknown route, ID, bucket, or record index, or a page that is not a positive integer, shows a
 "not found" notice with a link to the overview; it never shows a blank page.
 
 Navigation order (*reference value (non-normative)*): Overview, Review, Contributions, Claims &
@@ -67,7 +68,7 @@ example, show each contribution with its linked claims.
 ### 5.4.1 Claims
 
 The list shows each claim's ID, statement, and stance. Per-claim page, in this order:
-statement; stance ("not declared" when `null`); paper location (`paper_location` and the full `paper_ref`, rendered as §5.4.8 describes), linking to the paper page route when the page
+statement; stance (for `null`, "finding (default; not declared)", §3.4); paper location (`paper_location` and the full `paper_ref`, rendered as §5.4.8 describes), linking to the paper page route when the page
 is known and a PDF asset exists; a `null` page renders "page unknown" with no page link, never as page 0; validators; results (with evidence links);
 experiments; exhibits and figures (each with its link method, §3.11); contributions, declared
 then inferred, each inferred link with its attribution phrase (§5.6); and, with a run, the linked
@@ -76,8 +77,8 @@ copied verbatim, and the `via` of the join (from the finding's `joins`) that lis
 Values of the claim's `extra` MAY follow as producer metadata (§3.5.1).
 
 *Reference value (non-normative):* the list groups claims by stance (`hypothesis`, then
-`finding`, then undeclared, which also holds stances outside SDK §2.4.1) and keeps declaration
-order within a group.
+`finding`, which includes undeclared stances, then stances outside SDK §2.4.1, marked "stance not
+recognized") and keeps declaration order within a group.
 
 ### 5.4.2 Contributions
 
@@ -165,7 +166,12 @@ own run ID (`evaluation.judge.run_id`, §4.2) labeled as such beside the run's.
 
 ### 5.4.6 Evaluation
 
-With a run, in this order:
+The **run summary** is: the run ID (in full), `scope`, the sealed state ("sealed" or the
+unsealed notice of §5.5), `input_digest`, `status`, and, when a judge result is present, the
+activity notice of §4.2, with a link to the full run record on Provenance (§5.4.5). It is shown
+on Overview and at the top of the Evaluation page.
+
+With a run, after the run summary, in this order:
 
 1. **Human-owned assessment.** When the run is not judge-only, exactly:
 
@@ -179,11 +185,13 @@ With a run, in this order:
    by a human outside the analysis), followed by "These belong to the human reviewer." In a
    judge-only run (§4.3, where `review` is `null`) the three lines are not shown; the item reads
    "Human-owned assessment: not applicable (no review was requested)."
-2. **Stages**: each stage and status, with `stage_notes`.
+2. **Stages**: each stage and status, with `stage_notes`. A stage of JR §6.4 that `stages` does
+   not list is shown as "not recorded" (JR §6.7); in mode C with `stages` `{}`, every stage is
+   shown as unknown.
 3. **Judge** (when present): rubric, method badge, and badges verbatim, labeled "Judge
    (deterministic)"; the activity notice of §4.2; findings, each with its `verdict` and `mode_verdict`
    verbatim (JR §4.1), grouped by `presentation_role` in the order `needs_attention`, `holds_up`,
-   `coverage` (a finding without a role goes last). Findings without a role MAY be sub-grouped
+   `coverage` (a finding without a role, or with any other role value, goes last, in one group). Findings without a role MAY be sub-grouped
    by their `verdict`, in order of first appearance. The grouping is display only and changes
    nothing about the finding (JR §4.1).
 4. **Review**: in a judge-only run, "No review was requested in this run (judge-only).";
@@ -210,8 +218,9 @@ next to item 1, without changing it.
 
 ### 5.4.7 Review
 
-The Review page presents `evaluation.review` (§4.3) for reading. Every item on it carries
-"Reviewer (advisory)". In this order:
+The Review page presents `evaluation.review` (§4.3) for reading. Every finding and every
+synthesis item on it carries "Reviewer (advisory)"; each header line is labeled by its own kind
+(the approval line is a human record, §4.8). In this order:
 
 1. A header with the run ID, the `paper_review` stage status (with the notice of §4.5 item 1 when
    it is not `completed`), the approval line of §4.8 when present, and the line
@@ -308,12 +317,22 @@ a declared experiment".
 | Reconciliation record *i* | "Comparison *i*+1" |
 | Visual record *i* | "Visual record *i*" with its page when known |
 
-*title* is the record's `display.title` when present, else the text before the first sentence
-end of its `statement` (or the text after a leading "Title:", else a short leading phrase of 3–90
-characters before a colon), shortened with an ellipsis when
-long. Claims and results keep their IDs as labels when the ID is **readable**. An ID is
-**opaque** when it is longer than 40 characters, or is a prefix and `/` followed by at least 16
-hexadecimal digits; an opaque ID is never used as a heading or link text, but its record's own
+*title* is the record's `display.title` when present. Otherwise it is taken from the record's
+`statement`, trimmed, by the first of these rules that applies:
+
+1. the statement starts with `Title:` → the text after it, trimmed, up to its first sentence end;
+2. the text before the first colon is 3–90 characters long after trimming and contains no
+   sentence end → that text;
+3. the statement contains a sentence end → the text before the first one;
+4. otherwise → the whole statement.
+
+A **sentence end** is `.`, `!`, or `?` followed by whitespace or by the end of the text; the mark
+itself is not part of the title. A title longer than 90 characters (*reference value
+(non-normative)*) is shortened with an ellipsis. For example, `Title: Fast sort. It is fast.` →
+`Fast sort`; `Speedup: 2x on all inputs.` → `Speedup`; `We show v1.2 is faster. Details.` →
+`We show v1.2 is faster`. Claims and results keep their IDs as labels when the ID is **readable**. An ID is
+**opaque** when it is longer than 40 characters, or when the whole ID matches
+`^[^/\s]+/[0-9a-fA-F]{16,}$` (a prefix, `/`, and at least 16 hexadecimal digits); an opaque ID is never used as a heading or link text, but its record's own
 page shows the full ID (for example as an "ID" line), and it remains the route key (§5.3).
 Citation chips use the forms of §4.6.1 ("Paper, p. *n*", "Comparison *i*+1", …).
 
@@ -324,7 +343,7 @@ record) but MUST contain the phrase.
 
 | Kind | Rendering |
 |------|-----------|
-| `image` | inline `<img>` with alternative text (caption, else ID, else file name) |
+| `image` | inline `<img>` with alternative text: the first non-empty of the record's `alt_text` (exhibits), its caption, its ID, the file name. §3.8 and every other image use this one chain |
 | `markdown` | rendered as CommonMark with raw HTML disabled (§3.1), then sanitized (§6.2). Each link or image destination is looked up in the asset reference's `embedded` map: a non-`null` value is rewritten to its `url` (keeping the original `#fragment` for links); an external `http:`, `https:`, or `mailto:` link is an external link (§6.3); an external image is never loaded and is shown as its alternative text followed by its URL as text; any other target is shown as text |
 | `text` | escaped, preformatted; large files MAY be truncated in view with a link to the full file |
 | `pdf` | link, or embedded viewer from the copied file |

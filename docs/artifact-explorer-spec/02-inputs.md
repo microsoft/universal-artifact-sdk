@@ -11,7 +11,7 @@
 | Artifact directory | Mode A, C | An `evaluable-artifact/v3` or `/v2` directory in the on-disk shape of JR §2.3.1 |
 | Sealed run directory | Mode B | A run directory `<base>/runs/<run-id>/` as defined in JR §6.1–§6.3 |
 | Unsealed outputs directory | Mode C only | §2.7 |
-| Publication-approval record | no (OPTIONAL feature, §4.8) | a file, named explicitly; modes B and C only |
+| Publication-approval record | no (OPTIONAL feature, §4.8) | a file, named explicitly; modes B and C only (naming one in mode A is a usage error) |
 | Separate reference-check result | no (OPTIONAL feature, §4.9) | a file, named explicitly |
 | Output directory | always | Where the site is written (§5.2) |
 
@@ -23,6 +23,14 @@ Usage errors, detected before anything is written:
 - no input, or both an artifact directory and a sealed run (§1.2);
 - an output directory that equals, contains, or lies inside an input directory (I1);
 - an input path that does not exist or is not a directory;
+- a named input file (publication-approval record, separate reference-check result) that does
+  not exist or is not a regular file; a file that exists but is rejected by §4.8 or §4.9 is a
+  build warning, not a usage error;
+- a publication-approval record in mode A (§4.8 needs a run);
+- an output path that is, or lies under, a symbolic link (§6.1);
+- in mode C, an outputs directory that equals or lies inside the artifact directory (the
+  artifact would then contain the analysis of itself; the reverse, an outputs directory that
+  contains the artifact directory, is allowed);
 - an output directory that exists and is not empty, unless the caller passes an explicit option
   to replace it (the tool then replaces it only after a successful build, per exit `3` below).
   An existing empty directory is used as is.
@@ -32,7 +40,7 @@ Exit statuses of a conforming command-line tool:
 | Code | Meaning |
 |------|---------|
 | `0` | Site written. Build warnings (§3.2) do not change the code. |
-| `2` | Usage error, format-gate rejection (§2.2), or run-gate rejection (§2.4). Nothing is written; an existing output directory is left untouched. |
+| `2` | Usage error, format-gate rejection (§2.2), run-gate rejection (§2.4), or a hash mismatch found while reading or copying a run file (§4.6). The output directory MUST be left exactly as it was before the build (absent, empty, or with its previous content): a rejection found after writing has begun is handled by writing to a staging directory and renaming on success, or by undoing every write. |
 | `3` | Unexpected failure while building. The output directory may hold a partial site; the tool SHOULD write to a sibling temporary directory and rename on success so that it does not. |
 
 ## 2.2 Format gate
@@ -44,8 +52,8 @@ gate rejection (exit `2`).
 
 - `sdk_version` is copied into `identity` (§3.3) and MUST NOT change behavior (JR §2.2 rule 2).
 - `producer`, `origin`, and other producer extensions are opaque: copied for display, never
-  interpreted, except `origin.kind`, `origin.evidence_cap`, and `origin.extractor`, which
-  §5.6 uses for attribution labels only.
+  interpreted, except `origin.kind` and `origin.evidence_cap`, which only the paper-origin banner
+  of §5.5 uses. Every other `origin` key is shown verbatim on Provenance (§5.4.5).
 - A v2 artifact has no contributions; `contributions` is `[]` and the Contributions section
   says that no declaration was provided (I3).
 
@@ -79,6 +87,13 @@ copied fields and has empty derived lists.
 Unknown fields on any record are preserved in the data document (§3.1) and never interpreted.
 YAML values are projected into JSON by the rule in §3.1.
 
+**YAML reading.** Every YAML file is read as UTF-8 (a leading byte-order mark is ignored) under
+the YAML 1.2 core schema, as the SDK bindings read it (SDK §5): `yes`, `no`, `on`, `off`,
+dates, and timestamps are strings, never booleans or date values. A mapping that repeats a key is
+a parse error. A `manifest.yml` that is not valid UTF-8 or does not parse is a format-gate
+rejection (§2.2); any other index that is not valid UTF-8 or does not parse is a malformed index
+(a build warning, above).
+
 ## 2.4 Run gate (mode B)
 
 1. The explorer MUST run JR §6.7 **consumer validation** on the run directory before reading
@@ -103,6 +118,7 @@ YAML values are projected into JSON by the rule in §3.1.
    run with scope `artifact-informed` whose `paper_review` stage (and every other reviewer stage)
    is `not-requested`. It is gated and read exactly like any other mode-B run; nothing in this
    specification distinguishes it except how the review part of the overlay is presented (§4.3).
+   The explorer's test for "judge-only" is the one of §4.1 (`judge_only`).
 
 ## 2.5 Path safety
 
@@ -158,8 +174,9 @@ the caller passes an explicit opt-in flag naming the outputs directory. Then:
    This list is closed: no other file in the outputs directory is parsed. The only other files
    mode C touches are those named by `review-output:` citations and by visual-record
    `image_path` values, which are copied (never parsed) under the rule of §4.7.
-3. `evaluation.run.sealed` is `false`, `manifest`-derived fields are `null`, and stage statuses
-   are taken from `run.json.input_provenance.stages` when present, else unknown.
+3. `evaluation.run.sealed` is `false`, and every key of `evaluation.run` is filled by the table
+   of §4.7: the manifest-only fields are `null`, and `stages` is
+   `run.json.input_provenance.stages` when present, else `{}` (every stage shown as unknown).
 4. Every page of the site shows the banner of §5.5: the analysis is unsealed and could have been
    altered after it was produced.
 5. Without the opt-in flag, an outputs directory without a valid seal is a run-gate rejection.

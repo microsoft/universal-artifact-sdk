@@ -56,17 +56,18 @@
   autolinks and text inside code spans or code blocks contribute none. The builder and the viewer
   MUST use the same parse, so every destination the viewer meets is a key of `embedded`. The
   viewer serves embedded images and links only through this map (§5.7, §6.2).
-- **YAML to JSON.** Values read from YAML are projected into JSON as: dates → `YYYY-MM-DD`;
-  timestamps → the **timestamp form** below; `.nan`, `.inf`, `-.inf` → the strings `"nan"`,
-  `"inf"`, `"-inf"`. Non-string mapping keys become strings: `true`/`false`, `null`, integers in
-  plain decimal, floats in the shortest decimal form that reads back as the same value with `.0`
-  appended when it has no fractional part (`1.0` → `"1.0"`, `2.5e-07` → `"2.5e-07"`), and dates
-  and timestamps as above. Every other YAML scalar maps to the JSON scalar of the same type.
-- **Timestamp form.** Every timestamp the explorer writes or converts (`generated_at`, YAML
-  timestamps) is RFC 3339 in UTC with a `Z` suffix: `YYYY-MM-DDTHH:MM:SSZ`, with a fractional
-  part only when it is non-zero, written with its trailing zeros removed
-  (`2026-10-27T21:40:00.5Z`). A YAML timestamp without a time zone is taken as UTC (as YAML
-  specifies). Timestamps copied from run JSON files are strings and are kept verbatim.
+- **YAML to JSON.** YAML is read under the core schema of §2.3, so dates, timestamps, and
+  `yes`/`no` are already strings and are copied verbatim (`2026-10-27 21:40:00` stays that
+  string). `.nan`, `.inf`, `-.inf` → the strings `"nan"`, `"inf"`, `"-inf"`. Non-string mapping
+  keys become strings: `true`/`false`, `null`, integers in plain decimal, floats in the shortest
+  decimal form that reads back as the same value with `.0` appended when it has no fractional
+  part (`1.0` → `"1.0"`, `2.5e-07` → `"2.5e-07"`). When two keys of one mapping become the same
+  string (for example `true` and `"true"`), the first in file order is kept and a warning names
+  the key and the file. Every other YAML scalar maps to the JSON scalar of the same type.
+- **Timestamp form.** Every timestamp the explorer itself writes (`generated_at`) is RFC 3339 in
+  UTC with a `Z` suffix: `YYYY-MM-DDTHH:MM:SSZ`, with a fractional part only when it is non-zero,
+  written with its trailing zeros removed (`2026-10-27T21:40:00.5Z`). Timestamps read from any
+  input, YAML or JSON, are strings and are kept verbatim.
 
 - Cross-references between records are **by ID** (`claim_ids`, `result_ids`, …), never by
   embedding. A cross-reference to an ID that does not exist is kept and flagged in `warnings`;
@@ -100,7 +101,7 @@
   "assessments": [ "§3.9" ],
   "references": [ "§3.12" ],
   "journal": [ "§3.9" ],
-  "paper": { "…": "§3.10, or null" },
+  "paper": { "…": "§3.10, always an object" },
   "figures": [ "§3.11" ],
   "related_work": [ "§3.14" ],
   "reference_check": "§4.9, or null",
@@ -137,7 +138,7 @@ as `null` or `[]`, so documents from earlier v1 builders still render.
 
 `display_title` exists because paper-origin artifacts may carry a placeholder `title` (an adapter that
 detects no title writes the file stem, such as `paper`); the site header uses `display_title`, and the Provenance section
-shows both. A PDF metadata title is often wrong (a template name, a file name); it is used only
+also shows `title` when the two differ (§5.4.5). A PDF metadata title is often wrong (a template name, a file name); it is used only
 when the paper source yields no title, and the site labels it (§5.4.5). A metadata title that is
 empty after trimming is not used.
 
@@ -148,7 +149,7 @@ One entry per claim in the claims index (SDK §2.4), in declaration order:
 | Key | Derivation |
 |-----|------------|
 | `id`, `statement`, `paper_ref`, `tested_by` | copied; `tested_by` `[]` when absent |
-| `stance` | SDK §2.4.1 value, or `null` when undeclared (the site shows "not declared", not a default). A value outside SDK §2.4.1 is copied verbatim, flagged in `warnings`, and grouped with undeclared stances for display |
+| `stance` | SDK §2.4.1 value as declared, or `null` when undeclared. `null` means the SDK default, `finding` (SDK §2.4.1, JR J9): the site shows "finding (default; not declared)" and treats the claim as a finding. A value outside SDK §2.4.1 is copied verbatim and flagged in `warnings`; the site shows it with "stance not recognized" |
 | `validators` | each validator from `validators`, or the singular `validator` (SDK §3), as `{id, kind, name, gated_by, validation_mode, extra}`: the five named keys copied under the SDK's own names (`null` when absent), every other key of the validator (for example `checks`, `inputs`, `criteria`) in `extra` |
 | `result_ids` | IDs of results whose `validates` lists this claim (SDK §2.3), in results order |
 | `experiment_refs` | `tested_by`, then each listed result's `produced_by` not already present |
@@ -227,8 +228,8 @@ disposition, SDK §2.2.2). Derived: `result_ids` (results whose `produced_by` is
 ## 3.8 `exhibits`
 
 One entry per exhibit (SDK §2.3.1): `id`, `type`, `caption`, `validates`, `from_result`,
-`alt_text`, `path` copied; `path_asset` is the asset reference of `path`. An exhibit of an image type without
-`alt_text` is rendered with its caption, else its ID, as alternative text.
+`alt_text`, `path` copied; `path_asset` is the asset reference of `path`. Alternative text for
+images follows the single chain of §5.7.
 
 ## 3.9 `datasets`, `traces`, `assessments`, `journal`
 
@@ -283,17 +284,20 @@ Figures come from exactly one source, chosen by what the manifest **declares**:
    files that §2.6 probes, at any depth, skipping hidden directories and `node_modules`,
    `__pycache__`, `assets`, and `_app`, and a top-level `evaluation/` (an evaluator's output
    written into the artifact), sorted by path (byte order of the UTF-8 path).
-   Byte-identical copies (a report re-embedding an experiment's plot) appear once: under the copy
-   inside a probe directory, else the shallowest path, else the first by path; the links of
-   every copy are kept. An explorer that does not scan simply has no figures in this case. A
+   Byte-identical copies (a report re-embedding an experiment's plot) appear once. The kept copy
+   is chosen by these keys in turn, each applied only to the copies the previous key left tied:
+   a copy inside a probe directory of §2.6 before one outside; fewer path segments; first in
+   byte order of the path. The links of every copy are kept. An explorer that does not scan simply has no figures in this case. A
    probed figure's `id` is its artifact-relative path; `number`, `caption`, and `page` are
    `null`.
 
 Each entry: `{id, number, caption, page, path, path_asset, claim_links: [{claim_id, method}]}`;
 `path` is the declared or probed path string and `path_asset` its asset reference; `page`
 follows the page-unknown rule of §3.4. `method`
-records how the link was made and is shown with it: `declared` (exhibit `validates` or a result's
-evidence), `adapter-suggested` (a figures-index `claims` entry, which JR §3.6.1 calls advisory),
+records how the link was made and is shown with it: `declared` (an exhibit whose `validates`
+lists the claim and that is this figure's exhibit (item 2) or whose `path` is exactly the
+figure's `path` string, or a result that validates the claim and whose
+`evidence`, or an element of it when it is a list, is exactly the figure's `path` string), `adapter-suggested` (a figures-index `claims` entry, which JR §3.6.1 calls advisory),
 `experiment-provenance` (a probed image, or one of its byte-identical copies, inside the declared
 `directory` of an experiment in the claim's `tested_by`), or `filename-heuristic` (a probed image
 whose name matches a claim or experiment; *the matching rule is a reference value
@@ -308,7 +312,8 @@ labeled as such in the site; they are never shown as the authors' links. `claim_
 - **references**: the references export (JR §2.3.1), every record kept in file order (no
   de-duplication): `id`, `raw`, `doi`, `arxiv`, `isbn`, `url`, `cited_for` copied, every other key
   (for example `authors`, `title`, `year`) in `extra`, plus `check`: with a judge overlay (§4.2), the matching JR §6.6.2 verdict (by `id`)
-  `{status, matched_title, matched_id, reason}`; else, with an accepted separate result (§4.9),
+  `{status, matched_title, matched_id, reason}`, attached to the first record with that `id`
+  only (a later duplicate has `check` `null`, §2.3); else, with an accepted separate result (§4.9),
   the verdict at the same position, in the same shape; else `null`. No reference lookup happens at build time (§6.3).
 
 ## 3.13 `readme`, `reflection`, `research_agent`
