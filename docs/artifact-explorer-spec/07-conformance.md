@@ -121,7 +121,7 @@ changes `input_digest` and `run.json.input_provenance`.
 | X18 | X15 with `claim_link_sources` replaced by legacy `claim_links: {kind: extractor-inference, method: contribution-digest/v1}`. | `sources` `[reviewer-inference]` (the legacy form is always reviewer-inference, JR §5.13.2). |
 | X19 | X15 plus `supporting_claims: [C1]`. | `link_basis` `declared`; `inferred_claims` `[]` (declared wins). |
 | X20 | Claim `C1` carries `contributions: [K1]` and the claims index carries a `contribution_links` object; K1 has no `inferred_supporting_claims`. | No inferred link (`claims[0].inferred_contribution_links` `[]`); the claim's `extra.contributions` is `[K1]` (§3.5.1). |
-| X21 | X15 plus a claims-index key `contribution_links: {provenance: reviewer-inference, method: m/v1}`. | `sources` still `[extractor-inference]`; no key of `data.json` carries `contribution_links` (§3.5.1). |
+| X21 | X15 plus a claims-index key `contribution_links: {provenance: reviewer-inference, method: m/v1}`. | `sources` still `[extractor-inference]`; no object in `data.json` has a key named exactly `contribution_links` (§3.5.1; `inferred_contribution_links` is a different key). |
 | X22 | `C1.paper_ref` is `{page: 0, section: "4"}`; separately `{section: "4"}`; separately `{page: "6"}`. | `claims[0].paper_location.page` `null` each time (page unknown); `section` `"4"` in the first two; `claims[0].paper_ref` keeps the original value (`page: 0` in the first case). |
 | X23 | Default fixture plus `paper: {pdf: paper.pdf, source: paper.tex}`, `paper.tex` containing `\title{Streaming Parsers}`, and `paper.pdf` with document-metadata title `Untitled`. | `paper.title` `Streaming Parsers`; `paper.metadata_title` `Untitled`; `identity.display_title` `Streaming Parsers`; `display_title_source` `paper-source`. |
 | X24 | X23 without `paper.tex` (and without `source`); separately with a metadata title of only spaces. | First: `display_title` `Untitled`, `display_title_source` `pdf-metadata`. Second: `display_title` `Demo`, `display_title_source` `manifest-title`, `paper.metadata_title` `null`. |
@@ -137,7 +137,7 @@ changes `input_digest` and `run.json.input_provenance`.
 | X34 | `paper: {source: tex}` where `tex/` holds `main.tex` with `\title{Streaming Parsers}`; separately an empty `tex/`. | First: `paper.source.path` `tex/main.tex`; `paper.declared.source` `tex`; `paper.title` `Streaming Parsers`. Second: `paper.source` `null` and a warning. |
 | X35 | No `paths.figures` and no `paths.exhibits`; `exhibits.yml` at its default name with `E1` (`type: figure`, `path: fig/a.png`, file present) and `E2` (`type: table`). Separately: `paths.exhibits: ex.yml` declared, `ex.yml` absent, and `figures/b.png` present. | First: `figures` has one entry, `id` `E1`, `path` `fig/a.png`, `path_asset.url` `assets/fig/a.png`; `exhibits[0].path` `fig/a.png` and `exhibits[0].path_asset` set. Second: `figures` `[]`, a warning naming `ex.yml`, and no figure from `figures/b.png` (no probing when an exhibits index is declared). |
 | X36 | `R1.evidence` is `evidence/a b#1.csv`; separately `evidence/é.csv`; each file present. | `results[0].evidence_asset.url` `assets/evidence/a%20b%231.csv` (the file is written at `assets/evidence/a b#1.csv`); second: `assets/evidence/%C3%A9.csv`. Following either URL in the site loads the file. |
-| X37 | `C1` has `checked: 2026-10-27 21:40:00`, `seen: 2026-10-27T23:40:00.500+02:00`, and `notes: {true: a, 1.0: b, null: c}`. | `claims[0].extra.checked` `"2026-10-27T21:40:00Z"`; `seen` `"2026-10-27T21:40:00.5Z"`; `notes` `{"1.0": "b", "null": "c", "true": "a"}`. |
+| X37 | `C1` has `checked: 2026-10-27 21:40:00`, `seen: 2026-10-27T23:40:00.500+02:00`, `flag: no`, and `notes: {true: a, 1.0: b, null: c}`. | `claims[0].extra.checked` `"2026-10-27 21:40:00"`; `seen` `"2026-10-27T23:40:00.500+02:00"` (both verbatim strings, §2.3); `flag` `"no"`; `notes` `{"1.0": "b", "null": "c", "true": "a"}`. |
 | X38 | `README.md` with: `![a](./img/p.png)`, `[b](img/../img/p.png#s)`, `` `![c](img/q.png)` `` (a code span), `<img src="img/q.png">` (raw HTML), a reference definition `[r]: img/p.png`, `![d](https://example.org/x.png)`, and `![e](../../x.png)`; `img/p.png` and `img/q.png` exist. | `readme.embedded` has exactly the keys `./img/p.png`, `img/../img/p.png#s`, `img/p.png`, `https://example.org/x.png`, `../../x.png`; the first three map to the asset reference of `img/p.png`; the last two are `null`. `img/q.png` is not copied. |
 | X39 | Figures index (`paths.figures`) with `{id: F1, path: fig/a.png, claims: [C1]}` and `R1.evidence: fig/a.png`; the file is present. | `figures[0].claim_links` `[{claim_id: C1, method: declared}, {claim_id: C1, method: adapter-suggested}]`. |
 | X40 | An assessments index whose one assessment declares `evidence: [evidence/metrics.csv, missing.csv]`. | `assessments[0].evidence` kept; `assessments[0].evidence_asset` is a two-element list: the asset reference of `evidence/metrics.csv`, then `null`. |
@@ -156,7 +156,7 @@ changes `input_digest` and `run.json.input_provenance`.
 | X48 | S-PO. | Exit `0`; `identity.id` `null`; `claims` `[]`; `paper.declared` `{pdf: snapshot/paper/paper.pdf, source: null}`; `paper.pdf.url` `run/snapshot/paper/paper.pdf`; `paper.source` `null`; `evaluation.judge` `null`. |
 | X49 | X42 where `contributions.json` and `run.json.contribution_review` differ. | `evaluation.review.contribution_review` equals `contributions.json`; `warnings` notes the difference. |
 | X50 | S-AI with `findings.json` holding, written by hand: `F1` with `target` `C1`, `evidence` `[judge:claim_validators/C1.v1]`, and its own `judge_finding_ids` `[claim_validators/C1.v1]`; `F2` with only `evidence` `[judge:claim_validators/C1.v1]`; re-sealed. | `F1.joins` `[{kind: claim, id: C1, via: target, resolved: true}, {kind: judge_finding, id: claim_validators/C1.v1, via: citation, resolved: true}, {kind: judge_finding, id: claim_validators/C1.v1, via: judge-ref, resolved: true}]`; `F1.judge_finding_ids` is still exactly the copied `[claim_validators/C1.v1]`. `F2.joins` has only the `judge_finding` entry (`via` `citation`); `claims[0].review_finding_ids` `[F1]`. |
-| X51 | X42 where a copied run file is changed after validation and before copy (simulated); separately, a snapshot artifact file (`snapshot/artifact/evidence/metrics.csv`). | Exit `2` both times; no partial site. |
+| X51 | X42 where a copied run file is changed after validation and before copy (simulated); separately, a snapshot artifact file (`snapshot/artifact/evidence/metrics.csv`). | Exit `2` both times; the output directory is left as it was before the build. Separately, with an output directory holding a previous site and the replace option given: exit `2` and the previous site is unchanged, byte for byte. |
 | X52 | S-JO. | Exit `0` (the run passes JR §6.7 like any other). `evaluation.run.judge_only` `true`; `evaluation.judge` present with `rubric` equal to `judge.json.rubric`; `evaluation.review` `null`; `run/review-draft.md` copied. |
 | X53 | X42 (not judge-only). | `evaluation.run.judge_only` `false`; `evaluation.review` present even though no LLM provider was used (`paper_review` `unavailable`). |
 | X54 | S-AI with the artifact also declaring contribution `K1`, and `findings.json` holding findings with `target`: `F3` `abstract`, `F4` `K1`, `F5` `contribution:K9`, `F6` `claim: overstated`, `F7` `""`, `F8` `claim_validators/C1.v1`, `F9` `Table 3 / Section 5.2.2`; re-sealed (steps 2–5). | `F3.joins` `[]`, `F7.joins` `[]`, `F9.joins` `[]`, and no warning mentions `F3`, `F7`, or `F9`. `F4.joins` `[{kind: contribution, id: K1, via: target, resolved: true}]`; `contributions[0].review_finding_ids` `[F4]`. `F5.joins` `[{kind: contribution, id: K9, via: target, resolved: false}]` and a warning names `K9`. `F6.joins` `[]` and a warning names `F6` (malformed reference). `F8.joins` `[{kind: judge_finding, id: claim_validators/C1.v1, via: target, resolved: true}]`. |
@@ -185,9 +185,9 @@ changes `input_digest` and `run.json.input_provenance`.
 | X67 | X26's site. | Every page shows "Derived from the paper by a paper adapter" and `attested`. `#/contributions` shows contribution 4 with "No claims linked". `#/claims/claim-1` shows four contribution links, each with "inferred by the paper adapter's extractor". |
 | X68 | X16's site. | `#/claims/C1` shows "inferred by the paper adapter's extractor and inferred by the reviewer"; X17's site shows "inferred (source not recorded)". |
 | X69 | X12's site. | `#/contributions` shows "No contribution declaration was provided" and "not evidence that the work makes no contribution". |
-| X70 | Default fixture with `README.md` containing `<script>alert(1)</script>`, `<img src=x onerror=alert(1)>`, `[a](javascript:alert(1))`, and `![r](https://example.org/i.png)`. | `#/provenance` renders the README; no script runs; no `onerror` attribute and no `javascript:` link remain in the DOM; no request is made to `example.org`. A claim statement `<b>x</b>` renders as the literal text. |
+| X70 | Default fixture with `README.md` containing `<script>alert(1)</script>`, `<img src=x onerror=alert(1)>`, `[a](javascript:alert(1))`, and `![r](https://example.org/i.png)`. | `#/materials` renders the README; no script runs; no `onerror` attribute and no `javascript:` link remain in the DOM; no request is made to `example.org`. A claim statement `<b>x</b>` renders as the literal text. |
 | X71 | X60's site. | Every page shows "Unsealed analysis". `#/evaluation` shows exactly the three lines "Overall recommendation: unset", "Criterion scores: unset", "Reviewer confidence: unset"; shows `visual_inspection`: `incomplete`; labels judge findings "Judge (deterministic)" and reviewer findings "Reviewer (advisory)"; shows no combined score for any contribution; shows "not yet qualified by a human" for each reviewed candidate; shows the diagnostics block "Contribution declaration checks (structural)" with "Warning, contribution 4: claim support not declared or inferred." |
-| X72 | X42's site. | `#/evaluation` shows the run ID in full and `input_digest`; states that no code was executed (`activity` `inspection`); `run/review-draft.md` is reachable from the page. |
+| X72 | X42's site. | Overview and `#/evaluation` each show the run summary (§5.4.6), with the run ID in full and `input_digest`; `#/evaluation` states that no code was executed (`activity` `inspection`); `run/review-draft.md` is reachable from the page. |
 | X73 | Any site; route `#/claims/does-not-exist`. | A "not found" notice with a link to the overview. |
 | X74 | A contribution with ID `contribution/` + 64 hex digits. | Its route uses the full, percent-encoded ID and resolves; the page shows the full ID. |
 | X75 | X22's site (first case), `#/claims/C1`; and X26's site, `#/claims/claim-4`. | `C1` shows "page unknown" with no page link and no "page 0"; `claim-4` shows page 6 as plain text, because a page links to the PDF only when a PDF asset exists and bgpt ships none. |
@@ -229,15 +229,54 @@ as above; "re-sealed" means steps 4–5 of the recipe.
 | X95 | X83's first site (OPTIONAL §4.8). | Overview and `#/evaluation` show "Publication approved by Reviewer A"; `#/evaluation` still shows the three "unset" lines. X83's second site shows no approval. |
 | X96 | X84's first site (OPTIONAL §4.9). | `#/paper` shows "separate pass" and the status `verified` for `r1`. |
 
-## 7.8 Scenario counts
+## 7.8 Amendment 2 scenarios
+
+These scenarios cover input encoding, usage errors, stance defaults, reading labels, and
+transitive Markdown copies. Fixtures are as above.
+
+**L1.**
+
+| ID | Fixture / action | Expected |
+|----|------------------|----------|
+| X97 | Default fixture built with an output path that is a symbolic link to an empty directory; separately with an output path inside such a link. | Exit `2` both times; nothing is written, through the link or elsewhere. |
+| X98 | `C1` carries `notes: {true: a, "true": b}`. Separately, `manifest.yml` encoded as UTF-16 with a byte-order mark. Separately, a claims index whose record `C1` repeats the key `id`. | First: exit `0`; `claims[0].extra.notes` `{"true": "a"}` and a warning naming the key `true` and the claims index. Second: exit `2`; nothing written. Third: exit `0`; `claims` `[]` and a warning naming the claims index. |
+| X99 | `C1` declares no `stance`. | `claims[0].stance` `null`; no warning about the stance. |
+| X100 | Default fixture plus `README.md` containing `[guide](docs/guide.md)`, `docs/guide.md` containing `![a](../img/a.png)`, and `img/a.png`. | `readme.embedded["docs/guide.md"].url` `assets/docs/guide.md`; that reference's `embedded["../img/a.png"].url` `assets/img/a.png`; both files exist in the output with identical bytes. |
+| X108 | Default fixture plus `paths: {exhibits: null, figures: 7}` and no `exhibits.yml`. | Exit `0`; `exhibits` `[]` and `figures` `[]` (no probe images exist); exactly one warning, naming `paths.figures`; none naming the exhibits index. |
+| X109 | `C1` carries `validators: [{id: V1, kind: script}, x]` and `validator: {id: V2}`. | `claims[0].validators` holds one entry, with `id` `V1`; a warning names the skipped element; no entry has `id` `V2`. |
+
+**L2.**
+
+| ID | Fixture / action | Expected |
+|----|------------------|----------|
+| X101 | S-AI plus a references export holding `{id: r1, raw: x}` and `{id: r1, raw: y}`, and a `judge.json.reference_check` with one verdict for `r1` with status `verified`; re-sealed. | `references[0].check.status` `verified`; `references[1].check` `null`; a warning names the duplicate `r1`. |
+| X107 | S-AI with `findings.json` replaced by the truncated text `{"findings": [{"id": "F1", "summary": "Accura`; re-sealed so its hash matches. | Exit `2`; the message names `findings.json`; nothing written (§2.4 item 6). |
+| X102 | OPTIONAL §4.8. Default fixture in mode A with a publication-approval record named. Separately, X42 naming an approval record path that does not exist. | Exit `2` both times; nothing written. |
+
+**L2 +C.**
+
+| ID | Fixture / action | Expected |
+|----|------------------|----------|
+| X103 | Default fixture with the opt-in flag and an outputs directory `outputs/` inside the artifact directory. Separately, X60 (the bgpt example directory, which contains `artifact/`, as the outputs directory). | First: exit `2`; nothing written. Second: exit `0`, as X60. |
+| X110 | X60 on a copy of the bgpt example directory without `contributions.json`. | Exit `0`; `evaluation.review.contribution_review` equals `run.json.contribution_review`. |
+
+**L3.**
+
+| ID | Fixture / action | Expected |
+|----|------------------|----------|
+| X104 | X99's site. | `#/claims/C1` shows "finding (default; not declared)". X32's site: `#/claims/C1` shows `maybe` with "stance not recognized". |
+| X105 | Default fixture plus `paths.contributions` declaring `K1` ("Title: Fast sort. It is fast."), `K2` ("Speedup: 2x on all inputs."), and `K3` ("We show v1.2 is faster. Details."), each with `provenance: {kind: author-declaration}`. | `#/contributions` shows "Contribution 1: Fast sort", "Contribution 2: Speedup", and "Contribution 3: We show v1.2 is faster". |
+| X106 | S-AI with `judge.json` findings `G1` (`presentation_role: spotlight`), `G2` (`presentation_role: needs_attention`), and `G3` (no role); re-sealed. | `#/evaluation` lists `G2` first; `G1` and `G3` appear together in the last group. |
+
+## 7.9 Scenario counts
 
 | Level | Scenarios |
 |-------|-----------|
-| L1 | X1–X41 (41) |
-| L2 | X42–X58, X81–X82 (19) |
-| L2 +C | X59–X65 (7) |
-| L2 OPTIONAL §4.8 / §4.9 | X83 / X84 |
-| L3 | X66–X80, X85–X94 (25) |
+| L1 | X1–X41, X97–X100, X108–X109 (47) |
+| L2 | X42–X58, X81–X82, X101, X107 (21) |
+| L2 +C | X59–X65, X103, X110 (9) |
+| L2 OPTIONAL §4.8 / §4.9 | X83, X102 / X84 |
+| L3 | X66–X80, X85–X94, X104–X106 (28) |
 | L3 OPTIONAL §4.8 / §4.9 | X95 / X96 |
 
 An explorer that implements an OPTIONAL section (§2.7, §4.8, §4.9) passes its scenarios; one

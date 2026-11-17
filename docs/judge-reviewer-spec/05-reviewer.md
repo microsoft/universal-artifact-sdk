@@ -419,7 +419,13 @@ Figures are part of the paper, so paper visuals run in both scopes.
    `review-record:visual/<i>`. Only confirmed mismatches may surface as author-facing concerns,
    and still as advisory. Write `visual-coverage.json` (targets, deferrals, hashes, outcome
    counts) and `visual-integration.json` (how records were used). Counts are observations, not
-   validated claims.
+   validated claims. `visual-coverage.json` is a JSON object with at least these keys: `status`
+   (the stage status); `target_selection` (`{selected, deferred}`, the lists of step 1);
+   `observations` (one record per interpreted target, in order, record *i* being the target of
+   `review-record:visual/<i>`; each carries `image_path`, the run-relative path of the copied
+   image, and `image_sha256`, and its other fields are producer-defined); `outcome_summary`
+   (`{counts: [{outcome, label, count}], human_inspection}`, one count per outcome of step 5);
+   and `limitations` (a list of strings). Readers show producer-defined fields verbatim.
 
 Without an image-capable provider, record the stage as `unavailable`; the coverage file still
 lists the targets that would have been inspected.
@@ -500,7 +506,9 @@ section as advisory items for a human to check.
 
 Inspect only figures the artifact explicitly links to a claim or result (via exhibits with
 `validates` or `from_result`). Same pipeline and outcomes as §5.9. Record image hashes and copies
-in `artifact-visual-coverage.json`. Unlinked figures are not missing evidence. Outcomes stay
+in `artifact-visual-coverage.json`, which has the shape of `visual-coverage.json` (§5.9 step 6)
+except that its targets MAY be recorded as `selection`, one record per candidate figure, instead
+of `target_selection`. Unlinked figures are not missing evidence. Outcomes stay
 separate from the paper's scientific findings.
 
 ### 5.10.4 Run evidence

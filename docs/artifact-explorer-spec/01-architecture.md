@@ -17,7 +17,8 @@
 2. **Assemble.** Read the artifact into the data document `artifact-explorer/data/v1` (§3). Every
    value is either copied from an input, derived by a rule in §3, or `null`/empty.
 3. **Overlay.** If a run was given, read it into the `evaluation` block and attach per-claim and
-   per-contribution cross-references (§4). The core of the document (§3) does not depend on it.
+   per-contribution cross-references (§4). Apart from the run-derived keys listed at the start of §4,
+   the core of the document (§3) does not depend on the run.
 4. **Emit.** Write `data.json`, copy every referenced input file into the output, and write the
    viewer application (§5). The application reads only `data.json` and the copied files.
 
@@ -29,7 +30,7 @@ be built independently; a viewer conforms if it renders any valid data document 
 | Mode | Inputs | Artifact read from | `evaluation` |
 |------|--------|--------------------|--------------|
 | **A. Artifact** | an artifact directory | that directory | `null` |
-| **B. Sealed run** | a sealed run directory | the run's `snapshot/artifact/` (artifact-informed scope), or a synthetic paper-only artifact (§2.4.2) | the run (§4) |
+| **B. Sealed run** | a sealed run directory | the run's `snapshot/artifact/` (artifact-informed scope), or a synthetic paper-only artifact (§2.4 item 4) | the run (§4) |
 | **C. Unsealed preview** (OPTIONAL) | an artifact directory and an unsealed outputs directory, with an explicit opt-in flag | the artifact directory | the outputs, marked `sealed: false` (§4.7) |
 
 Supplying both an artifact directory and a sealed run is a usage error (§2.1): in mode B the run's
@@ -54,7 +55,7 @@ after the build, the inputs may be deleted and the site still renders everything
 | I3 | **Absence is not a negative.** A missing optional file, empty list, or `null` field is rendered as "not provided" (or a section-specific equivalent), never as a failure, a zero, or a missing contribution. |
 | I4 | **Attribution.** Every value that did not come from the artifact's authors — a judge finding, a reviewer finding, a link inferred by a tool, a paper-adapter extraction — is shown with the tool or role that produced it (§4.5, §5.6). Inferred links are never presented as declared. |
 | I5 | **Determinism.** The same inputs and options give a byte-identical `data.json` apart from `generated_at`, and the same set of copied files with identical bytes. Ordering never depends on file-system enumeration order or hash-map iteration order. |
-| I6 | **Static and offline.** Neither the build nor the site makes a network request. Every URL in the data document and site is relative to the site root. The site works when served by any static HTTP server. |
+| I6 | **Static and offline.** Neither the build nor the site makes a network request. Every URL that refers to a file of the site is relative to the site root; external links (§6.3) are absolute and are never fetched or loaded without a click. The site works when served by any static HTTP server. |
 | I7 | **Containment.** Only regular files inside an input root are read or copied, through the path rules of §6.1. |
 | I8 | **Human-owned values stay unset.** Recommendation, scores, confidence, and contribution qualification are shown exactly as the run has them, which for a conforming run is "unset" (JR §6.5, I4 there). The explorer offers no control that sets them. |
 | I9 | **Fail closed on runs.** A run that fails JR §6.7 consumer validation produces no site (mode B). The explorer never "repairs" or partially renders an invalid sealed run. |

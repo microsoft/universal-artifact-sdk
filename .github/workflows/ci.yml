@@ -34,6 +34,21 @@ jobs:
       - name: Test
         run: npm test
 
+  spec-references:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.14"
+
+      # Every § reference, numbered-item reference, and scenario ID in SPEC.md and the
+      # judge-reviewer and artifact-explorer specs must name something that exists.
+      - name: Check specification cross-references
+        run: python scripts/check_spec_refs.py
+
   python:
     runs-on: ubuntu-latest
     strategy:

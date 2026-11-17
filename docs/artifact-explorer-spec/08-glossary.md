@@ -16,7 +16,7 @@
 | **External link** | An `http:`, `https:`, or `mailto:` URL from the inputs, shown with its target visible and followed only on a click (§6.3). |
 | **Free-text target** | A finding `target` that is neither empty nor an identifier reference; shown as plain text, never joined or warned about (§4.4). |
 | **Display title** | The title shown in the site header: the paper source's title, else the PDF metadata title (labeled as such), else the manifest title, else the ID; its origin is recorded in `display_title_source` (§3.3). |
-| **Judge-only run** | A sealed `artifact-informed` run in which every reviewer stage is `not-requested` (JR §1.2, §6.4); shown with a judge overlay and no review (§4.3). |
+| **Judge-only run** | A sealed `artifact-informed` run in which every reviewer stage is `not-requested` (JR §1.2, §6.4). The explorer's test is `judge_only` (§4.1): scope `artifact-informed` and `paper_review` `not-requested`. Shown with a judge overlay and no review (§4.3). |
 | **Page unknown** | A claim or figure page that is missing, not an integer, or less than 1; recorded as `null` and never rendered as a page number (§3.4). |
 | **Explorer** | A tool conforming to this specification: builder, viewer, or both. |
 | **Inferred link** | A claim listed in a contribution's `inferred_supporting_claims`, attributed through `provenance.claim_link_sources` (§3.5.1). |

@@ -67,6 +67,10 @@ where this document needs a field, it cites the section that defines it.
 - MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are used as in RFC 2119.
 - "SDK §N" refers to the Universal Artifact SDK specification ([`SPEC.md`](../../SPEC.md)).
   "JR §N" refers to the judge/reviewer specification. A bare "§N" refers to this document set.
+  A prefix applies to every section of a range or list that follows it ("JR §6.1–§6.3",
+  "JR §1.2 and §6.4"). [`scripts/check_spec_refs.py`](../../scripts/check_spec_refs.py), run in
+  CI, checks that every section, numbered item, scenario, and invariant reference names
+  something that exists.
 - *Reference value (non-normative)* marks a choice conforming explorers may make differently.
   Everything else is normative.
 - Example values are taken from the two worked review examples published with the judge/reviewer
