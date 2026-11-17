@@ -89,7 +89,7 @@ gives `null` or `[]`.
 | `groups` | `run.json.groups`, verbatim (bucket → finding IDs) |
 | `synthesis` | `run.json.synthesis`, verbatim, or `null` |
 | `human_owned` | `run.json.human_owned`, verbatim |
-| `contribution_review` | `contributions.json` (equal to `run.json.contribution_review`, JR §6.5), verbatim |
+| `contribution_review` | `contributions.json` (equal to `run.json.contribution_review`, JR §6.5), verbatim; when that file is absent (for example in mode C), `run.json.contribution_review`, verbatim; else `null` |
 | `paper_contribution_review` | `run.json.paper_contribution_review`, verbatim, or `null` |
 | `reconciliation` | `artifact-reconciliation.json.records`, verbatim, or `[]` (JR §5.10.2) |
 | `warnings` | `run.json.warnings` |
@@ -105,7 +105,8 @@ when that path is a key of `outputs` (or, in mode C, resolves inside the outputs
 `review-record:visual/<i>`; record *i* of `artifact.observations` is the target of
 `review-record:artifact-visual/<i>` (JR §5.3.2). The outcome counts are the run's own
 (`outcome_summary`, JR §5.9 step 6); the explorer copies them and never recounts or reclassifies
-a record (I2). A record's `region` (four numbers in `[0, 1]`: left, top, right, bottom, as
+a record (I2). Record fields other than those named in this section are producer-defined: the
+site shows each as a labeled value (its key as the label) and never interprets it. A record's `region` (four numbers in `[0, 1]`: left, top, right, bottom, as
 fractions of the image) is a model-reported location: the site MAY outline it on the image and,
 if it does, labels it with the record's `region_status` verbatim, or "location reported by the
 model (not verified)" when `region_status` is absent.
@@ -306,7 +307,9 @@ In mode C the overlay is built from the files of §2.7 by the same rules, with t
 run files are copied only from the list in §2.7, from `review-output:` citations, and from
 visual-record `image_path` values (§4.3) that resolve inside the outputs directory under §2.5
 (with the outputs directory as root); no hash check is
-possible; and the banner of §5.5 is mandatory. `evaluation.run` is filled per key:
+possible; and the banner of §5.5 is mandatory. An embedded Markdown target (§3.1) of a copied run
+file resolves only to a run file that this list copies anyway; any other target is unresolved
+(`null`). `evaluation.run` is filled per key:
 
 | Key | Mode C source |
 |-----|---------------|

@@ -27,7 +27,8 @@ Usage errors, detected before anything is written:
   not exist or is not a regular file; a file that exists but is rejected by §4.8 or §4.9 is a
   build warning, not a usage error;
 - a publication-approval record in mode A (§4.8 needs a run);
-- an output path that is, or lies under, a symbolic link (§6.1);
+- an output path that is, or lies under, a symbolic link: once the path is made absolute, no
+  component of it, from the root down, may be a symbolic link (§6.1);
 - in mode C, an outputs directory that equals or lies inside the artifact directory (the
   artifact would then contain the analysis of itself; the reverse, an outputs directory that
   contains the artifact directory, is allowed);
@@ -62,7 +63,10 @@ gate rejection (exit `2`).
 The explorer reads the artifact in the on-disk shape of **JR §2.3.1**, including its index
 location rule (`paths.<name>`, else the default file name), its top-level-key rule, the
 contributions-only-through-`paths.contributions` rule (SDK §5.2), the references-export
-exception, and the research-agent metadata rule. It reads these files beyond the JR §2.3 table:
+exception, and the research-agent metadata rule. A `paths.<name>` whose value is `null` counts as
+not declared (JR §3.2 allows `null` for an index with no entries); a value that is neither a
+string nor `null` also counts as not declared and adds a warning. It reads these files beyond
+the JR §2.3 table:
 
 | File | Located by | Shape | Used for |
 |------|------------|-------|----------|
@@ -112,7 +116,9 @@ rejection (§2.2); any other index that is not valid UTF-8 or does not parse is 
    a run-gate rejection.
 4. **Paper-only scope** (`scope: paper-only`): there is no artifact. The explorer builds the core
    document from an **empty artifact**: `identity.id` and `identity.title` are `null`,
-   `identity.origin` is `null`, every collection is empty, and `paper` is the manifest's `paper`
+   `identity.origin`, `format_version`, `sdk_version`, and `producer` are `null`, `identity.extra`
+   is `{}`, `display_title` follows the chain of §3.3 from the snapshot paper, every collection is
+   empty, and `paper` is the manifest's `paper`
    file (§3.10). The overlay (§4) carries everything the run has. The site states that the input
    was a paper without an artifact.
 5. **Judge-only runs.** JR §1.2 and §6.4 define a judge-only invocation as an ordinary sealed
@@ -120,6 +126,10 @@ rejection (§2.2); any other index that is not valid UTF-8 or does not parse is 
    is `not-requested`. It is gated and read exactly like any other mode-B run; nothing in this
    specification distinguishes it except how the review part of the overlay is presented (§4.3).
    The explorer's test for "judge-only" is the one of §4.1 (`judge_only`).
+6. **Unreadable outputs.** A JSON file listed in `outputs` that §4 reads, and that is not valid
+   UTF-8 JSON or lacks the top-level key §4 reads from it, is a run-gate rejection (exit `2`)
+   even though its hash matches: a sealed run is never rendered with part of its analysis
+   missing (I9). In mode C the same file is skipped with a warning (§2.7).
 
 ## 2.5 Path safety
 
@@ -154,7 +164,7 @@ conforming explorers find the same files.
 | Paper source | `paper.source` (SDK §2.6) | `paper.tex`, `paper.md`, `main.tex`, `main.md` |
 | README | — (the SDK declares none) | `README.md`, `README.txt`, `readme.md` |
 | Reflection | fixed name `reflection.md` (SDK §5) | — |
-| Figure images (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | image files at any depth that sit under a directory named `figures`, `figure`, `fig`, `plots`, or `images`, or under a declared experiment `directory`, or whose file name starts with `fig`/`figure` followed by a digit or separator (only when no figures index is declared and no exhibits index lists a figure; §3.11 item 3) |
+| Figure images (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | image files at any depth that sit under a directory named `figures`, `figure`, `fig`, `plots`, or `images`, or under a declared experiment `directory`, or whose file name starts with `fig`/`figure` followed by a digit or separator (only when §3.11 item 3 allows it: no figures index is declared, and no exhibits index is declared but missing or unreadable, or lists a figure) |
 
 A declared path that does not resolve is **not** replaced by a probe: the declaration wins and is
 shown as unresolved (§2.5), so a broken declaration stays visible.

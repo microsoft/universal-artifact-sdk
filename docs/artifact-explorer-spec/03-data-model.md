@@ -21,7 +21,10 @@
   reorder for display (§5.4) but the document does not.
 - Values copied from the artifact keep their type. A field the source does not provide is `null`.
   Unknown fields of artifact records are carried in an `extra` object on the record (keys sorted),
-  so nothing the authors wrote is silently dropped.
+  so nothing the authors wrote is silently dropped. A field is *unknown* when no rule of §3 copies
+  it under its own name or derives a value from it (so a claim's singular `validator`, folded
+  into `validators` by §3.4, is known). A source key literally named `extra` is unknown and is
+  carried as `extra.extra`.
 - **Declared strings and asset references** (one convention everywhere): a path or location the
   artifact declares is copied as the string it is, under the SDK key that declared it; the
   explorer's resolved copy of that file is a separate key named `<key>_asset` (for example a
@@ -61,7 +64,9 @@
   string). `.nan`, `.inf`, `-.inf` → the strings `"nan"`, `"inf"`, `"-inf"`. Non-string mapping
   keys become strings: `true`/`false`, `null`, integers in plain decimal, floats in the shortest
   decimal form that reads back as the same value with `.0` appended when it has no fractional
-  part (`1.0` → `"1.0"`, `2.5e-07` → `"2.5e-07"`). When two keys of one mapping become the same
+  part, using exponent form exactly when the decimal exponent is below −4 or at least 16, written
+  as `e`, a sign, and at least two digits (`1.0` → `"1.0"`, `2.5e-07` → `"2.5e-07"`, `1e16` →
+  `"1e+16"`). When two keys of one mapping become the same
   string (for example `true` and `"true"`), the first in file order is kept and a warning names
   the key and the file. Every other YAML scalar maps to the JSON scalar of the same type.
 - **Timestamp form.** Every timestamp the explorer itself writes (`generated_at`) is RFC 3339 in
@@ -150,7 +155,7 @@ One entry per claim in the claims index (SDK §2.4), in declaration order:
 |-----|------------|
 | `id`, `statement`, `paper_ref`, `tested_by` | copied; `tested_by` `[]` when absent |
 | `stance` | SDK §2.4.1 value as declared, or `null` when undeclared. `null` means the SDK default, `finding` (SDK §2.4.1, JR J9): the site shows "finding (default; not declared)" and treats the claim as a finding. A value outside SDK §2.4.1 is copied verbatim and flagged in `warnings`; the site shows it with "stance not recognized" |
-| `validators` | each validator from `validators`, or the singular `validator` (SDK §3), as `{id, kind, name, gated_by, validation_mode, extra}`: the five named keys copied under the SDK's own names (`null` when absent), every other key of the validator (for example `checks`, `inputs`, `criteria`) in `extra` |
+| `validators` | each validator from `validators`, or the singular `validator` (SDK §3), as `{id, kind, name, gated_by, validation_mode, extra}`: the five named keys copied under the SDK's own names (`null` when absent), every other key of the validator (for example `checks`, `inputs`, `criteria`) in `extra`. When both `validators` and `validator` are present, `validators` is used and `validator` is ignored; an element of `validators` that is not a mapping is skipped with a warning |
 | `result_ids` | IDs of results whose `validates` lists this claim (SDK §2.3), in results order |
 | `experiment_refs` | `tested_by`, then each listed result's `produced_by` not already present |
 | `exhibit_ids` | IDs of exhibits whose `validates` lists this claim (SDK §2.3.1) |
@@ -211,7 +216,7 @@ is shown as text, not as a contribution link.
 ## 3.6 `results`
 
 One entry per result (SDK §2.3): `id`, `produced_by`, `validates`, `kind`, `validation_mode`,
-`locators`, `support`, `extra` copied; `evidence` is the declared string and `evidence_asset`
+`locators`, `support` copied, every other key in `extra`; `evidence` is the declared string and `evidence_asset`
 its asset reference (§3.1). For paper-origin results, the paper-adapter fields
 (`quote`, `page`, `value`, …) are carried in `extra`. `judge_finding_ids` and
 `review_finding_ids` are filled by the run overlay (§4.4), `[]` without a run.
@@ -234,14 +239,17 @@ images follows the single chain of §5.7.
 ## 3.9 `datasets`, `traces`, `assessments`, `journal`
 
 - **datasets** (SDK §2.7): `id`, `name`, `description`, `license`, `study` copied;
-  `location` and `sample` copied (`location` as `{kind, path, uri, sha256, access}`);
+  `location` and `sample` copied (`location` as `{kind, path, uri, sha256, access, extra}`, every
+  other location key, for example `bytes` or `license`, in its `extra`), every other dataset key
+  in the dataset's `extra`;
   `location_asset` is the asset reference of `location.path` when `location.kind` is
   `in_artifact`, else `null`; `sample_asset` is the asset reference of `sample.path`. An external `uri` is
   rendered as an external link (§6.3) and never fetched.
 - **traces** (SDK §2.2.1): `id`, `kind`, `covers`, `terminal_state`, `counters`, `path` copied;
   `path_asset` for `path`.
-- **assessments** (SDK §2.1.1): copied records; each declared evidence path keeps its key and gains
-  a `<key>_asset` sibling.
+- **assessments** (SDK §2.1.1): records copied verbatim (no `extra` object); the evidence path key
+  is `evidence` (a string or a list of strings), which keeps its value and gains an
+  `evidence_asset` sibling (§3.1).
 - **journal** (SDK §2.8): copied entries in file order.
 
 ## 3.10 `paper`
@@ -315,6 +323,8 @@ labeled as such in the site; they are never shown as the authors' links. `claim_
   `{status, matched_title, matched_id, reason}`, attached to the first record with that `id`
   only (a later duplicate has `check` `null`, §2.3); else, with an accepted separate result (§4.9),
   the verdict at the same position, in the same shape; else `null`. No reference lookup happens at build time (§6.3).
+  A references export in any other shape (for example a top-level list, or BibTeX) gives `[]`
+  and a warning.
 
 ## 3.13 `readme`, `reflection`, `research_agent`
 
@@ -324,8 +334,8 @@ contacts the agent.
 
 ## 3.14 `related_work`
 
-Read only when the manifest declares `paths.paper_related_work` (the paper adapter's related-work
-export, JR §3.6.3, top-level key `related_work`). The file is read like every other index (§2.3,
+Read only when the manifest declares `paths.paper_related_work` (the key is listed in JR §3.2;
+the file is the paper adapter's related-work export, JR §3.6.3, top-level key `related_work`). The file is read like every other index (§2.3,
 §2.5); a declared file that is missing or unreadable gives `[]` and a warning. Each element of
 the list that is a mapping is copied verbatim, in file order (for example `id`, `statement`,
 `refs`, `relation`, `distinction`, `comparative`, `superiority`, `primacy`); other elements are

@@ -52,7 +52,9 @@ The viewer is a single page with hash routes, so links survive static hosting:
 
 `<id>` is the record's full ID, percent-encoded as a URI component (contribution IDs contain `/`
 and are never truncated). An unknown route, ID, bucket, or record index, or a page that is not a positive integer, shows a
-"not found" notice with a link to the overview; it never shows a blank page.
+"not found" notice with a link to the overview; it never shows a blank page. A route that names
+an item (an `<id>`, bucket, record index, or reference) shows its whole section with that item
+scrolled into view, highlighted, and opened when it is collapsible.
 
 Navigation order (*reference value (non-normative)*): Overview, Review, Contributions, Claims &
 Evidence, Paper, Evaluation, Materials, Provenance. The reference viewer shows it as a left
@@ -262,7 +264,9 @@ never assigns a finding to a bucket. In a judge-only run the page shows only the
 
 A `paper_ref` or `paper_location` is rendered as reading text, never as serialized data: its
 `quote` (when present) as a quotation, then "p. *n*" (linked per §5.4.4 when a PDF asset exists;
-"page unknown" when the page is `null`) and "section *s*" when present; `char_start`/`char_end`
+"page unknown" when the page is `null`; a recorded `page` that is not an integer ≥ 1 renders as
+"page unknown (recorded value: *v*)" with no page link, never as "p. 0") and "section *s*" when
+present; `char_start`/`char_end`
 as "characters *a*–*b* of the extracted text"; and every other key as a labeled value (its key as
 the label). The same applies to a contribution's `significance` and `originality` and to a
 reviewed candidate's axis values: mappings render as labeled values, lists as lists, and a
@@ -277,7 +281,7 @@ reading form.
 |-----------|-------------------------------------------------------------|
 | `origin.kind` is `paper` | "Derived from the paper by a paper adapter" and the `evidence_cap` value, on every page |
 | Mode C | "Unsealed analysis: these outputs are not protected by a run seal and may have been changed after they were produced.", on every page |
-| Paper-only run (§2.4) | "No artifact was supplied; this analysis covers the paper only." |
+| Paper-only run (§2.4) | "No artifact was supplied; this analysis covers the paper only.", on every page |
 | Judge-only run (§4.1) | "No review was requested in this run (judge-only)." on Overview, Review, and Evaluation |
 | `display_title_source` is `pdf-metadata` | "title from PDF metadata" next to the title in the header |
 | Stage not `completed` | "`<stage>`: `<status>`" and the `stage_notes` reason, next to that stage's output |

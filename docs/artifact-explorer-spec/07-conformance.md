@@ -121,7 +121,7 @@ changes `input_digest` and `run.json.input_provenance`.
 | X18 | X15 with `claim_link_sources` replaced by legacy `claim_links: {kind: extractor-inference, method: contribution-digest/v1}`. | `sources` `[reviewer-inference]` (the legacy form is always reviewer-inference, JR §5.13.2). |
 | X19 | X15 plus `supporting_claims: [C1]`. | `link_basis` `declared`; `inferred_claims` `[]` (declared wins). |
 | X20 | Claim `C1` carries `contributions: [K1]` and the claims index carries a `contribution_links` object; K1 has no `inferred_supporting_claims`. | No inferred link (`claims[0].inferred_contribution_links` `[]`); the claim's `extra.contributions` is `[K1]` (§3.5.1). |
-| X21 | X15 plus a claims-index key `contribution_links: {provenance: reviewer-inference, method: m/v1}`. | `sources` still `[extractor-inference]`; no key of `data.json` carries `contribution_links` (§3.5.1). |
+| X21 | X15 plus a claims-index key `contribution_links: {provenance: reviewer-inference, method: m/v1}`. | `sources` still `[extractor-inference]`; no object in `data.json` has a key named exactly `contribution_links` (§3.5.1; `inferred_contribution_links` is a different key). |
 | X22 | `C1.paper_ref` is `{page: 0, section: "4"}`; separately `{section: "4"}`; separately `{page: "6"}`. | `claims[0].paper_location.page` `null` each time (page unknown); `section` `"4"` in the first two; `claims[0].paper_ref` keeps the original value (`page: 0` in the first case). |
 | X23 | Default fixture plus `paper: {pdf: paper.pdf, source: paper.tex}`, `paper.tex` containing `\title{Streaming Parsers}`, and `paper.pdf` with document-metadata title `Untitled`. | `paper.title` `Streaming Parsers`; `paper.metadata_title` `Untitled`; `identity.display_title` `Streaming Parsers`; `display_title_source` `paper-source`. |
 | X24 | X23 without `paper.tex` (and without `source`); separately with a metadata title of only spaces. | First: `display_title` `Untitled`, `display_title_source` `pdf-metadata`. Second: `display_title` `Demo`, `display_title_source` `manifest-title`, `paper.metadata_title` `null`. |
@@ -242,12 +242,15 @@ transitive Markdown copies. Fixtures are as above.
 | X98 | `C1` carries `notes: {true: a, "true": b}`. Separately, `manifest.yml` encoded as UTF-16 with a byte-order mark. Separately, a claims index whose record `C1` repeats the key `id`. | First: exit `0`; `claims[0].extra.notes` `{"true": "a"}` and a warning naming the key `true` and the claims index. Second: exit `2`; nothing written. Third: exit `0`; `claims` `[]` and a warning naming the claims index. |
 | X99 | `C1` declares no `stance`. | `claims[0].stance` `null`; no warning about the stance. |
 | X100 | Default fixture plus `README.md` containing `[guide](docs/guide.md)`, `docs/guide.md` containing `![a](../img/a.png)`, and `img/a.png`. | `readme.embedded["docs/guide.md"].url` `assets/docs/guide.md`; that reference's `embedded["../img/a.png"].url` `assets/img/a.png`; both files exist in the output with identical bytes. |
+| X108 | Default fixture plus `paths: {exhibits: null, figures: 7}` and no `exhibits.yml`. | Exit `0`; `exhibits` `[]` and `figures` `[]` (no probe images exist); exactly one warning, naming `paths.figures`; none naming the exhibits index. |
+| X109 | `C1` carries `validators: [{id: V1, kind: script}, x]` and `validator: {id: V2}`. | `claims[0].validators` holds one entry, with `id` `V1`; a warning names the skipped element; no entry has `id` `V2`. |
 
 **L2.**
 
 | ID | Fixture / action | Expected |
 |----|------------------|----------|
 | X101 | S-AI plus a references export holding `{id: r1, raw: x}` and `{id: r1, raw: y}`, and a `judge.json.reference_check` with one verdict for `r1` with status `verified`; re-sealed. | `references[0].check.status` `verified`; `references[1].check` `null`; a warning names the duplicate `r1`. |
+| X107 | S-AI with `findings.json` replaced by the truncated text `{"findings": [{"id": "F1", "summary": "Accura`; re-sealed so its hash matches. | Exit `2`; the message names `findings.json`; nothing written (§2.4 item 6). |
 | X102 | OPTIONAL §4.8. Default fixture in mode A with a publication-approval record named. Separately, X42 naming an approval record path that does not exist. | Exit `2` both times; nothing written. |
 
 **L2 +C.**
@@ -255,6 +258,7 @@ transitive Markdown copies. Fixtures are as above.
 | ID | Fixture / action | Expected |
 |----|------------------|----------|
 | X103 | Default fixture with the opt-in flag and an outputs directory `outputs/` inside the artifact directory. Separately, X60 (the bgpt example directory, which contains `artifact/`, as the outputs directory). | First: exit `2`; nothing written. Second: exit `0`, as X60. |
+| X110 | X60 on a copy of the bgpt example directory without `contributions.json`. | Exit `0`; `evaluation.review.contribution_review` equals `run.json.contribution_review`. |
 
 **L3.**
 
@@ -268,9 +272,9 @@ transitive Markdown copies. Fixtures are as above.
 
 | Level | Scenarios |
 |-------|-----------|
-| L1 | X1–X41, X97–X100 (45) |
-| L2 | X42–X58, X81–X82, X101 (20) |
-| L2 +C | X59–X65, X103 (8) |
+| L1 | X1–X41, X97–X100, X108–X109 (47) |
+| L2 | X42–X58, X81–X82, X101, X107 (21) |
+| L2 +C | X59–X65, X103, X110 (9) |
 | L2 OPTIONAL §4.8 / §4.9 | X83, X102 / X84 |
 | L3 | X66–X80, X85–X94, X104–X106 (28) |
 | L3 OPTIONAL §4.8 / §4.9 | X95 / X96 |
