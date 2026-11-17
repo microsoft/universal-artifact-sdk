@@ -498,8 +498,9 @@ dimension is `unresolved`; else `contradiction` if any is `mismatch`; else `qual
 claims of fact). Read budgets (reference values): 256 KB per file, 1 MB total, 16 files; over
 budget → `unresolved` with the reason.
 
-Write `artifact-reconciliation.json`. Each pair becomes an `evidence_review` finding citing
-`review-record:comparison/<i>`. Contradictions are surfaced in the draft's reconciliation
+Write `artifact-reconciliation.json`. Each pair becomes an `evidence_review` finding
+(`analysis_kind` `comparison`) citing `review-record:comparison/<i>`, whose `evidence_details` is
+the pair's record, including `claim_id` and `result_id` (an empty string when no result resolves). Contradictions are surfaced in the draft's reconciliation
 section as advisory items for a human to check.
 
 ### 5.10.3 Artifact visuals
