@@ -127,9 +127,11 @@ rejection (§2.2); any other index that is not valid UTF-8 or does not parse is 
    specification distinguishes it except how the review part of the overlay is presented (§4.3).
    The explorer's test for "judge-only" is the one of §4.1 (`judge_only`).
 6. **Unreadable outputs.** A JSON file listed in `outputs` that §4 reads, and that is not valid
-   UTF-8 JSON or lacks the top-level key §4 reads from it, is a run-gate rejection (exit `2`)
-   even though its hash matches: a sealed run is never rendered with part of its analysis
-   missing (I9). In mode C the same file is skipped with a warning (§2.7).
+   UTF-8 JSON or not a JSON object, is a run-gate rejection (exit `2`) even though its hash
+   matches: a sealed run is never rendered with part of its analysis missing (I9). A JSON object
+   that lacks the key §4 reads from it, such as the status object `{status, reason}` that JR §6.2
+   writes for a stage that did not run, is valid: each key read from it takes its default
+   (`null` or `[]`). In mode C a file that does not parse is skipped with a warning (§2.7).
 
 ## 2.5 Path safety
 
@@ -166,7 +168,8 @@ conforming explorers find the same files.
 | Reflection | fixed name `reflection.md` (SDK §5) | — |
 | Figure images (OPTIONAL, §3.11) | `paths.figures` / `paths.exhibits` | image files at any depth that sit under a directory named `figures`, `figure`, `fig`, `plots`, or `images`, or under a declared experiment `directory`, or whose file name starts with `fig`/`figure` followed by a digit or separator (only when §3.11 item 3 allows it: no figures index is declared, and no exhibits index is declared but missing or unreadable, or lists a figure) |
 
-A declared path that does not resolve is **not** replaced by a probe: the declaration wins and is
+A declared path that does not resolve, or that resolves to a file that does not parse, is **not**
+replaced by a probe: the declaration wins and is
 shown as unresolved (§2.5), so a broken declaration stays visible.
 
 ## 2.7 Unsealed preview (mode C, OPTIONAL)

@@ -51,7 +51,10 @@
 
   A `markdown` asset reference also carries `embedded`: an object whose keys are the link
   destinations of the file and whose values are the asset reference of the file each resolves to
-  (§2.5, Markdown targets), or `null` when it is external, does not resolve, or is rejected.
+  (§2.5, Markdown targets), or `null` when it is external, does not resolve, or is rejected. When
+  a Markdown file is reached again along the chain of references being expanded (a cycle such as
+  `a.md` → `b.md` → `a.md`), that repeated reference has `embedded` `null`; the file is still
+  copied once.
   Markdown is parsed as **CommonMark** (version 0.31.2) with raw HTML disabled: raw HTML is
   rendered as literal text and contributes no targets. The link destinations are those of every
   inline link, inline image, and link reference definition in the CommonMark parse, as the

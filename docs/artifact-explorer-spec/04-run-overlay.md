@@ -93,7 +93,7 @@ gives `null` or `[]`.
 | `paper_contribution_review` | `run.json.paper_contribution_review`, verbatim, or `null` |
 | `reconciliation` | `artifact-reconciliation.json.records`, verbatim, or `[]` (JR §5.10.2) |
 | `warnings` | `run.json.warnings` |
-| `visual` | `{paper, artifact}`: `paper` from `visual-coverage.json` (JR §5.9), `artifact` from `artifact-visual-coverage.json` (JR §5.10.3), each `null` when the file is absent from `outputs` or holds no `observations` list; otherwise the object below |
+| `visual` | `{paper, artifact}`: `paper` from `visual-coverage.json` (JR §5.9), `artifact` from `artifact-visual-coverage.json` (JR §5.10.3), each `null` when the file is absent from `outputs` or has no `observations` key holding a list; otherwise the object below (an empty `observations` list still gives the object, so its `status` is shown) |
 
 **Visual records.** Each non-`null` member of `visual` is `{status, outcome_summary,
 limitations, deferred, observations}`: `status`, `outcome_summary`, and `limitations` copied
@@ -125,7 +125,7 @@ nothing else (no text matching, no model call):
 | judge finding | claim | an `evidence` entry `<claims index path>#<id>`, where the path is the artifact's claims index path (default `claims.yml`) | `evidence-anchor` |
 | judge finding | result | an `evidence` entry `<results index path>#<id>` (default `results.yml`) | `evidence-anchor` |
 | review finding | claim | an evidence citation `claim:<id>` (JR §5.3.2) | `citation` |
-| review finding | claim | `evidence_details.claim_id` (comparison findings, JR §5.10.2) | `reconciliation` |
+| review finding | claim | `evidence_details.claim_id` (comparison findings, JR §5.10.2), when it is a non-empty string | `reconciliation` |
 | review finding | result | an evidence citation `result:<id>` | `citation` |
 | review finding | contribution | an evidence citation `contribution:<id>` | `citation` |
 | review finding | claim, result, contribution, or judge finding | `target`, when it is a reference (below) | `target` |
@@ -323,7 +323,8 @@ file resolves only to a run file that this list copies anyway; any other target 
 | judge `activity`, `submission_executed` (§4.2) | `run.json.input_provenance.judge` |
 | `files` | `draft` / `paper_review`: asset references of `review-draft.md` / `paper-review.md` when present in the outputs directory, else `null` |
 
-Without `run.json`, every key above except `sealed`, `judge_only` (`false`), and `files` is `null`.
+Without `run.json`, `stages` is `{}` (every stage shown as unknown, §2.7 item 3), and every other key
+above except `sealed`, `judge_only` (`false`), and `files` is `null`.
 
 ## 4.8 Publication approval (OPTIONAL)
 
