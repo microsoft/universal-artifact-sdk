@@ -49,6 +49,8 @@ score or verdict.
   review findings that cite it. It is optional and reads the judge and reviewer outputs without
   changing that spec.
 - **Example output:** [two AI-generated reviews of public papers](docs/examples/reviews/README.md)
+- **End-to-end example:** [a Benford's-law study graded by AEBench](examples/benford-e2e/README.md)
+  ([walkthrough](examples/benford-e2e/GUIDE.md))
 - **Browse the examples:** [explorer views of both reviews](https://microsoft.github.io/universal-artifact-sdk/)
   (AI-generated, no human judgement)
 - **Overview:** [slides](docs/presentations/overview/slides.pdf)

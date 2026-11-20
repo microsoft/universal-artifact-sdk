@@ -33,6 +33,8 @@ This example takes that study through the whole path:
    compared output, re-runs every experiment in a clean copy, and compares the regenerated
    numbers with the reference values, so numbers copied from the paper cannot pass.
 
+For how the SDK is used during research, a diagram of how the components connect, and step-by-step commands, see [`GUIDE.md`](GUIDE.md).
+
 ## Layout
 
 | Path | What it is |
@@ -79,11 +81,12 @@ written to `oracle-out/aebench-writer-checks.jsonl`, e.g.
   report as evidence, so their claims need hand-written checks (listed in `WRITER-NOTES.md`).
 - **Paper URL.** `case.toml` points at
   `https://raw.githubusercontent.com/microsoft/universal-artifact-sdk/main/examples/benford-e2e/artifact/paper.pdf`,
-  which serves the same bytes as `artifact/paper.pdf` once this example is on `main`.
+  which serves the same bytes as `artifact/paper.pdf` (SHA-256 checked).
 - **Requests for AEBench** that would tighten the setup:
   1. an option to exclude paths from an `upstream` fetch, so withheld reference outputs never
      reach the agent when the artifact is fetched from git;
   2. per-check results in the oracle report (today only phase status is kept, hence the
      `aebench-writer-checks.jsonl` side file);
-  3. emitting an `evaluation-record.yml` (defined in the Artifact Reader specification) after a run, so the result is tied
-     to the exact artifact bytes; the writer leaves `evaluation-record.template.yml` for this.
+  3. emitting an `evaluation-record.yml` (defined in the Artifact Reader specification) after a
+     run, so the result is tied to the exact artifact bytes; the writer leaves
+     `evaluation-record.template.yml` for this.
