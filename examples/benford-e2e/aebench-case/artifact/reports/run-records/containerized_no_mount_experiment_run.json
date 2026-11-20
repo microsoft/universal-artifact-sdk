@@ -1,0 +1,44 @@
+{
+  "status": "ok",
+  "experiment": "Containerized no-mount reproduction bundle",
+  "created_artifacts": [
+    "Dockerfile",
+    "README.md"
+  ],
+  "build_command": "docker build -t benford-repro:latest -f Dockerfile .",
+  "reproduce_command": "docker run -it benford-repro:latest python3 scripts/run_all.py --mode full --clean-smoke",
+  "validated_command": "docker run --rm benford-repro:latest python3 scripts/run_all.py --mode full --clean-smoke",
+  "image": "benford-repro:latest",
+  "image_id": "<redacted-image-id>",
+  "image_size_bytes": 362094118,
+  "validation_summary": {
+    "status": "ok",
+    "container_run_elapsed_seconds": 9.21,
+    "steps_passed": [
+      "digit extraction unit tests",
+      "provenance gate unit tests",
+      "optional chi-square p-value tests",
+      "download and verify pinned dataset",
+      "primary Benford analysis and legacy figures",
+      "required figures generated from recorded tables",
+      "offline numeric rerun A from cached verified CSV",
+      "offline numeric rerun B from cached verified CSV"
+    ],
+    "dataset_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "dataset_row_count": 17195,
+    "analyzed_rows": 17195,
+    "excluded_rows": 0,
+    "first_digit_mad": 0.007314647983807111,
+    "first_digit_classification": "acceptable conformity",
+    "second_digit_mad": 0.004058150935433028,
+    "negative_control_mad": 0.0602555206731196,
+    "negative_control_classification": "nonconformity",
+    "stable_offline_numeric_output_hashes": true,
+    "numeric_output_hashes": {
+      "first_digit_table.csv": "eded21643a7f50efc890940d36b264d1ad54e95b9cd23b8b104bdd9f8165cdcb",
+      "second_digit_table.csv": "b49eae88c3d2a6c101b4201258a7fc794fb2cf36825fc8883e313c1e5d58cf00",
+      "summary.json": "ed566dc3f77d77046aeaef2ea94cdb30f66f721ed956b9626c1599c4035d5b1b"
+    }
+  },
+  "notes": "Dockerfile copies only the minimal scripts/tests/README into the image. The validated docker run used no bind mount; the container downloaded the pinned dataset, verified the checksum, generated tables/figures, and performed the offline deterministic smoke rerun."
+}

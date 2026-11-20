@@ -1,0 +1,39 @@
+datasets:
+- id: wb-population
+  description: 'World Bank total population by country/territory/aggregate and year (indicator SP.POP.TOTL),
+    as packaged by the datasets/population community data package, pinned to commit 425fc447a53a26c767a15a7de60c4cc2478a0595.
+    CSV, UTF-8, 17,195 data rows + header; columns Country Name, Country Code, Year, Value; years 1960-2024;
+    552,112 bytes. Upstream source: World Bank World Development Indicators (CC BY 4.0, attribution: The
+    World Bank). Download recipe and verification: DATA.md.'
+  location:
+    kind: external
+    uri: https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv
+    sha256: 7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a
+    bytes: 552112
+    access: public
+    license: ODC-PDDL-1.0
+  prepare: Download the exact URL to data/population.csv and verify sha256, byte count and 17,195 data
+    rows (DATA.md). Most experiments re-download and verify it themselves (scripts/validate_provenance.py).
+  rows: 17195
+  columns:
+  - Country Name
+  - Country Code
+  - Year
+  - Value
+- id: wb-country-metadata
+  description: 'World Bank API v2 country metadata (JSON, 2-element array [page-info, rows]; 295 rows
+    when retrieved in July 2026), used only by the pinned-world-bank-metadata-filter experiment to derive
+    the 47 aggregate codes (rows whose region.value == ''Aggregates''). The API endpoint is NOT immutable:
+    the recorded sha256 is of the July 2026 response and no longer reproduces (the live response has 296
+    rows and a different hash). The 47 derived codes are embedded in specs/validate_metadata_filter.md
+    and the run command uses --on-metadata-drift embedded; the derived list must hash to canonical sha256
+    18eb78dd7f7093e3dd9e26ae569875ef138f5cb3b2c2d7b1a402016aea1616c8.'
+  location:
+    kind: external
+    uri: https://api.worldbank.org/v2/country?format=json&per_page=400
+    sha256: d29d57f8adf954c5e2a1520a02fb2c7b45575d8db3bd327a9dff47d66914231c
+    access: public
+    license: CC-BY-4.0
+  prepare: Fetched by scripts/validate_metadata_filter.py into data/world_bank_country_metadata.json;
+    see DATA.md for drift handling.
+  rows: 295

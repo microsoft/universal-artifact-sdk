@@ -1,0 +1,21 @@
+{
+  "artifact_paths": {
+    "experiment_run_json": "results/experiment_run.json",
+    "negative_control_first_digit_table_csv": "results/negative_control_first_digit_table.csv",
+    "provenance_json": "results/provenance.json",
+    "real_first_digit_table_csv": "results/first_digit_table.csv",
+    "summary_json": "results/negative_control_validation_summary.json"
+  },
+  "command": "python3 scripts/run_negative_control_validation.py",
+  "key_results": {
+    "control_chi_square": 6978.557246295499,
+    "control_first_digit_mad": 0.06025552067311963,
+    "control_nigrini_classification": "nonconformity",
+    "control_sample_size": 17195,
+    "real_first_digit_mad": 0.007314647983807111,
+    "real_nigrini_classification": "acceptable conformity",
+    "real_sample_size": 17195
+  },
+  "name": "Deterministic uniform one-order negative control",
+  "status": "success"
+}

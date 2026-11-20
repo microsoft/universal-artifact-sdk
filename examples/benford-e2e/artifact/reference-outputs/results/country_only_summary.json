@@ -1,0 +1,347 @@
+{
+  "country_only_panel": {
+    "analyzed_rows": 14075,
+    "excluded_rows": 0,
+    "exclusions_by_reason": {},
+    "first_digit": {
+      "chi_square": 95.27635914018896,
+      "dof": 8,
+      "mad": 0.007368305779942078,
+      "nigrini_classification": "acceptable conformity",
+      "observed_counts": {
+        "1": 3985,
+        "2": 2308,
+        "3": 1797,
+        "4": 1453,
+        "5": 1359,
+        "6": 976,
+        "7": 795,
+        "8": 697,
+        "9": 705
+      }
+    },
+    "second_digit": {
+      "chi_square": 50.42119107093672,
+      "dof": 9,
+      "mad": 0.004879224846278068,
+      "observed_counts": {
+        "0": 1897,
+        "1": 1614,
+        "2": 1471,
+        "3": 1382,
+        "4": 1328,
+        "5": 1266,
+        "6": 1364,
+        "7": 1254,
+        "8": 1282,
+        "9": 1217
+      }
+    }
+  },
+  "dataset": {
+    "checksum_match": true,
+    "data_path": "data/population.csv",
+    "row_count": 17195,
+    "schema_match": true,
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  },
+  "filter": {
+    "aggregate_codes_absent_from_pinned_csv": [],
+    "aggregate_codes_present": [
+      "AFE",
+      "AFW",
+      "ARB",
+      "CEB",
+      "CSS",
+      "EAP",
+      "EAR",
+      "EAS",
+      "ECA",
+      "ECS",
+      "EMU",
+      "EUU",
+      "FCS",
+      "HIC",
+      "HPC",
+      "IBD",
+      "IBT",
+      "IDA",
+      "IDB",
+      "IDX",
+      "LAC",
+      "LCN",
+      "LDC",
+      "LIC",
+      "LMC",
+      "LMY",
+      "LTE",
+      "MEA",
+      "MIC",
+      "MNA",
+      "NAC",
+      "OED",
+      "OSS",
+      "PRE",
+      "PSS",
+      "PST",
+      "SAS",
+      "SSA",
+      "SSF",
+      "SST",
+      "TEA",
+      "TEC",
+      "TLA",
+      "TMN",
+      "TSA",
+      "TSS",
+      "UMC",
+      "WLD"
+    ],
+    "country_only_rows": 14075,
+    "country_only_unique_codes": 217,
+    "removed_codes": [
+      {
+        "code": "AFE",
+        "name": "Africa Eastern and Southern"
+      },
+      {
+        "code": "AFW",
+        "name": "Africa Western and Central"
+      },
+      {
+        "code": "ARB",
+        "name": "Arab World"
+      },
+      {
+        "code": "CEB",
+        "name": "Central Europe and the Baltics"
+      },
+      {
+        "code": "CSS",
+        "name": "Caribbean small states"
+      },
+      {
+        "code": "EAP",
+        "name": "East Asia & Pacific (excluding high income)"
+      },
+      {
+        "code": "EAR",
+        "name": "Early-demographic dividend"
+      },
+      {
+        "code": "EAS",
+        "name": "East Asia & Pacific"
+      },
+      {
+        "code": "ECA",
+        "name": "Europe & Central Asia (excluding high income)"
+      },
+      {
+        "code": "ECS",
+        "name": "Europe & Central Asia"
+      },
+      {
+        "code": "EMU",
+        "name": "Euro area"
+      },
+      {
+        "code": "EUU",
+        "name": "European Union"
+      },
+      {
+        "code": "FCS",
+        "name": "Fragile and conflict affected situations"
+      },
+      {
+        "code": "HIC",
+        "name": "High income"
+      },
+      {
+        "code": "HPC",
+        "name": "Heavily indebted poor countries (HIPC)"
+      },
+      {
+        "code": "IBD",
+        "name": "IBRD only"
+      },
+      {
+        "code": "IBT",
+        "name": "IDA & IBRD total"
+      },
+      {
+        "code": "IDA",
+        "name": "IDA total"
+      },
+      {
+        "code": "IDB",
+        "name": "IDA blend"
+      },
+      {
+        "code": "IDX",
+        "name": "IDA only"
+      },
+      {
+        "code": "LAC",
+        "name": "Latin America & Caribbean (excluding high income)"
+      },
+      {
+        "code": "LCN",
+        "name": "Latin America & Caribbean"
+      },
+      {
+        "code": "LDC",
+        "name": "Least developed countries: UN classification"
+      },
+      {
+        "code": "LIC",
+        "name": "Low income"
+      },
+      {
+        "code": "LMC",
+        "name": "Lower middle income"
+      },
+      {
+        "code": "LMY",
+        "name": "Low & middle income"
+      },
+      {
+        "code": "LTE",
+        "name": "Late-demographic dividend"
+      },
+      {
+        "code": "MEA",
+        "name": "Middle East, North Africa, Afghanistan & Pakistan"
+      },
+      {
+        "code": "MIC",
+        "name": "Middle income"
+      },
+      {
+        "code": "MNA",
+        "name": "Middle East, North Africa, Afghanistan & Pakistan (excluding high income)"
+      },
+      {
+        "code": "NAC",
+        "name": "North America"
+      },
+      {
+        "code": "OED",
+        "name": "OECD members"
+      },
+      {
+        "code": "OSS",
+        "name": "Other small states"
+      },
+      {
+        "code": "PRE",
+        "name": "Pre-demographic dividend"
+      },
+      {
+        "code": "PSS",
+        "name": "Pacific island small states"
+      },
+      {
+        "code": "PST",
+        "name": "Post-demographic dividend"
+      },
+      {
+        "code": "SAS",
+        "name": "South Asia"
+      },
+      {
+        "code": "SSA",
+        "name": "Sub-Saharan Africa (excluding high income)"
+      },
+      {
+        "code": "SSF",
+        "name": "Sub-Saharan Africa"
+      },
+      {
+        "code": "SST",
+        "name": "Small states"
+      },
+      {
+        "code": "TEA",
+        "name": "East Asia & Pacific (IDA & IBRD countries)"
+      },
+      {
+        "code": "TEC",
+        "name": "Europe & Central Asia (IDA & IBRD countries)"
+      },
+      {
+        "code": "TLA",
+        "name": "Latin America & the Caribbean (IDA & IBRD countries)"
+      },
+      {
+        "code": "TMN",
+        "name": "Middle East, North Africa, Afghanistan & Pakistan (IDA & IBRD)"
+      },
+      {
+        "code": "TSA",
+        "name": "South Asia (IDA & IBRD)"
+      },
+      {
+        "code": "TSS",
+        "name": "Sub-Saharan Africa (IDA & IBRD countries)"
+      },
+      {
+        "code": "UMC",
+        "name": "Upper middle income"
+      },
+      {
+        "code": "WLD",
+        "name": "World"
+      }
+    ],
+    "removed_rows": 3120,
+    "removed_unique_codes": 48,
+    "rule": "Exclude rows whose Country Code is in the documented static World Bank aggregate-code set embedded in run_country_only_sensitivity.py."
+  },
+  "full_panel": {
+    "analyzed_rows": 17195,
+    "excluded_rows": 0,
+    "first_digit": {
+      "chi_square": 100.16554215204238,
+      "dof": 8,
+      "mad": 0.007314647983807111,
+      "nigrini_classification": "acceptable conformity",
+      "observed_counts": {
+        "1": 4874,
+        "2": 2903,
+        "3": 2247,
+        "4": 1837,
+        "5": 1595,
+        "6": 1149,
+        "7": 913,
+        "8": 827,
+        "9": 850
+      }
+    },
+    "second_digit": {
+      "chi_square": 49.27746805969423,
+      "dof": 9,
+      "mad": 0.004058150935433028,
+      "observed_counts": {
+        "0": 2310,
+        "1": 1990,
+        "2": 1823,
+        "3": 1729,
+        "4": 1635,
+        "5": 1547,
+        "6": 1628,
+        "7": 1523,
+        "8": 1520,
+        "9": 1490
+      }
+    }
+  },
+  "outputs": {
+    "country_only_comparison_csv": "results/country_only_comparison.csv",
+    "country_only_first_digit_table_csv": "results/country_only_first_digit_table.csv",
+    "country_only_second_digit_table_csv": "results/country_only_second_digit_table.csv",
+    "country_only_summary_json": "results/country_only_summary.json"
+  },
+  "robustness_limitations_paragraph": "After excluding World Bank aggregate region/income/world series, the country/territory-only panel has first-digit MAD 0.007368 (acceptable conformity) versus 0.007315 for the full panel, and second-digit MAD 0.004879 versus 0.004058. The first-digit conformity conclusion remains acceptable, and the second-digit generalized Benford fit remains small by MAD; therefore the primary conclusion is not driven solely by aggregate World Bank series. The limitation is that the filter relies on a documented static aggregate-code list for this pinned CSV rather than a separately checksummed World Bank metadata file.",
+  "run_timestamp_utc": "<redacted-timestamp>"
+}

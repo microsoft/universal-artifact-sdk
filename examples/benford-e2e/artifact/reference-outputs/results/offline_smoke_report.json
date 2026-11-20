@@ -1,0 +1,64 @@
+{
+  "cached_data_path": "data/population.csv",
+  "cached_data_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+  "description": "Offline smoke test: run analysis twice from cached verified CSV and compare numeric output SHA-256 hashes.",
+  "hashes_first_rerun": {
+    "first_digit_table.csv": "eded21643a7f50efc890940d36b264d1ad54e95b9cd23b8b104bdd9f8165cdcb",
+    "second_digit_table.csv": "b49eae88c3d2a6c101b4201258a7fc794fb2cf36825fc8883e313c1e5d58cf00",
+    "summary.json": "c0810eab6bc1bb918e21da8559c5967c7ee6fd97a76c799506983aab7ca504e0"
+  },
+  "hashes_second_rerun": {
+    "first_digit_table.csv": "eded21643a7f50efc890940d36b264d1ad54e95b9cd23b8b104bdd9f8165cdcb",
+    "second_digit_table.csv": "b49eae88c3d2a6c101b4201258a7fc794fb2cf36825fc8883e313c1e5d58cf00",
+    "summary.json": "c0810eab6bc1bb918e21da8559c5967c7ee6fd97a76c799506983aab7ca504e0"
+  },
+  "key_metrics": {
+    "analyzed_rows": 17195,
+    "excluded_rows": 0,
+    "first_digit_classification": "acceptable conformity",
+    "first_digit_mad": 0.007314647983807111,
+    "negative_control_classification": "nonconformity",
+    "negative_control_mad": 0.0602555206731196,
+    "second_digit_mad": 0.004058150935433028
+  },
+  "network_used": false,
+  "numeric_outputs": [
+    "first_digit_table.csv",
+    "second_digit_table.csv",
+    "summary.json"
+  ],
+  "stable_numeric_output_hashes": true,
+  "status": "ok",
+  "steps": [
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/analyze_benford.py",
+        "--data",
+        "data/population.csv",
+        "--results-dir",
+        "results/offline_smoke",
+        "--figures-dir",
+        "figures/offline_smoke"
+      ],
+      "elapsed_seconds": 1.483,
+      "label": "offline numeric rerun A from cached verified CSV",
+      "returncode": 0
+    },
+    {
+      "command": [
+        "/usr/bin/python3",
+        "scripts/analyze_benford.py",
+        "--data",
+        "data/population.csv",
+        "--results-dir",
+        "results/offline_smoke",
+        "--figures-dir",
+        "figures/offline_smoke"
+      ],
+      "elapsed_seconds": 1.456,
+      "label": "offline numeric rerun B from cached verified CSV",
+      "returncode": 0
+    }
+  ]
+}

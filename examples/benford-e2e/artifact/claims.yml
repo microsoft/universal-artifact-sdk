@@ -1,0 +1,366 @@
+claims:
+- id: C1
+  statement: 'Success criterion 1 and the provenance-first claim: all downstream results are computed
+    from the exact pinned external dataset, byte-for-byte verified before analysis.'
+  stance: finding
+  tested_by:
+  - dataset-provenance-and-checksum-gate
+  validators:
+  - id: v_C1_1
+    kind: procedure
+    instructions: Pinned download produces checksum_match=true, the expected SHA-256, row_count=17195,
+      and the expected columns; corrupting the file or changing the expected hash causes a loud failure
+      before analysis; downstream scripts read only the verified local CSV.
+    inputs:
+    - R1
+    success_criteria: Pinned download produces checksum_match=true, the expected SHA-256, row_count=17195,
+      and the expected columns; corrupting the file or changing the expected hash causes a loud failure
+      before analysis; downstream scripts read only the verified local CSV.
+- id: C2
+  statement: 'Success criterion 2: the leading/second digit extraction procedure is correct, deterministic,
+    unit-tested, and handles exclusions transparently.'
+  stance: finding
+  tested_by:
+  - tested-significant-digit-extraction-library
+  validators:
+  - id: v_C2_1
+    kind: procedure
+    instructions: All documented unit tests pass on a clean CPU-only environment; invalid inputs are excluded
+      with reason-coded behavior; functions return digits in the expected ranges; repeated runs are identical;
+      analysis code uses the tested functions.
+    inputs:
+    - R2
+    success_criteria: All documented unit tests pass on a clean CPU-only environment; invalid inputs are
+      excluded with reason-coded behavior; functions return digits in the expected ranges; repeated runs
+      are identical; analysis code uses the tested functions.
+- id: C3
+  statement: 'Hypothesis 1 and success criterion 3: first digits in the real public population dataset
+    conform closely or acceptably to Benford''s Law under standard conformity metrics.'
+  stance: finding
+  tested_by:
+  - primary-first-digit-benford-conformity-analysis
+  validators:
+  - id: v_C3_1
+    kind: procedure
+    instructions: The output table has exactly 9 digit rows; observed counts sum to analyzed rows; analyzed
+      plus excluded rows equals the provenance row count; Benford probabilities sum to 1 within tolerance;
+      MAD, chi-square, dof, and Nigrini classification are reproducible and explicitly reported.
+    inputs:
+    - R3
+    success_criteria: The output table has exactly 9 digit rows; observed counts sum to analyzed rows;
+      analyzed plus excluded rows equals the provenance row count; Benford probabilities sum to 1 within
+      tolerance; MAD, chi-square, dof, and Nigrini classification are reproducible and explicitly reported.
+- id: C4
+  statement: 'Hypothesis 2: second significant digits track the generalized Benford distribution within
+    a small MAD, providing a stricter robustness check than first digits alone.'
+  stance: finding
+  tested_by:
+  - second-digit-generalized-benford-analysis
+  validators:
+  - id: v_C4_1
+    kind: procedure
+    instructions: Passed. The output table has 10 rows for digits 0-9; expected probabilities sum to 0.9999999999999997;
+      observed counts sum to the second-digit analyzable sample size 17195; MAD and chi-square are reported;
+      rows lacking second digits are documented as 0.
+    inputs:
+    - R4
+    success_criteria: Passed. The output table has 10 rows for digits 0-9; expected probabilities sum
+      to 0.9999999999999997; observed counts sum to the second-digit analyzable sample size 17195; MAD
+      and chi-square are reported; rows lacking second digits are documented as 0.
+- id: C5
+  statement: 'Hypothesis 3 and success criterion 4: the conformity test discriminates between Benford-like
+    real data and a deliberately non-Benford input rather than trivially accepting any numeric data.'
+  stance: finding
+  tested_by:
+  - deterministic-uniform-one-order-negative-control
+  validators:
+  - id: v_C5_1
+    kind: procedure
+    instructions: Repeated runs produce identical control outputs; sample size matches the real retained
+      first-digit sample size; MAD is >=0.015 and classified as nonconformity; the code path for scoring
+      is shared with the real-data analysis.
+    inputs:
+    - R5
+    success_criteria: Repeated runs produce identical control outputs; sample size matches the real retained
+      first-digit sample size; MAD is >=0.015 and classified as nonconformity; the code path for scoring
+      is shared with the real-data analysis.
+- id: C6
+  statement: 'Pipeline correctness: the same conformity pipeline accepts Benford-by-construction data,
+    complementing the negative control and reducing risk that a real-data rejection or acceptance is caused
+    by implementation error.'
+  stance: finding
+  tested_by:
+  - positive-log-uniform-synthetic-control
+  validators:
+  - id: v_C6_1
+    kind: procedure
+    instructions: The positive control is deterministic; MAD is in close/acceptable range, or deviations
+      are explainable by finite-sample noise; the result confirms the pipeline can accept Benford-like
+      data under the same scoring procedure.
+    inputs:
+    - R6
+    success_criteria: The positive control is deterministic; MAD is in close/acceptable range, or deviations
+      are explainable by finite-sample noise; the result confirms the pipeline can accept Benford-like
+      data under the same scoring procedure.
+- id: C7
+  statement: 'Robustness of Hypotheses 1 and 2: Benford conformity conclusions are not an artifact of
+    including World Bank aggregate regional/world/income series.'
+  stance: finding
+  tested_by:
+  - country-only-sensitivity-analysis-excluding-aggregate-world-bank-series
+  validators:
+  - id: v_C7_1
+    kind: procedure
+    instructions: Checksum gate passes; aggregate filtering rule is explicit; removed codes and row counts
+      are enumerated; first- and second-digit metrics are recomputed; summary states whether the main
+      conclusion is robust.
+    inputs:
+    - R7
+    success_criteria: Checksum gate passes; aggregate filtering rule is explicit; removed codes and row
+      counts are enumerated; first- and second-digit metrics are recomputed; summary states whether the
+      main conclusion is robust.
+- id: C8
+  statement: 'Robustness/limitation claim: the pooled result is not solely a consequence of one period,
+    and longitudinal dependence is acknowledged through descriptive block-level diagnostics.'
+  stance: finding
+  tested_by:
+  - temporal-robustness-by-predeclared-year-blocks
+  validators:
+  - id: v_C8_1
+    kind: procedure
+    instructions: Each block has reproducible sample size and classification; results are generated from
+      the shared tested functions; any block-level deviations are documented as robustness evidence or
+      limitations without tuning block boundaries post hoc.
+    inputs:
+    - R8
+    success_criteria: Each block has reproducible sample size and classification; results are generated
+      from the shared tested functions; any block-level deviations are documented as robustness evidence
+      or limitations without tuning block boundaries post hoc.
+- id: C9
+  statement: 'Success criterion 5: the required figures are generated reproducibly from recorded data
+    tables.'
+  stance: finding
+  tested_by:
+  - required-figure-generation
+  validators:
+  - id: v_C9_1
+    kind: procedure
+    instructions: Both figures render from the saved tables; overlays match the expected probabilities;
+      axes and legends are clear; rerunning the figure script produces visually identical outputs and
+      does not alter numeric result tables.
+    inputs:
+    - R9
+    success_criteria: Both figures render from the saved tables; overlays match the expected probabilities;
+      axes and legends are clear; rerunning the figure script produces visually identical outputs and
+      does not alter numeric result tables.
+- id: C10
+  statement: 'Artifact-level reproducibility: a reviewer can regenerate every reported number and required
+    figure deterministically on a CPU-only machine, with network needed only for the pinned dataset fetch.'
+  stance: finding
+  tested_by:
+  - end-to-end-reproducibility-bundle-and-offline-smoke-test
+  validators:
+  - id: v_C10_1
+    kind: procedure
+    instructions: The documented command completes on CPU, verifies the dataset checksum before analysis,
+      regenerates numeric outputs and figures, and the offline rerun from cached data reproduces numeric
+      outputs byte-identically.
+    inputs:
+    - R10
+    success_criteria: The documented command completes on CPU, verifies the dataset checksum before analysis,
+      regenerates numeric outputs and figures, and the offline rerun from cached data reproduces numeric
+      outputs byte-identically.
+- id: C11
+  statement: 'Success criterion 2: the leading-digit extraction routine is correct and deterministic before
+    empirical scoring.'
+  stance: finding
+  tested_by:
+  - significant-digit-extraction-unit-tests
+  validators:
+  - id: v_C11_1
+    kind: procedure
+    instructions: All edge-case tests pass and excluded values are explicitly categorized.
+    inputs:
+    - R11
+    success_criteria: All edge-case tests pass and excluded values are explicitly categorized.
+- id: C12
+  statement: Hypotheses 1 and 2 plus figure requirements.
+  stance: finding
+  tested_by:
+  - benford-conformity-analysis-tables-and-figures
+  validators:
+  - id: v_C12_1
+    kind: procedure
+    instructions: MAD, chi-square, dof, counts, exclusions, and figures are reproducible from the verified
+      input.
+    inputs:
+    - R12
+    success_criteria: MAD, chi-square, dof, counts, exclusions, and figures are reproducible from the
+      verified input.
+- id: C13
+  statement: 'Hypothesis 3: the conformity test discriminates rather than accepting arbitrary data.'
+  stance: finding
+  tested_by:
+  - negative-control-discrimination-check
+  validators:
+  - id: v_C13_1
+    kind: procedure
+    instructions: Control MAD is >= 0.015 and classified as nonconformity.
+    inputs:
+    - R13
+    success_criteria: Control MAD is >= 0.015 and classified as nonconformity.
+- id: C14
+  statement: 'Success criteria 1, 2, 3, 4, and 5: verified external dataset provenance; tested digit extraction;
+    quantitative first-/second-digit Benford results; negative-control discrimination; generated figures
+    from recorded data tables.'
+  stance: finding
+  tested_by:
+  - wire-tested-digit-library-into-benford-analysis
+  validators:
+  - id: v_C14_1
+    kind: procedure
+    instructions: All orchestrated steps exit 0; checksum/schema/row-count validation passes before analysis;
+      generated result tables and figures exist; negative control is classified nonconforming; offline
+      reruns produce identical numeric output hashes.
+    inputs:
+    - R14
+    success_criteria: All orchestrated steps exit 0; checksum/schema/row-count validation passes before
+      analysis; generated result tables and figures exist; negative control is classified nonconforming;
+      offline reruns produce identical numeric output hashes.
+- id: C15
+  statement: 'Success criterion 4: the conformity test discriminates by rejecting a non-Benford synthetic
+    control.'
+  stance: finding
+  tested_by:
+  - add-negative-control-validation
+  validators:
+  - id: v_C15_1
+    kind: procedure
+    instructions: Control run is deterministic and reports nonconformity (MAD >= 0.015).
+    inputs:
+    - R15
+    success_criteria: Control run is deterministic and reports nonconformity (MAD >= 0.015).
+- id: C16
+  statement: Improves statistical reporting without changing the primary MAD-based conformity classification.
+  stance: finding
+  tested_by:
+  - add-exact-chi-square-p-values-with-optional-scipy-dependency
+  validators:
+  - id: v_C16_1
+    kind: procedure
+    instructions: Analysis remains reproducible; p-values are present when SciPy is installed and absent/null
+      without failing when it is not.
+    inputs:
+    - R16
+    success_criteria: Analysis remains reproducible; p-values are present when SciPy is installed and
+      absent/null without failing when it is not.
+- id: C17
+  statement: Strengthens reproducibility claims for a short empirical/reproducibility note.
+  stance: finding
+  tested_by:
+  - add-paper-ready-provenance-appendix-table
+  validators:
+  - id: v_C17_1
+    kind: procedure
+    instructions: Appendix table is regenerated deterministically from JSON outputs and matches provenance
+      values.
+    inputs:
+    - R17
+    success_criteria: Appendix table is regenerated deterministically from JSON outputs and matches provenance
+      values.
+- id: C18
+  statement: Improves interpretation of Hypothesis 2 by distinguishing overall statistical rejection from
+    practical conformity by MAD.
+  stance: finding
+  tested_by:
+  - second-digit-p-value-and-residual-diagnostics
+  validators:
+  - id: v_C18_1
+    kind: procedure
+    instructions: Residuals are reported for all 10 digits and p-value is reproducible from the recorded
+      chi-square/dof.
+    inputs:
+    - R18
+    success_criteria: Residuals are reported for all 10 digits and p-value is reproducible from the recorded
+      chi-square/dof.
+- id: C19
+  statement: Improves artifact portability and reviewer reproducibility.
+  stance: finding
+  tested_by:
+  - containerized-no-mount-reproduction-bundle
+  validators:
+  - id: v_C19_1
+    kind: procedure
+    instructions: A clean `docker run` with no bind mount downloads the dataset, verifies checksum, and
+      reproduces the same negative-control MAD and classification.
+    inputs:
+    - R19
+    success_criteria: A clean `docker run` with no bind mount downloads the dataset, verifies checksum,
+      and reproduces the same negative-control MAD and classification.
+- id: C20
+  statement: Stronger provenance for the country/territory filtering rule.
+  stance: finding
+  tested_by:
+  - pinned-world-bank-metadata-filter
+  validators:
+  - id: v_C20_1
+    kind: procedure
+    instructions: The aggregate filter is metadata-driven and checksum-gated; removed codes/rows are reproducible
+      from the metadata snapshot; any divergence from the old static list is explicitly recorded and sensitivity
+      outputs are rerun.
+    inputs:
+    - R20
+    success_criteria: The aggregate filter is metadata-driven and checksum-gated; removed codes/rows are
+      reproducible from the metadata snapshot; any divergence from the old static list is explicitly recorded
+      and sensitivity outputs are rerun.
+- id: C21
+  statement: 'Visual robustness summary: makes temporal changes in Benford conformity easy to audit in
+    the note.'
+  stance: finding
+  tested_by:
+  - plot-temporal-robustness-diagnostics
+  validators:
+  - id: v_C21_1
+    kind: procedure
+    instructions: Figure is generated solely from the recorded CSV and clearly labels threshold bands
+      and block classifications.
+    inputs:
+    - R21
+    success_criteria: Figure is generated solely from the recorded CSV and clearly labels threshold bands
+      and block classifications.
+- id: C22
+  statement: World Bank country/year population values broadly conform to Benford's Law by MAD/Nigrini
+    criteria, while a same-size one-order uniform control does not.
+  stance: finding
+  tested_by:
+  - benford-world-bank-population-validation
+  validators:
+  - id: v_C22_1
+    kind: procedure
+    instructions: Checksum gate passes; digit-extraction unit tests pass; first- and second-digit result
+      tables are generated; first-digit MAD and chi-square/dof are reported with Nigrini classification;
+      second-digit MAD and chi-square/dof are reported; same-size fixed-seed negative control is nonconforming;
+      two figures are generated from the recorded results.
+    inputs:
+    - R22
+    success_criteria: Checksum gate passes; digit-extraction unit tests pass; first- and second-digit
+      result tables are generated; first-digit MAD and chi-square/dof are reported with Nigrini classification;
+      second-digit MAD and chi-square/dof are reported; same-size fixed-seed negative control is nonconforming;
+      two figures are generated from the recorded results.
+- id: C23
+  statement: Improves reproducibility assurance for success criterion 5 by automatically checking figure
+    generation on a clean runner.
+  stance: finding
+  tested_by:
+  - ci-smoke-test-for-table-driven-figure-generation
+  validators:
+  - id: v_C23_1
+    kind: procedure
+    instructions: CI-style smoke script passes on the current clean pipeline and would fail on missing/malformed
+      result tables, missing manifest, missing figure outputs, empty figure outputs, byte-count mismatch,
+      or SHA-256 mismatch.
+    inputs:
+    - R23
+    success_criteria: CI-style smoke script passes on the current clean pipeline and would fail on missing/malformed
+      result tables, missing manifest, missing figure outputs, empty figure outputs, byte-count mismatch,
+      or SHA-256 mismatch.

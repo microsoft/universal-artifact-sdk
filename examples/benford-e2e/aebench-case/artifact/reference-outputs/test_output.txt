@@ -1,0 +1,10 @@
+test_excluded_values_have_reasons (test_significant_digits.SignificantDigitExtractionTests) ... ok
+test_first_digit_examples_from_experiment (test_significant_digits.SignificantDigitExtractionTests) ... ok
+test_negative_and_scientific_notation (test_significant_digits.SignificantDigitExtractionTests) ... ok
+test_reason_counts_are_explicitly_countable (test_significant_digits.SignificantDigitExtractionTests) ... ok
+test_second_digit_examples (test_significant_digits.SignificantDigitExtractionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK

@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "experiment": "Tested significant-digit extraction library",
+  "tests": [
+    "tests/test_digits.py",
+    "tests/test_provenance_gate.py"
+  ],
+  "validated_module": "scripts/digits.py",
+  "local_command": "python3 tests/test_digits.py && python3 tests/test_provenance_gate.py",
+  "docker_command": "docker run --rm -v \"$PWD\":/work -w /work python:3.11 bash -lc 'python tests/test_digits.py && python tests/test_provenance_gate.py'",
+  "observed_output": "ok\\nok",
+  "coverage_summary": {
+    "valid_cases": ["54922", "0.0071", "1000", "10", "19", "negative values", "numeric strings", "scientific notation"],
+    "excluded_cases": {
+      "zero": ["0", "0.0", "0.000"],
+      "missing_or_blank": ["None", "blank strings", "non-numeric strings", "booleans"],
+      "non_finite": ["NaN", "Infinity", "-Infinity"]
+    },
+    "determinism": "Pure Decimal/string normalization with fixed reason labels; no random state or external data access."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "control_table": "results/negative_control_first_digit_table.csv",
+    "provenance": "results/dataset_provenance.json"
+  },
+  "control_chi_square": 6897.74230178361,
+  "control_degrees_of_freedom": 8,
+  "control_distribution": "uniform[1000.0, 9999.0]",
+  "control_first_digit_mad": 0.060888779695445226,
+  "control_nigrini_classification": "nonconformity",
+  "control_seed": 20260717,
+  "dataset_row_count_verified": 17195,
+  "dataset_sha256_verified": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+  "dataset_source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv",
+  "experiment": "Negative-control discrimination check",
+  "real_data_excluded": {},
+  "real_data_retained_rows": 17195,
+  "success": true,
+  "success_criterion": "control MAD >= 0.015 and classified as nonconformity"
+}

@@ -1,0 +1,48 @@
+code,name,metadata_rule
+AFE,Africa Eastern and Southern,region.value == Aggregates
+AFW,Africa Western and Central,region.value == Aggregates
+ARB,Arab World,region.value == Aggregates
+CEB,Central Europe and the Baltics,region.value == Aggregates
+CSS,Caribbean small states,region.value == Aggregates
+EAP,East Asia & Pacific (excluding high income),region.value == Aggregates
+EAR,Early-demographic dividend,region.value == Aggregates
+EAS,East Asia & Pacific,region.value == Aggregates
+ECA,Europe & Central Asia (excluding high income),region.value == Aggregates
+ECS,Europe & Central Asia,region.value == Aggregates
+EMU,Euro area,region.value == Aggregates
+EUU,European Union,region.value == Aggregates
+HIC,High income,region.value == Aggregates
+HPC,Heavily indebted poor countries (HIPC),region.value == Aggregates
+IBD,IBRD only,region.value == Aggregates
+IBT,IDA & IBRD total,region.value == Aggregates
+IDA,IDA total,region.value == Aggregates
+IDB,IDA blend,region.value == Aggregates
+IDX,IDA only,region.value == Aggregates
+LAC,Latin America & Caribbean (excluding high income),region.value == Aggregates
+LCN,Latin America & Caribbean ,region.value == Aggregates
+LDC,Least developed countries: UN classification,region.value == Aggregates
+LIC,Low income,region.value == Aggregates
+LMC,Lower middle income,region.value == Aggregates
+LMY,Low & middle income,region.value == Aggregates
+LTE,Late-demographic dividend,region.value == Aggregates
+MEA,"Middle East, North Africa, Afghanistan & Pakistan",region.value == Aggregates
+MIC,Middle income,region.value == Aggregates
+MNA,"Middle East, North Africa, Afghanistan & Pakistan (excluding high income)",region.value == Aggregates
+NAC,North America,region.value == Aggregates
+OED,OECD members,region.value == Aggregates
+OSS,Other small states,region.value == Aggregates
+PRE,Pre-demographic dividend,region.value == Aggregates
+PSS,Pacific island small states,region.value == Aggregates
+PST,Post-demographic dividend,region.value == Aggregates
+SAS,South Asia,region.value == Aggregates
+SSA,Sub-Saharan Africa (excluding high income),region.value == Aggregates
+SSF,Sub-Saharan Africa ,region.value == Aggregates
+SST,Small states,region.value == Aggregates
+TEA,East Asia & Pacific (IDA & IBRD countries),region.value == Aggregates
+TEC,Europe & Central Asia (IDA & IBRD countries),region.value == Aggregates
+TLA,Latin America & the Caribbean (IDA & IBRD countries),region.value == Aggregates
+TMN,"Middle East, North Africa, Afghanistan & Pakistan (IDA & IBRD)",region.value == Aggregates
+TSA,South Asia (IDA & IBRD),region.value == Aggregates
+TSS,Sub-Saharan Africa (IDA & IBRD countries),region.value == Aggregates
+UMC,Upper middle income,region.value == Aggregates
+WLD,World,region.value == Aggregates

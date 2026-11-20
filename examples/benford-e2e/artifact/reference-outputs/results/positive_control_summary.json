@@ -1,0 +1,45 @@
+{
+  "dataset_gate": {
+    "checksum_match": true,
+    "data_path": "data/population.csv",
+    "expected_row_count": 17195,
+    "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "row_count": 17195,
+    "schema_match": true,
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  },
+  "digit_extraction_smoke_tests_passed": true,
+  "experiment": "Positive log-uniform synthetic control",
+  "outputs": {
+    "positive_control_first_digit_table_csv": "results/positive_control_first_digit_table.csv",
+    "positive_control_summary_json": "results/positive_control_summary.json"
+  },
+  "positive_control": {
+    "description": "X = 10**U with U uniform on the recorded log10 range, scored by the shared first-digit pipeline.",
+    "dof": 8,
+    "excluded_rows": 0,
+    "exclusions_by_reason": {},
+    "generation_log10_max": 6.0,
+    "generation_log10_min": 0.0,
+    "generation_orders_of_magnitude": 6.0,
+    "nigrini_classification": "close conformity",
+    "observed_counts": {
+      "1": 5106,
+      "2": 3045,
+      "3": 2141,
+      "4": 1649,
+      "5": 1331,
+      "6": 1205,
+      "7": 1017,
+      "8": 882,
+      "9": 819
+    },
+    "positive_control_first_digit_chi_square": 6.177076780388321,
+    "positive_control_first_digit_mad": 0.001620904667174733,
+    "positive_control_seed": 424242,
+    "sample_size": 17195
+  },
+  "status": "ok",
+  "success": true
+}

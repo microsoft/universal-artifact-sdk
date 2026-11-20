@@ -1,0 +1,237 @@
+[
+  {
+    "code": "AFE",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Africa Eastern and Southern"
+  },
+  {
+    "code": "AFW",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Africa Western and Central"
+  },
+  {
+    "code": "ARB",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Arab World"
+  },
+  {
+    "code": "CEB",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Central Europe and the Baltics"
+  },
+  {
+    "code": "CSS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Caribbean small states"
+  },
+  {
+    "code": "EAP",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "East Asia & Pacific (excluding high income)"
+  },
+  {
+    "code": "EAR",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Early-demographic dividend"
+  },
+  {
+    "code": "EAS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "East Asia & Pacific"
+  },
+  {
+    "code": "ECA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Europe & Central Asia (excluding high income)"
+  },
+  {
+    "code": "ECS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Europe & Central Asia"
+  },
+  {
+    "code": "EMU",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Euro area"
+  },
+  {
+    "code": "EUU",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "European Union"
+  },
+  {
+    "code": "HIC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "High income"
+  },
+  {
+    "code": "HPC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Heavily indebted poor countries (HIPC)"
+  },
+  {
+    "code": "IBD",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "IBRD only"
+  },
+  {
+    "code": "IBT",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "IDA & IBRD total"
+  },
+  {
+    "code": "IDA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "IDA total"
+  },
+  {
+    "code": "IDB",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "IDA blend"
+  },
+  {
+    "code": "IDX",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "IDA only"
+  },
+  {
+    "code": "LAC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Latin America & Caribbean (excluding high income)"
+  },
+  {
+    "code": "LCN",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Latin America & Caribbean "
+  },
+  {
+    "code": "LDC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Least developed countries: UN classification"
+  },
+  {
+    "code": "LIC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Low income"
+  },
+  {
+    "code": "LMC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Lower middle income"
+  },
+  {
+    "code": "LMY",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Low & middle income"
+  },
+  {
+    "code": "LTE",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Late-demographic dividend"
+  },
+  {
+    "code": "MEA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Middle East, North Africa, Afghanistan & Pakistan"
+  },
+  {
+    "code": "MIC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Middle income"
+  },
+  {
+    "code": "MNA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Middle East, North Africa, Afghanistan & Pakistan (excluding high income)"
+  },
+  {
+    "code": "NAC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "North America"
+  },
+  {
+    "code": "OED",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "OECD members"
+  },
+  {
+    "code": "OSS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Other small states"
+  },
+  {
+    "code": "PRE",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Pre-demographic dividend"
+  },
+  {
+    "code": "PSS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Pacific island small states"
+  },
+  {
+    "code": "PST",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Post-demographic dividend"
+  },
+  {
+    "code": "SAS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "South Asia"
+  },
+  {
+    "code": "SSA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Sub-Saharan Africa (excluding high income)"
+  },
+  {
+    "code": "SSF",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Sub-Saharan Africa "
+  },
+  {
+    "code": "SST",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Small states"
+  },
+  {
+    "code": "TEA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "East Asia & Pacific (IDA & IBRD countries)"
+  },
+  {
+    "code": "TEC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Europe & Central Asia (IDA & IBRD countries)"
+  },
+  {
+    "code": "TLA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Latin America & the Caribbean (IDA & IBRD countries)"
+  },
+  {
+    "code": "TMN",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Middle East, North Africa, Afghanistan & Pakistan (IDA & IBRD)"
+  },
+  {
+    "code": "TSA",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "South Asia (IDA & IBRD)"
+  },
+  {
+    "code": "TSS",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Sub-Saharan Africa (IDA & IBRD countries)"
+  },
+  {
+    "code": "UMC",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "Upper middle income"
+  },
+  {
+    "code": "WLD",
+    "metadata_rule": "region.value == Aggregates",
+    "name": "World"
+  }
+]

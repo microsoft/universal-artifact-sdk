@@ -1,0 +1,163 @@
+results:
+- id: R1
+  produced_by: dataset-provenance-and-checksum-gate
+  validates:
+  - C1
+  kind: metrics
+  evidence: reference-outputs/results/provenance.json
+  output_path: results/provenance.json
+- id: R2
+  produced_by: tested-significant-digit-extraction-library
+  validates:
+  - C2
+  kind: artifact
+  evidence: reports/tested-significant-digit-extraction-library.md
+- id: R3
+  produced_by: primary-first-digit-benford-conformity-analysis
+  validates:
+  - C3
+  kind: metrics
+  evidence: reference-outputs/results/summary.json
+  output_path: results/summary.json
+- id: R4
+  produced_by: second-digit-generalized-benford-analysis
+  validates:
+  - C4
+  kind: table
+  evidence: reference-outputs/results/second_digit_table.csv
+  output_path: results/second_digit_table.csv
+- id: R5
+  produced_by: deterministic-uniform-one-order-negative-control
+  validates:
+  - C5
+  kind: metrics
+  evidence: reference-outputs/results/negative_control_validation_summary.json
+  output_path: results/negative_control_validation_summary.json
+- id: R6
+  produced_by: positive-log-uniform-synthetic-control
+  validates:
+  - C6
+  kind: metrics
+  evidence: reference-outputs/results/positive_control_summary.json
+  output_path: results/positive_control_summary.json
+- id: R7
+  produced_by: country-only-sensitivity-analysis-excluding-aggregate-world-bank-series
+  validates:
+  - C7
+  kind: metrics
+  evidence: reference-outputs/results/country_only_summary.json
+  output_path: results/country_only_summary.json
+- id: R8
+  produced_by: temporal-robustness-by-predeclared-year-blocks
+  validates:
+  - C8
+  kind: metrics
+  evidence: reference-outputs/results/year_block_robustness_summary.json
+  output_path: results/year_block_robustness_summary.json
+- id: R9
+  produced_by: required-figure-generation
+  validates:
+  - C9
+  kind: metrics
+  evidence: reference-outputs/figures/figure_generation_manifest.json
+  output_path: figures/figure_generation_manifest.json
+  volatile: ["/generated_figures/*/sha256", "/generated_figures/*/bytes"]
+- id: R10
+  produced_by: end-to-end-reproducibility-bundle-and-offline-smoke-test
+  validates:
+  - C10
+  kind: metrics
+  evidence: reference-outputs/results/offline_smoke_report.json
+  output_path: results/offline_smoke_report.json
+  volatile: ["/hashes_*_rerun/summary.json"]
+- id: R11
+  produced_by: significant-digit-extraction-unit-tests
+  validates:
+  - C11
+  kind: artifact
+  evidence: reports/significant-digit-extraction-unit-tests.md
+- id: R12
+  produced_by: benford-conformity-analysis-tables-and-figures
+  validates:
+  - C12
+  kind: table
+  evidence: reference-outputs/results/first_digit_table.csv
+  output_path: results/first_digit_table.csv
+- id: R13
+  produced_by: negative-control-discrimination-check
+  validates:
+  - C13
+  kind: metrics
+  evidence: reference-outputs/results/negative_control_summary.json
+  output_path: results/negative_control_summary.json
+- id: R14
+  produced_by: wire-tested-digit-library-into-benford-analysis
+  validates:
+  - C14
+  kind: metrics
+  evidence: reference-outputs/results/run_all_manifest.json
+  output_path: results/run_all_manifest.json
+  volatile: ["/offline_smoke/hashes_*_rerun/summary.json"]
+- id: R15
+  produced_by: add-negative-control-validation
+  validates:
+  - C15
+  kind: artifact
+  evidence: reports/add-negative-control-validation.md
+- id: R16
+  produced_by: add-exact-chi-square-p-values-with-optional-scipy-dependency
+  validates:
+  - C16
+  kind: metrics
+  evidence: reference-outputs/results/summary.json
+  output_path: results/summary.json
+- id: R17
+  produced_by: add-paper-ready-provenance-appendix-table
+  validates:
+  - C17
+  kind: table
+  evidence: reference-outputs/results/provenance_appendix.md
+  output_path: results/provenance_appendix.md
+- id: R18
+  produced_by: second-digit-p-value-and-residual-diagnostics
+  validates:
+  - C18
+  kind: metrics
+  evidence: reference-outputs/second_digit_pvalue_residuals_results.json
+  output_path: second_digit_pvalue_residuals_results.json
+- id: R19
+  produced_by: containerized-no-mount-reproduction-bundle
+  validates:
+  - C19
+  kind: artifact
+  evidence: reports/containerized-no-mount-reproduction-bundle.md
+- id: R20
+  produced_by: pinned-world-bank-metadata-filter
+  validates:
+  - C20
+  kind: metrics
+  evidence: reference-outputs/results/metadata_country_only_summary.json
+  output_path: results/metadata_country_only_summary.json
+- id: R21
+  produced_by: plot-temporal-robustness-diagnostics
+  validates:
+  - C21
+  kind: metrics
+  evidence: reference-outputs/figures/year_block_mad_manifest.json
+  output_path: figures/year_block_mad_manifest.json
+  volatile: ["/generated_figure/sha256", "/generated_figure/bytes"]
+- id: R22
+  produced_by: benford-world-bank-population-validation
+  validates:
+  - C22
+  kind: metrics
+  evidence: reference-outputs/benford_validation_run/summary.json
+  output_path: benford_validation_run/summary.json
+- id: R23
+  produced_by: ci-smoke-test-for-table-driven-figure-generation
+  validates:
+  - C23
+  kind: metrics
+  evidence: reference-outputs/figures/figure_generation_manifest.json
+  output_path: figures/figure_generation_manifest.json
+  volatile: ["/generated_figures/*/sha256", "/generated_figures/*/bytes"]

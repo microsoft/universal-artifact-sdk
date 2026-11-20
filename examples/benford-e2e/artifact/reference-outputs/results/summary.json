@@ -1,0 +1,113 @@
+{
+  "analysis": {
+    "analyzed_rows": 17195,
+    "excluded_rows": 0,
+    "exclusions_by_reason": {},
+    "total_rows": 17195,
+    "value_column": "Value"
+  },
+  "dataset": {
+    "byte_count": 552112,
+    "checksum_match": true,
+    "data_path": "data/population.csv",
+    "expected_row_count": 17195,
+    "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "row_count": 17195,
+    "schema_match": true,
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  },
+  "first_digit": {
+    "benford_probability_sum": 1.0,
+    "chi_square": 100.16554215204238,
+    "dof": 8,
+    "largest_deviations_by_digit": [
+      {
+        "abs_deviation": 0.017575503078927412,
+        "benford_proportion": 0.3010299956639812,
+        "digit": 1,
+        "observed_proportion": 0.2834544925850538
+      },
+      {
+        "abs_deviation": 0.013578277069560413,
+        "benford_proportion": 0.07918124604762482,
+        "digit": 5,
+        "observed_proportion": 0.09275952311718523
+      },
+      {
+        "abs_deviation": 0.009923368788977607,
+        "benford_proportion": 0.09691001300805642,
+        "digit": 4,
+        "observed_proportion": 0.10683338179703403
+      }
+    ],
+    "mad": 0.007314647983807111,
+    "nigrini_classification": "acceptable conformity",
+    "observed_counts": {
+      "1": 4874,
+      "2": 2903,
+      "3": 2247,
+      "4": 1837,
+      "5": 1595,
+      "6": 1149,
+      "7": 913,
+      "8": 827,
+      "9": 850
+    },
+    "p_value": 3.94917604502503e-18
+  },
+  "negative_control": {
+    "description": "Uniform random integers over one order of magnitude [10000, 100000), scored with the same first-digit pipeline.",
+    "dof": 8,
+    "first_digit_chi_square": 6978.557246295499,
+    "first_digit_mad": 0.0602555206731196,
+    "nigrini_classification": "nonconformity",
+    "observed_counts": {
+      "1": 1908,
+      "2": 1960,
+      "3": 1822,
+      "4": 1965,
+      "5": 1872,
+      "6": 1922,
+      "7": 1863,
+      "8": 1943,
+      "9": 1940
+    },
+    "p_value": 0.0,
+    "sample_size": 17195,
+    "seed": 20260717
+  },
+  "outputs": {
+    "figure1_png": "figures/figure1_first_digit.png",
+    "figure2_png": "figures/figure2_second_digit.png",
+    "first_digit_table_csv": "results/first_digit_table.csv",
+    "second_digit_table_csv": "results/second_digit_table.csv",
+    "summary_json": "results/summary.json"
+  },
+  "p_value_calculation": {
+    "method": "scipy.stats.chi2.sf",
+    "note": null
+  },
+  "second_digit": {
+    "analyzable_rows": 17195,
+    "benford_probability_sum": 0.9999999999999997,
+    "chi_square": 49.27746805969423,
+    "dof": 9,
+    "mad": 0.004058150935433028,
+    "observed_counts": {
+      "0": 2310,
+      "1": 1990,
+      "2": 1823,
+      "3": 1729,
+      "4": 1635,
+      "5": 1547,
+      "6": 1628,
+      "7": 1523,
+      "8": 1520,
+      "9": 1490
+    },
+    "one_significant_digit_convention": "For valid values with only one significant digit, the second significant digit is recorded as 0 and counted here; no population rows used this convention in the verified dataset.",
+    "p_value": 1.4723898886150244e-07,
+    "values_lacking_second_digit": 0
+  }
+}
