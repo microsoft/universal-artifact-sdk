@@ -8,6 +8,11 @@ boundary to v3 while retaining v2 reads. Package versions stay in lockstep.
 
 ## [Unreleased]
 
+### Added
+- Schema v3: optional result fields `output_path` (where re-running `produced_by` writes the
+  evidence) and `volatile` (evidence keys a correct re-run does not reproduce byte for byte)
+  (SPEC §2.3).
+
 ### Changed
 - The npm package requires Node.js 22 or later (`engines.node` `>=22`); Node.js 20 reached
   end of life in April 2026. CI tests Node.js 22 and 24.

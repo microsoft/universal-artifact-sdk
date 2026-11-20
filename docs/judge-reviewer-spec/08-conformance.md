@@ -104,7 +104,7 @@ A conformance kit SHOULD ship these fixtures as directories with an `expected.js
 | # | Fixture | Expected |
 |---|---------|----------|
 | J1 | Minimal artifact: manifest and paper only. | `structure/paper` `verified`. `structure/dependencies` `unverifiable`. `structure/experiments` `unassessable`. `claim_validators/none` `unassessable`. Rubric `PARTIAL`. Exit 0. |
-| J2 | Unsupported version (`format_version: evaluable-artifact/v99`). | Exit 2. No sealed run. |
+| J2 | Newer version (`format_version: evaluable-artifact/v99`). | Read with the v3 rules (Artifact Reader §3.1). Same findings and rubric as the same artifact declared v3, plus a structure finding for reader warning `RD-VERSION-NEWER`. Exit status as for v3. |
 | J3 | Claim C1 with `numeric_close` (expected 0.91, rel_tol 0.01) against a shipped CSV cell 0.912. | `claim_validators/C1.v0` `verified`, mode `evidence-supported`, badge `inspected`. Rubric `PARTIAL` (I7 ceiling). |
 | J4 | Same as J3 but the cell is 0.80. | `claim_validators/C1.v0` `failed`, mode `failed`. Rubric `NOT_REPRODUCED`. Exit 1. |
 | J5 | Same as J3 but `input.result` names an undeclared Result. | `unverifiable`, message contains "integrity". Rubric `PARTIAL`. |

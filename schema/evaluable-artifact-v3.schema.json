@@ -284,6 +284,8 @@
         "validation_mode": { "$ref": "#/$defs/validationMode" },
         "locators": { "type": "object" },
         "support": { "type": "object" },
+        "output_path": { "type": "string", "description": "Optional. Where re-running produced_by writes this evidence, relative to the artifact root (SPEC §2.3)." },
+        "volatile": { "type": "array", "items": { "type": "string" }, "description": "Optional. Evidence keys (JSON Pointer or CSV row/column) that a correct re-run does not reproduce byte for byte; * matches within a segment, ** across segments (SPEC §2.3)." },
         "supersedes": { "type": "string" }
       }
     },
