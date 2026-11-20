@@ -1,0 +1,57 @@
+{
+  "analysis": {
+    "first_digit": {
+      "chi_square": 100.16554215204238,
+      "classification": "acceptable conformity",
+      "dof": 8,
+      "mad": 0.007314647983807111
+    },
+    "negative_control": {
+      "chi_square": 7312.294283374889,
+      "classification": "nonconformity",
+      "description": "same-size fixed-seed uniform random values on [1, 10), scored through same first-digit path",
+      "dof": 8,
+      "first_digit_mad": 0.06050107008993974,
+      "n": 17195,
+      "seed": 20260717
+    },
+    "rows_analyzed": 17195,
+    "rows_excluded_by_reason": {},
+    "rows_excluded_total": 0,
+    "second_digit": {
+      "chi_square": 49.27746805969423,
+      "classification": "close conformity",
+      "dof": 9,
+      "mad": 0.004058150935433028
+    },
+    "total_rows": 17195
+  },
+  "artifacts": {
+    "downloaded_csv": "population.csv",
+    "figure1": "figure1_first_digit_benford.png",
+    "figure2": "figure2_second_digit_benford.png",
+    "first_digit_csv": "first_digit_results.csv",
+    "negative_control_csv": "negative_control_first_digit_results.csv",
+    "provenance_json": "provenance.json",
+    "second_digit_csv": "second_digit_results.csv",
+    "summary_json": "summary.json",
+    "summary_markdown": "summary.md"
+  },
+  "claim_interpretation": "supports primary Benford conformity claim by MAD; chi-square is sensitive at this sample size; negative control is nonconforming",
+  "dataset": {
+    "byte_count": 552112,
+    "data_rows": 17195,
+    "expected_data_rows": 17195,
+    "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "license_attribution": "World Bank Open Data via datasets/population community package",
+    "retrieved_at_utc": "<redacted-timestamp>",
+    "schema": [
+      "Country Name",
+      "Country Code",
+      "Year",
+      "Value"
+    ],
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  }
+}

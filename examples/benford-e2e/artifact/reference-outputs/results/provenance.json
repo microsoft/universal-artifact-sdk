@@ -1,0 +1,40 @@
+{
+  "attribution": {
+    "dataset": "World Bank total population by country/year",
+    "license_note": "World Bank Open Data / datasets-population attribution recorded; see upstream package metadata for full license terms.",
+    "source": "World Bank Open Data via datasets/population",
+    "upstream_package": "datasets/population community data package"
+  },
+  "byte_count": 552112,
+  "checksum_match": true,
+  "expected_header": [
+    "Country Name",
+    "Country Code",
+    "Year",
+    "Value"
+  ],
+  "expected_row_count": 17195,
+  "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+  "failures": [],
+  "header": [
+    "Country Name",
+    "Country Code",
+    "Year",
+    "Value"
+  ],
+  "retrieval_timestamp_utc": "<redacted-timestamp>",
+  "row_count": 17195,
+  "row_count_match": true,
+  "schema_match": true,
+  "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+  "software_versions": {
+    "matplotlib": "3.10.8",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "platform": "<redacted-platform>",
+    "python": "3.10.12 (main, Jun 22 2026, 18:55:27) [GCC 11.4.0]",
+    "requests": "2.33.1"
+  },
+  "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv",
+  "validated_data_path": "data/population.csv"
+}

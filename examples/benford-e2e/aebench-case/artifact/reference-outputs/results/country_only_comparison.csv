@@ -1,0 +1,3 @@
+panel,rows_total,analyzed_rows,excluded_rows,aggregate_rows_removed,unique_codes,first_digit_mad,first_digit_chi_square,first_digit_dof,first_digit_classification,second_digit_mad,second_digit_chi_square,second_digit_dof
+full_verified_panel,17195,17195,0,0,265,0.007314647984,100.165542152042,8,acceptable conformity,0.004058150935,49.277468059694,9
+country_only_panel,14075,14075,0,3120,217,0.007368305780,95.276359140189,8,acceptable conformity,0.004879224846,50.421191070937,9

@@ -1,0 +1,31 @@
+{
+  "generated_figures": [
+    {
+      "bytes": 56145,
+      "path": "figures/first_digit_benford.png",
+      "sha256": "a70db6c77fb3e75b5f3310d045b2cb410f5b6cea857be7f194423512797f33c6"
+    },
+    {
+      "bytes": 15832,
+      "path": "figures/first_digit_benford.pdf",
+      "sha256": "ad90b4c3b35713a55553dda8969bc5e8d9f6a4acf3f293d59433959e14b561d7"
+    },
+    {
+      "bytes": 55151,
+      "path": "figures/second_digit_benford.png",
+      "sha256": "548ad33c1ed8ca2d4a412f584f04185b6aa19c4ecb5d1f23a145b6b5b1383a4d"
+    },
+    {
+      "bytes": 16400,
+      "path": "figures/second_digit_benford.pdf",
+      "sha256": "8f3412ccab142824ea9160f599206a059b42a89eb9f6e734cb7096df1e720655"
+    }
+  ],
+  "source_tables": {
+    "first_digit_table_csv": "results/first_digit_table.csv",
+    "first_digit_table_sha256": "eded21643a7f50efc890940d36b264d1ad54e95b9cd23b8b104bdd9f8165cdcb",
+    "second_digit_table_csv": "results/second_digit_table.csv",
+    "second_digit_table_sha256": "b49eae88c3d2a6c101b4201258a7fc794fb2cf36825fc8883e313c1e5d58cf00"
+  },
+  "status": "ok"
+}

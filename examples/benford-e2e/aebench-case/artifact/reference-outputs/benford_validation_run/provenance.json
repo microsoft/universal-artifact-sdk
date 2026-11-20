@@ -1,0 +1,16 @@
+{
+  "byte_count": 552112,
+  "data_rows": 17195,
+  "expected_data_rows": 17195,
+  "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+  "license_attribution": "World Bank Open Data via datasets/population community package",
+  "retrieved_at_utc": "<redacted-timestamp>",
+  "schema": [
+    "Country Name",
+    "Country Code",
+    "Year",
+    "Value"
+  ],
+  "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+  "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+}

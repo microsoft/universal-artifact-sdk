@@ -1,0 +1,119 @@
+{
+  "analysis": {
+    "analyzed_positive_finite_values_with_second_digit": 17195,
+    "chi_square": 49.27746805969423,
+    "dof": 9,
+    "excluded_rows": 0,
+    "exclusions_by_reason": {},
+    "p_value": 1.472389888615024e-07,
+    "p_value_method": "regularized upper incomplete gamma Q(dof/2, chi_square/2), pure Python",
+    "per_digit": [
+      {
+        "abs_deviation": 0.014662109710766855,
+        "benford_proportion": 0.11967926859688073,
+        "digit": 0,
+        "expected_count": 2057.885023523364,
+        "observed_count": 2310,
+        "observed_proportion": 0.13434137830764759,
+        "standardized_residual": 5.557610312342366
+      },
+      {
+        "abs_deviation": 0.0018412138358283037,
+        "benford_proportion": 0.1138901034075564,
+        "digit": 1,
+        "expected_count": 1958.3403280929322,
+        "observed_count": 1990,
+        "observed_proportion": 0.1157313172433847,
+        "standardized_residual": 0.715422057896428
+      },
+      {
+        "abs_deviation": 0.002802307380035715,
+        "benford_proportion": 0.10882149900550823,
+        "digit": 2,
+        "expected_count": 1871.185675399714,
+        "observed_count": 1823,
+        "observed_proportion": 0.10601919162547252,
+        "standardized_residual": -1.1139341250393897
+      },
+      {
+        "abs_deviation": 0.003777074043114087,
+        "benford_proportion": 0.10432956023095939,
+        "digit": 3,
+        "expected_count": 1793.9467881713467,
+        "observed_count": 1729,
+        "observed_proportion": 0.1005524861878453,
+        "standardized_residual": -1.5333909658053555
+      },
+      {
+        "abs_deviation": 0.005222421517361284,
+        "benford_proportion": 0.10030820226757937,
+        "digit": 4,
+        "expected_count": 1724.7995379910274,
+        "observed_count": 1635,
+        "observed_proportion": 0.09508578075021809,
+        "standardized_residual": -2.1622444382638566
+      },
+      {
+        "abs_deviation": 0.006709221844776639,
+        "benford_proportion": 0.09667723580232243,
+        "digit": 5,
+        "expected_count": 1662.3650696209343,
+        "observed_count": 1547,
+        "observed_proportion": 0.08996801395754579,
+        "standardized_residual": -2.829509328898171
+      },
+      {
+        "abs_deviation": 0.0013039498814011868,
+        "benford_proportion": 0.09337473578303615,
+        "digit": 6,
+        "expected_count": 1605.5785817893066,
+        "observed_count": 1628,
+        "observed_proportion": 0.09467868566443734,
+        "standardized_residual": 0.5595608178901367
+      },
+      {
+        "abs_deviation": 0.0017797298918772325,
+        "benford_proportion": 0.09035198926960332,
+        "digit": 7,
+        "expected_count": 1553.602455490829,
+        "observed_count": 1523,
+        "observed_proportion": 0.08857225937772609,
+        "standardized_residual": -0.7764014279548161
+      },
+      {
+        "abs_deviation": 0.0008277364763872308,
+        "benford_proportion": 0.08757005357886138,
+        "digit": 8,
+        "expected_count": 1505.7670712885215,
+        "observed_count": 1520,
+        "observed_proportion": 0.08839779005524862,
+        "standardized_residual": 0.36678821760781316
+      },
+      {
+        "abs_deviation": 0.001655744772781742,
+        "benford_proportion": 0.08499735205769224,
+        "digit": 9,
+        "expected_count": 1461.529468632018,
+        "observed_count": 1490,
+        "observed_proportion": 0.08665309683047398,
+        "standardized_residual": 0.7447178861996572
+      }
+    ],
+    "second_digit_mad": 0.004058150935433028,
+    "total_rows": 17195
+  },
+  "experiment": "Second-digit p-value and residual diagnostics",
+  "provenance": {
+    "columns": [
+      "Country Name",
+      "Country Code",
+      "Year",
+      "Value"
+    ],
+    "data_rows": 17195,
+    "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "retrieval_timestamp_utc": "<redacted-timestamp>",
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  }
+}

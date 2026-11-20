@@ -1,0 +1,50 @@
+{
+  "dataset": {
+    "checksum_match": true,
+    "data_path": "data/population.csv",
+    "expected_row_count": 17195,
+    "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "retrieval_timestamp_utc": "<redacted-timestamp>",
+    "row_count": 17195,
+    "row_count_match": true,
+    "schema_match": true,
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  },
+  "negative_control": {
+    "control_chi_square": 6978.557246295499,
+    "control_excluded_rows": 0,
+    "control_exclusions_by_reason": {},
+    "control_first_digit_mad": 0.06025552067311963,
+    "control_high_exclusive": 10000,
+    "control_low_inclusive": 1000,
+    "control_nigrini_classification": "nonconformity",
+    "control_sample_size": 17195,
+    "control_seed": 20260717,
+    "distribution": "numpy.random.Generator.integers uniform one-order integers [1000, 10000)",
+    "dof": 8,
+    "table_csv": "results/negative_control_first_digit_table.csv"
+  },
+  "outputs": {
+    "experiment_run_json": "results/experiment_run.json",
+    "negative_control_first_digit_table_csv": "results/negative_control_first_digit_table.csv",
+    "provenance_json": "results/provenance.json",
+    "real_first_digit_table_csv": "results/first_digit_table.csv",
+    "summary_json": "results/negative_control_validation_summary.json"
+  },
+  "real_population_first_digit": {
+    "dof": 8,
+    "excluded_rows": 0,
+    "exclusions_by_reason": {},
+    "first_digit_chi_square": 100.16554215204238,
+    "first_digit_mad": 0.007314647983807111,
+    "nigrini_classification": "acceptable conformity",
+    "sample_size": 17195,
+    "table_csv": "results/first_digit_table.csv"
+  },
+  "success_checks": {
+    "negative_control_nonconformity": true,
+    "sample_sizes_match": true,
+    "shared_scoring_function": "score_first_digits used for real Value rows and negative control values"
+  }
+}

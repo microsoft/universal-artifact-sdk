@@ -1,0 +1,49 @@
+{
+  "experiment": {
+    "name": "Add exact chi-square p-values with optional SciPy dependency",
+    "description": "Compute and report chi-square survival-function p-values when SciPy is available, while preserving the no-SciPy fallback.",
+    "expectedOutput": "summary.json gains p_value fields for first digit, second digit, and negative control; README documents optional dependency behavior.",
+    "difficulty": "Easy",
+    "dependencies": ["Current analysis scripts", "Optional scipy"],
+    "claimSupported": "Improves statistical reporting without changing the primary MAD-based conformity classification.",
+    "method": "Add optional scipy.stats.chi2.sf import, store p_value fields in summary.json, document null fallback, and validate both normal SciPy and simulated no-SciPy execution paths.",
+    "successCriteria": "Analysis remains reproducible; p-values are present when SciPy is installed and absent/null without failing when it is not.",
+    "estimatedEffort": "0.5 day",
+    "proposedBy": ["<redacted-model>"]
+  },
+  "status": "Successful",
+  "validation": {
+    "commands_run": [
+      "python3 tests/test_p_values.py",
+      "python3 scripts/run_all.py --mode pipeline-no-download --clean-smoke",
+      "PYTHONPATH=<fake scipy shadow> python3 scripts/analyze_benford.py --data data/population.csv --results-dir results/no_scipy_validation --figures-dir figures/no_scipy_validation"
+    ],
+    "with_scipy": {
+      "summary_json": "results/summary.json",
+      "p_value_method": "scipy.stats.chi2.sf",
+      "first_digit_p_value": 3.94917604502503e-18,
+      "second_digit_p_value": 1.4723898886150244e-07,
+      "negative_control_p_value": 0.0
+    },
+    "without_scipy_simulated": {
+      "summary_json": "results/no_scipy_validation/summary.json",
+      "p_value_method": null,
+      "all_p_values_null": true,
+      "note": "SciPy is not available; chi-square p_value fields are null. Install scipy to compute exact survival-function p-values."
+    },
+    "offline_smoke": {
+      "manifest": "results/run_all_manifest.json",
+      "stable_numeric_output_hashes": true
+    }
+  },
+  "artifacts": [
+    "scripts/analyze_benford.py",
+    "tests/test_p_values.py",
+    "scripts/run_all.py",
+    "README.md",
+    "results/summary.json",
+    "results/no_scipy_validation/summary.json",
+    "results/run_all_manifest.json"
+  ],
+  "reproduceCommand": "docker run -it -v \"$PWD\":/work -w /work python:3.11 bash -lc 'python -m pip install --no-cache-dir numpy pandas matplotlib scipy && python scripts/run_all.py --mode full --clean-smoke'"
+}

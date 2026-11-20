@@ -1,0 +1,40 @@
+{
+  "experimentRun": {
+    "name": "Benford World Bank population validation",
+    "status": "completed",
+    "command": "python3 run_benford_validation.py --outdir benford_validation_run",
+    "reproduceCommand": "docker run -it -v \"$PWD:/work\" -w /work python:3.11 bash -lc 'pip install --no-cache-dir matplotlib && python run_benford_validation.py --outdir benford_validation_run'",
+    "artifactRoot": ".",
+    "runDirectory": "benford_validation_run",
+    "artifacts": {
+      "script": "run_benford_validation.py",
+      "provenance": "benford_validation_run/provenance.json",
+      "summaryJson": "benford_validation_run/summary.json",
+      "summaryMarkdown": "benford_validation_run/summary.md",
+      "firstDigitCsv": "benford_validation_run/first_digit_results.csv",
+      "secondDigitCsv": "benford_validation_run/second_digit_results.csv",
+      "negativeControlCsv": "benford_validation_run/negative_control_first_digit_results.csv",
+      "figure1": "benford_validation_run/figure1_first_digit_benford.png",
+      "figure2": "benford_validation_run/figure2_second_digit_benford.png",
+      "downloadedCsv": "benford_validation_run/population.csv"
+    },
+    "results": {
+      "datasetSha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+      "dataRows": 17195,
+      "rowsAnalyzed": 17195,
+      "rowsExcludedTotal": 0,
+      "firstDigitMad": 0.007314647983807111,
+      "firstDigitClassification": "acceptable conformity",
+      "firstDigitChiSquare": 100.16554215204238,
+      "firstDigitDof": 8,
+      "secondDigitMad": 0.004058150935433028,
+      "secondDigitClassification": "close conformity",
+      "secondDigitChiSquare": 49.27746805969423,
+      "secondDigitDof": 9,
+      "negativeControlSeed": 20260717,
+      "negativeControlFirstDigitMad": 0.06050107008993974,
+      "negativeControlClassification": "nonconformity"
+    },
+    "interpretation": "Supports keeping the Benford conformity claim when framed by MAD/Nigrini criteria: first digit is acceptable and second digit is close conformity. The chi-square values show statistically detectable deviations at large N, so wording should avoid perfect-fit claims. The same-size fixed-seed one-order uniform control is nonconforming, supporting discriminating power."
+  }
+}

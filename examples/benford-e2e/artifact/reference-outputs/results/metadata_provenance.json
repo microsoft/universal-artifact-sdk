@@ -1,0 +1,82 @@
+{
+  "generated_aggregate_code_list": {
+    "code_count": 47,
+    "csv_path": "results/metadata_aggregate_codes.csv",
+    "json_path": "results/metadata_aggregate_codes.json",
+    "matches_prior_static_list": false,
+    "metadata_extra_present_vs_prior_static": [],
+    "prior_static_missing_from_metadata": [
+      "FCS"
+    ],
+    "sha256_canonical_json": "18eb78dd7f7093e3dd9e26ae569875ef138f5cb3b2c2d7b1a402016aea1616c8"
+  },
+  "metadata": {
+    "aggregate_codes_absent_from_population": [
+      "AFR",
+      "BEA",
+      "BEC",
+      "BHI",
+      "BLA",
+      "BMN",
+      "BSS",
+      "CAA",
+      "CEA",
+      "CEU",
+      "CLA",
+      "CME",
+      "CSA",
+      "DEA",
+      "DEC",
+      "DLA",
+      "DMN",
+      "DNS",
+      "DSA",
+      "DSF",
+      "DSS",
+      "FXS",
+      "IBB",
+      "INX",
+      "MDE",
+      "NAF",
+      "NRS",
+      "NXS",
+      "RRS",
+      "SXZ",
+      "XZN"
+    ],
+    "aggregate_codes_present_in_population": 47,
+    "aggregate_codes_total_in_metadata": 78,
+    "aggregate_rule": "World Bank country metadata row has region.value == 'Aggregates'",
+    "checksum_match": true,
+    "expected_row_count": 295,
+    "expected_sha256": "d29d57f8adf954c5e2a1520a02fb2c7b45575d8db3bd327a9dff47d66914231c",
+    "fetch_source": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+    "page": {
+      "page": 1,
+      "pages": 1,
+      "per_page": "400",
+      "total": 295
+    },
+    "row_count": 295,
+    "sha256": "d29d57f8adf954c5e2a1520a02fb2c7b45575d8db3bd327a9dff47d66914231c",
+    "snapshot_path": "data/world_bank_country_metadata.json",
+    "source_url": "https://api.worldbank.org/v2/country?format=json&per_page=400"
+  },
+  "population": {
+    "checksum_match": true,
+    "expected_row_count": 17195,
+    "expected_sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "fetch_source": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv",
+    "row_count": 17195,
+    "schema": [
+      "Country Name",
+      "Country Code",
+      "Year",
+      "Value"
+    ],
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "snapshot_path": "data/population_metadata_filter.csv",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv"
+  },
+  "retrieved_at_utc": "<redacted-timestamp>"
+}

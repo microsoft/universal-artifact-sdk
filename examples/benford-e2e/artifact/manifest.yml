@@ -1,0 +1,387 @@
+format_version: evaluable-artifact/v3
+sdk_version: artifact-sdk/v1
+id: benford-world-bank-population
+title: Empirical Validation of Benford's Law on Checksum-Verified World Bank Population Data
+artifact_kind: spec-artifact
+producer:
+  harness: research-agent
+paper:
+  pdf: paper.pdf
+  source: paper.tex
+  references_export: references.bib
+experiments:
+- slug: dataset-provenance-and-checksum-gate
+  directory: experiments/dataset-provenance-and-checksum-gate
+  implementation:
+    kind: spec
+    spec: specs/validate_provenance.md
+    check: python tests/test_provenance_gate.py
+  run:
+    command: python scripts/validate_provenance.py && ! python scripts/validate_provenance.py --source-file
+      data/population.csv --expected-sha256 0000000000000000000000000000000000000000000000000000000000000000
+    entrypoint: scripts/validate_provenance.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+- slug: tested-significant-digit-extraction-library
+  directory: experiments/tested-significant-digit-extraction-library
+  implementation:
+    kind: spec
+    spec: specs/digits.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+    additional_specs:
+    - specs/test_digits.md
+  run:
+    command: python tests/test_digits.py && python tests/test_provenance_gate.py
+    entrypoint: tests/test_digits.py
+    working_dir: .
+- slug: primary-first-digit-benford-conformity-analysis
+  directory: experiments/primary-first-digit-benford-conformity-analysis
+  implementation:
+    kind: spec
+    spec: specs/analyze_benford.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: python scripts/validate_provenance.py && python scripts/analyze_benford.py
+    entrypoint: scripts/analyze_benford.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - dataset-provenance-and-checksum-gate
+  - tested-significant-digit-extraction-library
+- slug: second-digit-generalized-benford-analysis
+  directory: experiments/second-digit-generalized-benford-analysis
+  implementation:
+    kind: spec
+    spec: specs/analyze_benford.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: python scripts/validate_provenance.py && python scripts/analyze_benford.py
+    entrypoint: scripts/analyze_benford.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - dataset-provenance-and-checksum-gate
+  - tested-significant-digit-extraction-library
+- slug: deterministic-uniform-one-order-negative-control
+  directory: experiments/deterministic-uniform-one-order-negative-control
+  implementation:
+    kind: spec
+    spec: specs/run_negative_control_validation.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: python scripts/run_negative_control_validation.py
+    entrypoint: scripts/run_negative_control_validation.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - tested-significant-digit-extraction-library
+  - primary-first-digit-benford-conformity-analysis
+- slug: positive-log-uniform-synthetic-control
+  directory: experiments/positive-log-uniform-synthetic-control
+  implementation:
+    kind: spec
+    spec: specs/run_positive_control_validation.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py && python -m py_compile
+      scripts/reproduce_positive_control_standalone.py
+    additional_specs:
+    - specs/reproduce_positive_control_standalone.md
+  run:
+    command: python scripts/run_positive_control_validation.py && python scripts/reproduce_positive_control_standalone.py
+    entrypoint: scripts/run_positive_control_validation.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - tested-significant-digit-extraction-library
+  - primary-first-digit-benford-conformity-analysis
+- slug: country-only-sensitivity-analysis-excluding-aggregate-world-bank-series
+  directory: experiments/country-only-sensitivity-analysis-excluding-aggregate-world-bank-series
+  implementation:
+    kind: spec
+    spec: specs/run_country_only_sensitivity.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: python scripts/validate_provenance.py && python scripts/run_country_only_sensitivity.py
+    entrypoint: scripts/run_country_only_sensitivity.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - primary-first-digit-benford-conformity-analysis
+  - second-digit-generalized-benford-analysis
+- slug: temporal-robustness-by-predeclared-year-blocks
+  directory: experiments/temporal-robustness-by-predeclared-year-blocks
+  implementation:
+    kind: spec
+    spec: specs/run_year_block_robustness.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: python scripts/validate_provenance.py && python scripts/run_year_block_robustness.py
+    entrypoint: scripts/run_year_block_robustness.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - dataset-provenance-and-checksum-gate
+  - tested-significant-digit-extraction-library
+  - primary-first-digit-benford-conformity-analysis
+- slug: required-figure-generation
+  directory: experiments/required-figure-generation
+  implementation:
+    kind: spec
+    spec: specs/generate_required_figures_from_tables.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: python scripts/validate_provenance.py && python scripts/analyze_benford.py && python scripts/generate_required_figures_from_tables.py
+    entrypoint: scripts/generate_required_figures_from_tables.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - primary-first-digit-benford-conformity-analysis
+  - second-digit-generalized-benford-analysis
+- slug: end-to-end-reproducibility-bundle-and-offline-smoke-test
+  directory: experiments/end-to-end-reproducibility-bundle-and-offline-smoke-test
+  implementation:
+    kind: spec
+    spec: specs/run_all.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py && python tests/test_p_values.py
+  run:
+    command: python scripts/run_all.py --mode full --clean-smoke
+    entrypoint: scripts/run_all.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - dataset-provenance-and-checksum-gate
+  - tested-significant-digit-extraction-library
+  - primary-first-digit-benford-conformity-analysis
+  - second-digit-generalized-benford-analysis
+  - deterministic-uniform-one-order-negative-control
+  - required-figure-generation
+- slug: significant-digit-extraction-unit-tests
+  directory: experiments/significant-digit-extraction-unit-tests
+  implementation:
+    kind: spec
+    spec: specs/significant_digits.md
+    check: python -m unittest discover -s . -p "test_significant_digits.py"
+    additional_specs:
+    - specs/test_significant_digits.md
+  run:
+    command: python -m unittest discover -s . -p "test_significant_digits.py" -v
+    entrypoint: test_significant_digits.py
+    working_dir: .
+  depends_on:
+  - dataset-provenance-and-checksum-gate
+- slug: benford-conformity-analysis-tables-and-figures
+  directory: experiments/benford-conformity-analysis-tables-and-figures
+  implementation:
+    kind: spec
+    spec: specs/run_all.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py && python tests/test_p_values.py
+    additional_specs:
+    - specs/analyze_benford.md
+  run:
+    command: python scripts/run_all.py --mode full --clean-smoke
+    entrypoint: scripts/run_all.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - dataset-provenance-and-checksum-gate
+  - significant-digit-extraction-unit-tests
+- slug: negative-control-discrimination-check
+  directory: experiments/negative-control-discrimination-check
+  implementation:
+    kind: spec
+    spec: specs/negative_control_validation.md
+    check: python -m py_compile negative_control_validation.py
+  run:
+    command: python negative_control_validation.py
+    entrypoint: negative_control_validation.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+- slug: wire-tested-digit-library-into-benford-analysis
+  directory: experiments/wire-tested-digit-library-into-benford-analysis
+  implementation:
+    kind: spec
+    spec: specs/run_all.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py && python tests/test_p_values.py
+    additional_specs:
+    - specs/digits.md
+  run:
+    command: python scripts/run_all.py --mode full --clean-smoke
+    entrypoint: scripts/run_all.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - tested-significant-digit-extraction-library
+  - dataset-provenance-and-checksum-gate
+- slug: add-negative-control-validation
+  directory: experiments/add-negative-control-validation
+  implementation:
+    kind: spec
+    spec: specs/negative_control_oneliner.md
+    check: python -m py_compile scripts/negative_control_oneliner.py
+  run:
+    command: python scripts/negative_control_oneliner.py
+    entrypoint: scripts/negative_control_oneliner.py
+    working_dir: .
+  depends_on:
+  - tested-significant-digit-extraction-library
+- slug: add-exact-chi-square-p-values-with-optional-scipy-dependency
+  directory: experiments/add-exact-chi-square-p-values-with-optional-scipy-dependency
+  implementation:
+    kind: spec
+    spec: specs/run_all.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py && python tests/test_p_values.py
+    additional_specs:
+    - specs/analyze_benford.md
+    - specs/test_p_values.md
+  run:
+    command: python scripts/run_all.py --mode full --clean-smoke
+    entrypoint: scripts/run_all.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+- slug: add-paper-ready-provenance-appendix-table
+  directory: experiments/add-paper-ready-provenance-appendix-table
+  implementation:
+    kind: spec
+    spec: specs/render_provenance_appendix.md
+    check: python -m py_compile scripts/render_provenance_appendix.py
+  run:
+    command: python scripts/render_provenance_appendix.py
+    entrypoint: scripts/render_provenance_appendix.py
+    working_dir: .
+- slug: second-digit-p-value-and-residual-diagnostics
+  directory: experiments/second-digit-p-value-and-residual-diagnostics
+  implementation:
+    kind: spec
+    spec: specs/second_digit_pvalue_residuals.md
+    check: python -m py_compile second_digit_pvalue_residuals.py
+  run:
+    command: python second_digit_pvalue_residuals.py
+    entrypoint: second_digit_pvalue_residuals.py
+    working_dir: .
+  depends_on:
+  - second-digit-generalized-benford-analysis
+- slug: containerized-no-mount-reproduction-bundle
+  directory: experiments/containerized-no-mount-reproduction-bundle
+  implementation:
+    kind: spec
+    spec: specs/run_all.md
+    check: python tests/test_digits.py && python tests/test_provenance_gate.py && python tests/test_p_values.py
+  run:
+    command: python scripts/run_all.py --mode full --clean-smoke
+    entrypoint: scripts/run_all.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+- slug: pinned-world-bank-metadata-filter
+  directory: experiments/pinned-world-bank-metadata-filter
+  implementation:
+    kind: spec
+    spec: specs/validate_metadata_filter.md
+    check: python -m py_compile scripts/validate_metadata_filter.py scripts/metadata_filter_oneliner.py
+    additional_specs:
+    - specs/metadata_filter_oneliner.md
+  run:
+    command: python scripts/validate_metadata_filter.py --population-path data/population.csv --on-metadata-drift
+      embedded && python scripts/metadata_filter_oneliner.py --on-metadata-drift embedded
+    entrypoint: scripts/validate_metadata_filter.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - country-only-sensitivity-analysis-excluding-aggregate-world-bank-series
+- slug: plot-temporal-robustness-diagnostics
+  directory: experiments/plot-temporal-robustness-diagnostics
+  implementation:
+    kind: spec
+    spec: specs/plot_year_block_mad.md
+    check: python -m py_compile scripts/plot_year_block_mad.py scripts/year_block_plot_inline.py
+    additional_specs:
+    - specs/year_block_plot_inline.md
+  run:
+    command: python scripts/plot_year_block_mad.py && python scripts/year_block_plot_inline.py
+    entrypoint: scripts/plot_year_block_mad.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: results/year_block_inline/data/population.csv
+  depends_on:
+  - temporal-robustness-by-predeclared-year-blocks
+- slug: benford-world-bank-population-validation
+  directory: experiments/benford-world-bank-population-validation
+  implementation:
+    kind: spec
+    spec: specs/run_benford_validation.md
+    check: python -m py_compile run_benford_validation.py
+  run:
+    command: python run_benford_validation.py --outdir benford_validation_run
+    entrypoint: run_benford_validation.py
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: benford_validation_run/population.csv
+- slug: ci-smoke-test-for-table-driven-figure-generation
+  directory: experiments/ci-smoke-test-for-table-driven-figure-generation
+  implementation:
+    kind: spec
+    spec: specs/ci_figure_generation_smoke.md
+    check: bash -n scripts/ci_figure_generation_smoke.sh && python tests/test_digits.py && python tests/test_provenance_gate.py
+  run:
+    command: bash scripts/ci_figure_generation_smoke.sh
+    entrypoint: scripts/ci_figure_generation_smoke.sh
+    working_dir: .
+  uses_data:
+  - dataset: wb-population
+    at: data/population.csv
+  depends_on:
+  - required-figure-generation
+paths:
+  claims: claims.yml
+  results: results.yml
+  datasets: datasets.yml
+evidence_inventory:
+  has_runnable_experiments: false
+  has_traces: false
+  trace_count: 0
+  has_exhibits: false
+  exhibit_count: 0
+  has_contributions: false
+  contribution_count: 0
+  has_released_data: true
+  has_paper_source: true
+  has_research_agent: false
+  has_citations_export: true
+  has_journal: false
+  experiments_attempted: 23
+  experiments_reported: 23
+  evidence_kinds:
+  - artifact
+  - metrics
+  - table
+  validation_modes: []

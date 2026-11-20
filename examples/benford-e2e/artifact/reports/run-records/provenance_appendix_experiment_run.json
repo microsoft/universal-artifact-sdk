@@ -1,0 +1,21 @@
+{
+  "experiment": "Add paper-ready provenance appendix table",
+  "status": "completed",
+  "inputs": [
+    "results/provenance.json",
+    "results/summary.json"
+  ],
+  "outputs": [
+    "results/provenance_appendix.md",
+    "results/provenance_appendix.tex",
+    "scripts/render_provenance_appendix.py"
+  ],
+  "validation": {
+    "renderer_rows": 15,
+    "required_values_checked_in_markdown": 9,
+    "markdown_sha256": "37a2d25ef2717babac5e6a0fd7f60cd1d163f5c129745884c56780edeeb0f3eb",
+    "latex_sha256": "6c1e43da8cece111e60306ad4d54d0ec3fb338253a65d1c755d624b5f8cd0a6c",
+    "deterministic_rerun": true
+  },
+  "reproduceCommand": "docker run -it -v \"$PWD\":/work -w /work python:3.11 bash -lc 'python scripts/render_provenance_appendix.py && sha256sum results/provenance_appendix.md results/provenance_appendix.tex'"
+}

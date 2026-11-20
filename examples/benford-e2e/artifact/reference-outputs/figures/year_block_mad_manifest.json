@@ -1,0 +1,42 @@
+{
+  "blocks": [
+    {
+      "block": "1960-1979",
+      "first_digit_mad": 0.012916039293,
+      "nigrini_classification": "marginally acceptable conformity",
+      "sample_size": 5280
+    },
+    {
+      "block": "1980-1999",
+      "first_digit_mad": 0.010819211214,
+      "nigrini_classification": "acceptable conformity",
+      "sample_size": 5290
+    },
+    {
+      "block": "2000-2019",
+      "first_digit_mad": 0.008670439119,
+      "nigrini_classification": "acceptable conformity",
+      "sample_size": 5300
+    },
+    {
+      "block": "2020-2024",
+      "first_digit_mad": 0.010652512951,
+      "nigrini_classification": "acceptable conformity",
+      "sample_size": 1325
+    }
+  ],
+  "generated_figure": {
+    "bytes": 89722,
+    "path": "figures/year_block_mad.png",
+    "sha256": "476ca5dd725f304aeb6135d803e5c443194fb8f58b0a8bcba637a02e0cefe1ce"
+  },
+  "source_csv": "results/year_block_robustness.csv",
+  "source_csv_sha256": "f6520a0e80f8ce8497681f52fb17437c464d87973d45bbc92a6e3d4d0c6d241b",
+  "status": "ok",
+  "thresholds": {
+    "acceptable_conformity_lt": 0.012,
+    "close_conformity_lt": 0.006,
+    "marginally_acceptable_conformity_lt": 0.015,
+    "nonconformity_gte": 0.015
+  }
+}

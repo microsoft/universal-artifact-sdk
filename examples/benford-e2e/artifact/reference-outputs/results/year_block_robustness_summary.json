@@ -1,0 +1,90 @@
+{
+  "dataset": {
+    "checksum_match": true,
+    "data_path": "data/population.csv",
+    "row_count": 17195,
+    "schema_match": true,
+    "sha256": "7d2dd6a17f5ed7916de1f89a9c116791e64d207f2e2f6ce47c57e1ab46f0088a",
+    "source_url": "https://raw.githubusercontent.com/datasets/population/425fc447a53a26c767a15a7de60c4cc2478a0595/data/population.csv",
+    "year_max": 2024,
+    "year_min": 1960
+  },
+  "interpretation": "All predeclared year blocks are scored with the same first-digit pipeline as the primary analysis. Classifications are descriptive robustness diagnostics, not strong iid hypothesis tests, because country-year population observations are temporally correlated.",
+  "outputs": {
+    "year_block_robustness_csv": "results/year_block_robustness.csv",
+    "year_block_robustness_summary_json": "results/year_block_robustness_summary.json"
+  },
+  "predeclared_blocks": [
+    {
+      "block": "1960-1979",
+      "end_year": 1979,
+      "start_year": 1960
+    },
+    {
+      "block": "1980-1999",
+      "end_year": 1999,
+      "start_year": 1980
+    },
+    {
+      "block": "2000-2019",
+      "end_year": 2019,
+      "start_year": 2000
+    },
+    {
+      "block": "2020-2024",
+      "end_year": 2024,
+      "start_year": 2020
+    }
+  ],
+  "results": [
+    {
+      "block": "1960-1979",
+      "chi_square": 94.33413612146776,
+      "dof": 8,
+      "end_year": 1979,
+      "excluded_rows": 0,
+      "first_digit_mad": 0.012916039293028434,
+      "nigrini_classification": "marginally acceptable conformity",
+      "rows_total": 5280,
+      "sample_size": 5280,
+      "start_year": 1960
+    },
+    {
+      "block": "1980-1999",
+      "chi_square": 76.82776346624941,
+      "dof": 8,
+      "end_year": 1999,
+      "excluded_rows": 0,
+      "first_digit_mad": 0.010819211213507228,
+      "nigrini_classification": "acceptable conformity",
+      "rows_total": 5290,
+      "sample_size": 5290,
+      "start_year": 1980
+    },
+    {
+      "block": "2000-2019",
+      "chi_square": 45.79683491674222,
+      "dof": 8,
+      "end_year": 2019,
+      "excluded_rows": 0,
+      "first_digit_mad": 0.008670439119141234,
+      "nigrini_classification": "acceptable conformity",
+      "rows_total": 5300,
+      "sample_size": 5300,
+      "start_year": 2000
+    },
+    {
+      "block": "2020-2024",
+      "chi_square": 24.785700518072005,
+      "dof": 8,
+      "end_year": 2024,
+      "excluded_rows": 0,
+      "first_digit_mad": 0.010652512951204944,
+      "nigrini_classification": "acceptable conformity",
+      "rows_total": 1325,
+      "sample_size": 1325,
+      "start_year": 2020
+    }
+  ],
+  "run_timestamp_utc": "<redacted-timestamp>"
+}
