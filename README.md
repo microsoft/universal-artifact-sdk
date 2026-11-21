@@ -48,9 +48,16 @@ score or verdict.
   static, read-only site that links each claim to its evidence, the judge's verdict, and the
   review findings that cite it. It is optional and reads the judge and reviewer outputs without
   changing that spec.
+- **Reader spec:** [`docs/artifact-reader-spec/`](docs/artifact-reader-spec/README.md), how any
+  tool opens an artifact read-only, tolerates common authoring mistakes, and classifies it
+  (`full-artifact`, `spec-artifact`, `paper+evidence`, `paper-only`).
+- **AEBench writer spec:** [`docs/aebench-writer-spec/`](docs/aebench-writer-spec/README.md),
+  which turns an artifact into an [AEBench](https://github.com/AEBench/AEBench) case whose oracle
+  re-runs the experiments and compares the regenerated numbers.
+- **End-to-end example:** [`examples/benford-e2e/`](examples/benford-e2e/README.md), a code-free
+  Benford's Law artifact and its AEBench case; an implementation built from its specs alone
+  scores 4/4 ([walkthrough](examples/benford-e2e/GUIDE.md)).
 - **Example output:** [two AI-generated reviews of public papers](docs/examples/reviews/README.md)
-- **End-to-end example:** [a Benford's-law study graded by AEBench](examples/benford-e2e/README.md)
-  ([walkthrough](examples/benford-e2e/GUIDE.md))
 - **Browse the examples:** [explorer views of both reviews](https://microsoft.github.io/universal-artifact-sdk/)
   (AI-generated, no human judgement)
 - **Overview:** [slides](docs/presentations/overview/slides.pdf)

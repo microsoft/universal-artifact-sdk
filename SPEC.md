@@ -185,6 +185,19 @@ The `run` block is the machine-readable form of "how do I run this experiment" �
 heuristically from prose. It is what makes the artifact *executable* under the evaluator's `--reproduce`
 milestone.
 
+**`implementation` (optional) `[NEW]`.** Says whether the experiment's code ships:
+
+```yaml
+  implementation:
+    kind: spec                         # code (default when absent) | spec
+    spec: "specs/analyze_benford.md"   # kind: spec — what the code must do, exactly enough to re-implement it
+    check: "python tests/test_digits.py"   # optional — exits 0 iff the implementation exists and its specified tests pass
+```
+
+With `kind: spec` the code is **not shipped**: an evaluator first implements the spec, then runs
+`run.command`. Consumers derive the artifact kind from this field
+([Artifact Reader §6](docs/artifact-reader-spec/README.md)).
+
 ### 2.2.2 Experiment disposition — *what was tried, and why it was dropped* `[NEW]`
 
 A research agent typically **attempts many more experiments than it reports**: dead ends, failed
@@ -276,10 +289,20 @@ result:
   evidence: "experiments/posterior_contraction/contraction.csv"
   kind: "metrics"                           # [EXPANDED] see enum below
   validation_mode: "re-analyze"            # [NEW] re-execute | re-analyze | inspect | attest (default inferred from kind)
+  output_path: "results/contraction.csv"   # [NEW] optional — where re-running produced_by writes this evidence (workspace-relative)
+  volatile: ["/elapsed_*", "/figures/*/sha256"]  # [NEW] optional — evidence keys that legitimately differ on every re-run
   locators:                                 # named handles into the evidence, used by validators
     kl_final:   { column: "kl_divergence", row: "final" }
     kl_initial: { column: "kl_divergence", row: "0" }
 ```
+
+**`volatile` `[NEW]`.** Keys of the evidence that a correct re-run does not reproduce byte for byte:
+timings, hashes of rendered PDFs or images, and hashes of files that embed a timestamp. Keys use the
+extraction keys of the AEBench writer (`docs/aebench-writer-spec/`, Extraction): a JSON Pointer such as `/steps/0/elapsed_seconds`, or
+`<first-column value>/<column name>` for CSV. In a pattern, `*` matches any characters except `/`,
+`**` matches any characters including `/`, and every other character is literal; a pattern must
+match the whole key. Tools that compare re-run evidence with shipped evidence (re-execution oracles)
+never compare volatile keys. They remain part of the evidence for display and inspection.
 
 **`kind` (expanded) `[NEW]`.** The v1 enum (`metrics | figure | table | log | proof | artifact`) only
 covered *execution outputs*. To carry qualitative/interpretive evidence it gains:
@@ -1102,6 +1125,14 @@ evidence_inventory:                # [NEW] SDK-computed from what was declared
 only *computes and records* the inventory (structural); the evaluator *acts* on it (semantic). This is
 the mechanism by which the format assumes **nothing** about which inputs are present.
 
+**Artifact kind `[NEW]`.** `manifest.yml` MAY also carry `artifact_kind`, a one-word summary of the
+inventory: `full-artifact` (runnable code ships), `spec-artifact` (code is replaced by
+specifications, §2.2 `implementation`), `paper+evidence` (outputs or data but nothing to run), or
+`paper-only`. Its derivation rule, and what a reader does when the declared value disagrees with
+the contents, are in [Artifact Reader §6](docs/artifact-reader-spec/README.md). An artifact never
+records its own evaluation stage; evaluations record the artifact's content digest instead (Artifact
+Reader §7).
+
 ---
 
 ### 5.2 Contribution index ownership
@@ -1136,8 +1167,10 @@ calling `writeSubmission` is the explicit migration boundary. The caller's versi
 is not silently mutated. Missing optional collections remain legal for legacy literal/
 dataclass callers. The v2 schema is retained unchanged; the canonical v3 source is
 [`schema/evaluable-artifact-v3.schema.json`](schema/evaluable-artifact-v3.schema.json).
-Consumers and writers must reject unsupported nonempty format versions before rewriting
-an artifact; this SDK rejects future versions. Legacy tolerance for missing/empty version
+Writers must reject unsupported nonempty format versions before **rewriting** an artifact;
+this SDK rejects future versions. Consumers that only **read** an artifact to evaluate it do
+not reject on version: they read it with the v3 rules and report a warning
+([Artifact Reader §3.1](docs/artifact-reader-spec/README.md)). Legacy tolerance for missing/empty version
 strings on **open** is retained, but structural validation blocks their emission.
 
 **Compatibility limitation:** already deployed v2 SDK releases did not enforce the version

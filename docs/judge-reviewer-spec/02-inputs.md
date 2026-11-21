@@ -25,11 +25,13 @@ artifact inside the output location, is an input error (exit status 2).
 
 ## 2.2 Format gate
 
-1. The tool MUST read `manifest.yml` at the artifact root and MUST reject the input unless
-   `format_version` is a version it supports. A conforming tool MUST support
-   `evaluable-artifact/v3` (the current contract) and MUST also read `evaluable-artifact/v2`.
-   It MAY additionally read older versions under its own legacy policy. Rejection is an input
-   error (exit status 2, §6.8), not a finding.
+1. The tool reads the artifact through the
+   [Artifact Reader](../artifact-reader-spec/README.md) and accepts every input the reader
+   accepts. It reads `evaluable-artifact/v3` (the current contract) and `evaluable-artifact/v2`
+   natively; any other or missing `format_version` is read with the v3 rules and reported as a
+   reader warning (`RD-VERSION-NEWER` or `RD-VERSION-UNKNOWN`), not rejected. Only a reader
+   rejection (Reader §5: unreadable input, or nothing to evaluate) is an input error (exit
+   status 2, §6.8). Reader warnings are reported as structure findings (Reader §4).
    - **v3** may declare contributions (SDK §2.4.2, §5.2); they are read as described in §2.3.1.
    - **v2** has no contributions. A v2 artifact is processed exactly as before: no contribution
      diagnostics are produced unless the manifest wrongly declares `paths.contributions`
@@ -40,7 +42,9 @@ artifact inside the output location, is an input error (exit status 2).
 
 ## 2.3 Facts read from an artifact
 
-The judge and reviewer read only the SDK contract. Index files (`claims.yml`, `results.yml`,
+The judge and reviewer read only the SDK contract, through the Artifact Reader: the repairs of
+Reader §3.2–§3.4 (bare-list indexes, letter-case path matches, singular list fields, and so on)
+apply before anything below. Index files (`claims.yml`, `results.yml`,
 `exhibits.yml`, `datasets.yml`, `traces.yml`, `assessments.yml`, `journal.yml`) are optional;
 **absence means "not declared"** and triggers `unassessable` coverage notes, never failures.
 
@@ -165,7 +169,9 @@ Before any analysis, the tool copies its inputs into the run directory:
 Rules:
 
 1. Only regular files and directories are captured. A symbolic link, device, socket, or other
-   special file anywhere in the artifact tree is an **input error** (the run fails before analysis).
+   special file anywhere in the artifact tree is not captured and not followed; it is reported as
+   reader warning `RD-SPECIAL-FILE` (Reader §3.4), and a declared path that needs it is
+   unresolved.
    Exactly these directory names are excluded, at any depth, and are not walked (so special
    files inside them do not matter): `.git`, `.hg`, `.svn`, `__pycache__`. Nothing else is
    excluded.

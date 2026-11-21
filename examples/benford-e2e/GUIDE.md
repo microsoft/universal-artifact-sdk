@@ -3,16 +3,9 @@
 > **Audience**: researchers (and research agents) who will produce an artifact, and anyone who
 > wants to evaluate one automatically with [AEBench](https://github.com/AEBench/AEBench).
 > **Source of truth for**: how the pieces connect, and the commands to run the Benford example.
-> The formats themselves are defined in [`SPEC.md`](https://github.com/microsoft/universal-artifact-sdk/blob/e2e/benford-aebench/SPEC.md), the
-> [Artifact Reader spec](https://github.com/microsoft/universal-artifact-sdk/blob/e2e/benford-aebench/docs/artifact-reader-spec/README.md) and the
-> [AEBench writer spec](https://github.com/microsoft/universal-artifact-sdk/blob/e2e/benford-aebench/docs/aebench-writer-spec/README.md).
->
-> **Status (2026-11-20)**: the example ([artifact](artifact) and
-> [AEBench case](aebench-case)) is on the SDK's `main`
-> (microsoft/universal-artifact-sdk#92). The Artifact Reader spec, the AEBench writer spec, and the
-> SPEC.md additions the example uses (`artifact_kind`, `implementation`, `output_path`,
-> `volatile`) are on the SDK branch `e2e/benford-aebench`, not yet merged; the links above point
-> there.
+> The formats themselves are defined in [`SPEC.md`](../../SPEC.md), the
+> [Artifact Reader spec](../../docs/artifact-reader-spec/README.md) and the
+> [AEBench writer spec](../../docs/aebench-writer-spec/README.md).
 
 A paper says "the first-digit MAD is 0.0073". To check that automatically, a tool has to know
 which script produced that number, from which data file, into which output file, and which claim
@@ -184,8 +177,8 @@ print(len(r.errors), 'errors,', len(r.warnings), 'warnings')"
 ### 4.4 (Only for a different artifact) generate a case
 
 The Benford case is already in `examples/benford-e2e/aebench-case/`, so skip this step. For a new
-artifact, implement the [AEBench writer spec](https://github.com/microsoft/universal-artifact-sdk/blob/e2e/benford-aebench/docs/aebench-writer-spec/README.md) (it
-reads the artifact as the [Artifact Reader spec](https://github.com/microsoft/universal-artifact-sdk/blob/e2e/benford-aebench/docs/artifact-reader-spec/README.md)
+artifact, implement the [AEBench writer spec](../../docs/aebench-writer-spec/README.md) (it
+reads the artifact as the [Artifact Reader spec](../../docs/artifact-reader-spec/README.md)
 describes) and run it with a case id and the paper's URL. The implementation used for Benford
 was built from the spec text alone and is not shipped.
 

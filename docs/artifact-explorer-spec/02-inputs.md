@@ -46,10 +46,11 @@ Exit statuses of a conforming command-line tool:
 
 ## 2.2 Format gate
 
-The explorer applies JR §2.2 rule 1 unchanged to `manifest.yml` at the artifact root: it MUST read
-`evaluable-artifact/v3`, MUST read `evaluable-artifact/v2`, and MAY read older versions under its
-own legacy policy. Any other `format_version`, or a missing or unparsable `manifest.yml`, is a
-gate rejection (exit `2`).
+The explorer applies JR §2.2 rule 1 unchanged: it reads the artifact through the
+[Artifact Reader](../artifact-reader-spec/README.md), reads `evaluable-artifact/v3` and
+`evaluable-artifact/v2` natively, and reads any other or missing `format_version`, and a missing
+or unparsable `manifest.yml`, with the reader's repairs, adding each reader warning as a build
+warning (§3.2). Only a reader rejection (Reader §5) is a gate rejection (exit `2`).
 
 - `sdk_version` is copied into `identity` (§3.3) and MUST NOT change behavior (JR §2.2 rule 2).
 - `producer`, `origin`, and other producer extensions are opaque: copied for display, never
@@ -95,8 +96,8 @@ YAML values are projected into JSON by the rule in §3.1.
 **YAML reading.** Every YAML file is read as UTF-8 (a leading byte-order mark is ignored) under
 the YAML 1.2 core schema, as the SDK bindings read it (SDK §5): `yes`, `no`, `on`, `off`,
 dates, and timestamps are strings, never booleans or date values. A mapping that repeats a key is
-a parse error. A `manifest.yml` that is not valid UTF-8 or does not parse is a format-gate
-rejection (§2.2); any other index that is not valid UTF-8 or does not parse is a malformed index
+a parse error. A `manifest.yml` that is not valid UTF-8 or does not parse is read as absent
+(Reader §3.1 case C, a build warning); any other index that is not valid UTF-8 or does not parse is a malformed index
 (a build warning, above).
 
 ## 2.4 Run gate (mode B)

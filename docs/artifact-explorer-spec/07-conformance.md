@@ -103,8 +103,8 @@ changes `input_digest` and `run.json.input_provenance`.
 |----|------------------|----------|
 | X1 | Default fixture; build. | Exit `0`. `data.json` has every key of §3.2; `schema` is `artifact-explorer/data/v1`; `identity.id` `demo`; `counts.claims` `1`; `claims[0].result_ids` `[R1]`; `results[0].evidence` `evidence/metrics.csv`; `results[0].evidence_asset.url` `assets/evidence/metrics.csv`, and that file exists in the output with identical bytes; `evaluation` `null`; `warnings` `[]` (undeclared, absent default indexes such as `exhibits.yml` are silent, §2.3). |
 | X2 | Default fixture declared as `evaluable-artifact/v2`. | Same as X1 except `identity.format_version`; `contributions` `[]`. |
-| X3 | `format_version: evaluable-artifact/v9`. | Exit `2`; output directory not created. |
-| X4 | No `manifest.yml`; and separately, a `manifest.yml` that is not YAML. | Exit `2` both times; nothing written. |
+| X3 | `format_version: evaluable-artifact/v9`. | Exit `0`; as X1 except `identity.format_version` and a build warning for reader warning `RD-VERSION-NEWER` (Artifact Reader §3.1). |
+| X4 | No `manifest.yml`; and separately, a `manifest.yml` that is not YAML. | Exit `0` both times (the paper resolves, so Artifact Reader §5 does not reject); `identity.id` `null`; build warnings `RD-MANIFEST-ABSENT` (and `RD-MANIFEST-UNREADABLE` the second time). Separately, with `paper.pdf`, `claims.yml`, and `results.yml` also removed: exit `2`, nothing written. |
 | X5 | Default fixture built twice into two output directories, with the build time fixed. | The two `data.json` files are byte-identical; the copied file sets are identical. With the build time not fixed, the files differ at most in `generated_at`. |
 | X6 | Results index file is `results: 42`. | Exit `0`; `results` `[]`; `claims[0].result_ids` `[]`; `warnings` names the results index. |
 | X7 | `R1.evidence` is `../secret.txt`; separately `/etc/hostname`; separately a symbolic link inside the artifact pointing outside it. | Exit `0` each time; `results[0].evidence_asset` `null`, `results[0].evidence` the declared string; `warnings` non-empty; no file outside the artifact copied. |
